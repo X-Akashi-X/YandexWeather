@@ -29,10 +29,15 @@ h6 {
 a {
   text-decoration: none;
   color: inherit;
+  border: none;
   &:hover {
     text-decoration: none;
     color: inherit;
   }
+}
+
+button{
+  border: none;
 }
 
 p {

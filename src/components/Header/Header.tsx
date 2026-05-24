@@ -6,8 +6,8 @@ import Arrow from "@assets/icons/arrowMore.svg";
 import Favorite from "@assets/icons/favoriteIcon.svg";
 import Tracker from "@assets/icons/trackerIcon.svg";
 import Setting from "@assets/icons/settingIcon.svg";
-import Search from "@assets/icons/searchIcon.svg"
-import Clear from "@assets/icons/clearIcon.svg"
+import Search from "@assets/icons/searchIcon.svg";
+import Clear from "@assets/icons/clearIcon.svg";
 
 const Header = () => {
   return (

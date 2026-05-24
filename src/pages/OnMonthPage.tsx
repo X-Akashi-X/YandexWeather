@@ -1,7 +1,5 @@
 const OnMonthPage = () => {
-  return (
-    <div>ForMonthPage</div>
-  )
-}
+  return <div>ForMonthPage</div>;
+};
 
-export default OnMonthPage
+export default OnMonthPage;

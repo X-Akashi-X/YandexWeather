@@ -2,6 +2,7 @@ header {
   display: flex;
   gap: 12px;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .img_container {
@@ -22,7 +23,6 @@ header {
     display: flex;
     padding: 12px 20px;
     border-radius: 32px;
-    border: none;
     &.button_bg {
       background-color: inherit;
       align-items: center;
@@ -71,7 +71,6 @@ header {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    border: none;
     img {
       width: 12px;
       height: 12px;
@@ -89,7 +88,6 @@ header {
     border-radius: 32px;
     width: 44px;
     height: 44px;
-    border: none;
     background-color: rgba(180, 184, 204, 0.12);
     img {
       width: 16px;

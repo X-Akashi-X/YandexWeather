@@ -1,7 +1,5 @@
 const OnMapPage = () => {
-  return (
-    <div>OnMapPage</div>
-  )
-}
+  return <div>OnMapPage</div>;
+};
 
-export default OnMapPage
+export default OnMapPage;
