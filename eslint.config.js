@@ -43,7 +43,8 @@ export default tseslint.config( // Используем хелпер для ти
         { allowConstantExport: true },
       ],
       // В TS лучше использовать версию правила от tseslint
-      '@typescript-eslint/no-unused-vars': 'warn', 
+      '@typescript-eslint/no-unused-vars': 'warn',
+      "@typescript-eslint/no-explicit-any": "off", 
       'no-unused-vars': 'off', // Отключаем стандартное, чтобы не было конфликтов
       'prefer-const': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],

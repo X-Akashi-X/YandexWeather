@@ -1,13 +1,13 @@
 import styles from "./header.module.scss";
 import { Link, NavLink } from "react-router-dom";
-import Logo from "@assets/icons/yandexLogo.svg";
-import Teg from "@assets/icons/yandexTeg.svg";
-import Arrow from "@assets/icons/arrowMore.svg";
-import Favorite from "@assets/icons/favoriteIcon.svg";
-import Tracker from "@assets/icons/trackerIcon.svg";
-import Setting from "@assets/icons/settingIcon.svg";
-import Search from "@assets/icons/searchIcon.svg";
-import Clear from "@assets/icons/clearIcon.svg";
+import Logo from "@assets/icons/header/yandexLogo.svg";
+import Teg from "@assets/icons/header/yandexTeg.svg";
+import Arrow from "@assets/icons/header/arrowMore.svg";
+import Favorite from "@assets/icons/header/favoriteIcon.svg";
+import Tracker from "@assets/icons/header/trackerIcon.svg";
+import Setting from "@assets/icons/header/settingIcon.svg";
+import Search from "@assets/icons/header/searchIcon.svg";
+import Clear from "@assets/icons/header/clearIcon.svg";
 
 const Header = () => {
   return (

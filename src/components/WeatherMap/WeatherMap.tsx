@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import axios from "axios";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import "./weatherMap.module.scss";
+import styles from "./weatherMap.module.scss";
 import {
   DEFAULT_LAT,
   DEFAULT_LON,
@@ -53,8 +53,6 @@ const WeatherMap = () => {
         maxzoom: DEFAULT_MAX_ZOOM,
         paint: { "raster-opacity": DEFAULT_OPACITY },
       });
-
-      console.log(lastTimestamp);
     };
 
     map.current.on("load", addLayer);
@@ -66,7 +64,7 @@ const WeatherMap = () => {
   }, []);
 
   return (
-    <section>
+    <section className={styles.sectionWrapper}>
       <div ref={mapContainer}></div>
       <button>Карта осадков</button>
     </section>
