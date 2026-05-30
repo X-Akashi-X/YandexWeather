@@ -20,22 +20,24 @@ const weatherMap = {
   thunder: { codes: [95, 96, 99], text: "Гром", icon: thunder },
 };
 
-function findWeather(code: number) {
-  return Object.values(weatherMap).find((item) => item.codes.includes(code));
+function findWeather(code: () => number) {
+  const value = code()
+  return Object.values(weatherMap).find((item) => item.codes.includes(value));
 }
 
-export function getWeatherEffect(code: number) {
+export function getWeatherEffect(code: () => number) {
   return findWeather(code)?.icon;
 }
 
-export function getWeatherInfo(code: number) {
+export function getWeatherInfo(code:() => number) {
   return findWeather(code)?.text;
 }
 
-export function getRainChance(chance: number) {
-  if (chance <= 0) return "Сегодня осадков не ожидается";
-  if (chance <= 20) return "Сегодня небольшая вероятность осадков";
-  if (chance <= 50) return "Сегодня есть вероятность осадков";
-  if (chance <= 80) return "Сегодня высокая вероятность осадков";
+export function getRainChance(chance: () => number) {
+  const value = chance()
+  if (value <= 0) return "Сегодня осадков не ожидается";
+  if (value <= 20) return "Сегодня небольшая вероятность осадков";
+  if (value <= 50) return "Сегодня есть вероятность осадков";
+  if (value <= 80) return "Сегодня высокая вероятность осадков";
   return "Сегодня ожидается выпадение осадков";
 }

@@ -1,4 +1,4 @@
-export function getWindDirection(deg: number) {
+export function getWindDirection(deg: () => number) {
   const directions = [
     "С",
     "ССВ",
@@ -18,6 +18,8 @@ export function getWindDirection(deg: number) {
     "ССЗ",
   ];
 
-  const index = Math.round(deg / 22.5) % 16;
+  const value = deg()
+
+  const index = Math.round(value / 22.5) % 16;
   return directions[index];
 }
