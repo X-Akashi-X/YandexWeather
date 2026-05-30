@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 function useHttp() {
   const [data, setData] = useState<any>(null);
 
@@ -21,7 +20,7 @@ function useHttp() {
     fetchWeather();
   }, []);
 
-  return {data}
+  return { data };
 }
 
-export default useHttp
+export default useHttp;
