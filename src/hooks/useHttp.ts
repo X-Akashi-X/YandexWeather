@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 //type MyAPI = {
-  //latitude: number,
-  //longitude: number,
-  //generationtime_ms: number,
-  //current: {
+//latitude: number,
+//longitude: number,
+//generationtime_ms: number,
+//current: {
 
-  //}
+//}
 //}
 
 function useHttp() {
