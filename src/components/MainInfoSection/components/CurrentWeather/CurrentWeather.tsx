@@ -30,7 +30,7 @@ const CurrentWeather = () => {
   const precipitation = getRainChance(getDailyRainChance);
 
   return (
-    <>
+    <section className={styles.section_wrapper}>
       <div className={styles.weather_summary}>
         <p className={styles.degrees}>
           <span>+</span>
@@ -40,7 +40,7 @@ const CurrentWeather = () => {
         <img src={effect} alt="" />
         <div className={styles.summary}>
           <p className={styles.summary_item}>{info}</p>
-          <p className={styles.summary_item}>{precipitation}</p>
+          <p className={styles.summary_item}>Сегодня {precipitation}</p>
         </div>
       </div>
       <div className={styles.weather_details}>
@@ -69,7 +69,7 @@ const CurrentWeather = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

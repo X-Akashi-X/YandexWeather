@@ -35,9 +35,20 @@ export function getWeatherInfo(code: () => number) {
 
 export function getRainChance(chance: () => number) {
   const value = chance();
-  if (value <= 0) return "Сегодня осадков не ожидается";
-  if (value <= 20) return "Сегодня небольшая вероятность осадков";
-  if (value <= 50) return "Сегодня есть вероятность осадков";
-  if (value <= 80) return "Сегодня высокая вероятность осадков";
-  return "Сегодня ожидается выпадение осадков";
+  if (value <= 0) return "осадков не ожидается";
+  if (value <= 20) return "небольшая вероятность осадков";
+  if (value <= 50) return "есть вероятность осадков";
+  if (value <= 80) return "высокая вероятность осадков";
+  return "ожидается выпадение осадков";
+}
+
+export function getWindCategory(speed: () => number) {
+  const value = speed();
+  if (value <= 0.2) return "штиль";
+  if (value <= 5.4) return "слабый ветер";
+  if (value <= 10.7) return "ветер";
+  if (value <= 15.2) return "сильный ветер";
+  if (value <= 24.4) return "шторм";
+  if (value <= 28.4) return "сильный шторм";
+  return "ураган";
 }
