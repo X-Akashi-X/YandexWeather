@@ -24,17 +24,25 @@ const CurrentWeather = () => {
     getDailyRainChance,
   } = useServices();
 
-  const effect = getWeatherEffect(getCurrentWeatherCode);
-  const direction = getWindDirection(getCurrentWindDirection);
-  const info = getWeatherInfo(getCurrentWeatherCode);
-  const precipitation = getRainChance(getDailyRainChance);
+  const currentCode = getCurrentWeatherCode() ?? 0;
+  const currentDirection = getCurrentWindDirection() ?? 0;
+  const dailyChance = getDailyRainChance() ?? 0;
+  const currentTemp = getCurrentTemperature() ?? 0;
+  const currentApparent = getCurrentApparent() ?? 0;
+  const hourlyTempPrev = getHourlyTemperaturePrev() ?? 0;
+  const currentPressure = getCurrentPressure() ?? 0;
+
+  const effect = getWeatherEffect(() => currentCode);
+  const direction = getWindDirection(() => currentDirection);
+  const info = getWeatherInfo(() => currentCode);
+  const precipitation = getRainChance(() => dailyChance);
 
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.weather_summary}>
         <p className={styles.degrees}>
           <span>+</span>
-          {Math.floor(getCurrentTemperature())}
+          {Math.floor(currentTemp)}
           <span>°</span>
         </p>
         <img src={effect} alt="" />
@@ -45,19 +53,19 @@ const CurrentWeather = () => {
       </div>
       <div className={styles.weather_details}>
         <div className={styles.degrees_details}>
-          <p>Ощущается как {Math.floor(getCurrentApparent())}°</p>
-          <p>Вчера было {Math.floor(getHourlyTemperaturePrev())}°</p>
+          <p>Ощущается как {Math.floor(currentApparent)}°</p>
+          <p>Вчера было {Math.floor(hourlyTempPrev)}°</p>
         </div>
         <div className={styles.effect_details}>
           <div className={styles.effect_details_item}>
             <img src={windSpeed} alt="" />
             <p>
-              {Math.floor(getCurrentWindSpeed())} м/с, {direction}
+              {Math.floor(getCurrentWindSpeed() / 3.6)} м/с, {direction}
             </p>
           </div>
           <div className={styles.effect_details_item}>
             <img src={pressure} alt="" />
-            <p>{Math.floor(getCurrentPressure())}</p>
+            <p>{Math.floor(currentPressure)}</p>
           </div>
           <div className={styles.effect_details_item}>
             <img src={humidity} alt="" />
@@ -65,7 +73,7 @@ const CurrentWeather = () => {
           </div>
           <div className={styles.effect_details_item}>
             <img src={waterTemp} alt="" />
-            <p>{Math.floor(getCurrentTemperature() - 2)}°</p>
+            <p>{Math.floor(currentTemp - 2)}°</p>
           </div>
         </div>
       </div>

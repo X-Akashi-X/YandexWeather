@@ -28,12 +28,22 @@ const WeakStatus = () => {
     getWeekendData,
   } = useServices();
 
-  const effect = getWeatherEffect(getCurrentWeatherCode);
-  const info = getWeatherInfo(getCurrentWeatherCode);
+  const currentCode = getCurrentWeatherCode() ?? 0;
+  const tomorrowCode = getTomorrowWeatherCode() ?? 0;
+  const currentMinTemperature = getCurrentMinTemperature() ?? 0;
+  const currentMaxTemperature = getCurrentMaxTemperature() ?? 0;
+  const tomorrowMinTemperature = getTomorrowMinTemperature() ?? 0;
+  const tomorrowMaxTemperature = getTomorrowMaxTemperature() ?? 0;
 
-  const effectTomorrow = getWeatherEffect(getTomorrowWeatherCode);
-  const infoTomorrow = getWeatherInfo(getTomorrowWeatherCode);
-  const windCategoryTomorrow = getWindCategory(getTomorrowWindSpeed);
+  const effect = getWeatherEffect(() => currentCode);
+  const info = getWeatherInfo(() => currentCode);
+  const windCategory = getWindCategory(() => getCurrentWindSpeed() / 3.6);
+
+  const effectTomorrow = getWeatherEffect(() => tomorrowCode);
+  const infoTomorrow = getWeatherInfo(() => tomorrowCode);
+  const windCategoryTomorrow = getWindCategory(
+    () => getTomorrowWindSpeed() / 3.6,
+  );
 
   const { weekMin, weekMax, weekSpeed, weekEffect, weekGusts } = getWeekData();
   const infoWeek = weekEffect && getWeatherInfo(() => weekEffect.avgEffect);
@@ -55,7 +65,7 @@ const WeakStatus = () => {
       : null;
 
   return (
-    <section>
+    <section className={styles.section_wrapper}>
       <Swiper
         className={styles.status_wrapper}
         modules={[Navigation]}
@@ -70,11 +80,11 @@ const WeakStatus = () => {
               <h3>Сегодня</h3>
             </div>
             <p>
-              {info}·+{Math.round(getCurrentMinTemperature())}...+
-              {Math.round(getCurrentMaxTemperature())} ·{windCategoryTomorrow}
+              {info}·+{Math.round(currentMinTemperature)}...+
+              {Math.round(currentMaxTemperature)} ·{windCategory}
               &nbsp;
-              {Math.round(getCurrentWindSpeed())} м/с, порывы до&nbsp;
-              {Math.round(getCurrentWindGusts())} м/с
+              {Math.round(getCurrentWindSpeed() / 3.6)} м/с, порывы до&nbsp;
+              {Math.round(getCurrentWindGusts() / 3.6)} м/с
             </p>
           </a>
         </SwiperSlide>
@@ -85,11 +95,11 @@ const WeakStatus = () => {
               <h3>Завтра</h3>
             </div>
             <p>
-              {infoTomorrow}·+{Math.round(getTomorrowMinTemperature())}...+
-              {Math.round(getTomorrowMaxTemperature())} ·{windCategoryTomorrow}
+              {infoTomorrow}·+{Math.round(tomorrowMinTemperature)}...+
+              {Math.round(tomorrowMaxTemperature)} ·{windCategoryTomorrow}
               &nbsp;
-              {Math.round(getTomorrowWindSpeed())} м/с, порывы до&nbsp;
-              {Math.round(getTomorrowWindGusts())} м/с
+              {Math.round(getTomorrowWindSpeed() / 3.6)} м/с, порывы до&nbsp;
+              {Math.round(getTomorrowWindGusts() / 3.6)} м/с
             </p>
           </a>
         </SwiperSlide>

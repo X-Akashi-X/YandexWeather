@@ -1,6 +1,7 @@
 .section_wrapper {
-  margin-bottom: 20px;
-  .status_wrapper {
+  font-size: 17px;
+  padding: 0px 8px;
+  .timeline_wrapper {
     cursor: grab;
     :global(.swiper-wrapper) {
       display: flex;
@@ -34,35 +35,30 @@
       visibility: hidden;
       pointer-events: none;
     }
-    .status_item {
-      padding: 16px 16px 12px;
-      background-color: rgba(244, 251, 255, 1);
-      border-radius: 20px;
-      width: 100%;
-      cursor: pointer;
-      .status_title_wrapper {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
-        align-items: center;
-        img {
-          width: 35px;
-        }
-      }
-      &:last-child img {
-        width: 26px;
-      }
+    .day_separator {
+      left: -18%;
+      color: #999;
+      position: relative;
     }
-    button {
-      background-color: rgba(255, 255, 255, 1);
-      border-radius: 50%;
-      padding: 16px;
-      box-shadow: 0 4px 10px 0 #939cb033;
-      width: 48px;
-      height: 48px;
-      cursor: pointer;
+    .day_separator::after {
+      content: "";
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: #ccc;
+    }
+    .weather_timeline_item {
+      width: 43px;
+      height: 108px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
       img {
-        width: 16px;
+        width: 43px;
+      }
+      p:last-child {
+        font-weight: bold;
       }
     }
   }
