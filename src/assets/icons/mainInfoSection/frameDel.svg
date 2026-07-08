@@ -1,0 +1,21 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Левая дуга (желтая) -->
+  <path
+    d="M20 80
+       A40 40 0 0 1 60 40"
+    stroke="#FFC93E"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+
+  <!-- Правая дуга (серая) -->
+  <path
+    d="M60 40
+       A40 40 0 0 1 100 80"
+    stroke="#D9D9D9"
+    stroke-width="8"
+    fill="none"
+    stroke-linecap="round"
+  />
+</svg>

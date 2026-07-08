@@ -1,9 +1,8 @@
 .section_wrapper {
-  font-size: 17px;
-  padding: 0px 8px;
-  margin-bottom: 15px;
-  .timeline_wrapper {
+  padding: 16px 0px;
+  .feelings_wrapper {
     cursor: grab;
+    padding: 16px 0px;
     :global(.swiper-wrapper) {
       display: flex;
       align-items: stretch;
@@ -36,30 +35,34 @@
       visibility: hidden;
       pointer-events: none;
     }
-    .day_separator {
-      left: -18%;
-      color: #999;
-      position: relative;
-    }
-    .day_separator::after {
-      content: "";
-      position: absolute;
-      width: 1px;
-      height: 100%;
-      background: #ccc;
-    }
-    .weather_timeline_item {
-      width: 43px;
-      height: 108px;
+    .feelings_item {
+      padding: 16px 20px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      img {
-        width: 43px;
+      border-radius: 20px;
+      box-shadow: 0px 4px 10px 0px rgba(147, 156, 176, 0.2);
+      background-color: rgba(255, 255, 255, 1);
+      width: 100%;
+      gap: 14px;
+      .img_wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        img:first-child {
+          width: 26px;
+        }
+        img:last-child{
+          width: 66px;
+          position: absolute;
+          top: -30px;
+        }
       }
-      p:last-child {
-        font-weight: bold;
+      .title_wrapper {
+        p {
+          font-size: 14px;
+          color: rgba(133, 136, 158, 1);
+        }
       }
     }
   }

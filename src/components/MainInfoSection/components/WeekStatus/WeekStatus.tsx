@@ -73,7 +73,7 @@ const WeakStatus = () => {
         spaceBetween={8}
         navigation
       >
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
               <img src={effect} alt="" />
