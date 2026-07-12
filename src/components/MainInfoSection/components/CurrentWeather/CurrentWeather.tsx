@@ -8,7 +8,7 @@ import {
   getWeatherInfo,
   getRainChance,
 } from "@utils/weatherEffects/weatherEffects";
-import { getWindDirection } from "@utils/windDirection/windDirection";
+import { getWindDirection } from "@utils/weatherEffects/weatherEffects";
 import useServices from "@services/useSrvices";
 
 const CurrentWeather = () => {

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 type API = {
-  generationtime_ms: number;
   current: {
     time: string;
     temperature_2m: number;
@@ -36,12 +35,12 @@ type API = {
     wind_speed_10m_max: number[];
     wind_gusts_10m_max: number[];
     wind_direction_10m_dominant: number;
-    uv_index_max: number;
+    uv_index_max: number[];
   };
 };
 
-function useHttp() {
-  const [data, setData] = useState<API | null>(null);
+function useForecast() {
+  const [dataForecast, setData] = useState<API | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -58,7 +57,7 @@ function useHttp() {
     fetchWeather();
   }, []);
 
-  return { data };
+  return { dataForecast };
 }
 
-export default useHttp;
+export default useForecast;

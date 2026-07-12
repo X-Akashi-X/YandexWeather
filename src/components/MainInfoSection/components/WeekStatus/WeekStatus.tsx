@@ -80,11 +80,11 @@ const WeakStatus = () => {
               <h3>Сегодня</h3>
             </div>
             <p>
-              {info}·+{Math.round(currentMinTemperature)}...+
-              {Math.round(currentMaxTemperature)} ·{windCategory}
+              {info}·+{Math.floor(currentMinTemperature)}...+
+              {Math.floor(currentMaxTemperature)} ·{windCategory}
               &nbsp;
-              {Math.round(getCurrentWindSpeed() / 3.6)} м/с, порывы до&nbsp;
-              {Math.round(getCurrentWindGusts() / 3.6)} м/с
+              {Math.floor(getCurrentWindSpeed() / 3.6)} м/с, порывы до&nbsp;
+              {Math.floor(getCurrentWindGusts() / 3.6)} м/с
             </p>
           </a>
         </SwiperSlide>
@@ -95,11 +95,11 @@ const WeakStatus = () => {
               <h3>Завтра</h3>
             </div>
             <p>
-              {infoTomorrow}·+{Math.round(tomorrowMinTemperature)}...+
-              {Math.round(tomorrowMaxTemperature)} ·{windCategoryTomorrow}
+              {infoTomorrow}·+{Math.floor(tomorrowMinTemperature)}...+
+              {Math.floor(tomorrowMaxTemperature)} ·{windCategoryTomorrow}
               &nbsp;
-              {Math.round(getTomorrowWindSpeed() / 3.6)} м/с, порывы до&nbsp;
-              {Math.round(getTomorrowWindGusts() / 3.6)} м/с
+              {Math.floor(getTomorrowWindSpeed() / 3.6)} м/с, порывы до&nbsp;
+              {Math.floor(getTomorrowWindGusts() / 3.6)} м/с
             </p>
           </a>
         </SwiperSlide>
@@ -111,16 +111,16 @@ const WeakStatus = () => {
             </div>
             <p>
               {infoWeek}·+
-              {weekMin !== null ? Math.round(weekMin.avgDetails) : null}
+              {weekMin !== null ? Math.floor(weekMin.avgDetails) : null}
               ...+
-              {weekMax !== null ? Math.round(weekMax.avgDetails) : null} ·
+              {weekMax !== null ? Math.floor(weekMax.avgDetails) : null} ·
               {windCategoryWeek}&nbsp;
               {weekSpeed !== null
-                ? Math.round(weekSpeed.avgDetails / 3.6)
+                ? Math.floor(weekSpeed.avgDetails / 3.6)
                 : null}
               &nbsp; м/с, порывы до&nbsp;
               {weekGusts !== null
-                ? Math.round(weekGusts.avgDetails / 3.6)
+                ? Math.floor(weekGusts.avgDetails / 3.6)
                 : null}
               &nbsp; м/с
             </p>
@@ -133,12 +133,12 @@ const WeakStatus = () => {
               <h3>В выходные</h3>
             </div>
             <p>
-              {infoWeekend}·+{weekendMin ? Math.round(weekendMin) : null}...+
-              {weekendMax ? Math.round(weekendMax) : null} ·
+              {infoWeekend}·+{weekendMin ? Math.floor(weekendMin) : null}...+
+              {weekendMax ? Math.floor(weekendMax) : null} ·
               {windCategoryWeekend}&nbsp;
-              {weekendSpeed ? Math.round(weekendSpeed) : null} м/с, порывы
+              {weekendSpeed ? Math.floor(weekendSpeed) : null} м/с, порывы
               до&nbsp;
-              {weekendGusts ? Math.round(weekendGusts) : null} м/с
+              {weekendGusts ? Math.floor(weekendGusts) : null} м/с
             </p>
           </a>
         </SwiperSlide>

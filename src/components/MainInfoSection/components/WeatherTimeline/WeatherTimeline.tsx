@@ -32,7 +32,7 @@ const WeatherTimeline = () => {
               <div className={styles.weather_timeline_item}>
                 <p>{item.time}</p>
                 <img src={effectData} alt="" />
-                <p>+{Math.round(item.temp)}°</p>
+                <p>+{Math.floor(item.temp)}°</p>
               </div>
             </SwiperSlide>
           );

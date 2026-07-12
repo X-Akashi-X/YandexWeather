@@ -44,18 +44,27 @@
       background-color: rgba(255, 255, 255, 1);
       width: 100%;
       gap: 14px;
-      .img_wrapper {
+      .category_wrapper {
         display: flex;
         align-items: center;
-        flex-direction: column;
+        justify-content: center;
         position: relative;
+        .img_wrapper{
+          width: 45px;
+        }
         img:first-child {
           width: 26px;
+          position: absolute;
+          top: 10px;
+          
         }
         img:last-child{
-          width: 66px;
+          width: 45px;
+        }
+        p{
           position: absolute;
-          top: -30px;
+          font-weight: bold;
+          top: 13px;
         }
       }
       .title_wrapper {
