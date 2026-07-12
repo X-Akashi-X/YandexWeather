@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 type API = {
   hourly: {
     time: string[];
-    uv_index: number[],
-    grass_pollen: number[]
+    uv_index: number[];
+    grass_pollen: number[];
   };
 };
 

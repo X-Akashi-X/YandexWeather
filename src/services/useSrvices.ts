@@ -38,7 +38,7 @@ const useServices = () => {
   };
 
   const getCurrentPressure = (): number | undefined => {
-    const pressure = dataForecast?.current.pressure_msl
+    const pressure = dataForecast?.current.pressure_msl;
     return pressure !== undefined ? pressure * 0.75006 : undefined;
   };
 
@@ -152,10 +152,10 @@ const useServices = () => {
 
   const getCurrentAirQuality = () => {
     if (!dataAirQuality?.hourly) return null;
-    
+
     const now = new Date().toISOString().slice(0, 13) + ":00";
     const index = dataAirQuality?.hourly.time.indexOf(now);
-    
+
     if (index === -1) return null;
     return {
       dataUV: dataAirQuality?.hourly.uv_index[index],

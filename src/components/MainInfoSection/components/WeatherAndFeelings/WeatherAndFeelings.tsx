@@ -53,7 +53,6 @@ const WeatherAndFeelings = () => {
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>4</p>
-              
             </div>
             <div className={styles.title_wrapper}>
               <h4>Магнитное поле</h4>
@@ -65,7 +64,7 @@ const WeatherAndFeelings = () => {
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{Math.floor(currentPressure)}</p>
-               <div className={styles.img_wrapper}>
+              <div className={styles.img_wrapper}>
                 <StatusArc category={pressureCategory} />
               </div>
             </div>
@@ -79,7 +78,6 @@ const WeatherAndFeelings = () => {
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <img src="" alt="" />
-
             </div>
             <div className={styles.title_wrapper}>
               <h4>Луна</h4>
@@ -91,7 +89,7 @@ const WeatherAndFeelings = () => {
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{Math.floor(indexUV)}</p>
-               <div className={styles.img_wrapper}>
+              <div className={styles.img_wrapper}>
                 <StatusArc category={uvCategory} />
               </div>
             </div>
