@@ -163,6 +163,20 @@ const useServices = () => {
     };
   };
 
+  const getTenDaysData = () => {
+    if (!dataForecast?.daily?.time) return undefined;
+
+    const value = dataForecast.daily.time.slice(1, 11);
+
+    return value.map((t, i) => ({
+      date: new Date(t).getDate(),
+      weekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
+      temp_max: dataForecast.daily.temperature_2m_max[i + 1],
+      temp_min: dataForecast.daily.temperature_2m_min[i + 1],
+      effect: dataForecast.daily.weather_code[i + 1],
+    }));
+  };
+
   return {
     getCurrentWeatherCode,
     getCurrentWindDirection,
@@ -185,6 +199,7 @@ const useServices = () => {
     getWeekendData,
     getTimeLineData,
     getCurrentAirQuality,
+    getTenDaysData,
   };
 };
 
