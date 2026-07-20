@@ -171,8 +171,8 @@ const useServices = () => {
     return value.map((t, i) => ({
       date: new Date(t).getDate(),
       weekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
-      temp_max: dataForecast.daily.temperature_2m_max[i + 1],
-      temp_min: dataForecast.daily.temperature_2m_min[i + 1],
+      temp_max: Math.floor(dataForecast.daily.temperature_2m_max[i + 1]),
+      temp_min: Math.floor(dataForecast.daily.temperature_2m_min[i + 1]),
       effect: dataForecast.daily.weather_code[i + 1],
     }));
   };

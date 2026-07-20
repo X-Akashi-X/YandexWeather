@@ -88,29 +88,29 @@ type Category = {
 export function getPollenCategory(category: number): Category {
   if (category <= 2) return { fill: 0, color: "#33c115", text: "Отсутствует" };
   if (category <= 5)
-    return { fill: 0.25, color: "#ffd400", text: "Низкая активность" };
+    return { fill: 0.17, color: "#ffd400", text: "Низкая активность" };
   if (category <= 7)
-    return { fill: 0.5, color: "#ff7e01", text: "Умеренная активность" };
+    return { fill: 0.42, color: "#ff7e01", text: "Умеренная активность" };
   if (category <= 10)
-    return { fill: 0.75, color: "#c30101", text: "Высокая активность" };
+    return { fill: 0.67, color: "#c30101", text: "Высокая активность" };
   return { fill: 1, color: "#57348d", text: "Очень высокая активность" };
 }
 
 export function getPressureCategory(category: number): Category {
   if (category <= 750)
     return { fill: 0, color: "#ff7e01", text: "Очень низкое" };
-  if (category <= 755) return { fill: 0.25, color: "#ffd400", text: "Низкое" };
+  if (category <= 755) return { fill: 0.17, color: "#ffd400", text: "Низкое" };
   if (category <= 760)
-    return { fill: 0.5, color: "#33c115", text: "Нормальное" };
-  if (category <= 765) return { fill: 0.75, color: "#c30101", text: "Высокое" };
+    return { fill: 0.42, color: "#33c115", text: "Нормальное" };
+  if (category <= 765) return { fill: 0.67, color: "#c30101", text: "Высокое" };
   return { fill: 1, color: "#57348d", text: "Очень высокое" };
 }
 
 export function getUVCategory(category: number): Category {
   if (category <= 2) return { fill: 0, color: "#33c115", text: "Низкий" };
-  if (category <= 5) return { fill: 0.25, color: "#ffd400", text: "Умеренный" };
-  if (category <= 7) return { fill: 0.5, color: "#ff7e01", text: "Высокий" };
+  if (category <= 5) return { fill: 0.17, color: "#ffd400", text: "Умеренный" };
+  if (category <= 7) return { fill: 0.42, color: "#ff7e01", text: "Высокий" };
   if (category <= 10)
-    return { fill: 0.75, color: "#c30101", text: "Очень высокий" };
+    return { fill: 0.67, color: "#c30101", text: "Очень высокий" };
   return { fill: 1, color: "#57348d", text: "Экстремальный" };
 }
