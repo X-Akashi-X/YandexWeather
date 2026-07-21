@@ -1,6 +1,6 @@
 import useServices from "@services/useSrvices";
 import styles from "./weekStatus.module.scss";
-import sourceData from "@assets/icons/mainInfoSection/sourceData.svg";
+import sourceData from "@assets/icons/mainInfoSection/sourceDataIcon.svg";
 import {
   getWeatherEffect,
   getWeatherInfo,

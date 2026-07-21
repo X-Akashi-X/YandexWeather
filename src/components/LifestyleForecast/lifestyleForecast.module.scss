@@ -1,0 +1,23 @@
+.section_wrapper {
+  display: flex;
+  padding: 10px 24px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .item_wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    min-height: 60px;
+    cursor: pointer;
+    img {
+      width: 30px;
+    }
+    p {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}

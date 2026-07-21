@@ -4,7 +4,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Pollen from "@assets/icons/mainInfoSection/pollen.svg";
+import Pollen from "@assets/icons/mainInfoSection/pollenIcon.svg";
 import useServices from "@services/useSrvices";
 import {
   getPollenCategory,
