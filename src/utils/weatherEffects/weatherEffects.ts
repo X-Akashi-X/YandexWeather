@@ -54,28 +54,11 @@ export function getWindCategory(speed: () => number): string {
 }
 
 export function getWindDirection(deg: () => number): string {
-  const directions = [
-    "С",
-    "ССВ",
-    "СВ",
-    "ВСВ",
-    "В",
-    "ВЮВ",
-    "ЮВ",
-    "ЮЮВ",
-    "Ю",
-    "ЮЮЗ",
-    "ЮЗ",
-    "ЗЮЗ",
-    "З",
-    "ЗСЗ",
-    "СЗ",
-    "ССЗ",
-  ];
+  const directions = ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"];
 
   const value = deg();
 
-  const index = Math.round(value / 22.5) % 16;
+  const index = Math.round(value / 45) % 8;
   return directions[index];
 }
 

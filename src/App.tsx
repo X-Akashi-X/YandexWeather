@@ -1,7 +1,7 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage/MainPage";
 import OnMonthPage from "./pages/OnMonthPage";
 import OnMapPage from "./pages/OnMapPage";
 

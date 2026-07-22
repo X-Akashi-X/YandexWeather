@@ -1,0 +1,76 @@
+.main_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  //GRID
+  .grid_forecast_wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    .forecast_date_gr {
+      grid-column: span 2 / span 2;
+    }
+    .forecast_feeling_gr {
+      grid-column-start: 3;
+    }
+    .forecast_wind_gr {
+      grid-column-start: 4;
+    }
+    .forecast_humidity_gr {
+      grid-column-start: 5;
+    }
+    .forecast_pressure_gr {
+      grid-column-start: 6;
+    }
+    .forecast_gr_str1 {
+      grid-row-start: 2;
+    }
+    .forecast_gr_str2 {
+      grid-row-start: 3;
+    }
+    .forecast_gr_str3 {
+      grid-row-start: 4;
+    }
+    .forecast_gr_str4 {
+      grid-row-start: 5;
+    }
+  }
+  .grid_air_quality_wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+    .air_quality_gr_str1 {
+      grid-row-start: 1;
+    }
+    .air_quality_gr_str2 {
+      grid-row-start: 2;
+    }
+    .air_quality_gr_str3 {
+      grid-row-start: 3;
+    }
+    .air_quality_gr_str4 {
+      grid-row-start: 4;
+    }
+  }
+  //OTHER UI
+  .title_date {
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .tmp_effect_wrapper {
+    display: flex;
+    p {
+      font-weight: bold;
+    }
+  }
+  .wind_wrapper {
+    display: flex;
+  }
+  .small_grey_text {
+    font-size: 13px;
+    color: rgba(133, 136, 158, 1);
+  }
+}
