@@ -11,7 +11,7 @@ import {
   getPressureCategory,
   getUVCategory,
 } from "@utils/weatherEffects/weatherEffects";
-import StatusArc from "../StatusArc/StatusArc";
+import StatusArc from "../../../../../../components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {
   const { getCurrentPressure, getCurrentAirQuality } = useServices();

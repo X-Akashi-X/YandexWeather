@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-type CATA = {
-  fill: number;
-  color: string;
-};
-
-const StatusArc = ({ category }: { category: CATA }) => {
+const StatusArc = ({
+  category,
+}: {
+  category: { fill: number; color: string };
+}) => {
   const { fill, color } = category;
 
   const arcLength = 230;

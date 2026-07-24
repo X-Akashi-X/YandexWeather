@@ -12,7 +12,7 @@ const WeatherChart = () => {
       <h2>Прогноз на 10 дней</h2>
       <a className={styles.days_wrapper}>
         {data?.map((item, i) => {
-          const weatherEffect = item?.effect ?? 0;
+          const weatherEffect = item?.weatherCode ?? 0;
           const effect = getWeatherEffect(() => weatherEffect);
           return (
             <div className={styles.day_wrapper} key={i}>

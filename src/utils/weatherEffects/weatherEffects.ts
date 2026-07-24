@@ -62,38 +62,32 @@ export function getWindDirection(deg: () => number): string {
   return directions[index];
 }
 
-type Category = {
-  fill: number;
-  color: string;
-  text: string;
-};
-
-export function getPollenCategory(category: number): Category {
-  if (category <= 2) return { fill: 0, color: "#33c115", text: "Отсутствует" };
+export function getPollenCategory(category: number) {
+  if (category <= 2) return { fill: 0, color: "#33c115", text: "отсутствует" };
   if (category <= 5)
-    return { fill: 0.17, color: "#ffd400", text: "Низкая активность" };
+    return { fill: 0.17, color: "#ffd400", text: "низкая активность" };
   if (category <= 7)
-    return { fill: 0.42, color: "#ff7e01", text: "Умеренная активность" };
+    return { fill: 0.42, color: "#ff7e01", text: "умеренная активность" };
   if (category <= 10)
-    return { fill: 0.67, color: "#c30101", text: "Высокая активность" };
-  return { fill: 1, color: "#57348d", text: "Очень высокая активность" };
+    return { fill: 0.67, color: "#c30101", text: "высокая активность" };
+  return { fill: 1, color: "#57348d", text: "очень высокая активность" };
 }
 
-export function getPressureCategory(category: number): Category {
+export function getPressureCategory(category: number) {
   if (category <= 750)
-    return { fill: 0, color: "#ff7e01", text: "Очень низкое" };
-  if (category <= 755) return { fill: 0.17, color: "#ffd400", text: "Низкое" };
+    return { fill: 0, color: "#ff7e01", text: "очень низкое" };
+  if (category <= 755) return { fill: 0.17, color: "#ffd400", text: "низкое" };
   if (category <= 760)
-    return { fill: 0.42, color: "#33c115", text: "Нормальное" };
-  if (category <= 765) return { fill: 0.67, color: "#c30101", text: "Высокое" };
-  return { fill: 1, color: "#57348d", text: "Очень высокое" };
+    return { fill: 0.42, color: "#33c115", text: "нормальное" };
+  if (category <= 765) return { fill: 0.67, color: "#c30101", text: "высокое" };
+  return { fill: 1, color: "#57348d", text: "очень высокое" };
 }
 
-export function getUVCategory(category: number): Category {
-  if (category <= 2) return { fill: 0, color: "#33c115", text: "Низкий" };
-  if (category <= 5) return { fill: 0.17, color: "#ffd400", text: "Умеренный" };
-  if (category <= 7) return { fill: 0.42, color: "#ff7e01", text: "Высокий" };
+export function getUVCategory(category: number) {
+  if (category <= 2) return { fill: 0, color: "#33c115", text: "низкий" };
+  if (category <= 5) return { fill: 0.17, color: "#ffd400", text: "умеренный" };
+  if (category <= 7) return { fill: 0.42, color: "#ff7e01", text: "высокий" };
   if (category <= 10)
-    return { fill: 0.67, color: "#c30101", text: "Очень высокий" };
-  return { fill: 1, color: "#57348d", text: "Экстремальный" };
+    return { fill: 0.67, color: "#c30101", text: "очень высокий" };
+  return { fill: 1, color: "#57348d", text: "экстремальный" };
 }

@@ -1,15 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-type API = {
-  hourly: {
-    time: string[];
-    uv_index: number[];
-    grass_pollen: number[];
-  };
-};
+import type { apiAirQuality } from "@ts/api";
 
 function useAirQuality() {
-  const [dataAirQuality, setData] = useState<API | null>(null);
+  const [dataAirQuality, setData] = useState<apiAirQuality | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {

@@ -2,7 +2,7 @@ import styles from "./currentWeather.module.scss";
 import windSpeed from "@assets/icons/mainInfoSection/windSpeedIcon.svg";
 import pressure from "@assets/icons/mainInfoSection/pressureIcon.svg";
 import humidity from "@assets/icons/mainInfoSection/humidityIcon.svg";
-import waterTemp from "@assets/icons/mainInfoSection/waterTempIcon.svg";
+import waterTemp from "@assets/icons/waterTempIcon.svg";
 import {
   getWeatherEffect,
   getWeatherInfo,

@@ -21,7 +21,7 @@ const WeatherTimeline = () => {
         navigation
       >
         {data?.map((item, i) => {
-          const effectData = getWeatherEffect(() => item.effect);
+          const effectData = getWeatherEffect(() => item.weatherCode);
 
           const prev = data[i - 1];
           const isNewDay = prev && prev.date !== item.date;
