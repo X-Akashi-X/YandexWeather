@@ -41,9 +41,9 @@ export type apiForecast = {
 };
 
 export type apiAirQuality = {
-  hourly: {
-    time: string[];
-    uv_index: number[];
-    grass_pollen: number[];
+  current: {
+    time: string;
+    uv_index: number;
+    grass_pollen: number;
   };
 };
