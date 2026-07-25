@@ -48,12 +48,12 @@ const useServices = () => {
   };
 
   const getCurrentUVIndex = (): number | undefined => {
-    return dataAirQuality?.current.uv_index
-  }
+    return dataAirQuality?.current.uv_index;
+  };
 
   const getCurrentPollen = (): number | undefined => {
-    return dataAirQuality?.current.grass_pollen
-  }
+    return dataAirQuality?.current.grass_pollen;
+  };
 
   const getHourlyTemperaturePrev = (): number | undefined => {
     return dataForecast?.hourly.temperature_2m[10];

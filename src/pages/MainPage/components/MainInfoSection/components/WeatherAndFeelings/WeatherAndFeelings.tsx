@@ -14,7 +14,8 @@ import {
 import StatusArc from "@components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {
-  const { getCurrentPressure, getCurrentPollen, getCurrentUVIndex } = useServices();
+  const { getCurrentPressure, getCurrentPollen, getCurrentUVIndex } =
+    useServices();
 
   const currentPressure = getCurrentPressure() ?? 0;
   const indexUV = getCurrentUVIndex() ?? 0;

@@ -10,7 +10,7 @@ export type PeriodData = {
 
 export type DayGroups = {
   morning: PeriodData[];
-  day: PeriodData[]; 
+  day: PeriodData[];
   evening: PeriodData[];
   night: PeriodData[];
 };
