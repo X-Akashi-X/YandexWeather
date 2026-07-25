@@ -11,14 +11,15 @@ import {
   getPressureCategory,
   getUVCategory,
 } from "@utils/weatherEffects/weatherEffects";
-import StatusArc from "../../../../../../components/StatusArc/StatusArc";
+import StatusArc from "@components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {
-  const { getCurrentPressure, getCurrentAirQuality } = useServices();
+  const { getCurrentPressure, getCurrentPollen, getCurrentUVIndex } =
+    useServices();
 
   const currentPressure = getCurrentPressure() ?? 0;
-  const indexUV = getCurrentAirQuality()?.dataUV ?? 0;
-  const indexPollen = getCurrentAirQuality()?.dataPollen ?? 0;
+  const indexUV = getCurrentUVIndex() ?? 0;
+  const indexPollen = getCurrentPollen() ?? 0;
 
   const pollenCategory = getPollenCategory(indexPollen);
   const pressureCategory = getPressureCategory(currentPressure);

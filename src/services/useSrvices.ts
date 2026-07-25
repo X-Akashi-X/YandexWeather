@@ -47,6 +47,14 @@ const useServices = () => {
     return dataForecast?.current.relative_humidity_2m;
   };
 
+  const getCurrentUVIndex = (): number | undefined => {
+    return dataAirQuality?.current.uv_index;
+  };
+
+  const getCurrentPollen = (): number | undefined => {
+    return dataAirQuality?.current.grass_pollen;
+  };
+
   const getHourlyTemperaturePrev = (): number | undefined => {
     return dataForecast?.hourly.temperature_2m[10];
   };
@@ -149,19 +157,6 @@ const useServices = () => {
         temp: dataForecast.hourly.temperature_2m[i],
         weatherCode: dataForecast.hourly.weather_code[i],
       }));
-  };
-
-  const getCurrentAirQuality = () => {
-    if (!dataAirQuality?.hourly) return null;
-
-    const now = new Date().toISOString().slice(0, 13) + ":00";
-    const index = dataAirQuality?.hourly.time.indexOf(now);
-
-    if (index === -1) return null;
-    return {
-      dataUV: dataAirQuality?.hourly.uv_index[index],
-      dataPollen: dataAirQuality?.hourly.grass_pollen[index],
-    };
   };
 
   const getTenDaysData = () => {
@@ -372,6 +367,8 @@ const useServices = () => {
     getCurrentWindGusts,
     getCurrentPressure,
     getCurrentHumidity,
+    getCurrentUVIndex,
+    getCurrentPollen,
     getHourlyTemperaturePrev,
     getDailyRainChance,
     getTomorrowWeatherCode,
@@ -382,7 +379,6 @@ const useServices = () => {
     getWeekData,
     getWeekendData,
     getTimeLineData,
-    getCurrentAirQuality,
     getTenDaysData,
     getAdvancedTenDaysData,
   };

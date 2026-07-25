@@ -9,7 +9,7 @@ function useAirQuality() {
     const fetchWeather = async () => {
       try {
         const res = await axios.get(
-          "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=53.9&longitude=27.56&hourly=uv_index,grass_pollen&past_days=1&forecast_days=7",
+          "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=53.9&longitude=27.56&current=uv_index,grass_pollen&forecast_days=1",
         );
         setData(res.data);
       } catch (error) {
