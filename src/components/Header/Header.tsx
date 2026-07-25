@@ -2,7 +2,7 @@ import styles from "./header.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "@assets/icons/header/yandexLogo.svg";
 import Teg from "@assets/icons/header/yandexTeg.svg";
-import Arrow from "@assets/icons/header/arrowMore.svg";
+import Arrow from "@assets/icons/arrowMore.svg";
 import Favorite from "@assets/icons/header/favoriteIcon.svg";
 import Tracker from "@assets/icons/header/trackerIcon.svg";
 import Setting from "@assets/icons/header/settingIcon.svg";

@@ -15,7 +15,7 @@ const DetailedForecast = () => {
   const data = useServices().getAdvancedTenDaysData();
 
   return (
-    <>
+    <section className={styles.section_wrapper}>
       {data.map((item, i) => {
         const effectMorning = getWeatherEffect(
           () => item.morning?.weatherCode ?? 0,
@@ -294,7 +294,7 @@ const DetailedForecast = () => {
           </div>
         );
       })}
-    </>
+    </section>
   );
 };
 
