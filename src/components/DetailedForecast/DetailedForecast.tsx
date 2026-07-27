@@ -6,9 +6,9 @@ import {
 import styles from "./detailedForecast.module.scss";
 import useServices from "@services/useSrvices";
 import WIndDirectionArrow from "@components/WindDirectionArrow/WIndDirectionArrow";
-import LightArc from "@assets/image/mainTenDaysSection/LightingDayArc.svg";
-import Sunrise from "@assets/icons/mainTenDaysSection/SunriseIcon.svg";
-import Sunset from "@assets/icons/mainTenDaysSection/SunsetIcon.svg";
+import LightArc from "@assets/image/detailedForecast/lightingDayArc.svg";
+import Sunrise from "@assets/icons/detailedForecast/sunriseIcon.svg";
+import Sunset from "@assets/icons/detailedForecast/sunsetIcon.svg";
 import WaterTemp from "@assets/icons/waterTempIcon.svg";
 
 const DetailedForecast = () => {
