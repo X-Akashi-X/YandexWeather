@@ -8,7 +8,7 @@ const WeatherOverviewSection = () => {
       <WeatherJournal />
       <WeatherByMonthes />
     </section>
-  )
+  );
 };
 
 export default WeatherOverviewSection;
