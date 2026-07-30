@@ -2,7 +2,7 @@ import useMap from "@hooks/useMap";
 import styles from "./mainWeatherMap.module.scss";
 
 const WeatherMap = () => {
-  const {mapContainer} = useMap(false)
+  const { mapContainer } = useMap(false);
 
   return (
     <section className={styles.sectionWrapper}>

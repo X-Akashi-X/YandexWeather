@@ -23,7 +23,7 @@ function useMap(interactive: boolean) {
       style: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
       center: [DEFAULT_LON, DEFAULT_LAT],
       zoom: DEFAULT_ZOOM,
-      interactive: interactive
+      interactive: interactive,
     });
 
     const addLayer = async () => {
