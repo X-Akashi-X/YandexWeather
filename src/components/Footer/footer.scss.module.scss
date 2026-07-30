@@ -1,0 +1,36 @@
+footer {
+  padding: 15px;
+  font-size: 13px;
+  .cities_wrapper {
+    padding: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(133, 136, 158, 0.2);
+    p {
+      color: rgba(133, 136, 158, 1);
+    }
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0px 20px 0px;
+    border-bottom: 1px solid rgba(133, 136, 158, 0.2);
+    a {
+      display: block;
+      margin: 15px 0px;
+      color: rgba(133, 136, 158, 1);
+    }
+    .stores_wrapper {
+      img {
+        width: 120px;
+      }
+    }
+  }
+  .requisite_wrapper{
+    color: rgba(133, 136, 158, 1);
+    padding: 30px 0px;
+    p:first-child{
+      margin-bottom: 15px;
+    }
+  }
+}

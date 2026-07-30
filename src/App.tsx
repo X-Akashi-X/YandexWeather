@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import MainPage from "./pages/MainPage/MainPage";
 import OnMonthPage from "./pages/OnMonthPage";
 import OnMapPage from "./pages/OnMapPage";
+import Footer from "@components/Footer/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/OnMap" element={<OnMapPage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   );
