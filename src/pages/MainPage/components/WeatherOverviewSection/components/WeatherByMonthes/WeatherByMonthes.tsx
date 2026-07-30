@@ -1,5 +1,5 @@
 import styles from "./weatherByMonthes.module.scss";
-import Weather from "@utils/weatherEffects/icons/cloudyIcon.svg";
+import Weather from "@assets/icons/weatherEffects/cloudyIcon.svg";
 
 const WeatherByMonthes = () => {
   return (

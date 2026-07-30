@@ -5,7 +5,7 @@ import {
   getWeatherEffect,
   getWeatherInfo,
   getWindCategory,
-} from "@utils/weatherEffects/weatherEffects";
+} from "@utils/weatherEffects";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";

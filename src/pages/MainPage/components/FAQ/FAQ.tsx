@@ -7,7 +7,7 @@ import {
   getWeatherInfo,
   getWindCategory,
   getWindDirection,
-} from "@utils/weatherEffects/weatherEffects";
+} from "@utils/weatherEffects";
 
 const FAQ = () => {
   const {

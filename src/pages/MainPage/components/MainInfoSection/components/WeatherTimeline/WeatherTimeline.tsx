@@ -1,6 +1,6 @@
 import styles from "./weatherTimeline.module.scss";
 import useServices from "@services/useSrvices";
-import { getWeatherEffect } from "@utils/weatherEffects/weatherEffects";
+import { getWeatherEffect } from "@utils/weatherEffects";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";

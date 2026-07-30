@@ -1,7 +1,7 @@
 import useServices from "@services/useSrvices";
 import styles from "./weatherChart.module.scss";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import { getWeatherEffect } from "@utils/weatherEffects/weatherEffects";
+import { getWeatherEffect } from "@utils/weatherEffects";
 
 const WeatherChart = () => {
   const { getTenDaysData } = useServices();

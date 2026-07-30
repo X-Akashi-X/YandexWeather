@@ -10,7 +10,7 @@ import {
   getPollenCategory,
   getPressureCategory,
   getUVCategory,
-} from "@utils/weatherEffects/weatherEffects";
+} from "@utils/weatherEffects";
 import StatusArc from "@components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {

@@ -2,7 +2,7 @@ import {
   getUVCategory,
   getWeatherEffect,
   getWindDirection,
-} from "@utils/weatherEffects/weatherEffects";
+} from "@utils/weatherEffects";
 import styles from "./detailedForecast.module.scss";
 import useServices from "@services/useSrvices";
 import WIndDirectionArrow from "@components/WindDirectionArrow/WIndDirectionArrow";

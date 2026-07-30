@@ -1,10 +1,10 @@
-import clear from "./icons/clearIcon.svg";
-import cloudy from "./icons/cloudyIcon.svg";
-import fog from "./icons/fogIcon.svg";
-import partly from "./icons/partlyIcon.svg";
-import rain from "./icons/rainIcon.svg";
-import snow from "./icons/snowIcon.svg";
-import thunder from "./icons/thunderIcon.svg";
+import clear from "@assets/icons/weatherEffects/clearIcon.svg";
+import cloudy from "@assets/icons/weatherEffects/cloudyIcon.svg";
+import fog from "@assets/icons/weatherEffects/fogIcon.svg";
+import partly from "@assets/icons/weatherEffects/partlyIcon.svg";
+import rain from "@assets/icons/weatherEffects/rainIcon.svg";
+import snow from "@assets/icons/weatherEffects/snowIcon.svg";
+import thunder from "@assets/icons/weatherEffects/thunderIcon.svg";
 
 const weatherMap = {
   clear: { codes: [0], text: "Ясно", icon: clear },
