@@ -1,7 +1,7 @@
 import styles from "./footer.scss.module.scss";
-import GooglePlay from "@assets/icons/footer/googlePlayIcon.svg"
-import AppStore from "@assets/icons/footer/appStoreIcon.svg"
-import AppGallery from "@assets/icons/footer/appGalleryIcon.svg"
+import GooglePlay from "@assets/icons/footer/googlePlayIcon.svg";
+import AppStore from "@assets/icons/footer/appStoreIcon.svg";
+import AppGallery from "@assets/icons/footer/appGalleryIcon.svg";
 
 const Footer = () => {
   return (
@@ -57,7 +57,10 @@ const Footer = () => {
         </div>
       </nav>
       <div className={styles.requisite_wrapper}>
-        <p>Исходные данные: ООО «Яндекс.Пробки»; Росгидромет, ФГБУ «ЦАО»; NOAA; Белгидромет</p>
+        <p>
+          Исходные данные: ООО «Яндекс.Пробки»; Росгидромет, ФГБУ «ЦАО»; NOAA;
+          Белгидромет
+        </p>
         <p>© 2000—2026 ЯНДЕКС</p>
       </div>
     </footer>
