@@ -2,18 +2,16 @@ import { useEffect, useRef } from "react";
 import axios from "axios";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import styles from "./weatherMap.module.scss";
-import {
-  DEFAULT_LAT,
-  DEFAULT_LON,
-  DEFAULT_ZOOM,
-  DEFAULT_TILE_SIZE,
-  DEFAULT_MIN_ZOOM,
-  DEFAULT_MAX_ZOOM,
-  DEFAULT_OPACITY,
-} from "./constants";
 
-const WeatherMap = () => {
+const DEFAULT_LAT = 53.9006;
+const DEFAULT_LON = 27.559;
+const DEFAULT_ZOOM = 6;
+const DEFAULT_TILE_SIZE = 256;
+const DEFAULT_MIN_ZOOM = 0;
+const DEFAULT_MAX_ZOOM = 6;
+const DEFAULT_OPACITY = 0.6;
+
+function useMap(interactive: boolean) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
 
@@ -25,6 +23,7 @@ const WeatherMap = () => {
       style: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
       center: [DEFAULT_LON, DEFAULT_LAT],
       zoom: DEFAULT_ZOOM,
+      interactive: interactive
     });
 
     const addLayer = async () => {
@@ -63,12 +62,7 @@ const WeatherMap = () => {
     };
   }, []);
 
-  return (
-    <section className={styles.sectionWrapper}>
-      <div ref={mapContainer}></div>
-      <button>Карта осадков</button>
-    </section>
-  );
-};
+  return { mapContainer };
+}
 
-export default WeatherMap;
+export default useMap;
