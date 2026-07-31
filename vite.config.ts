@@ -14,4 +14,11 @@ export default defineConfig({
       "@hooks": path.resolve(__dirname, "./src/hooks"),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "${path.resolve(__dirname, "./src/styles/variables.scss").replace(/\\/g, "/")}";\n`,
+      },
+    },
+  },
 });

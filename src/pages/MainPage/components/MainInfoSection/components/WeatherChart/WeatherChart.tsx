@@ -17,7 +17,9 @@ const WeatherChart = () => {
           return (
             <div className={styles.day_wrapper} key={i}>
               <p>{item.weekday}</p>
-              <p>{i === 0 ? "Сегодня" : item.date}</p>
+              <p className="small_grey_text">
+                {i === 0 ? "Сегодня" : item.date}
+              </p>
               <img src={effect} alt="" />
             </div>
           );

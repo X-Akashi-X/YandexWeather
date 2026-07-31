@@ -50,30 +50,20 @@ const DetailedForecast = () => {
                 {i === 0 ? "Сегодня" : i === 1 ? "Завтра" : item.weekday},{" "}
                 {item.date}
               </div>
-              <div
-                className={`${styles.forecast_feeling_gr} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_feeling_gr} small_grey_text`}>
                 ощущается
               </div>
-              <div
-                className={`${styles.forecast_wind_gr} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_wind_gr} small_grey_text`}>
                 ветер, м/с
               </div>
-              <div
-                className={`${styles.forecast_humidity_gr} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_humidity_gr} small_grey_text`}>
                 влажность
               </div>
-              <div
-                className={`${styles.forecast_pressure_gr} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_pressure_gr} small_grey_text`}>
                 давление, мм рт. ст
               </div>
               {/*string 1*/}
-              <div
-                className={`${styles.forecast_gr_str1} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_gr_str1} small_grey_text`}>
                 Утром
               </div>
               <div className={`${styles.forecast_gr_str1}`}>
@@ -101,7 +91,7 @@ const DetailedForecast = () => {
                   <WIndDirectionArrow
                     windDirection={item.morning?.windDeg || 0}
                   />
-                  <p>{windDirectionMorning}</p>
+                  <p className="small_grey_text">{windDirectionMorning}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str1}`}>
@@ -111,9 +101,7 @@ const DetailedForecast = () => {
                 {item.morning?.pressure}
               </div>
               {/*string 2*/}
-              <div
-                className={`${styles.forecast_gr_str2} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_gr_str2} small_grey_text`}>
                 Днём
               </div>
               <div className={`${styles.forecast_gr_str2}`}>
@@ -139,7 +127,7 @@ const DetailedForecast = () => {
                 <div className={styles.wind_wrapper}>
                   <p>{item.day?.windSpeed}</p>
                   <WIndDirectionArrow windDirection={item.day?.windDeg || 0} />
-                  <p>{windDirectionDay}</p>
+                  <p className="small_grey_text">{windDirectionDay}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str2}`}>
@@ -149,9 +137,7 @@ const DetailedForecast = () => {
                 {item.day?.pressure}
               </div>
               {/*string 3*/}
-              <div
-                className={`${styles.forecast_gr_str3} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_gr_str3} small_grey_text`}>
                 Вечером
               </div>
               <div className={`${styles.forecast_gr_str3}`}>
@@ -179,7 +165,7 @@ const DetailedForecast = () => {
                   <WIndDirectionArrow
                     windDirection={item.evening?.windDeg || 0}
                   />
-                  <p>{windDirectionEvening}</p>
+                  <p className="small_grey_text">{windDirectionEvening}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str3}`}>
@@ -189,9 +175,7 @@ const DetailedForecast = () => {
                 {item.evening?.pressure}
               </div>
               {/*string 4*/}
-              <div
-                className={`${styles.forecast_gr_str4} ${styles.small_grey_text}`}
-              >
+              <div className={`${styles.forecast_gr_str4} small_grey_text`}>
                 Ночью
               </div>
               <div className={`${styles.forecast_gr_str4}`}>
@@ -219,7 +203,7 @@ const DetailedForecast = () => {
                   <WIndDirectionArrow
                     windDirection={item.night?.windDeg || 0}
                   />
-                  <p>{windDirectionNight}</p>
+                  <p className="small_grey_text">{windDirectionNight}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str4}`}>
@@ -237,7 +221,7 @@ const DetailedForecast = () => {
                   <p>{item.sunrise}</p>
                 </div>
                 <div className={styles.time_day_wrapper}>
-                  <p className={styles.small_grey_text}>Световой день</p>
+                  <p className={"small_grey_text"}>Световой день</p>
                   <p>{item.sunDay}</p>
                 </div>
                 <div>
@@ -247,7 +231,7 @@ const DetailedForecast = () => {
               </div>
               <div className={styles.grid_air_quality_wrapper}>
                 <div
-                  className={`${styles.air_quality_gr_str1} ${styles.small_grey_text}`}
+                  className={`${styles.air_quality_gr_str1} small_grey_text`}
                 >
                   t° воды
                 </div>
@@ -263,7 +247,7 @@ const DetailedForecast = () => {
                   </p>
                 </div>
                 <div
-                  className={`${styles.air_quality_gr_str2} ${styles.small_grey_text}`}
+                  className={`${styles.air_quality_gr_str2} small_grey_text`}
                 >
                   Фазы луны
                 </div>
@@ -274,7 +258,7 @@ const DetailedForecast = () => {
                   <p>растущая!!!</p>
                 </div>
                 <div
-                  className={`${styles.air_quality_gr_str3} ${styles.small_grey_text}`}
+                  className={`${styles.air_quality_gr_str3} small_grey_text`}
                 >
                   УФ-индекс
                 </div>
@@ -282,7 +266,7 @@ const DetailedForecast = () => {
                   {item.avgUV}, {uvCategory.text}
                 </div>
                 <div
-                  className={`${styles.air_quality_gr_str4} ${styles.small_grey_text}`}
+                  className={`${styles.air_quality_gr_str4} small_grey_text`}
                 >
                   Магнитное поле
                 </div>

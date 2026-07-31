@@ -1,6 +1,6 @@
 .section_wrapper {
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 20px;
+  background-color: var(--white-bg);
+  border-radius: var(--default-radius);
   padding: 20px;
   margin-bottom: 10px;
   h3 {
@@ -12,14 +12,14 @@
       width: 350px;
       height: 218px;
       position: relative;
-      border-radius: 20px;
+      border-radius: var(--default-radius);
       background-position: center;
       background-size: cover;
       button{
         position: absolute;
         left: 10px;
         bottom: 10px;
-        background-color: rgba(255, 255, 255, 1);
+        background-color: var(--white-bg);
         border-radius: 10px;
         padding: 12px 14px;
         font-size: 16px;

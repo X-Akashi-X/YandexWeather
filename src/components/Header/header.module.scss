@@ -29,7 +29,7 @@ header {
   button {
     display: flex;
     padding: 12px 20px;
-    border-radius: 32px;
+    border-radius: var(--strong-radius);
     &.button_bg {
       background-color: inherit;
       align-items: center;
@@ -50,7 +50,7 @@ header {
   width: 100%;
   input {
     width: 100%;
-    border-radius: 32px;
+    border-radius: var(--strong-radius);
     border: 1px solid rgba(180, 184, 204, 0.28);
     padding: 4px 35px 4px 24px;
     height: 44px;
@@ -93,10 +93,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 32px;
+    border-radius: var(--strong-radius);
     width: 44px;
     height: 44px;
-    background-color: rgba(180, 184, 204, 0.12);
+    background-color: var(--grey-bg-opacity-low);
     img {
       width: 16px;
     }
@@ -104,5 +104,5 @@ header {
 }
 
 .active {
-  background-color: rgba(180, 184, 204, 0.12);
+  background-color: var(--grey-bg-opacity-low);
 }

@@ -1,6 +1,6 @@
 .section_wrapper {
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 20px;
+  background-color: var(--white-bg);
+  border-radius: var(--default-radius);
   padding: 20px 24px;
   margin-bottom: 20px;
   h3 {
@@ -16,7 +16,7 @@
       gap: 10px;
     }
     .faq_items{
-      background-color: rgba(180, 184, 204, 0.12);
+      background-color: var(--grey-bg-opacity-low);
       padding: 15px;
       border-radius: 12px;
       cursor: pointer;

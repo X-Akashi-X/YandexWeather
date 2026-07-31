@@ -1,24 +1,24 @@
 footer {
   padding: 15px;
-  font-size: 13px;
+  font-size: var(--font-small);
   .cities_wrapper {
     padding: 30px 0px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(133, 136, 158, 0.2);
+    border-bottom: 1px solid var(--color-light-grey-opacity-low);
     p {
-      color: rgba(133, 136, 158, 1);
+      color: var(--color-light-grey);
     }
   }
   nav {
     display: flex;
     justify-content: space-between;
     padding: 30px 0px 20px 0px;
-    border-bottom: 1px solid rgba(133, 136, 158, 0.2);
+    border-bottom: 1px solid var(--color-light-grey-opacity-low);
     a {
       display: block;
       margin: 15px 0px;
-      color: rgba(133, 136, 158, 1);
+      color: var(--color-light-grey);
     }
     .stores_wrapper {
       img {
@@ -27,7 +27,7 @@ footer {
     }
   }
   .requisite_wrapper{
-    color: rgba(133, 136, 158, 1);
+    color: var(--color-light-grey);
     padding: 30px 0px;
     p:first-child{
       margin-bottom: 15px;

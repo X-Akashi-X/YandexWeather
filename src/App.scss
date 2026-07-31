@@ -9,6 +9,10 @@ body {
   background-color: rgba(247, 248, 250, 1);
 }
 
+main{
+  overflow-x: hidden;
+}
+
 ul,
 li,
 dl {
@@ -55,11 +59,15 @@ input::-webkit-inner-spin-button {
 .app {
   max-width: 1130px;
   margin: 0 auto;
-  overflow: hidden;
+}
+
+.small_grey_text {
+  font-size: var(--font-small);
+  color: var(--color-light-grey);
 }
 
 //==================================SWIPER
-.swiper{
+.swiper {
   overflow: visible;
 }
 .swiper-wrapper {
@@ -72,10 +80,10 @@ input::-webkit-inner-spin-button {
 }
 .swiper-button-prev,
 .swiper-button-next {
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 50%;
+  background-color: var(--white-bg);
+  border-radius: var(--half-radius);
   padding: 16px;
-  box-shadow: 0 4px 10px 0 #939cb033;
+  box-shadow: var(--default-shadow);
   width: 48px;
   height: 48px;
   transition: all 0.3s ease;

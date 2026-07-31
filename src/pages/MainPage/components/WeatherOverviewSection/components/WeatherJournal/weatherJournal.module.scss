@@ -1,6 +1,6 @@
 .section_wrapper {
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 20px;
+  background-color: var(--white-bg);
+  border-radius: var(--default-radius);
   padding: 20px 24px;
   width: 50%;
   .title_wrapper {
@@ -13,7 +13,7 @@
     }
   }
   .news_wrapper {
-    border-radius: 20px;
+    border-radius: var(--default-radius);
     padding: 16px 14px;
     background-image: url(@assets/image/weatherOverviewSection/news_bg.jpg);
     background-position: center;

@@ -4,8 +4,8 @@
     cursor: grab;
     .status_item {
       padding: 16px 16px 12px;
-      background-color: rgba(244, 251, 255, 1);
-      border-radius: 20px;
+      background-color: var(--blue-light-bg);
+      border-radius: var(--default-radius);
       width: 100%;
       cursor: pointer;
       .status_title_wrapper {
@@ -22,10 +22,10 @@
       }
     }
     button {
-      background-color: rgba(255, 255, 255, 1);
-      border-radius: 50%;
+      background-color: var(--white-bg);
+      border-radius: var(--half-radius);
       padding: 16px;
-      box-shadow: 0 4px 10px 0 #939cb033;
+      box-shadow: var(--default-shadow);
       width: 48px;
       height: 48px;
       cursor: pointer;

@@ -6,7 +6,7 @@
     cursor: grab;
     .day_separator {
       left: -18%;
-      color: #999;
+      color: var(--color-light-grey-opacity-low);
       position: relative;
     }
     .day_separator::after {

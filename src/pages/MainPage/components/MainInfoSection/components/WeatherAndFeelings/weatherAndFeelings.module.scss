@@ -7,9 +7,9 @@
       padding: 16px 20px;
       display: flex;
       align-items: center;
-      border-radius: 20px;
-      box-shadow: 0px 4px 10px 0px rgba(147, 156, 176, 0.2);
-      background-color: rgba(255, 255, 255, 1);
+      border-radius: var(--default-radius);
+      box-shadow: var(--default-shadow);
+      background-color: var(--white_bg);
       width: 100%;
       gap: 14px;
       .category_wrapper {
@@ -38,7 +38,7 @@
       .title_wrapper {
         p {
           font-size: 14px;
-          color: rgba(133, 136, 158, 1);
+          color: var(--color-light-grey);
         }
       }
     }

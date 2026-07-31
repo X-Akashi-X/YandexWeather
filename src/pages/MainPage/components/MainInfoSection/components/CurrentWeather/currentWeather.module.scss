@@ -33,7 +33,7 @@
 
   .weather_details {
     display: flex;
-    color: rgba(133, 136, 158, 1);
+    color: var(--color-light-grey);
     justify-content: space-between;
     .degrees_details,
     .effect_details {
@@ -49,7 +49,7 @@
       height: 24px;
       padding: 4px;
       background-color: rgba(247, 248, 250, 1);
-      border-radius: 20px;
+      border-radius: var(--default-radius);
     }
   }
 }
