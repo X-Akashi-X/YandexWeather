@@ -55,6 +55,42 @@ input::-webkit-inner-spin-button {
 .app {
   max-width: 1130px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 //==================================SWIPER
+.swiper{
+  overflow: visible;
+}
+.swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+.swiper-slide {
+  height: auto;
+  display: flex;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  padding: 16px;
+  box-shadow: 0 4px 10px 0 #939cb033;
+  width: 48px;
+  height: 48px;
+  transition: all 0.3s ease;
+  svg {
+    color: black;
+    stroke: black;
+    fill: black;
+    width: 7px;
+    path {
+      stroke-width: 1.5;
+    }
+  }
+}
+.swiper-button-disabled {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

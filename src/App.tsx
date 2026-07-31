@@ -1,3 +1,6 @@
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";

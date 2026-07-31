@@ -2,38 +2,6 @@
   margin-bottom: 20px;
   .status_wrapper {
     cursor: grab;
-    :global(.swiper-wrapper) {
-      display: flex;
-      align-items: stretch;
-    }
-    :global(.swiper-slide) {
-      height: auto;
-      display: flex;
-    }
-    :global(.swiper-button-prev),
-    :global(.swiper-button-next) {
-      background-color: rgba(255, 255, 255, 1);
-      border-radius: 50%;
-      padding: 16px;
-      box-shadow: 0 4px 10px 0 #939cb033;
-      width: 48px;
-      height: 48px;
-      transition: all 0.3s ease;
-      svg {
-        color: black;
-        stroke: black;
-        fill: black;
-        width: 7px;
-        path {
-          stroke-width: 1.5;
-        }
-      }
-    }
-    :global(.swiper-button-disabled) {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
     .status_item {
       padding: 16px 16px 12px;
       background-color: rgba(244, 251, 255, 1);

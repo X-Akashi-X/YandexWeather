@@ -1,9 +1,6 @@
 import styles from "./weatherOnMaps.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import Precipitation from "@assets/image/weatherOnMaps/precipitationMap.jpg";
 import Pollen from "@assets/image/weatherOnMaps/pollenMap.jpg";
 import Temp from "@assets/image/weatherOnMaps/tempMap.jpg";
@@ -22,7 +19,7 @@ const WeatherOnMaps = () => {
         slidesPerGroup={1}
         navigation
       >
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Precipitation})` }}
@@ -30,7 +27,7 @@ const WeatherOnMaps = () => {
             <button>Карта осадков</button>
           </a>
         </SwiperSlide>
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Pollen})` }}
@@ -38,7 +35,7 @@ const WeatherOnMaps = () => {
             <button>Пыльца</button>
           </a>
         </SwiperSlide>
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Temp})` }}
@@ -46,7 +43,7 @@ const WeatherOnMaps = () => {
             <button>Температура</button>
           </a>
         </SwiperSlide>
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Snow})` }}
@@ -54,7 +51,7 @@ const WeatherOnMaps = () => {
             <button>Глубина снега</button>
           </a>
         </SwiperSlide>
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Wind})` }}
@@ -62,7 +59,7 @@ const WeatherOnMaps = () => {
             <button>Ветер</button>
           </a>
         </SwiperSlide>
-        <SwiperSlide className={styles.swiper_slide}>
+        <SwiperSlide>
           <a
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Pressure})` }}
