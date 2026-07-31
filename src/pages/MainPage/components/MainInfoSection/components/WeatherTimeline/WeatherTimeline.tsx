@@ -19,7 +19,6 @@ const WeatherTimeline = () => {
         slidesPerView={15}
         slidesPerGroup={3}
         navigation
-        
       >
         {data?.map((item, i) => {
           const effectData = getWeatherEffect(() => item.weatherCode);
