@@ -23,7 +23,7 @@
       .title_wrapper{
         display: flex;
         justify-content: space-between;
-        font-weight: bold;
+        font-weight: var(--week-bold-text);
         img{
           width: 14px;
         }

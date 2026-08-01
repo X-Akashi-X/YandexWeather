@@ -27,7 +27,7 @@
         width: 43px;
       }
       p:last-child {
-        font-weight: bold;
+        font-weight: var(--week-bold-text);
       }
     }
   }

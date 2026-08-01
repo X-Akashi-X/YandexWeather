@@ -1,5 +1,10 @@
+@font-face {
+  font-family: "YSText";
+  src: url(./assets/fonts/YSText-Upright-weight-VF.ttf) format("truetype");
+}
+
 * {
-  font-family: sans-serif;
+  font-family: "YSText", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,7 +14,7 @@ body {
   background-color: rgba(247, 248, 250, 1);
 }
 
-main{
+main {
   overflow-x: hidden;
 }
 

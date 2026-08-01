@@ -2,7 +2,7 @@
   margin-bottom: 16px;
   .weather_summary {
     display: flex;
-    font-weight: bold;
+    font-weight: var(--week-bold-text);
     align-items: center;
     .degrees {
       font-size: 68px;

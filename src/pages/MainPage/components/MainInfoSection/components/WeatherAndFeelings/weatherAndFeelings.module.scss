@@ -31,11 +31,14 @@
         }
         p{
           position: absolute;
-          font-weight: bold;
+          font-weight: var(--week-bold-text);
           top: 13px;
         }
       }
       .title_wrapper {
+        h4{
+          font-weight: var(--week-bold-text);
+        }
         p {
           font-size: 14px;
           color: var(--color-light-grey);
