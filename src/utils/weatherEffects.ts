@@ -25,6 +25,18 @@ function findWeather(code: () => number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(value));
 }
 
+export const getAvgWeatherCode = (arg: number[]) => {
+  const freq: Record<number, number> = {};
+
+  for (const code of arg) {
+    freq[code] = (freq[code] || 0) + 1;
+  }
+
+  const entries = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+
+  return Number(entries[0][0]);
+};
+
 export function getWeatherEffect(code: () => number) {
   return findWeather(code)?.icon;
 }

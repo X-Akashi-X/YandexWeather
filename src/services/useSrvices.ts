@@ -1,3 +1,4 @@
+import { getAvgWeatherCode } from "@utils/weatherEffects";
 import useAirQuality from "../hooks/useAirQuality";
 import useForecast from "../hooks/useForecast";
 import type { PeriodData, DayGroups } from "@ts/weather";
@@ -6,152 +7,151 @@ const useServices = () => {
   const { dataForecast } = useForecast();
   const { dataAirQuality } = useAirQuality();
 
-  const getCurrentWeatherCode = (): number | undefined => {
-    return dataForecast?.current.weather_code;
+  const getCurrentData = () => {
+    if (!dataForecast?.current || !dataAirQuality?.current) return null;
+
+    return {
+      weatherCode: dataForecast.current.weather_code,
+      windDirection: dataForecast.current.wind_direction_10m,
+      temperature: Math.floor(dataForecast.current.temperature_2m),
+      apparentTemperature: Math.floor(
+        dataForecast.current.apparent_temperature,
+      ),
+      windSpeed: Math.floor(dataForecast.current.wind_speed_10m / 3.6),
+      windGusts: Math.floor(dataForecast.current.wind_gusts_10m / 3.6),
+      pressure: Math.floor(dataForecast.current.pressure_msl * 0.75006),
+      humidity: dataForecast.current.relative_humidity_2m,
+      uvIndex: Math.floor(dataAirQuality.current.uv_index),
+      pollen: dataAirQuality.current.grass_pollen,
+    };
   };
 
-  const getCurrentWindDirection = (): number | undefined => {
-    return dataForecast?.current.wind_direction_10m;
+  const getTodayData = () => {
+    if (!dataForecast?.daily) return null;
+
+    return {
+      minTemperature: Math.floor(dataForecast.daily.temperature_2m_min[1]),
+      maxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[1]),
+      rainChance: dataForecast.daily.precipitation_probability_max[1],
+    };
   };
 
-  const getCurrentTemperature = (): number | undefined => {
-    return dataForecast?.current.temperature_2m;
+  const getTomorrowData = () => {
+    if (!dataForecast?.daily) return null;
+
+    return {
+      weatherCode: dataForecast.daily.weather_code[2],
+      minTemperature: Math.floor(dataForecast.daily.temperature_2m_min[2]),
+      maxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[2]),
+      windSpeed: Math.floor(dataForecast.daily.wind_speed_10m_max[2] / 3.6),
+      windGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[2] / 3.6),
+    };
   };
 
-  const getCurrentMinTemperature = (): number | undefined => {
-    return dataForecast?.daily.temperature_2m_min[1];
-  };
+  const getYesterdayData = () => {
+    if (!dataForecast?.hourly) return null;
 
-  const getCurrentMaxTemperature = (): number | undefined => {
-    return dataForecast?.daily.temperature_2m_max[1];
-  };
+    const yesterdayDate = new Date();
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    yesterdayDate.setMinutes(0, 0, 0);
+    const yesterdayCurrentMoment = Intl.DateTimeFormat("sv-SE", {
+      dateStyle: "short",
+      timeStyle: "short",
+    })
+      .format(yesterdayDate)
+      .replace(" ", "T");
+    const indexCurrentMoment = dataForecast.hourly.time.indexOf(
+      yesterdayCurrentMoment,
+    );
 
-  const getCurrentApparent = (): number | undefined => {
-    return dataForecast?.current.apparent_temperature;
-  };
+    if (indexCurrentMoment === -1) return null;
 
-  const getCurrentWindSpeed = (): number => {
-    return dataForecast?.current.wind_speed_10m ?? 0;
-  };
-
-  const getCurrentWindGusts = (): number => {
-    return dataForecast?.current.wind_gusts_10m ?? 0;
-  };
-
-  const getCurrentPressure = (): number | undefined => {
-    const pressure = dataForecast?.current.pressure_msl;
-    return pressure !== undefined ? pressure * 0.75006 : undefined;
-  };
-
-  const getCurrentHumidity = (): number | undefined => {
-    return dataForecast?.current.relative_humidity_2m;
-  };
-
-  const getCurrentUVIndex = (): number | undefined => {
-    return dataAirQuality?.current.uv_index;
-  };
-
-  const getCurrentPollen = (): number | undefined => {
-    return dataAirQuality?.current.grass_pollen;
-  };
-
-  const getHourlyTemperaturePrev = (): number | undefined => {
-    return dataForecast?.hourly.temperature_2m[10];
-  };
-
-  const getDailyRainChance = (): number | undefined => {
-    return dataForecast?.daily.precipitation_probability_max[1];
-  };
-
-  const getTomorrowWeatherCode = (): number | undefined => {
-    return dataForecast?.daily.weather_code[2];
-  };
-
-  const getTomorrowMinTemperature = (): number | undefined => {
-    return dataForecast?.daily.temperature_2m_min[2];
-  };
-
-  const getTomorrowMaxTemperature = (): number | undefined => {
-    return dataForecast?.daily.temperature_2m_max[2];
-  };
-
-  const getTomorrowWindSpeed = (): number => {
-    return dataForecast?.daily.wind_speed_10m_max[2] ?? 0 / 3.6;
-  };
-
-  const getTomorrowWindGusts = (): number => {
-    return dataForecast?.daily.wind_gusts_10m_max[2] ?? 0 / 3.6;
+    return {
+      currentTemp: Math.floor(
+        dataForecast.hourly.temperature_2m[indexCurrentMoment],
+      ),
+    };
   };
 
   const getWeekData = () => {
-    const value = (arg?: number[] | null) => {
-      if (!Array.isArray(arg) || arg.length < 8) {
-        return null;
-      }
+    if (!dataForecast?.daily) return null;
 
+    const avgDetails = (arg: number[]) => {
       const week = arg.slice(1, 8);
 
-      const avgDetails = week.reduce((a, b) => a + b, 0) / week.length;
+      let avg = week.reduce((a, b) => a + b, 0) / week.length;
 
-      const freq: Record<number, number> = {};
-      for (const code of week) {
-        freq[code] = (freq[code] || 0) + 1;
+      if (
+        arg === dataForecast.daily.wind_speed_10m_max ||
+        arg === dataForecast.daily.wind_gusts_10m_max
+      ) {
+        avg = avg / 3.6;
       }
 
-      const entries = Object.entries(freq).sort((a, b) => b[1] - a[1]);
-      const avgEffect = Number(entries[0][0]);
-
-      return { avgDetails, avgEffect };
+      return Math.floor(avg);
     };
 
     return {
-      weekMin: value(dataForecast?.daily.temperature_2m_min),
-      weekMax: value(dataForecast?.daily.temperature_2m_max),
-      weekSpeed: value(dataForecast?.daily.wind_speed_10m_max),
-      weekEffect: value(dataForecast?.daily.weather_code),
-      weekGusts: value(dataForecast?.daily.wind_gusts_10m_max),
+      minTemperature: avgDetails(dataForecast.daily.temperature_2m_min),
+      maxTemperature: avgDetails(dataForecast.daily.temperature_2m_max),
+      windSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
+      windGusts: avgDetails(dataForecast.daily.wind_gusts_10m_max),
+      weatherCode: getAvgWeatherCode(
+        dataForecast.daily.weather_code.slice(1, 8),
+      ),
     };
   };
 
   const getWeekendData = () => {
     if (!dataForecast?.daily?.time) return null;
 
-    return dataForecast.daily.time
-      .map((date: string, i: number) => ({
+    const weekendDays = dataForecast.daily.time
+      .map((date, i) => ({
         date,
-        weekendMin: dataForecast.daily.temperature_2m_min[i],
-        weekendMax: dataForecast.daily.temperature_2m_max[i],
-        weekendSpeed: dataForecast.daily.wind_speed_10m_max[i] / 3.6,
-        weekendEffect: dataForecast.daily.weather_code[i],
-        weekendGusts: dataForecast.daily.wind_gusts_10m_max[i] / 3.6,
+        minTemp: Math.floor(dataForecast.daily.temperature_2m_min[i]),
+        maxTemp: Math.floor(dataForecast.daily.temperature_2m_max[i]),
+        windSpeed: Math.floor(dataForecast.daily.wind_speed_10m_max[i] / 3.6),
+        windGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[i] / 3.6),
+        weatherCode: dataForecast.daily.weather_code[i],
       }))
       .filter((d) => {
         const day = new Date(d.date).getDay();
-        return day === 6;
-      });
+        return day === 6 || day === 0;
+      })
+      .slice(0, 2);
+    return {
+      minTemperature: Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / 2,
+      ),
+      maxTemperature: Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / 2,
+      ),
+      windSpeed: Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / 2,
+      ),
+      windGusts: Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.windGusts, 0) / 2,
+      ),
+      weatherCode: weekendDays[0].weatherCode,
+    };
   };
 
   const getTimeLineData = () => {
     const now = new Date();
-    const today = now.toISOString().split("T")[0];
-    const tomorrowDate = new Date(now);
-    tomorrowDate.setDate(now.getDate() + 1);
-    const tomorrow = tomorrowDate.toISOString().split("T")[0];
+    const tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
+    tomorrow.setHours(23, 59, 59, 999);
 
     if (!dataForecast?.hourly?.time) return null;
 
     return dataForecast.hourly.time
-      .map((t: string, i: number) => ({ t, i }))
-      .filter(({ t }: { t: string }) => {
-        const [date] = t.split("T");
+      .map((t, i) => ({ t, i }))
+      .filter(({ t }) => {
         const itemDate = new Date(t);
 
-        if (date === today && itemDate >= now) return true;
-        if (date === tomorrow) return true;
-
-        return false;
+        return itemDate >= now && itemDate <= tomorrow;
       })
-      .map(({ t, i }: { t: string; i: number }) => ({
+      .map(({ t, i }) => ({
         date: t.split("T")[0],
         time: t.split("T")[1].slice(0, 5),
         temp: dataForecast.hourly.temperature_2m[i],
@@ -160,7 +160,7 @@ const useServices = () => {
   };
 
   const getTenDaysData = () => {
-    if (!dataForecast?.daily?.time) return undefined;
+    if (!dataForecast?.daily?.time) return null;
 
     const value = dataForecast.daily.time.slice(1, 11);
 
@@ -178,7 +178,7 @@ const useServices = () => {
 
     const groupedDays: Record<string, DayGroups> = {};
 
-    dataForecast?.hourly.time.forEach((timeStr, i) => {
+    dataForecast.hourly.time.forEach((timeStr, i) => {
       const dateKey = timeStr.split("T")[0];
       const hour = new Date(timeStr).getHours();
 
@@ -204,45 +204,26 @@ const useServices = () => {
       if (hour >= 6 && hour < 12) groupedDays[dateKey].morning.push(hourData);
       if (hour >= 12 && hour < 18) groupedDays[dateKey].day.push(hourData);
       if (hour >= 18 && hour < 24) groupedDays[dateKey].evening.push(hourData);
+      if (hour >= 0 && hour < 6) {
+        const prevDate = new Date(timeStr);
+        prevDate.setDate(prevDate.getDate() - 1);
+
+        const prevDateKey = prevDate.toLocaleString("sv-SE");
+
+        if (groupedDays[prevDateKey]) {
+          groupedDays[prevDateKey].night.push(hourData);
+        }
+      }
     });
 
-    const sortedDates = Object.keys(groupedDays).sort();
-    for (let i = 0; i < sortedDates.length - 1; i++) {
-      const currentTargetDate = sortedDates[i];
-      const nextDate = sortedDates[i + 1];
-
-      const nightData: PeriodData[] = [];
-      dataForecast?.hourly.time.forEach((timeStr, i) => {
-        if (timeStr.startsWith(nextDate)) {
-          const hour = new Date(timeStr).getHours();
-          if (hour >= 0 && hour < 6) {
-            nightData.push({
-              temp: Math.floor(dataForecast.hourly.temperature_2m[i]),
-              feels: Math.floor(dataForecast.hourly.apparent_temperature[i]),
-              windSpeed: Math.floor(
-                dataForecast.hourly.wind_speed_10m[i] / 3.6,
-              ),
-              windDeg: dataForecast.hourly.wind_direction_10m[i],
-              humidity: dataForecast.hourly.relative_humidity_2m[i],
-              pressure: Math.floor(
-                dataForecast.hourly.pressure_msl[i] * 0.75006,
-              ),
-              weatherCode: dataForecast.hourly.weather_code[i],
-            });
-          }
-        }
-      });
-
-      groupedDays[currentTargetDate].night = nightData;
-    }
+    const datesKeys = Object.keys(groupedDays);
 
     const averageData = (periodArr: PeriodData[]) => {
-      if (!periodArr || !periodArr[0]) return null;
+      if (!periodArr?.length) return null;
 
       const count = periodArr.length;
 
-      const averageIndex = Math.floor(count / 2);
-      const midlleEffect = periodArr[averageIndex].weatherCode;
+      const arr = periodArr.map((item) => item.weatherCode);
 
       const sum = periodArr.reduce(
         (acc, curr) => ({
@@ -270,17 +251,15 @@ const useServices = () => {
         windDeg: Math.floor(sum.windDeg / count),
         humidity: Math.floor(sum.humidity / count),
         pressure: Math.floor(sum.pressure / count),
-        weatherCode: midlleEffect,
+        weatherCode: getAvgWeatherCode(arr),
       };
     };
 
-    type dailySource = {
-      time: string[];
-      [key: string]: string[] | number[] | undefined;
-    };
-
     const getDailyData = (
-      dailySource: dailySource,
+      dailySource: {
+        time: string[];
+        [key: string]: string[] | number[] | null;
+      },
       arrKey: string,
       targetDate: string,
     ) => {
@@ -296,7 +275,9 @@ const useServices = () => {
     }
 
     function getSunDay(targetDate: string) {
-      const { time, sunset, sunrise } = dataForecast?.daily || {};
+      if (!dataForecast?.daily) return null;
+
+      const { time, sunset, sunrise } = dataForecast.daily;
 
       if (
         isStringArray(time) &&
@@ -315,22 +296,21 @@ const useServices = () => {
 
           return `${hours} ч ${minutes} мин`;
         }
-        return "-";
       }
       return "-";
     }
 
-    const forecast = sortedDates.map((date) => {
+    const forecast = datesKeys.map((date) => {
       const dayData = groupedDays[date];
 
       const avgTemp = getDailyData(
-        dataForecast?.daily,
+        dataForecast.daily,
         "temperature_2m_mean",
         date,
       );
-      const avgUV = getDailyData(dataForecast?.daily, "uv_index_max", date);
-      const sunrise = getDailyData(dataForecast?.daily, "sunrise", date);
-      const sunset = getDailyData(dataForecast?.daily, "sunset", date);
+      const avgUV = getDailyData(dataForecast.daily, "uv_index_max", date);
+      const sunrise = getDailyData(dataForecast.daily, "sunrise", date);
+      const sunset = getDailyData(dataForecast.daily, "sunset", date);
       const sunDay = getSunDay(date);
 
       return {
@@ -357,25 +337,10 @@ const useServices = () => {
   };
 
   return {
-    getCurrentWeatherCode,
-    getCurrentWindDirection,
-    getCurrentTemperature,
-    getCurrentMinTemperature,
-    getCurrentMaxTemperature,
-    getCurrentApparent,
-    getCurrentWindSpeed,
-    getCurrentWindGusts,
-    getCurrentPressure,
-    getCurrentHumidity,
-    getCurrentUVIndex,
-    getCurrentPollen,
-    getHourlyTemperaturePrev,
-    getDailyRainChance,
-    getTomorrowWeatherCode,
-    getTomorrowMinTemperature,
-    getTomorrowMaxTemperature,
-    getTomorrowWindSpeed,
-    getTomorrowWindGusts,
+    getCurrentData,
+    getTodayData,
+    getTomorrowData,
+    getYesterdayData,
     getWeekData,
     getWeekendData,
     getTimeLineData,
