@@ -20,22 +20,16 @@ const weatherMap = {
   thunder: { codes: [95, 96, 99], text: "Гром", icon: thunder },
 };
 
-function findWeather(code: number | undefined) {
-  if (code === undefined) return null;
+function findWeather(code: number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(code));
 }
 
-export function getWeatherEffect(code: number | undefined) {
-  const weather = findWeather(code);
-  if (!weather) return "error";
-
-  return weather.icon;
+export function getWeatherEffect(code: number) {
+  return findWeather(code)?.icon;
 }
 
 export function getWeatherInfo(code: number) {
-  const weather = findWeather(code);
-  if (!weather) return "error";
-  return weather.text;
+  return findWeather(code)?.text;
 }
 
 export function getRainChance(chance: number) {
@@ -56,10 +50,8 @@ export function getWindCategory(speed: number) {
   return "ураган";
 }
 
-export function getWindDirection(deg: number | undefined) {
+export function getWindDirection(deg: number) {
   const directions = ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"];
-
-  if (deg === undefined) return "error";
 
   const index = Math.round(deg / 45) % 8;
   return directions[index];
@@ -86,8 +78,7 @@ export function getPressureCategory(category: number) {
   return { fill: 1, color: "#57348d", text: "очень высокое" };
 }
 
-export function getUVCategory(category: number | null) {
-  if (!category) return null;
+export function getUVCategory(category: number) {
   if (category <= 2) return { fill: 0, color: "#33c115", text: "низкий" };
   if (category <= 5) return { fill: 0.17, color: "#ffd400", text: "умеренный" };
   if (category <= 7) return { fill: 0.42, color: "#ff7e01", text: "высокий" };

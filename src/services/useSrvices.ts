@@ -245,10 +245,10 @@ const useServices = () => {
       );
 
       return {
-        temp: Math.floor(sum.temp / count),
-        feels: Math.floor(sum.feels / count),
+        temperature: Math.floor(sum.temp / count),
+        apparentTemperature: Math.floor(sum.feels / count),
         windSpeed: Math.floor(sum.windSpeed / count),
-        windDeg: Math.floor(sum.windDeg / count),
+        windDirection: Math.floor(sum.windDeg / count),
         humidity: Math.floor(sum.humidity / count),
         pressure: Math.floor(sum.pressure / count),
         weatherCode: getAvgWeatherCode(arr),
