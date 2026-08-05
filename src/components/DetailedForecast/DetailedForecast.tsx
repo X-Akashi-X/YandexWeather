@@ -17,29 +17,17 @@ const DetailedForecast = () => {
   return (
     <section className={styles.section_wrapper}>
       {data.map((item, i) => {
-        const effectMorning = getWeatherEffect(
-          () => item.morning?.weatherCode ?? 0,
-        );
-        const effectDay = getWeatherEffect(() => item.day?.weatherCode ?? 0);
-        const effectEvening = getWeatherEffect(
-          () => item.evening?.weatherCode ?? 0,
-        );
-        const effectNight = getWeatherEffect(
-          () => item.night?.weatherCode ?? 0,
-        );
+        const effectMorning = getWeatherEffect(item.morning?.weatherCode);
+        const effectDay = getWeatherEffect(item.day?.weatherCode);
+        const effectEvening = getWeatherEffect(item.evening?.weatherCode);
+        const effectNight = getWeatherEffect(item.night?.weatherCode);
 
-        const windDirectionMorning = getWindDirection(
-          () => item.morning?.windDeg ?? 0,
-        );
-        const windDirectionDay = getWindDirection(() => item.day?.windDeg ?? 0);
-        const windDirectionEvening = getWindDirection(
-          () => item.evening?.windDeg ?? 0,
-        );
-        const windDirectionNight = getWindDirection(
-          () => item.night?.windDeg ?? 0,
-        );
+        const windDirectionMorning = getWindDirection(item.morning?.windDeg);
+        const windDirectionDay = getWindDirection(item.day?.windDeg);
+        const windDirectionEvening = getWindDirection(item.evening?.windDeg);
+        const windDirectionNight = getWindDirection(item.night?.windDeg);
 
-        const uvCategory = getUVCategory(item.avgUV ?? 0);
+        const uvCategory = getUVCategory(item.avgUV);
 
         return (
           <div className={styles.main_wrapper} key={i}>
@@ -263,7 +251,7 @@ const DetailedForecast = () => {
                   УФ-индекс
                 </div>
                 <div className={styles.air_quality_gr_str3}>
-                  {item.avgUV}, {uvCategory.text}
+                  {item.avgUV}, {uvCategory?.text}
                 </div>
                 <div
                   className={`${styles.air_quality_gr_str4} small_grey_text`}
