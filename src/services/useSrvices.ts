@@ -67,7 +67,7 @@ const useServices = () => {
     if (indexCurrentMoment === -1) return null;
 
     return {
-      currentTemp: Math.floor(
+      YesterdayCurrentTemp: Math.floor(
         dataForecast.hourly.temperature_2m[indexCurrentMoment],
       ),
     };
