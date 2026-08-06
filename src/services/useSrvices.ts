@@ -154,7 +154,7 @@ const useServices = () => {
       .map(({ t, i }) => ({
         date: t.split("T")[0],
         time: t.split("T")[1].slice(0, 5),
-        temp: dataForecast.hourly.temperature_2m[i],
+        temperature: dataForecast.hourly.temperature_2m[i],
         weatherCode: dataForecast.hourly.weather_code[i],
       }));
   };
