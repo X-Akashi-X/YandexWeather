@@ -11,18 +11,18 @@ const useServices = () => {
     if (!dataForecast?.current || !dataAirQuality?.current) return null;
 
     return {
-      weatherCode: dataForecast.current.weather_code,
-      windDirection: dataForecast.current.wind_direction_10m,
-      temperature: Math.floor(dataForecast.current.temperature_2m),
-      apparentTemperature: Math.floor(
+      CurrentWeatherCode: dataForecast.current.weather_code,
+      CurrentWindDirection: dataForecast.current.wind_direction_10m,
+      CurrentTemperature: Math.floor(dataForecast.current.temperature_2m),
+      CurrentApparentTemperature: Math.floor(
         dataForecast.current.apparent_temperature,
       ),
-      windSpeed: Math.floor(dataForecast.current.wind_speed_10m / 3.6),
-      windGusts: Math.floor(dataForecast.current.wind_gusts_10m / 3.6),
-      pressure: Math.floor(dataForecast.current.pressure_msl * 0.75006),
-      humidity: dataForecast.current.relative_humidity_2m,
-      uvIndex: Math.floor(dataAirQuality.current.uv_index),
-      pollen: dataAirQuality.current.grass_pollen,
+      CurrentWindSpeed: Math.floor(dataForecast.current.wind_speed_10m / 3.6),
+      CurrentWindGusts: Math.floor(dataForecast.current.wind_gusts_10m / 3.6),
+      CurrentPressure: Math.floor(dataForecast.current.pressure_msl * 0.75006),
+      CurrentHumidity: dataForecast.current.relative_humidity_2m,
+      CurrentUvIndex: Math.floor(dataAirQuality.current.uv_index),
+      CurrentPollen: dataAirQuality.current.grass_pollen,
     };
   };
 
@@ -30,9 +30,11 @@ const useServices = () => {
     if (!dataForecast?.daily) return null;
 
     return {
-      minTemperature: Math.floor(dataForecast.daily.temperature_2m_min[1]),
-      maxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[1]),
-      rainChance: dataForecast.daily.precipitation_probability_max[1],
+      TodayMinTemperature: Math.floor(dataForecast.daily.temperature_2m_min[1]),
+      TodayMaxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[1]),
+      TodayRainChance: dataForecast.daily.precipitation_probability_max[1],
+      TodayWindSpeed: dataForecast.daily.wind_speed_10m_max[1],
+      TodayWindGusts: dataForecast.daily.wind_gusts_10m_max[1],
     };
   };
 
@@ -40,11 +42,19 @@ const useServices = () => {
     if (!dataForecast?.daily) return null;
 
     return {
-      weatherCode: dataForecast.daily.weather_code[2],
-      minTemperature: Math.floor(dataForecast.daily.temperature_2m_min[2]),
-      maxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[2]),
-      windSpeed: Math.floor(dataForecast.daily.wind_speed_10m_max[2] / 3.6),
-      windGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[2] / 3.6),
+      tomorrowWeatherCode: dataForecast.daily.weather_code[2],
+      tomorrowMinTemperature: Math.floor(
+        dataForecast.daily.temperature_2m_min[2],
+      ),
+      tomorrowMaxTemperature: Math.floor(
+        dataForecast.daily.temperature_2m_max[2],
+      ),
+      tomorrowWindSpeed: Math.floor(
+        dataForecast.daily.wind_speed_10m_max[2] / 3.6,
+      ),
+      tomorrowWindGusts: Math.floor(
+        dataForecast.daily.wind_gusts_10m_max[2] / 3.6,
+      ),
     };
   };
 
@@ -92,11 +102,11 @@ const useServices = () => {
     };
 
     return {
-      minTemperature: avgDetails(dataForecast.daily.temperature_2m_min),
-      maxTemperature: avgDetails(dataForecast.daily.temperature_2m_max),
-      windSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
-      windGusts: avgDetails(dataForecast.daily.wind_gusts_10m_max),
-      weatherCode: getAvgWeatherCode(
+      WeekMinTemperature: avgDetails(dataForecast.daily.temperature_2m_min),
+      WeekMaxTemperature: avgDetails(dataForecast.daily.temperature_2m_max),
+      WeekWindSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
+      WeekWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_max),
+      WeekWeatherCode: getAvgWeatherCode(
         dataForecast.daily.weather_code.slice(1, 8),
       ),
     };
@@ -120,19 +130,19 @@ const useServices = () => {
       })
       .slice(0, 2);
     return {
-      minTemperature: Math.floor(
+      WeekendMinTemperature: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / 2,
       ),
-      maxTemperature: Math.floor(
+      WeekendMaxTemperature: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / 2,
       ),
-      windSpeed: Math.floor(
+      WeekendWindSpeed: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / 2,
       ),
-      windGusts: Math.floor(
+      WeekendWindGusts: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.windGusts, 0) / 2,
       ),
-      weatherCode: weekendDays[0].weatherCode,
+      WeekendWeatherCode: weekendDays[0].weatherCode,
     };
   };
 
@@ -152,10 +162,10 @@ const useServices = () => {
         return itemDate >= now && itemDate <= tomorrow;
       })
       .map(({ t, i }) => ({
-        date: t.split("T")[0],
-        time: t.split("T")[1].slice(0, 5),
-        temperature: dataForecast.hourly.temperature_2m[i],
-        weatherCode: dataForecast.hourly.weather_code[i],
+        TimeLineDate: t.split("T")[0],
+        TimeLineTime: t.split("T")[1].slice(0, 5),
+        TimeLineTemperature: dataForecast.hourly.temperature_2m[i],
+        TimeLineWeatherCode: dataForecast.hourly.weather_code[i],
       }));
   };
 
@@ -165,11 +175,15 @@ const useServices = () => {
     const value = dataForecast.daily.time.slice(1, 11);
 
     return value.map((t, i) => ({
-      date: new Date(t).getDate(),
-      weekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
-      temp_max: Math.floor(dataForecast.daily.temperature_2m_max[i + 1]),
-      temp_min: Math.floor(dataForecast.daily.temperature_2m_min[i + 1]),
-      weatherCode: dataForecast.daily.weather_code[i + 1],
+      TenDaysDate: new Date(t).getDate(),
+      TenDaysWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
+      TenDaysMaxTemperature: Math.floor(
+        dataForecast.daily.temperature_2m_max[i + 1],
+      ),
+      TenDaysMinTemperature: Math.floor(
+        dataForecast.daily.temperature_2m_min[i + 1],
+      ),
+      TenDaysWeatherCode: dataForecast.daily.weather_code[i + 1],
     }));
   };
 
@@ -245,13 +259,13 @@ const useServices = () => {
       );
 
       return {
-        temperature: Math.floor(sum.temp / count),
-        apparentTemperature: Math.floor(sum.feels / count),
-        windSpeed: Math.floor(sum.windSpeed / count),
-        windDirection: Math.floor(sum.windDeg / count),
-        humidity: Math.floor(sum.humidity / count),
-        pressure: Math.floor(sum.pressure / count),
-        weatherCode: getAvgWeatherCode(arr),
+        AdvancedTemperature: Math.floor(sum.temp / count),
+        AdvancedApparentTemperature: Math.floor(sum.feels / count),
+        AdvancedWindSpeed: Math.floor(sum.windSpeed / count),
+        AdvancedWindDirection: Math.floor(sum.windDeg / count),
+        AdvancedHumidity: Math.floor(sum.humidity / count),
+        AdvancedPressure: Math.floor(sum.pressure / count),
+        AdvancedWeatherCode: getAvgWeatherCode(arr),
       };
     };
 
@@ -314,22 +328,25 @@ const useServices = () => {
       const sunDay = getSunDay(date);
 
       return {
-        date: new Date(date).toLocaleString("ru-Ru", {
+        AdvancedDate: new Date(date).toLocaleString("ru-Ru", {
           day: "numeric",
           month: "long",
         }),
-        weekday: new Date(date).toLocaleDateString("ru-RU", {
+        AdvancedWeekday: new Date(date).toLocaleDateString("ru-RU", {
           weekday: "long",
         }),
         morning: averageData(dayData.morning),
         day: averageData(dayData.day),
         evening: averageData(dayData.evening),
         night: averageData(dayData.night),
-        avgWaterTemp: typeof avgTemp === "number" ? Math.floor(avgTemp) : null,
-        avgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
-        sunrise: typeof sunrise === "string" ? sunrise.split("T")[1] : null,
-        sunset: typeof sunset === "string" ? sunset.split("T")[1] : null,
-        sunDay: sunDay,
+        AdvancedAvgWaterTemp:
+          typeof avgTemp === "number" ? Math.floor(avgTemp) : null,
+        AdvancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
+        AdvancedSunrise:
+          typeof sunrise === "string" ? sunrise.split("T")[1] : null,
+        AdvancedSunset:
+          typeof sunset === "string" ? sunset.split("T")[1] : null,
+        AdvancedSunDay: sunDay,
       };
     });
 

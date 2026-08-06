@@ -20,19 +20,19 @@ const WeatherTimeline = () => {
         navigation
       >
         {data.map((item, i) => {
-          const { weatherCode, date, time, temperature } = item;
-          const effect = getWeatherEffect(weatherCode);
+          const { TimeLineWeatherCode, TimeLineDate, TimeLineTime, TimeLineTemperature } = item;
+          const effect = getWeatherEffect(TimeLineWeatherCode);
 
           const prev = data[i - 1];
-          const isNewDay = prev && prev.date !== date;
+          const isNewDay = prev && prev.TimeLineDate !== TimeLineDate;
 
           return (
             <SwiperSlide className={styles.swiper_slide} key={i}>
               {isNewDay && <div className={styles.day_separator}></div>}
               <div className={styles.weather_timeline_item}>
-                <p>{isNewDay ? `Вт, ${time}` : time}</p>
+                <p>{isNewDay ? `Вт, ${TimeLineTime}` : TimeLineTime}</p>
                 <img src={effect} alt="" />
-                <p>{temperature > 0 ? `+${temperature}` : temperature}°</p>
+                <p>{TimeLineTemperature > 0 ? `+${TimeLineTemperature}` : TimeLineTemperature}°</p>
               </div>
             </SwiperSlide>
           );

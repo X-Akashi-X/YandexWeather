@@ -11,12 +11,12 @@ const WeatherChart = () => {
       <h2>Прогноз на 10 дней</h2>
       <a className={styles.days_wrapper}>
         {data.map((item, i) => {
-          const { weatherCode, weekday, date } = item;
-          const effect = getWeatherEffect(weatherCode);
+          const { TenDaysWeatherCode, TenDaysWeekday, TenDaysDate } = item;
+          const effect = getWeatherEffect(TenDaysWeatherCode);
           return (
             <div className={styles.day_wrapper} key={i}>
-              <p>{weekday}</p>
-              <p className="small_grey_text">{i === 0 ? "Сегодня" : date}</p>
+              <p>{TenDaysWeekday}</p>
+              <p className="small_grey_text">{i === 0 ? "Сегодня" : TenDaysDate}</p>
               <img src={effect} alt="" />
             </div>
           );

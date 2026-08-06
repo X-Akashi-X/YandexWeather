@@ -13,36 +13,36 @@ import useServices from "@services/useSrvices";
 
 const CurrentWeather = () => {
   const {
-    weatherCode,
-    windDirection,
-    temperature,
-    apparentTemperature,
-    windSpeed,
-    pressure,
-    humidity,
+    CurrentWeatherCode,
+    CurrentWindDirection,
+    CurrentTemperature,
+    CurrentApparentTemperature,
+    CurrentWindSpeed,
+    CurrentPressure,
+    CurrentHumidity,
   } = useServices().getCurrentData() || {};
   const { YesterdayCurrentTemp } = useServices().getYesterdayData() || {};
-  const { rainChance } = useServices().getTodayData() || {};
+  const { TodayRainChance } = useServices().getTodayData() || {};
   if (
-    !weatherCode ||
-    !windDirection ||
-    !temperature ||
-    !rainChance ||
-    !apparentTemperature ||
+    !CurrentWeatherCode ||
+    !CurrentWindDirection ||
+    !CurrentTemperature ||
+    !TodayRainChance ||
+    !CurrentApparentTemperature ||
     !YesterdayCurrentTemp
   )
     return null;
 
-  const effect = getWeatherEffect(weatherCode);
-  const direction = getWindDirection(windDirection);
-  const info = getWeatherInfo(weatherCode);
-  const precipitation = getRainChance(rainChance);
+  const effect = getWeatherEffect(CurrentWeatherCode);
+  const direction = getWindDirection(CurrentWindDirection);
+  const info = getWeatherInfo(CurrentWeatherCode);
+  const precipitation = getRainChance(TodayRainChance);
 
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.weather_summary}>
         <p className={styles.degrees}>
-          {temperature > 0 ? `+${temperature}` : temperature}°
+          {CurrentTemperature > 0 ? `+${CurrentTemperature}` : CurrentTemperature}°
         </p>
         <img src={effect} alt="" />
         <div className={styles.summary}>
@@ -54,9 +54,9 @@ const CurrentWeather = () => {
         <div className={styles.degrees_details}>
           <p>
             Ощущается как{" "}
-            {apparentTemperature > 0
-              ? `+${apparentTemperature}`
-              : apparentTemperature}
+            {CurrentApparentTemperature > 0
+              ? `+${CurrentApparentTemperature}`
+              : CurrentApparentTemperature}
             °
           </p>
           <p>
@@ -71,20 +71,20 @@ const CurrentWeather = () => {
           <div className={styles.effect_details_item}>
             <img src={WindSpeed} alt="" />
             <p>
-              {windSpeed} м/с, {direction}
+              {CurrentWindSpeed} м/с, {direction}
             </p>
           </div>
           <div className={styles.effect_details_item}>
             <img src={Pressure} alt="" />
-            <p>{pressure}</p>
+            <p>{CurrentPressure}</p>
           </div>
           <div className={styles.effect_details_item}>
             <img src={Humidity} alt="" />
-            {humidity}%
+            {CurrentHumidity}%
           </div>
           <div className={styles.effect_details_item}>
             <img src={WaterTemp} alt="" />
-            <p>{temperature > 0 ? `+${temperature / 2}` : temperature / 2}°</p>
+            <p>{CurrentTemperature > 0 ? `+${CurrentTemperature / 2}` : CurrentTemperature / 2}°</p>
           </div>
         </div>
       </div>

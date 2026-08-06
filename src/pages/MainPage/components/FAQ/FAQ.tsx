@@ -11,17 +11,28 @@ import {
 
 const FAQ = () => {
   const {
-    getCurrentTemperature,
-    getCurrentApparent,
-    getCurrentWindSpeed,
-    getCurrentWindDirection,
-    getCurrentHumidity,
-    getCurrentPressure,
-    getCurrentWeatherCode,
-    getCurrentMinTemperature,
-    getCurrentMaxTemperature,
-    getCurrentWindGusts,
-  } = useServices();
+    temperature,
+    apparentTemperature,
+    windSpeed,
+    windDirection,
+    windGusts,
+    humidity,
+    pressure,
+    weatherCode,
+  } = useServices().getCurrentData() || {};
+  const { minTemperature, maxTemperature, rainChance } =
+    useServices().getTodayData() || {};
+  if (
+    !weatherCode ||
+    !temperature ||
+    !apparentTemperature ||
+    !windDirection ||
+    !rainChance
+  )
+    return null;
+  const info = getWeatherInfo(weatherCode);
+  const direction = getWindDirection(windDirection);
+  const precipitation = getRainChance(rainChance);
 
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
@@ -44,21 +55,15 @@ const FAQ = () => {
             </div>
             {activeItem === "weather" && (
               <p>
-                Сейчас в Минске {}, температура воздуха +
-                {Math.floor(getCurrentTemperature() ?? 0)}°, ощущается как +
-                {Math.floor(getCurrentApparent() ?? 0)}°. Ветер{" "}
-                {Math.floor(getCurrentWindSpeed() ?? 0)} м/с,{" "}
-                {getWindDirection(() => getCurrentWindDirection() ?? 0)},
-                влажность {getCurrentHumidity()}%, атмосферное давление{" "}
-                {Math.floor(getCurrentPressure() ?? 0)} мм рт. ст.{" "}
-                {getRainChance(() => getCurrentWeatherCode() ?? 0)}. Сегодня: +
-                {Math.floor(getCurrentMinTemperature() ?? 0)}...+
-                {Math.floor(getCurrentMaxTemperature() ?? 0)}°,{" "}
-                {getWindCategory(() => getCurrentWindSpeed())}{" "}
-                {Math.floor(getCurrentWindSpeed())} м⁠/с, порывы до{" "}
-                {Math.floor(getCurrentWindGusts())} м⁠/с,{" "}
-                {getWeatherInfo(() => getCurrentWeatherCode() ?? 0)},{" "}
-                {getRainChance(() => getCurrentWeatherCode() ?? 0)}.
+                Сейчас в Минске {info}, температура воздуха{" "}
+                {temperature > 0 ? `+${temperature}` : temperature}°, ощущается
+                как{" "}
+                {apparentTemperature > 0
+                  ? `+${apparentTemperature}`
+                  : apparentTemperature}
+                °. Ветер {windSpeed} м/с, {direction}, влажность {humidity}%,
+                атмосферное давление {pressure} мм рт. ст. Сегодня:{" "}
+                {precipitation}, {}
               </p>
             )}
           </div>
