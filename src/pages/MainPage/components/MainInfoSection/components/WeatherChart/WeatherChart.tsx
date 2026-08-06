@@ -4,16 +4,15 @@ import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { getWeatherEffect } from "@utils/weatherEffects";
 
 const WeatherChart = () => {
-  const { getTenDaysData } = useServices();
-  const data = getTenDaysData();
+  const data  = useServices().getTenDaysData();
 
   return (
     <div className={styles.main_wrapper}>
       <h2>Прогноз на 10 дней</h2>
       <a className={styles.days_wrapper}>
         {data?.map((item, i) => {
-          const weatherEffect = item?.weatherCode ?? 0;
-          const effect = getWeatherEffect(() => weatherEffect);
+          const {weatherCode} = item
+          const effect = getWeatherEffect(weatherCode);
           return (
             <div className={styles.day_wrapper} key={i}>
               <p>{item.weekday}</p>
