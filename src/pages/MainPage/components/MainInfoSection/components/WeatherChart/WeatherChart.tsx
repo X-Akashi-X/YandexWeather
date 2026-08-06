@@ -4,21 +4,19 @@ import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { getWeatherEffect } from "@utils/weatherEffects";
 
 const WeatherChart = () => {
-  const data  = useServices().getTenDaysData();
+  const data = useServices().getTenDaysData() || [];
 
   return (
     <div className={styles.main_wrapper}>
       <h2>Прогноз на 10 дней</h2>
       <a className={styles.days_wrapper}>
-        {data?.map((item, i) => {
-          const {weatherCode} = item
+        {data.map((item, i) => {
+          const { weatherCode, weekday, date } = item;
           const effect = getWeatherEffect(weatherCode);
           return (
             <div className={styles.day_wrapper} key={i}>
-              <p>{item.weekday}</p>
-              <p className="small_grey_text">
-                {i === 0 ? "Сегодня" : item.date}
-              </p>
+              <p>{weekday}</p>
+              <p className="small_grey_text">{i === 0 ? "Сегодня" : date}</p>
               <img src={effect} alt="" />
             </div>
           );
@@ -57,8 +55,7 @@ const WeatherChart = () => {
               dot={(props: { cx?: number; cy?: number; index?: number }) => {
                 const { cx, cy, index } = props;
 
-                if (cx === undefined || cy === undefined || index === undefined)
-                  return null;
+                if (!cx || !cy || !index) return null;
 
                 if (index === 0) {
                   return (
@@ -96,7 +93,7 @@ const WeatherChart = () => {
               dot={(props) => {
                 const { cx, cy, index } = props;
 
-                if (cx === undefined || cy === undefined) return null;
+                if (!cx || !cy || !index) return null;
 
                 if (index === 0) {
                   return (

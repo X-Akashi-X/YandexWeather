@@ -7,15 +7,31 @@ import {
   getWeatherEffect,
   getWeatherInfo,
   getRainChance,
-  getWindDirection
+  getWindDirection,
 } from "@utils/weatherEffects";
 import useServices from "@services/useSrvices";
 
 const CurrentWeather = () => {
-  const {weatherCode, windDirection, temperature, apparentTemperature, windSpeed, pressure, humidity} = useServices().getCurrentData() || {}
-  const {YesterdayCurrentTemp} = useServices().getYesterdayData() || {}
-  const {rainChance} = useServices().getTodayData() || {}
-  if(!weatherCode || !windDirection || !temperature || !rainChance || !apparentTemperature || !YesterdayCurrentTemp) return null
+  const {
+    weatherCode,
+    windDirection,
+    temperature,
+    apparentTemperature,
+    windSpeed,
+    pressure,
+    humidity,
+  } = useServices().getCurrentData() || {};
+  const { YesterdayCurrentTemp } = useServices().getYesterdayData() || {};
+  const { rainChance } = useServices().getTodayData() || {};
+  if (
+    !weatherCode ||
+    !windDirection ||
+    !temperature ||
+    !rainChance ||
+    !apparentTemperature ||
+    !YesterdayCurrentTemp
+  )
+    return null;
 
   const effect = getWeatherEffect(weatherCode);
   const direction = getWindDirection(windDirection);
@@ -36,8 +52,20 @@ const CurrentWeather = () => {
       </div>
       <div className={styles.weather_details}>
         <div className={styles.degrees_details}>
-          <p>Ощущается как {apparentTemperature > 0 ? `+${apparentTemperature}` : apparentTemperature}°</p>
-          <p>Вчера было {YesterdayCurrentTemp > 0 ? `+${YesterdayCurrentTemp}` : YesterdayCurrentTemp}°</p>
+          <p>
+            Ощущается как{" "}
+            {apparentTemperature > 0
+              ? `+${apparentTemperature}`
+              : apparentTemperature}
+            °
+          </p>
+          <p>
+            Вчера было{" "}
+            {YesterdayCurrentTemp > 0
+              ? `+${YesterdayCurrentTemp}`
+              : YesterdayCurrentTemp}
+            °
+          </p>
         </div>
         <div className={styles.effect_details}>
           <div className={styles.effect_details_item}>
