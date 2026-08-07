@@ -1,4 +1,5 @@
 import {
+  getPlusOrNot,
   getUVCategory,
   getWeatherEffect,
   getWindDirection,
@@ -22,28 +23,28 @@ const DetailedForecast = () => {
           day,
           evening,
           night,
-          AdvancedAvgUV,
-          AdvancedWeekday,
-          AdvancedDate,
-          AdvancedAvgWaterTemp,
-          AdvancedSunDay,
-          AdvancedSunrise,
-          AdvancedSunset,
+          advancedAvgUV,
+          advancedWeekday,
+          advancedDate,
+          advancedAvgWaterTemp,
+          advancedSunDay,
+          advancedSunrise,
+          advancedSunset,
         } = item;
-        if (!morning || !day || !evening || !night || !AdvancedAvgUV || !AdvancedAvgWaterTemp)
+        if (!morning || !day || !evening || !night || !advancedAvgUV || !advancedAvgWaterTemp)
           return null;
 
-        const effectMorning = getWeatherEffect(morning.AdvancedWeatherCode);
-        const effectDay = getWeatherEffect(day.AdvancedWeatherCode);
-        const effectEvening = getWeatherEffect(evening.AdvancedWeatherCode);
-        const effectNight = getWeatherEffect(night.AdvancedWeatherCode);
+        const effectMorning = getWeatherEffect(morning.advancedWeatherCode);
+        const effectDay = getWeatherEffect(day.advancedWeatherCode);
+        const effectEvening = getWeatherEffect(evening.advancedWeatherCode);
+        const effectNight = getWeatherEffect(night.advancedWeatherCode);
 
-        const windDirectionMorning = getWindDirection(morning.AdvancedWindDirection);
-        const windDirectionDay = getWindDirection(day.AdvancedWindDirection);
-        const windDirectionEvening = getWindDirection(evening.AdvancedWindDirection);
-        const windDirectionNight = getWindDirection(night.AdvancedWindDirection);
+        const windDirectionMorning = getWindDirection(morning.advancedWindDirection);
+        const windDirectionDay = getWindDirection(day.advancedWindDirection);
+        const windDirectionEvening = getWindDirection(evening.advancedWindDirection);
+        const windDirectionNight = getWindDirection(night.advancedWindDirection);
 
-        const uvCategory = getUVCategory(AdvancedAvgUV);
+        const uvCategory = getUVCategory(advancedAvgUV);
 
         return (
           <div className={styles.main_wrapper} key={i}>
@@ -51,7 +52,7 @@ const DetailedForecast = () => {
               <div
                 className={`${styles.forecast_date_gr} ${styles.title_date}`}
               >
-                {i === 0 ? "Сегодня" : i === 1 ? "Завтра" : AdvancedWeekday}, {AdvancedDate}
+                {i === 0 ? "Сегодня" : i === 1 ? "Завтра" : advancedWeekday}, {advancedDate}
               </div>
               <div className={`${styles.forecast_feeling_gr} small_grey_text`}>
                 ощущается
@@ -72,34 +73,30 @@ const DetailedForecast = () => {
               <div className={`${styles.forecast_gr_str1}`}>
                 <div className={styles.tmp_effect_wrapper}>
                   <p>
-                    {morning.AdvancedTemperature > 0
-                      ? `+${morning.AdvancedTemperature}`
-                      : `${morning.AdvancedTemperature}`}
-                    °
+                    {getPlusOrNot(morning.advancedTemperature)}°
+                    
                   </p>
                   <img src={effectMorning} alt="" />
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str1}`}>
                 <p>
-                  {morning.AdvancedApparentTemperature > 0
-                    ? `+${morning.AdvancedApparentTemperature}`
-                    : `${morning.AdvancedApparentTemperature}`}
-                  °
+                  {getPlusOrNot(morning.advancedApparentTemperature)}°
+                  
                 </p>
               </div>
               <div className={`${styles.forecast_gr_str1}`}>
                 <div className={styles.wind_wrapper}>
-                  <p>{morning.AdvancedWindSpeed}</p>
-                  <WIndDirectionArrow windDirection={morning.AdvancedWindDirection} />
+                  <p>{morning.advancedWindSpeed}</p>
+                  <WIndDirectionArrow windDirection={morning.advancedWindDirection} />
                   <p className="small_grey_text">{windDirectionMorning}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str1}`}>
-                {morning.AdvancedHumidity}%
+                {morning.advancedHumidity}%
               </div>
               <div className={`${styles.forecast_gr_str1}`}>
-                {morning.AdvancedPressure}
+                {morning.advancedPressure}
               </div>
               {/*string 2*/}
               <div className={`${styles.forecast_gr_str2} small_grey_text`}>
@@ -108,33 +105,29 @@ const DetailedForecast = () => {
               <div className={`${styles.forecast_gr_str2}`}>
                 <div className={styles.tmp_effect_wrapper}>
                   <p>
-                    {day.AdvancedApparentTemperature > 0
-                      ? `+${day.AdvancedApparentTemperature}`
-                      : `${day.AdvancedApparentTemperature}`}
-                    °
+                    {getPlusOrNot(day.advancedTemperature)}°
+                    
                   </p>
                   <img src={effectDay} alt="" />
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str2}`}>
                 <p>
-                  {day.AdvancedApparentTemperature > 0
-                    ? `+${day.AdvancedApparentTemperature}`
-                    : `${day.AdvancedApparentTemperature}`}
-                  °
+                  {getPlusOrNot(day.advancedApparentTemperature)}°
+                  
                 </p>
               </div>
               <div className={`${styles.forecast_gr_str2}`}>
                 <div className={styles.wind_wrapper}>
-                  <p>{day.AdvancedWindSpeed}</p>
-                  <WIndDirectionArrow windDirection={day.AdvancedWindDirection} />
+                  <p>{day.advancedWindSpeed}</p>
+                  <WIndDirectionArrow windDirection={day.advancedWindDirection} />
                   <p className="small_grey_text">{windDirectionDay}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str2}`}>
-                {day.AdvancedHumidity}%
+                {day.advancedHumidity}%
               </div>
-              <div className={`${styles.forecast_gr_str2}`}>{day.AdvancedPressure}</div>
+              <div className={`${styles.forecast_gr_str2}`}>{day.advancedPressure}</div>
               {/*string 3*/}
               <div className={`${styles.forecast_gr_str3} small_grey_text`}>
                 Вечером
@@ -142,34 +135,30 @@ const DetailedForecast = () => {
               <div className={`${styles.forecast_gr_str3}`}>
                 <div className={styles.tmp_effect_wrapper}>
                   <p>
-                    {evening.AdvancedApparentTemperature > 0
-                      ? `+${evening.AdvancedApparentTemperature}`
-                      : `${evening.AdvancedApparentTemperature}`}
-                    °
+                    {getPlusOrNot(evening.advancedTemperature)}°
+                    
                   </p>
                   <img src={effectEvening} alt="" />
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str3}`}>
                 <p>
-                  {evening.AdvancedApparentTemperature > 0
-                    ? `+${evening.AdvancedApparentTemperature}`
-                    : `${evening.AdvancedApparentTemperature}`}
-                  °
+                  {getPlusOrNot(evening.advancedApparentTemperature)}°
+                  
                 </p>
               </div>
               <div className={`${styles.forecast_gr_str3}`}>
                 <div className={styles.wind_wrapper}>
-                  <p>{evening.AdvancedWindSpeed}</p>
-                  <WIndDirectionArrow windDirection={evening.AdvancedWindDirection} />
+                  <p>{evening.advancedWindSpeed}</p>
+                  <WIndDirectionArrow windDirection={evening.advancedWindDirection} />
                   <p className="small_grey_text">{windDirectionEvening}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str3}`}>
-                {evening.AdvancedHumidity}%
+                {evening.advancedHumidity}%
               </div>
               <div className={`${styles.forecast_gr_str3}`}>
-                {evening.AdvancedPressure}
+                {evening.advancedPressure}
               </div>
               {/*string 4*/}
               <div className={`${styles.forecast_gr_str4} small_grey_text`}>
@@ -178,34 +167,30 @@ const DetailedForecast = () => {
               <div className={`${styles.forecast_gr_str4}`}>
                 <div className={styles.tmp_effect_wrapper}>
                   <p>
-                    {night.AdvancedApparentTemperature > 0
-                      ? `+${night.AdvancedApparentTemperature}`
-                      : `${night.AdvancedApparentTemperature}`}
-                    °
+                    {getPlusOrNot(night.advancedTemperature)}°
+                    
                   </p>
                   <img src={effectNight} alt="" />
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str4}`}>
                 <p>
-                  {night.AdvancedApparentTemperature > 0
-                    ? `+${night.AdvancedApparentTemperature}`
-                    : `${night.AdvancedApparentTemperature}`}
-                  °
+                  {getPlusOrNot(evening.advancedApparentTemperature)}°
+                  
                 </p>
               </div>
               <div className={`${styles.forecast_gr_str4}`}>
                 <div className={styles.wind_wrapper}>
-                  <p>{night.AdvancedWindSpeed}</p>
-                  <WIndDirectionArrow windDirection={night.AdvancedWindDirection} />
+                  <p>{night.advancedWindSpeed}</p>
+                  <WIndDirectionArrow windDirection={night.advancedWindDirection} />
                   <p className="small_grey_text">{windDirectionNight}</p>
                 </div>
               </div>
               <div className={`${styles.forecast_gr_str4}`}>
-                {night.AdvancedHumidity}%
+                {night.advancedHumidity}%
               </div>
               <div className={`${styles.forecast_gr_str4}`}>
-                {night.AdvancedPressure}
+                {night.advancedPressure}
               </div>
             </div>
             <div className={styles.air_quality_wrapper}>
@@ -213,15 +198,15 @@ const DetailedForecast = () => {
               <div className={styles.under_arc_wrapper}>
                 <div className={styles.sun_and_time_wrapper}>
                   <img src={Sunrise} alt="" />
-                  <p>{AdvancedSunrise}</p>
+                  <p>{advancedSunrise}</p>
                 </div>
                 <div className={styles.time_day_wrapper}>
                   <p className={"small_grey_text"}>Световой день</p>
-                  <p>{AdvancedSunDay}</p>
+                  <p>{advancedSunDay}</p>
                 </div>
                 <div>
                   <img src={Sunset} alt="" />
-                  <p>{AdvancedSunset}</p>
+                  <p>{advancedSunset}</p>
                 </div>
               </div>
               <div className={styles.grid_air_quality_wrapper}>
@@ -234,7 +219,7 @@ const DetailedForecast = () => {
                   className={`${styles.air_quality_gr_str1} ${styles.img_and_data_wrapper}`}
                 >
                   <img src={WaterTemp} alt="" />
-                  <p>{AdvancedAvgWaterTemp > 0 ? `+${AdvancedAvgWaterTemp}` : AdvancedAvgWaterTemp}°</p>
+                  <p>{getPlusOrNot(advancedAvgWaterTemp)}°</p>
                 </div>
                 <div
                   className={`${styles.air_quality_gr_str2} small_grey_text`}
@@ -253,7 +238,7 @@ const DetailedForecast = () => {
                   УФ-индекс
                 </div>
                 <div className={styles.air_quality_gr_str3}>
-                  {AdvancedAvgUV}, {uvCategory.text}
+                  {advancedAvgUV}, {uvCategory.text}
                 </div>
                 <div
                   className={`${styles.air_quality_gr_str4} small_grey_text`}

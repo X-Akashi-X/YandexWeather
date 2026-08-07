@@ -1,7 +1,7 @@
 import useServices from "@services/useSrvices";
 import styles from "./weatherChart.module.scss";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import { getWeatherEffect } from "@utils/weatherEffects";
+import { getPlusOrNot, getWeatherEffect } from "@utils/weatherEffects";
 
 const WeatherChart = () => {
   const data = useServices().getTenDaysData() || [];
@@ -11,12 +11,12 @@ const WeatherChart = () => {
       <h2>Прогноз на 10 дней</h2>
       <a className={styles.days_wrapper}>
         {data.map((item, i) => {
-          const { TenDaysWeatherCode, TenDaysWeekday, TenDaysDate } = item;
-          const effect = getWeatherEffect(TenDaysWeatherCode);
+          const { tenDaysWeatherCode, tenDaysWeekday, tenDaysDate } = item;
+          const effect = getWeatherEffect(tenDaysWeatherCode);
           return (
             <div className={styles.day_wrapper} key={i}>
-              <p>{TenDaysWeekday}</p>
-              <p className="small_grey_text">{i === 0 ? "Сегодня" : TenDaysDate}</p>
+              <p>{tenDaysWeekday}</p>
+              <p className="small_grey_text">{i === 0 ? "Сегодня" : tenDaysDate}</p>
               <img src={effect} alt="" />
             </div>
           );
@@ -41,7 +41,7 @@ const WeatherChart = () => {
               tickLine={false}
               tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
               tickFormatter={(value) =>
-                value > 0 ? `+${value}°` : `${value}°`
+                `${getPlusOrNot(value)}°`
               }
             />
             <Line
@@ -122,7 +122,7 @@ const WeatherChart = () => {
               tickLine={false}
               tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
               tickFormatter={(value) =>
-                value > 0 ? `+${value}°` : `${value}°`
+                `${getPlusOrNot(value)}°`
               }
             />
           </LineChart>

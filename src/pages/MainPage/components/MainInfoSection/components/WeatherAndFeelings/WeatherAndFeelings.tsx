@@ -14,12 +14,12 @@ import {
 import StatusArc from "@components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {
-  const { CurrentPressure, CurrentPollen, CurrentUvIndex } = useServices().getCurrentData() || {};
-  if (!CurrentPressure || !CurrentPollen || !CurrentUvIndex) return null;
+  const { currentPressure, currentPollen, currentUvIndex } = useServices().getCurrentData() || {};
+  if (!currentPressure || !currentPollen || !currentUvIndex) return null;
 
-  const pollenCategory = getPollenCategory(CurrentPollen);
-  const pressureCategory = getPressureCategory(CurrentPressure);
-  const uvCategory = getUVCategory(CurrentUvIndex);
+  const pollenCategory = getPollenCategory(currentPollen);
+  const pressureCategory = getPressureCategory(currentPressure);
+  const uvCategory = getUVCategory(currentUvIndex);
 
   return (
     <section className={styles.section_wrapper}>
@@ -60,7 +60,7 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <p>{CurrentPressure}</p>
+              <p>{currentPressure}</p>
               <div className={styles.img_wrapper}>
                 <StatusArc category={pressureCategory} />
               </div>
@@ -85,7 +85,7 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <p>{CurrentUvIndex}</p>
+              <p>{currentUvIndex}</p>
               <div className={styles.img_wrapper}>
                 <StatusArc category={uvCategory} />
               </div>

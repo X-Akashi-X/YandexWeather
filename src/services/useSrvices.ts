@@ -11,18 +11,18 @@ const useServices = () => {
     if (!dataForecast?.current || !dataAirQuality?.current) return null;
 
     return {
-      CurrentWeatherCode: dataForecast.current.weather_code,
-      CurrentWindDirection: dataForecast.current.wind_direction_10m,
-      CurrentTemperature: Math.floor(dataForecast.current.temperature_2m),
-      CurrentApparentTemperature: Math.floor(
+      currentWeatherCode: dataForecast.current.weather_code,
+      currentWindDirection: dataForecast.current.wind_direction_10m,
+      currentTemperature: Math.floor(dataForecast.current.temperature_2m),
+      currentApparentTemperature: Math.floor(
         dataForecast.current.apparent_temperature,
       ),
-      CurrentWindSpeed: Math.floor(dataForecast.current.wind_speed_10m / 3.6),
-      CurrentWindGusts: Math.floor(dataForecast.current.wind_gusts_10m / 3.6),
-      CurrentPressure: Math.floor(dataForecast.current.pressure_msl * 0.75006),
-      CurrentHumidity: dataForecast.current.relative_humidity_2m,
-      CurrentUvIndex: Math.floor(dataAirQuality.current.uv_index),
-      CurrentPollen: dataAirQuality.current.grass_pollen,
+      currentWindSpeed: Math.floor(dataForecast.current.wind_speed_10m / 3.6),
+      currentWindGusts: Math.floor(dataForecast.current.wind_gusts_10m / 3.6),
+      currentPressure: Math.floor(dataForecast.current.pressure_msl * 0.75006),
+      currentHumidity: dataForecast.current.relative_humidity_2m,
+      currentUvIndex: Math.floor(dataAirQuality.current.uv_index),
+      currentPollen: dataAirQuality.current.grass_pollen,
     };
   };
 
@@ -30,11 +30,12 @@ const useServices = () => {
     if (!dataForecast?.daily) return null;
 
     return {
-      TodayMinTemperature: Math.floor(dataForecast.daily.temperature_2m_min[1]),
-      TodayMaxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[1]),
-      TodayRainChance: dataForecast.daily.precipitation_probability_max[1],
-      TodayWindSpeed: dataForecast.daily.wind_speed_10m_max[1],
-      TodayWindGusts: dataForecast.daily.wind_gusts_10m_max[1],
+      todayMinTemperature: Math.floor(dataForecast.daily.temperature_2m_min[1]),
+      todayMaxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[1]),
+      todayRainChance: dataForecast.daily.precipitation_probability_max[1],
+      todayWindSpeed: dataForecast.daily.wind_speed_10m_max[1],
+      todayWindGusts: dataForecast.daily.wind_gusts_10m_max[1],
+      todayWeatherCode: dataForecast.daily.weather_code[1]
     };
   };
 
@@ -77,7 +78,7 @@ const useServices = () => {
     if (indexCurrentMoment === -1) return null;
 
     return {
-      YesterdayCurrentTemp: Math.floor(
+      yesterdayCurrentTemp: Math.floor(
         dataForecast.hourly.temperature_2m[indexCurrentMoment],
       ),
     };
@@ -102,11 +103,11 @@ const useServices = () => {
     };
 
     return {
-      WeekMinTemperature: avgDetails(dataForecast.daily.temperature_2m_min),
-      WeekMaxTemperature: avgDetails(dataForecast.daily.temperature_2m_max),
-      WeekWindSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
-      WeekWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_max),
-      WeekWeatherCode: getAvgWeatherCode(
+      weekMinTemperature: avgDetails(dataForecast.daily.temperature_2m_min),
+      weekMaxTemperature: avgDetails(dataForecast.daily.temperature_2m_max),
+      weekWindSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
+      weekWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_max),
+      weekWeatherCode: getAvgWeatherCode(
         dataForecast.daily.weather_code.slice(1, 8),
       ),
     };
@@ -130,19 +131,19 @@ const useServices = () => {
       })
       .slice(0, 2);
     return {
-      WeekendMinTemperature: Math.floor(
+      weekendMinTemperature: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / 2,
       ),
-      WeekendMaxTemperature: Math.floor(
+      weekendMaxTemperature: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / 2,
       ),
-      WeekendWindSpeed: Math.floor(
+      weekendWindSpeed: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / 2,
       ),
-      WeekendWindGusts: Math.floor(
+      weekendWindGusts: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.windGusts, 0) / 2,
       ),
-      WeekendWeatherCode: weekendDays[0].weatherCode,
+      weekendWeatherCode: weekendDays[0].weatherCode,
     };
   };
 
@@ -162,10 +163,10 @@ const useServices = () => {
         return itemDate >= now && itemDate <= tomorrow;
       })
       .map(({ t, i }) => ({
-        TimeLineDate: t.split("T")[0],
-        TimeLineTime: t.split("T")[1].slice(0, 5),
-        TimeLineTemperature: dataForecast.hourly.temperature_2m[i],
-        TimeLineWeatherCode: dataForecast.hourly.weather_code[i],
+        timeLineDate: t.split("T")[0],
+        timeLineTime: t.split("T")[1].slice(0, 5),
+        timeLineTemperature: dataForecast.hourly.temperature_2m[i],
+        timeLineWeatherCode: dataForecast.hourly.weather_code[i],
       }));
   };
 
@@ -175,15 +176,15 @@ const useServices = () => {
     const value = dataForecast.daily.time.slice(1, 11);
 
     return value.map((t, i) => ({
-      TenDaysDate: new Date(t).getDate(),
-      TenDaysWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
+      tenDaysDate: new Date(t).getDate(),
+      tenDaysWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
       TenDaysMaxTemperature: Math.floor(
         dataForecast.daily.temperature_2m_max[i + 1],
       ),
-      TenDaysMinTemperature: Math.floor(
+      tenDaysMinTemperature: Math.floor(
         dataForecast.daily.temperature_2m_min[i + 1],
       ),
-      TenDaysWeatherCode: dataForecast.daily.weather_code[i + 1],
+      tenDaysWeatherCode: dataForecast.daily.weather_code[i + 1],
     }));
   };
 
@@ -259,13 +260,13 @@ const useServices = () => {
       );
 
       return {
-        AdvancedTemperature: Math.floor(sum.temp / count),
-        AdvancedApparentTemperature: Math.floor(sum.feels / count),
-        AdvancedWindSpeed: Math.floor(sum.windSpeed / count),
-        AdvancedWindDirection: Math.floor(sum.windDeg / count),
-        AdvancedHumidity: Math.floor(sum.humidity / count),
-        AdvancedPressure: Math.floor(sum.pressure / count),
-        AdvancedWeatherCode: getAvgWeatherCode(arr),
+        advancedTemperature: Math.floor(sum.temp / count),
+        advancedApparentTemperature: Math.floor(sum.feels / count),
+        advancedWindSpeed: Math.floor(sum.windSpeed / count),
+        advancedWindDirection: Math.floor(sum.windDeg / count),
+        advancedHumidity: Math.floor(sum.humidity / count),
+        advancedPressure: Math.floor(sum.pressure / count),
+        advancedWeatherCode: getAvgWeatherCode(arr),
       };
     };
 
@@ -328,25 +329,25 @@ const useServices = () => {
       const sunDay = getSunDay(date);
 
       return {
-        AdvancedDate: new Date(date).toLocaleString("ru-Ru", {
+        advancedDate: new Date(date).toLocaleString("ru-Ru", {
           day: "numeric",
           month: "long",
         }),
-        AdvancedWeekday: new Date(date).toLocaleDateString("ru-RU", {
+        advancedWeekday: new Date(date).toLocaleDateString("ru-RU", {
           weekday: "long",
         }),
         morning: averageData(dayData.morning),
         day: averageData(dayData.day),
         evening: averageData(dayData.evening),
         night: averageData(dayData.night),
-        AdvancedAvgWaterTemp:
-          typeof avgTemp === "number" ? Math.floor(avgTemp) : null,
-        AdvancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
-        AdvancedSunrise:
+        advancedAvgWaterTemp:
+         typeof avgTemp === "number" ? Math.floor(avgTemp) : null,
+        advancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
+        advancedSunrise:
           typeof sunrise === "string" ? sunrise.split("T")[1] : null,
-        AdvancedSunset:
+        advancedSunset:
           typeof sunset === "string" ? sunset.split("T")[1] : null,
-        AdvancedSunDay: sunDay,
+        advancedSunDay: sunDay,
       };
     });
 

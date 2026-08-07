@@ -98,3 +98,7 @@ export function getAvgWeatherCode(arg: number[]) {
 
   return Number(entries[0][0]);
 }
+
+export function getPlusOrNot(value: number) {
+  return value > 0 ? `+${value}` : String(value)
+}
