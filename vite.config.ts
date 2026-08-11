@@ -17,7 +17,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "${path.resolve(__dirname, "./src/styles/variables.scss").replace(/\\/g, "/")}";\n`,
+        additionalData: `@use "${path.resolve(__dirname, "./src/styles/variables.scss").replace(/\\/g, "/")}" as *;\n`,
       },
     },
   },

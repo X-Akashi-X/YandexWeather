@@ -14,7 +14,7 @@ import {
 import useAirQuality from "../hooks/useAirQuality";
 import useForecast from "../hooks/useForecast";
 import type { PeriodData, DayGroups } from "@ts/weather";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 const useServices = () => {
   const { dataForecast } = useForecast();
@@ -267,7 +267,7 @@ const useServices = () => {
     }));
   };
 
-  const getAdvancedTenDaysData = () => {
+  const getAdvancedTenDaysData = useCallback(() => {
     if (!dataForecast?.hourly) return [];
 
     const groupedDays: Record<string, DayGroups> = {};
@@ -428,7 +428,7 @@ const useServices = () => {
     });
 
     return forecast.slice(1, 11);
-  };
+  }, [dataForecast]);
 
   const getAdvancedOneDay = useMemo(() => {
     const anvancedData = getAdvancedTenDaysData();
