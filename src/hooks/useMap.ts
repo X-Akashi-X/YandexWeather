@@ -60,7 +60,7 @@ function useMap(interactive: boolean) {
       map.current?.remove();
       map.current = null;
     };
-  }, []);
+  }, [interactive]);
 
   return { mapContainer };
 }

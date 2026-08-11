@@ -2,37 +2,34 @@ import { useState } from "react";
 import styles from "./FAQ.module.scss";
 import Arrow from "@assets/icons/arrowMore.svg";
 import useServices from "@services/useSrvices";
-import {
-  getRainChance,
-  getWeatherInfo,
-  getWindCategory,
-  getWindDirection,
-} from "@utils/weatherEffects";
 
 const FAQ = () => {
   const {
-    temperature,
-    apparentTemperature,
-    windSpeed,
-    windDirection,
-    windGusts,
-    humidity,
-    pressure,
-    weatherCode,
+    currentTemperature,
+    currentApparentTemperature,
+    currentWindSpeed,
+    currentWindDirection,
+    currentHumidity,
+    currentPressure,
+    currentWeatherInfo,
   } = useServices().getCurrentData() || {};
-  const { minTemperature, maxTemperature, rainChance } =
-    useServices().getTodayData() || {};
-  if (
-    !weatherCode ||
-    !temperature ||
-    !apparentTemperature ||
-    !windDirection ||
-    !rainChance
-  )
-    return null;
-  const info = getWeatherInfo(weatherCode);
-  const direction = getWindDirection(windDirection);
-  const precipitation = getRainChance(rainChance);
+
+  const {
+    todayMinTemperature,
+    todayMaxTemperature,
+    todayPrecipitationProbability,
+    todayMinWindSpeed,
+    todayMaxWindSpeed,
+    todayWindGusts,
+    todayMinHumidity,
+    todayMaxHumidity,
+    todayMinPressure,
+    todayMaxPressure,
+    todayWindCategory,
+  } = useServices().getTodayData() || {};
+
+  const { morning, day, evening, night } =
+    useServices().getAdvancedOneDay || {};
 
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
@@ -55,15 +52,15 @@ const FAQ = () => {
             </div>
             {activeItem === "weather" && (
               <p>
-                Сейчас в Минске {info}, температура воздуха{" "}
-                {temperature > 0 ? `+${temperature}` : temperature}°, ощущается
-                как{" "}
-                {apparentTemperature > 0
-                  ? `+${apparentTemperature}`
-                  : apparentTemperature}
-                °. Ветер {windSpeed} м/с, {direction}, влажность {humidity}%,
-                атмосферное давление {pressure} мм рт. ст. Сегодня:{" "}
-                {precipitation}, {}
+                Сейчас в Минске {currentWeatherInfo}, температура воздуха{" "}
+                {currentTemperature}°, ощущается как{" "}
+                {currentApparentTemperature}
+                °. Ветер {currentWindSpeed} м/с, {currentWindDirection},
+                влажность {currentHumidity}%, атмосферное давление{" "}
+                {currentPressure} мм рт. ст. Сегодня: {todayMinTemperature}...
+                {todayMaxTemperature}°, {todayPrecipitationProbability},{" "}
+                {todayWindCategory} {todayMinWindSpeed}-{todayMaxWindSpeed} м/с,
+                порывы до {todayWindGusts} м/с.
               </p>
             )}
           </div>
@@ -77,9 +74,12 @@ const FAQ = () => {
             </div>
             {activeItem === "temp" && (
               <p>
-                Сейчас в Минске температура воздуха +20°. Ощущается как +20°,
-                облачно с прояснениями. Температура утром +15°, днем +19°,
-                вечером +18°, ночью +13°.
+                Сейчас в Минске температура воздуха {currentTemperature}°.
+                Ощущается как {currentApparentTemperature}°,
+                {currentWeatherInfo}. Температура утром{" "}
+                {morning?.advancedTemperature}°, днем {day?.advancedTemperature}
+                °, вечером {evening?.advancedTemperature}°, ночью{" "}
+                {night?.advancedTemperature}°.
               </p>
             )}
           </div>
@@ -95,25 +95,34 @@ const FAQ = () => {
             </div>
             {activeItem === "wind" && (
               <p>
-                Скорость ветра в Минске сейчас 3 м/с, З. Утром ветер 5,6 м/с, З,
-                днем 6,1 м/с, З, вечером 5,8 м/с, З, ночью 4 м/с, З. Атмосферное
-                давление 737 - 741 мм рт. ст., влажность 59 - 77%, что также
-                влияет на ощущение погоды.
+                Скорость ветра в Минске сейчас {currentWindSpeed} м/с,{" "}
+                {currentWindDirection}. Утром ветер {morning?.advancedWindSpeed}{" "}
+                м/с, {morning?.advancedWindDirectionText}, днем{" "}
+                {day?.advancedWindSpeed} м/с, {day?.advancedWindDirectionText},
+                вечером {evening?.advancedWindSpeed} м/с,{" "}
+                {evening?.advancedWindDirectionText}, ночью{" "}
+                {night?.advancedWindSpeed} м/с,{" "}
+                {night?.advancedWindDirectionText}. Атмосферное давление{" "}
+                {todayMinPressure}-{todayMaxPressure} мм рт. ст., влажность{" "}
+                {todayMinHumidity}-{todayMaxHumidity}%, что также влияет на
+                ощущение погоды.
               </p>
             )}
           </div>
           <div
             className={styles.faq_items}
-            onClick={() => togleDropdown("humidity")}
+            onClick={() => togleDropdown("currentHumidity")}
           >
             <div className={styles.title_wrapper}>
               <p>Какая влажность воздуха в Минске?</p>
               <img src={Arrow} alt="" />
             </div>
-            {activeItem === "humidity" && (
+            {activeItem === "currentHumidity" && (
               <p>
-                Сейчас влажность воздуха в Минске составляет 72%. Уровень
-                влажности утром 77%, днем 59%, вечером 60%, ночью 76%.
+                Сейчас влажность воздуха в Минске составляет {currentHumidity}%.
+                Уровень влажности утром {morning?.advancedHumidity}%, днем{" "}
+                {day?.advancedHumidity}%, вечером {evening?.advancedHumidity}%,
+                ночью {night?.advancedHumidity}%.
               </p>
             )}
           </div>

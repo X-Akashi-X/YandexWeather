@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const StatusArc = ({
-  category,
+  category = { fill: 0, color: "#9ca3af" },
 }: {
-  category: { fill: number; color: string };
+  category?: { fill: number; color: string };
 }) => {
   const { fill, color } = category;
 

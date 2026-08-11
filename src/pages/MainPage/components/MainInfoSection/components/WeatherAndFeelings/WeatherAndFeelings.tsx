@@ -1,25 +1,18 @@
 import styles from "./weatherAndFeelings.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import Pollen from "@assets/icons/mainInfoSection/pollenIcon.svg";
 import useServices from "@services/useSrvices";
-import {
-  getPollenCategory,
-  getPressureCategory,
-  getUVCategory,
-} from "@utils/weatherEffects";
 import StatusArc from "@components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {
-  const { currentPressure, currentPollen, currentUvIndex } = useServices().getCurrentData() || {};
-  if (!currentPressure || !currentPollen || !currentUvIndex) return null;
-
-  const pollenCategory = getPollenCategory(currentPollen);
-  const pressureCategory = getPressureCategory(currentPressure);
-  const uvCategory = getUVCategory(currentUvIndex);
+  const {
+    currentPressure,
+    currentPressureCategory,
+    currentPollenCategory,
+    currentUVCategory,
+    currentUVIndex,
+  } = useServices().getCurrentData() || {};
 
   return (
     <section className={styles.section_wrapper}>
@@ -37,12 +30,12 @@ const WeatherAndFeelings = () => {
             <div className={styles.category_wrapper}>
               <img src={Pollen} alt="" />
               <div className={styles.img_wrapper}>
-                <StatusArc category={pollenCategory} />
+                <StatusArc category={currentPollenCategory} />
               </div>
             </div>
             <div className={styles.title_wrapper}>
               <h4>Пыльца</h4>
-              <p>{pollenCategory.text}</p>
+              <p>{currentPollenCategory?.text}</p>
             </div>
           </a>
         </SwiperSlide>
@@ -62,12 +55,12 @@ const WeatherAndFeelings = () => {
             <div className={styles.category_wrapper}>
               <p>{currentPressure}</p>
               <div className={styles.img_wrapper}>
-                <StatusArc category={pressureCategory} />
+                <StatusArc category={currentPressureCategory} />
               </div>
             </div>
             <div className={styles.title_wrapper}>
               <h4>Давление</h4>
-              <p>{pressureCategory.text}</p>
+              <p>{currentPressureCategory?.text}</p>
             </div>
           </a>
         </SwiperSlide>
@@ -85,14 +78,14 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <p>{currentUvIndex}</p>
+              <p>{currentUVIndex}</p>
               <div className={styles.img_wrapper}>
-                <StatusArc category={uvCategory} />
+                <StatusArc category={currentUVCategory} />
               </div>
             </div>
             <div className={styles.title_wrapper}>
               <h4>УФ-индекс</h4>
-              <p>{uvCategory.text}</p>
+              <p>{currentUVCategory?.text}</p>
             </div>
           </a>
         </SwiperSlide>

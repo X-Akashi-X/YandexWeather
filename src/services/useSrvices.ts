@@ -1,7 +1,20 @@
-import { getAvgWeatherCode } from "@utils/weatherEffects";
+import {
+  getAvgWeatherCode,
+  getPlusOrNot,
+  getPollenCategory,
+  getPressureCategory,
+  getPrecipitationProbability,
+  getUVCategory,
+  getWeatherEffect,
+  getWeatherInfo,
+  getWindCategory,
+  getWindDirection,
+  UVCategoryDefault,
+} from "@utils/weatherEffects";
 import useAirQuality from "../hooks/useAirQuality";
 import useForecast from "../hooks/useForecast";
 import type { PeriodData, DayGroups } from "@ts/weather";
+import { useMemo } from "react";
 
 const useServices = () => {
   const { dataForecast } = useForecast();
@@ -11,18 +24,35 @@ const useServices = () => {
     if (!dataForecast?.current || !dataAirQuality?.current) return null;
 
     return {
-      currentWeatherCode: dataForecast.current.weather_code,
-      currentWindDirection: dataForecast.current.wind_direction_10m,
-      currentTemperature: Math.floor(dataForecast.current.temperature_2m),
-      currentApparentTemperature: Math.floor(
-        dataForecast.current.apparent_temperature,
+      currentTemperature: getPlusOrNot(
+        Math.floor(dataForecast.current.temperature_2m),
       ),
-      currentWindSpeed: Math.floor(dataForecast.current.wind_speed_10m / 3.6),
-      currentWindGusts: Math.floor(dataForecast.current.wind_gusts_10m / 3.6),
-      currentPressure: Math.floor(dataForecast.current.pressure_msl * 0.75006),
+      currentApparentTemperature: getPlusOrNot(
+        Math.floor(dataForecast.current.apparent_temperature),
+      ),
+      currentWaterTemperature: getPlusOrNot(
+        Math.floor(dataForecast.current.temperature_2m - 3),
+      ),
+      currentWindSpeed: Math.floor(dataForecast.current.wind_speed_10m),
+      currentWindGusts: Math.floor(dataForecast.current.wind_gusts_10m),
+      currentPressure: Math.floor(
+        dataForecast.current.surface_pressure * 0.75006,
+      ),
       currentHumidity: dataForecast.current.relative_humidity_2m,
-      currentUvIndex: Math.floor(dataAirQuality.current.uv_index),
-      currentPollen: dataAirQuality.current.grass_pollen,
+      currentUVIndex: Math.floor(dataAirQuality.current.uv_index),
+      currentWeatherEffect: getWeatherEffect(dataForecast.current.weather_code),
+      currentWeatherInfo: getWeatherInfo(dataForecast.current.weather_code),
+      currentWindCategory: getWindCategory(dataForecast.current.wind_speed_10m),
+      currentWindDirection: getWindDirection(
+        dataForecast.current.wind_direction_10m,
+      ),
+      currentPollenCategory: getPollenCategory(
+        dataAirQuality.current.grass_pollen,
+      ),
+      currentPressureCategory: getPressureCategory(
+        dataForecast.current.surface_pressure,
+      ),
+      currentUVCategory: getUVCategory(dataAirQuality.current.uv_index),
     };
   };
 
@@ -30,12 +60,27 @@ const useServices = () => {
     if (!dataForecast?.daily) return null;
 
     return {
-      todayMinTemperature: Math.floor(dataForecast.daily.temperature_2m_min[1]),
-      todayMaxTemperature: Math.floor(dataForecast.daily.temperature_2m_max[1]),
-      todayRainChance: dataForecast.daily.precipitation_probability_max[1],
-      todayWindSpeed: dataForecast.daily.wind_speed_10m_max[1],
-      todayWindGusts: dataForecast.daily.wind_gusts_10m_max[1],
-      todayWeatherCode: dataForecast.daily.weather_code[1]
+      todayMinTemperature: getPlusOrNot(
+        Math.floor(dataForecast.daily.temperature_2m_min[1]),
+      ),
+      todayMaxTemperature: getPlusOrNot(
+        Math.floor(dataForecast.daily.temperature_2m_max[1]),
+      ),
+      todayMinWindSpeed: Math.floor(dataForecast.daily.wind_speed_10m_min[1]),
+      todayMaxWindSpeed: Math.floor(dataForecast.daily.wind_speed_10m_max[1]),
+      todayWindGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[1]),
+      todayMinHumidity: dataForecast.daily.relative_humidity_2m_min[1],
+      todayMaxHumidity: dataForecast.daily.relative_humidity_2m_max[1],
+      todayMinPressure: Math.floor(dataForecast.daily.surface_pressure_min[1]),
+      todayMaxPressure: Math.floor(dataForecast.daily.surface_pressure_max[1]),
+      todayPrecipitationProbability: getPrecipitationProbability(
+        dataForecast.daily.precipitation_probability_max[1],
+      ),
+      todayWindCategory: getWindCategory(
+        dataForecast.daily.wind_speed_10m_mean[1],
+      ),
+      todayWeatherEffect: getWeatherEffect(dataForecast.daily.weather_code[1]),
+      todayWeatherInfo: getWeatherInfo(dataForecast.daily.weather_code[1]),
     };
   };
 
@@ -43,18 +88,25 @@ const useServices = () => {
     if (!dataForecast?.daily) return null;
 
     return {
-      tomorrowWeatherCode: dataForecast.daily.weather_code[2],
-      tomorrowMinTemperature: Math.floor(
-        dataForecast.daily.temperature_2m_min[2],
+      tomorrowMinTemperature: getPlusOrNot(
+        Math.floor(dataForecast.daily.temperature_2m_min[2]),
       ),
-      tomorrowMaxTemperature: Math.floor(
-        dataForecast.daily.temperature_2m_max[2],
+      tomorrowMaxTemperature: getPlusOrNot(
+        Math.floor(dataForecast.daily.temperature_2m_max[2]),
       ),
-      tomorrowWindSpeed: Math.floor(
-        dataForecast.daily.wind_speed_10m_max[2] / 3.6,
+      tomorrowMinWindSpeed: Math.floor(
+        dataForecast.daily.wind_speed_10m_min[2],
       ),
-      tomorrowWindGusts: Math.floor(
-        dataForecast.daily.wind_gusts_10m_max[2] / 3.6,
+      tomorrowMaxWindSpeed: Math.floor(
+        dataForecast.daily.wind_speed_10m_max[2],
+      ),
+      tomorrowWindGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[2]),
+      tomorrowWeatherEffect: getWeatherEffect(
+        dataForecast.daily.weather_code[2],
+      ),
+      tomorrowWeatherInfo: getWeatherInfo(dataForecast.daily.weather_code[2]),
+      tomorrowWindCategory: getWindCategory(
+        dataForecast.daily.wind_speed_10m_mean[2],
       ),
     };
   };
@@ -78,8 +130,8 @@ const useServices = () => {
     if (indexCurrentMoment === -1) return null;
 
     return {
-      yesterdayCurrentTemp: Math.floor(
-        dataForecast.hourly.temperature_2m[indexCurrentMoment],
+      yesterdayCurrentTemp: getPlusOrNot(
+        Math.floor(dataForecast.hourly.temperature_2m[indexCurrentMoment]),
       ),
     };
   };
@@ -102,13 +154,24 @@ const useServices = () => {
       return Math.floor(avg);
     };
 
+    const avgWeatherCode = getAvgWeatherCode(
+      dataForecast.daily.weather_code.slice(1, 8),
+    );
+
     return {
-      weekMinTemperature: avgDetails(dataForecast.daily.temperature_2m_min),
-      weekMaxTemperature: avgDetails(dataForecast.daily.temperature_2m_max),
-      weekWindSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
-      weekWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_max),
-      weekWeatherCode: getAvgWeatherCode(
-        dataForecast.daily.weather_code.slice(1, 8),
+      weekMinTemperature: getPlusOrNot(
+        avgDetails(dataForecast.daily.temperature_2m_min),
+      ),
+      weekMaxTemperature: getPlusOrNot(
+        avgDetails(dataForecast.daily.temperature_2m_max),
+      ),
+      weekMinWindSpeed: avgDetails(dataForecast.daily.wind_speed_10m_min),
+      weekMaxWindSpeed: avgDetails(dataForecast.daily.wind_speed_10m_max),
+      weekWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_mean),
+      weekWeatherEffect: getWeatherEffect(avgWeatherCode),
+      weekWeatherInfo: getWeatherInfo(avgWeatherCode),
+      weekWindCategory: getWindCategory(
+        avgDetails(dataForecast.daily.wind_speed_10m_mean),
       ),
     };
   };
@@ -121,8 +184,10 @@ const useServices = () => {
         date,
         minTemp: Math.floor(dataForecast.daily.temperature_2m_min[i]),
         maxTemp: Math.floor(dataForecast.daily.temperature_2m_max[i]),
-        windSpeed: Math.floor(dataForecast.daily.wind_speed_10m_max[i] / 3.6),
-        windGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[i] / 3.6),
+        windSpeed: Math.floor(dataForecast.daily.wind_speed_10m_mean[i]),
+        minWindSpeed: Math.floor(dataForecast.daily.wind_speed_10m_min[i]),
+        maxWindSpeed: Math.floor(dataForecast.daily.wind_speed_10m_max[i]),
+        windGusts: Math.floor(dataForecast.daily.wind_gusts_10m_mean[i]),
         weatherCode: dataForecast.daily.weather_code[i],
       }))
       .filter((d) => {
@@ -130,20 +195,28 @@ const useServices = () => {
         return day === 6 || day === 0;
       })
       .slice(0, 2);
+
     return {
-      weekendMinTemperature: Math.floor(
-        weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / 2,
+      weekendMinTemperature: getPlusOrNot(
+        Math.floor(weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / 2),
       ),
-      weekendMaxTemperature: Math.floor(
-        weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / 2,
+      weekendMaxTemperature: getPlusOrNot(
+        Math.floor(weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / 2),
       ),
-      weekendWindSpeed: Math.floor(
-        weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / 2,
+      weekendMinWindSpeed: Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.minWindSpeed, 0) / 2,
+      ),
+      weekendMaxWindSpeed: Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.maxWindSpeed, 0) / 2,
       ),
       weekendWindGusts: Math.floor(
         weekendDays.reduce((sum, d) => sum + d.windGusts, 0) / 2,
       ),
-      weekendWeatherCode: weekendDays[0].weatherCode,
+      weekendWeatherEffect: getWeatherEffect(weekendDays[0].weatherCode),
+      weekendWeatherInfo: getWeatherInfo(weekendDays[0].weatherCode),
+      weekendWindCategory: getWindCategory(
+        Math.floor(weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / 2),
+      ),
     };
   };
 
@@ -165,8 +238,12 @@ const useServices = () => {
       .map(({ t, i }) => ({
         timeLineDate: t.split("T")[0],
         timeLineTime: t.split("T")[1].slice(0, 5),
-        timeLineTemperature: dataForecast.hourly.temperature_2m[i],
-        timeLineWeatherCode: dataForecast.hourly.weather_code[i],
+        timeLineTemperature: getPlusOrNot(
+          Math.floor(dataForecast.hourly.temperature_2m[i]),
+        ),
+        timeLineWeatherEffect: getWeatherEffect(
+          dataForecast.hourly.weather_code[i],
+        ),
       }));
   };
 
@@ -178,13 +255,15 @@ const useServices = () => {
     return value.map((t, i) => ({
       tenDaysDate: new Date(t).getDate(),
       tenDaysWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
-      TenDaysMaxTemperature: Math.floor(
-        dataForecast.daily.temperature_2m_max[i + 1],
+      TenDaysMaxTemperature: getPlusOrNot(
+        Math.floor(dataForecast.daily.temperature_2m_max[i + 1]),
       ),
-      tenDaysMinTemperature: Math.floor(
-        dataForecast.daily.temperature_2m_min[i + 1],
+      tenDaysMinTemperature: getPlusOrNot(
+        Math.floor(dataForecast.daily.temperature_2m_min[i + 1]),
       ),
-      tenDaysWeatherCode: dataForecast.daily.weather_code[i + 1],
+      tenDaysWeatherEffect: getWeatherEffect(
+        dataForecast.daily.weather_code[i + 1],
+      ),
     }));
   };
 
@@ -209,10 +288,10 @@ const useServices = () => {
       const hourData = {
         temp: Math.floor(dataForecast.hourly.temperature_2m[i]),
         feels: Math.floor(dataForecast.hourly.apparent_temperature[i]),
-        windSpeed: Math.floor(dataForecast.hourly.wind_speed_10m[i] / 3.6),
-        windDeg: dataForecast.hourly.wind_direction_10m[i],
+        windSpeed: Math.floor(dataForecast.hourly.wind_speed_10m[i]),
+        windDir: dataForecast.hourly.wind_direction_10m[i],
         humidity: dataForecast.hourly.relative_humidity_2m[i],
-        pressure: Math.floor(dataForecast.hourly.pressure_msl[i] * 0.75006),
+        pressure: Math.floor(dataForecast.hourly.surface_pressure[i] * 0.75006),
         weatherCode: dataForecast.hourly.weather_code[i],
       };
 
@@ -223,7 +302,7 @@ const useServices = () => {
         const prevDate = new Date(timeStr);
         prevDate.setDate(prevDate.getDate() - 1);
 
-        const prevDateKey = prevDate.toLocaleString("sv-SE");
+        const prevDateKey = prevDate.toLocaleDateString("sv-SE");
 
         if (groupedDays[prevDateKey]) {
           groupedDays[prevDateKey].night.push(hourData);
@@ -238,14 +317,14 @@ const useServices = () => {
 
       const count = periodArr.length;
 
-      const arr = periodArr.map((item) => item.weatherCode);
+      const arrWeatherCodes = periodArr.map((item) => item.weatherCode);
 
       const sum = periodArr.reduce(
         (acc, curr) => ({
           temp: acc.temp + curr.temp,
           feels: acc.feels + curr.feels,
           windSpeed: acc.windSpeed + curr.windSpeed,
-          windDeg: acc.windDeg + curr.windDeg,
+          windDir: acc.windDir + curr.windDir,
           humidity: acc.humidity + curr.humidity,
           pressure: acc.pressure + curr.pressure,
         }),
@@ -253,20 +332,27 @@ const useServices = () => {
           temp: 0,
           feels: 0,
           windSpeed: 0,
-          windDeg: 0,
+          windDir: 0,
           humidity: 0,
           pressure: 0,
         },
       );
 
       return {
-        advancedTemperature: Math.floor(sum.temp / count),
-        advancedApparentTemperature: Math.floor(sum.feels / count),
+        advancedTemperature: getPlusOrNot(Math.floor(sum.temp / count)),
+        advancedApparentTemperature: getPlusOrNot(
+          Math.floor(sum.feels / count),
+        ),
         advancedWindSpeed: Math.floor(sum.windSpeed / count),
-        advancedWindDirection: Math.floor(sum.windDeg / count),
+        advancedWindDirection: Math.floor(sum.windDir / count),
+        advancedWindDirectionText: getWindDirection(
+          Math.floor(sum.windDir / count),
+        ),
         advancedHumidity: Math.floor(sum.humidity / count),
         advancedPressure: Math.floor(sum.pressure / count),
-        advancedWeatherCode: getAvgWeatherCode(arr),
+        advancedWeatherEffect: getWeatherEffect(
+          getAvgWeatherCode(arrWeatherCodes),
+        ),
       };
     };
 
@@ -283,37 +369,21 @@ const useServices = () => {
       return index !== -1 ? dailySource[arrKey][index] : null;
     };
 
-    function isStringArray(value: unknown): value is string[] {
-      return (
-        Array.isArray(value) && value.length > 0 && typeof value[0] === "string"
-      );
-    }
-
-    function getSunDay(targetDate: string) {
+    const getSunDay = (targetDate: string) => {
       if (!dataForecast?.daily) return null;
 
-      const { time, sunset, sunrise } = dataForecast.daily;
+      const { time, daylight_duration } = dataForecast.daily;
 
-      if (
-        isStringArray(time) &&
-        isStringArray(sunset) &&
-        isStringArray(sunrise)
-      ) {
-        const index = time.indexOf(targetDate);
+      const index = time.indexOf(targetDate);
 
-        if (index !== -1) {
-          const sunDayData =
-            new Date(sunset[index]).getTime() -
-            new Date(sunrise[index]).getTime();
-          const totalMinutes = Math.floor(sunDayData / (1000 * 60));
-          const hours = Math.floor(totalMinutes / 60);
-          const minutes = totalMinutes % 60;
+      if (index !== -1) {
+        const hours = Math.floor(daylight_duration[index] / 3600);
+        const minutes = Math.floor((daylight_duration[index] % 3600) / 60);
 
-          return `${hours} ч ${minutes} мин`;
-        }
+        return `${hours} ч ${minutes} мин`;
       }
       return "-";
-    }
+    };
 
     const forecast = datesKeys.map((date) => {
       const dayData = groupedDays[date];
@@ -341,8 +411,14 @@ const useServices = () => {
         evening: averageData(dayData.evening),
         night: averageData(dayData.night),
         advancedAvgWaterTemp:
-         typeof avgTemp === "number" ? Math.floor(avgTemp) : null,
+          typeof avgTemp === "number"
+            ? getPlusOrNot(Math.floor(avgTemp - 3))
+            : null,
         advancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
+        advancedUVCategory:
+          typeof avgUV === "number"
+            ? getUVCategory(Math.floor(avgUV))
+            : UVCategoryDefault,
         advancedSunrise:
           typeof sunrise === "string" ? sunrise.split("T")[1] : null,
         advancedSunset:
@@ -354,6 +430,13 @@ const useServices = () => {
     return forecast.slice(1, 11);
   };
 
+  const getAdvancedOneDay = useMemo(() => {
+    const anvancedData = getAdvancedTenDaysData();
+    if (!anvancedData?.length) return null;
+
+    return anvancedData[0];
+  }, [getAdvancedTenDaysData]);
+
   return {
     getCurrentData,
     getTodayData,
@@ -364,6 +447,7 @@ const useServices = () => {
     getTimeLineData,
     getTenDaysData,
     getAdvancedTenDaysData,
+    getAdvancedOneDay,
   };
 };
 

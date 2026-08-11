@@ -1,11 +1,7 @@
 import styles from "./weatherTimeline.module.scss";
 import useServices from "@services/useSrvices";
-import { getPlusOrNot, getWeatherEffect } from "@utils/weatherEffects";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const WeatherTimeline = () => {
   const data = useServices().getTimeLineData() || [];
@@ -20,8 +16,12 @@ const WeatherTimeline = () => {
         navigation
       >
         {data.map((item, i) => {
-          const { timeLineWeatherCode, timeLineDate, timeLineTime, timeLineTemperature } = item;
-          const effect = getWeatherEffect(timeLineWeatherCode);
+          const {
+            timeLineWeatherEffect,
+            timeLineDate,
+            timeLineTime,
+            timeLineTemperature,
+          } = item;
 
           const prev = data[i - 1];
           const isNewDay = prev && prev.timeLineDate !== timeLineDate;
@@ -31,8 +31,8 @@ const WeatherTimeline = () => {
               {isNewDay && <div className={styles.day_separator}></div>}
               <div className={styles.weather_timeline_item}>
                 <p>{isNewDay ? `Вт, ${timeLineTime}` : timeLineTime}</p>
-                <img src={effect} alt="" />
-                <p>{getPlusOrNot(timeLineTemperature)}°</p>
+                <img src={timeLineWeatherEffect} alt="" />
+                <p>{timeLineTemperature}°</p>
               </div>
             </SwiperSlide>
           );

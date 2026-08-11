@@ -8,28 +8,33 @@ export type apiForecast = {
     wind_speed_10m: number;
     wind_direction_10m: number;
     wind_gusts_10m: number;
-    pressure_msl: number;
+    surface_pressure: number;
     relative_humidity_2m: number;
   };
   hourly: {
     time: string[];
     temperature_2m: number[];
     weather_code: number[];
-    precipitation: number[];
     precipitation_probability: number[];
     apparent_temperature: number[];
     wind_speed_10m: number[];
     wind_direction_10m: number[];
-    pressure_msl: number[];
+    surface_pressure: number[];
     relative_humidity_2m: number[];
   };
   daily: {
     time: string[];
+    daylight_duration: number[];
+    moon_phase: number[];
+    relative_humidity_2m_max: number[];
+    relative_humidity_2m_min: number[];
+    surface_pressure_max: number[];
+    surface_pressure_min: number[];
+    wind_speed_10m_min: number[];
     temperature_2m_mean: number[];
     temperature_2m_max: number[];
     temperature_2m_min: number[];
     weather_code: number[];
-    precipitation_sum: number[];
     precipitation_probability_max: number[];
     wind_speed_10m_max: number[];
     wind_gusts_10m_max: number[];
@@ -37,6 +42,8 @@ export type apiForecast = {
     uv_index_max: number[];
     sunset: number[];
     sunrise: number[];
+    wind_speed_10m_mean: number[];
+    wind_gusts_10m_mean: number[];
   };
 };
 

@@ -2,7 +2,7 @@ export type PeriodData = {
   temp: number;
   feels: number;
   windSpeed: number;
-  windDeg: number;
+  windDir: number;
   humidity: number;
   pressure: number;
   weatherCode: number;

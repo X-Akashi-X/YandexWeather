@@ -25,14 +25,14 @@ function findWeather(code: number) {
 }
 
 export function getWeatherEffect(code: number) {
-  return findWeather(code)?.icon;
+  return findWeather(code)?.icon ?? "-";
 }
 
 export function getWeatherInfo(code: number) {
-  return findWeather(code)?.text;
+  return findWeather(code)?.text ?? "-";
 }
 
-export function getRainChance(chance: number) {
+export function getPrecipitationProbability(chance: number) {
   if (chance <= 0) return "осадков не ожидается";
   if (chance <= 20) return "небольшая вероятность осадков";
   if (chance <= 50) return "есть вероятность осадков";
@@ -86,6 +86,7 @@ export function getUVCategory(category: number) {
     return { fill: 0.67, color: "#c30101", text: "очень высокий" };
   return { fill: 1, color: "#57348d", text: "экстремальный" };
 }
+export const UVCategoryDefault = { fill: 0, color: "#e0e0e0", text: "-" };
 
 export function getAvgWeatherCode(arg: number[]) {
   const freq: Record<number, number> = {};
@@ -100,5 +101,5 @@ export function getAvgWeatherCode(arg: number[]) {
 }
 
 export function getPlusOrNot(value: number) {
-  return value > 0 ? `+${value}` : String(value)
+  return value > 0 ? `+${value}` : String(value);
 }

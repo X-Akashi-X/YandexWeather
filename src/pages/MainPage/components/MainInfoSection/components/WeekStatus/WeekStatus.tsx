@@ -1,83 +1,50 @@
 import useServices from "@services/useSrvices";
 import styles from "./weekStatus.module.scss";
 import sourceData from "@assets/icons/mainInfoSection/sourceDataIcon.svg";
-import {
-  getPlusOrNot,
-  getWeatherEffect,
-  getWeatherInfo,
-  getWindCategory,
-} from "@utils/weatherEffects";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const WeakStatus = () => {
   const {
     todayMaxTemperature,
     todayMinTemperature,
     todayWindGusts,
-    todayWindSpeed,
-    todayWeatherCode,
+    todayMinWindSpeed,
+    todayMaxWindSpeed,
+    todayWeatherEffect,
+    todayWeatherInfo,
+    todayWindCategory,
   } = useServices().getTodayData() || {};
   const {
-    tomorrowWeatherCode,
+    tomorrowWeatherEffect,
     tomorrowMinTemperature,
     tomorrowMaxTemperature,
-    tomorrowWindSpeed,
+    tomorrowMinWindSpeed,
+    tomorrowMaxWindSpeed,
     tomorrowWindGusts,
+    tomorrowWeatherInfo,
+    tomorrowWindCategory,
   } = useServices().getTomorrowData() || {};
   const {
     weekMinTemperature,
     weekMaxTemperature,
-    weekWindSpeed,
+    weekMinWindSpeed,
+    weekMaxWindSpeed,
     weekWindGusts,
-    weekWeatherCode,
+    weekWeatherEffect,
+    weekWeatherInfo,
+    weekWindCategory,
   } = useServices().getWeekData() || {};
   const {
     weekendMinTemperature,
     weekendMaxTemperature,
-    weekendWindSpeed,
+    weekendMinWindSpeed,
+    weekendMaxWindSpeed,
     weekendWindGusts,
-    weekendWeatherCode,
+    weekendWeatherEffect,
+    weekendWeatherInfo,
+    weekendWindCategory,
   } = useServices().getWeekendData() || {};
-
-  if (
-    !todayWeatherCode ||
-    !todayWindSpeed ||
-    !todayMinTemperature ||
-    !todayMaxTemperature ||
-    !tomorrowWeatherCode ||
-    !tomorrowWindSpeed ||
-    !tomorrowMinTemperature ||
-    !tomorrowMaxTemperature ||
-    !weekWeatherCode ||
-    !weekWindSpeed ||
-    !weekMinTemperature ||
-    !weekMaxTemperature ||
-    !weekendWeatherCode ||
-    !weekendWindSpeed ||
-    !weekendMinTemperature ||
-    !weekendMaxTemperature
-  )
-    return null;
-
-  const effectToday = getWeatherEffect(todayWeatherCode);
-  const infoToday = getWeatherInfo(todayWeatherCode);
-  const windCategoryToday = getWindCategory(todayWindSpeed);
-
-  const infoTomorrow = getWeatherInfo(tomorrowWeatherCode);
-  const effectTomorrow = getWeatherEffect(tomorrowWeatherCode);
-  const windCategoryTomorrow = getWindCategory(tomorrowWindSpeed);
-
-  const infoWeek = getWeatherInfo(weekWeatherCode);
-  const effectWeek = getWeatherEffect(weekWeatherCode);
-  const windCategoryWeek = getWindCategory(weekWindSpeed);
-
-  const infoWeekend = getWeatherInfo(weekendWeatherCode);
-  const effectWeekend = getWeatherEffect(weekendWeatherCode);
-  const windCategoryWeekend = getWindCategory(weekendWindSpeed);
 
   return (
     <section className={styles.section_wrapper}>
@@ -91,14 +58,14 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={effectToday} alt="" />
+              <img src={todayWeatherEffect} alt="" />
               <h3>Сегодня</h3>
             </div>
             <p>
-              {infoToday}·{getPlusOrNot(todayMinTemperature)}...
-              {getPlusOrNot(todayMaxTemperature)}° ·{windCategoryToday}
+              {todayWeatherInfo}·{todayMinTemperature}...
+              {todayMaxTemperature}° ·{todayWindCategory}
               &nbsp;
-              {todayWindSpeed} м/с, порывы до
+              {todayMinWindSpeed}-{todayMaxWindSpeed} м/с, порывы до
               {todayWindGusts} м/с
             </p>
           </a>
@@ -106,14 +73,14 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={effectTomorrow} alt="" />
+              <img src={tomorrowWeatherEffect} alt="" />
               <h3>Завтра</h3>
             </div>
             <p>
-              {infoTomorrow}·{getPlusOrNot(tomorrowMinTemperature)}...
-              {getPlusOrNot(tomorrowMaxTemperature)}° ·{windCategoryTomorrow}
+              {tomorrowWeatherInfo}·{tomorrowMinTemperature}...
+              {tomorrowMaxTemperature}° ·{tomorrowWindCategory}
               &nbsp;
-              {tomorrowWindSpeed} м/с, порывы до
+              {tomorrowMinWindSpeed}-{tomorrowMaxWindSpeed} м/с, порывы до
               {tomorrowWindGusts} м/с
             </p>
           </a>
@@ -121,14 +88,14 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={effectWeek || undefined} alt="" />
+              <img src={weekWeatherEffect} alt="" />
               <h3>На этой неделе</h3>
             </div>
             <p>
-              {infoWeek}·{getPlusOrNot(weekMinTemperature)}
+              {weekWeatherInfo}·{weekMinTemperature}
               ...
-              {getPlusOrNot(weekMaxTemperature)}° ·{windCategoryWeek}&nbsp;
-              {weekWindSpeed}
+              {weekMaxTemperature}° ·{weekWindCategory}&nbsp;
+              {weekMinWindSpeed}-{weekMaxWindSpeed}
               м/с, порывы до
               {weekWindGusts}
               м/с
@@ -138,13 +105,14 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={effectWeekend || undefined} alt="" />
+              <img src={weekendWeatherEffect} alt="" />
               <h3>В выходные</h3>
             </div>
             <p>
-              {infoWeekend}·{getPlusOrNot(weekendMinTemperature)}...
-              {getPlusOrNot(weekendMinTemperature)}° ·{windCategoryWeekend}&nbsp;
-              {weekendWindSpeed} м/с, порывы до
+              {weekendWeatherInfo}·{weekendMinTemperature}...
+              {weekendMaxTemperature}° ·{weekendWindCategory}
+              &nbsp;
+              {weekendMinWindSpeed}-{weekendMaxWindSpeed} м/с, порывы до
               {weekendWindGusts} м/с
             </p>
           </a>

@@ -1,4 +1,8 @@
-const WIndDirectionArrow = ({ windDirection }: { windDirection: number }) => {
+const WIndDirectionArrow = ({
+  windDirection = 0,
+}: {
+  windDirection?: number;
+}) => {
   return (
     <svg
       style={{ transform: `rotate(${windDirection}deg)` }}
