@@ -7,7 +7,7 @@ import Sunset from "@assets/icons/detailedForecast/sunsetIcon.svg";
 import WaterTemp from "@assets/icons/waterTempIcon.svg";
 
 const DetailedForecast = () => {
-  const data = useServices().getAdvancedTenDaysData();
+  const data = useServices().getAdvancedTenDaysData;
 
   return (
     <section className={styles.section_wrapper}>
@@ -214,7 +214,7 @@ const DetailedForecast = () => {
                   УФ-индекс
                 </div>
                 <div className={styles.air_quality_gr_str3}>
-                  {advancedAvgUV}, {advancedUVCategory.text}
+                  {advancedAvgUV}, {advancedUVCategory?.text}
                 </div>
                 <div
                   className={`${styles.air_quality_gr_str4} small_grey_text`}

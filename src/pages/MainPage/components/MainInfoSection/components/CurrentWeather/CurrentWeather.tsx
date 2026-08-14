@@ -16,9 +16,9 @@ const CurrentWeather = () => {
     currentWindSpeed,
     currentPressure,
     currentHumidity,
-  } = useServices().getCurrentData() || {};
-  const { yesterdayCurrentTemp } = useServices().getYesterdayData() || {};
-  const { todayPrecipitationProbability } = useServices().getTodayData() || {};
+  } = useServices().getCurrentData || {};
+  const { yesterdayCurrentTemp } = useServices().getYesterdayData || {};
+  const { todayPrecipitationProbability } = useServices().getTodayData || {};
 
   return (
     <section className={styles.section_wrapper}>

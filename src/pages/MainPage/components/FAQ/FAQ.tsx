@@ -12,24 +12,23 @@ const FAQ = () => {
     currentHumidity,
     currentPressure,
     currentWeatherInfo,
-  } = useServices().getCurrentData() || {};
+  } = useServices().getCurrentData || {};
 
   const {
     todayMinTemperature,
     todayMaxTemperature,
     todayPrecipitationProbability,
-    todayMinWindSpeed,
-    todayMaxWindSpeed,
+    todayMinMaxWindSpeed,
     todayWindGusts,
     todayMinHumidity,
     todayMaxHumidity,
     todayMinPressure,
     todayMaxPressure,
     todayWindCategory,
-  } = useServices().getTodayData() || {};
+  } = useServices().getTodayData || {};
 
   const { morning, day, evening, night } =
-    useServices().getAdvancedOneDay || {};
+    useServices().getAdvancedOneDayData || {};
 
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
@@ -59,8 +58,8 @@ const FAQ = () => {
                 влажность {currentHumidity}%, атмосферное давление{" "}
                 {currentPressure} мм рт. ст. Сегодня: {todayMinTemperature}...
                 {todayMaxTemperature}°, {todayPrecipitationProbability},{" "}
-                {todayWindCategory} {todayMinWindSpeed}-{todayMaxWindSpeed} м/с,
-                порывы до {todayWindGusts} м/с.
+                {todayWindCategory} {todayMinMaxWindSpeed} м/с, порывы до{" "}
+                {todayWindGusts} м/с.
               </p>
             )}
           </div>

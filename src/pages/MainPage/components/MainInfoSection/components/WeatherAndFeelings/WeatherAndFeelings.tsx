@@ -12,7 +12,7 @@ const WeatherAndFeelings = () => {
     currentPollenCategory,
     currentUVCategory,
     currentUVIndex,
-  } = useServices().getCurrentData() || {};
+  } = useServices().getCurrentData || {};
 
   return (
     <section className={styles.section_wrapper}>

@@ -38,6 +38,7 @@ export default tseslint.config( // Используем хелпер для ти
       ...prettierConfig.rules, // Отключаем конфликтующие правила ESLint
       'prettier/prettier': 'error',
       'react/jsx-no-target-blank': 'off',
+      "react/prop-types": "off",
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

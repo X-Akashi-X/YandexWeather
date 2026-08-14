@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 const WeatherTimeline = () => {
-  const data = useServices().getTimeLineData() || [];
+  const data = useServices().getTimeLineData || [];
 
   return (
     <section className={styles.section_wrapper}>

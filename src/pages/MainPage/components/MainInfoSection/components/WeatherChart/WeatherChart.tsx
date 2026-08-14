@@ -3,7 +3,7 @@ import styles from "./weatherChart.module.scss";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const WeatherChart = () => {
-  const data = useServices().getTenDaysData() || [];
+  const data = useServices().getTenDaysData || [];
 
   return (
     <div className={styles.main_wrapper}>
@@ -34,7 +34,7 @@ const WeatherChart = () => {
               domain={["dataMin - 10", "dataMax + 1"]}
             />
             <XAxis
-              dataKey="temp_max"
+              dataKey="tenDaysMaxTemperature"
               xAxisId="top"
               orientation="top"
               axisLine={false}
@@ -47,13 +47,14 @@ const WeatherChart = () => {
               activeDot={false}
               yAxisId="top"
               xAxisId="top"
-              dataKey="temp_max"
+              dataKey="tenDaysMaxTemperature"
               stroke="#5388D7"
               strokeWidth={2}
-              dot={(props: { cx?: number; cy?: number; index?: number }) => {
+              dot={(props) => {
                 const { cx, cy, index } = props;
 
-                if (!cx || !cy || !index) return null;
+                if (cx === undefined || cy === undefined || index === undefined)
+                  return null;
 
                 if (index === 0) {
                   return (
@@ -83,7 +84,7 @@ const WeatherChart = () => {
             <Line
               type="monotone"
               activeDot={false}
-              dataKey="temp_min"
+              dataKey="tenDaysMinTemperature"
               xAxisId="bottom"
               yAxisId="bottom"
               stroke="#C5CCD4"
@@ -91,7 +92,8 @@ const WeatherChart = () => {
               dot={(props) => {
                 const { cx, cy, index } = props;
 
-                if (!cx || !cy || !index) return null;
+                if (cx === undefined || cy === undefined || index === undefined)
+                  return null;
 
                 if (index === 0) {
                   return (
@@ -114,7 +116,7 @@ const WeatherChart = () => {
               }}
             />
             <XAxis
-              dataKey="temp_min"
+              dataKey="tenDaysMinTemperature"
               xAxisId="bottom"
               axisLine={false}
               tickLine={false}

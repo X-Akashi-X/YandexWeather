@@ -9,42 +9,38 @@ const WeakStatus = () => {
     todayMaxTemperature,
     todayMinTemperature,
     todayWindGusts,
-    todayMinWindSpeed,
-    todayMaxWindSpeed,
+    todayMinMaxWindSpeed,
     todayWeatherEffect,
     todayWeatherInfo,
     todayWindCategory,
-  } = useServices().getTodayData() || {};
+  } = useServices().getTodayData || {};
   const {
     tomorrowWeatherEffect,
     tomorrowMinTemperature,
     tomorrowMaxTemperature,
-    tomorrowMinWindSpeed,
-    tomorrowMaxWindSpeed,
+    tomorrowMinMaxWindSpeed,
     tomorrowWindGusts,
     tomorrowWeatherInfo,
     tomorrowWindCategory,
-  } = useServices().getTomorrowData() || {};
+  } = useServices().getTomorrowData || {};
   const {
     weekMinTemperature,
     weekMaxTemperature,
-    weekMinWindSpeed,
-    weekMaxWindSpeed,
+    weekMinMaxWindSpeed,
     weekWindGusts,
     weekWeatherEffect,
     weekWeatherInfo,
     weekWindCategory,
-  } = useServices().getWeekData() || {};
+  } = useServices().getWeekData || {};
   const {
     weekendMinTemperature,
     weekendMaxTemperature,
-    weekendMinWindSpeed,
-    weekendMaxWindSpeed,
+    weekendMinMaxWindSpeed,
     weekendWindGusts,
     weekendWeatherEffect,
     weekendWeatherInfo,
     weekendWindCategory,
-  } = useServices().getWeekendData() || {};
+  } = useServices().getWeekendData || {};
 
   return (
     <section className={styles.section_wrapper}>
@@ -62,11 +58,10 @@ const WeakStatus = () => {
               <h3>Сегодня</h3>
             </div>
             <p>
-              {todayWeatherInfo}·{todayMinTemperature}...
-              {todayMaxTemperature}° ·{todayWindCategory}
+              {todayWeatherInfo} · {todayMinTemperature}...
+              {todayMaxTemperature}° · {todayWindCategory}
               &nbsp;
-              {todayMinWindSpeed}-{todayMaxWindSpeed} м/с, порывы до
-              {todayWindGusts} м/с
+              {todayMinMaxWindSpeed} м/с, порывы до {todayWindGusts} м/с
             </p>
           </a>
         </SwiperSlide>
@@ -77,11 +72,10 @@ const WeakStatus = () => {
               <h3>Завтра</h3>
             </div>
             <p>
-              {tomorrowWeatherInfo}·{tomorrowMinTemperature}...
-              {tomorrowMaxTemperature}° ·{tomorrowWindCategory}
+              {tomorrowWeatherInfo} · {tomorrowMinTemperature}...
+              {tomorrowMaxTemperature}° · {tomorrowWindCategory}
               &nbsp;
-              {tomorrowMinWindSpeed}-{tomorrowMaxWindSpeed} м/с, порывы до
-              {tomorrowWindGusts} м/с
+              {tomorrowMinMaxWindSpeed} м/с, порывы до {tomorrowWindGusts} м/с
             </p>
           </a>
         </SwiperSlide>
@@ -92,13 +86,10 @@ const WeakStatus = () => {
               <h3>На этой неделе</h3>
             </div>
             <p>
-              {weekWeatherInfo}·{weekMinTemperature}
+              {weekWeatherInfo} · {weekMinTemperature}
               ...
-              {weekMaxTemperature}° ·{weekWindCategory}&nbsp;
-              {weekMinWindSpeed}-{weekMaxWindSpeed}
-              м/с, порывы до
-              {weekWindGusts}
-              м/с
+              {weekMaxTemperature}° · {weekWindCategory} {weekMinMaxWindSpeed}{" "}
+              м/с, порывы до {weekWindGusts} м/с
             </p>
           </a>
         </SwiperSlide>
@@ -109,11 +100,9 @@ const WeakStatus = () => {
               <h3>В выходные</h3>
             </div>
             <p>
-              {weekendWeatherInfo}·{weekendMinTemperature}...
-              {weekendMaxTemperature}° ·{weekendWindCategory}
-              &nbsp;
-              {weekendMinWindSpeed}-{weekendMaxWindSpeed} м/с, порывы до
-              {weekendWindGusts} м/с
+              {weekendWeatherInfo} · {weekendMinTemperature}...
+              {weekendMaxTemperature}° · {weekendWindCategory}{" "}
+              {weekendMinMaxWindSpeed} м/с, порывы до {weekendWindGusts} м/с
             </p>
           </a>
         </SwiperSlide>
