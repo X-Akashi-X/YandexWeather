@@ -4,25 +4,30 @@
   .timeline_wrapper {
     padding: 0px 8px;
     cursor: grab;
-    .day_separator {
-      left: -18%;
-      color: var(--color-light-grey-opacity-low);
+    .swiper_slide{
       position: relative;
-    }
-    .day_separator::after {
-      content: "";
+      display: flex;
+      justify-content: center;
+      .day_separator {
+      background-color: var(--color-light-grey-opacity-low);
       position: absolute;
       width: 1px;
-      height: 100%;
-      background: #ccc;
+      z-index: 5;
+      left: -50%;
+      top: 0;
+      bottom: 0;
     }
     .weather_timeline_item {
-      width: 43px;
       height: 108px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      
+      p:first-child {
+        text-transform: capitalize;
+        white-space: nowrap;
+      }
       img {
         width: 43px;
       }
@@ -30,5 +35,7 @@
         font-weight: var(--week-bold-text);
       }
     }
+    }
+    
   }
 }

@@ -4,6 +4,7 @@
     display: flex;
     font-weight: var(--week-bold-text);
     align-items: center;
+    gap: 10px;
     .degrees {
       font-size: 68px;
       span {
@@ -26,8 +27,13 @@
       width: 70px;
       height: 70px;
     }
-    .summary_item {
-      font-size: 18px;
+    .summary {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .summary_item {
+        font-size: 18px;
+      }
     }
   }
 
