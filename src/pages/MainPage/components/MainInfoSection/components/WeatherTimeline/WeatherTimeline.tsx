@@ -26,13 +26,19 @@ const WeatherTimeline = () => {
 
           const prev = data[i - 1];
           const isNewDay = prev && prev.timeLineDate !== timeLineDate;
-          const nextDayOfWeek = new Date(timeLineDate).toLocaleString("ru-RU", {weekday: "short"}) 
+          const nextDayOfWeek = new Date(timeLineDate).toLocaleString("ru-RU", {
+            weekday: "short",
+          });
 
           return (
             <SwiperSlide className={styles.swiper_slide} key={i}>
               {isNewDay && <div className={styles.day_separator}></div>}
               <div className={styles.weather_timeline_item}>
-                <p>{isNewDay ? `${nextDayOfWeek}, ${timeLineTime}` : timeLineTime}</p>
+                <p>
+                  {isNewDay
+                    ? `${nextDayOfWeek}, ${timeLineTime}`
+                    : timeLineTime}
+                </p>
                 <img src={timeLineWeatherEffect} alt="" />
                 <p>{timeLineTemperature}°</p>
               </div>

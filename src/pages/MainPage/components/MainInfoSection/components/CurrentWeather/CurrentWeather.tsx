@@ -23,7 +23,10 @@ const CurrentWeather = () => {
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.weather_summary}>
-        <p className={styles.degrees}>{currentTemperature}<span>°</span></p>
+        <p className={styles.degrees}>
+          {currentTemperature}
+          <span>°</span>
+        </p>
         <img src={currentWeatherEffect} alt="" />
         <div className={styles.summary}>
           <p className={styles.summary_item}>{currentWeatherInfo}</p>
