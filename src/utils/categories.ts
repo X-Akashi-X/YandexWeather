@@ -74,5 +74,5 @@ export function getMagneticFieldCategory(category: number) {
 }
 
 export function getMoonPhase(category: number) {
-  return moonMap(category)
+  return moonMap(category);
 }
