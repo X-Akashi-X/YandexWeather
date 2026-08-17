@@ -1,4 +1,5 @@
-import { weatherMap } from "./constants";
+import { moonMap } from "./moonMapper";
+import { weatherMap } from "./weatherMapper";
 
 function findWeather(code: number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(code));
@@ -58,4 +59,20 @@ export function getUVCategory(category: number) {
   if (category <= 10)
     return { fill: 0.67, color: "#c30101", text: "очень высокий" };
   return { fill: 1, color: "#57348d", text: "экстремальный" };
+}
+
+export function getMagneticFieldCategory(category: number) {
+  if (category <= 2) return { fill: 0, color: "#33c115", text: "спокойное" };
+  if (category <= 4)
+    return { fill: 0.17, color: "#ffd400", text: "небольшая активность" };
+  if (category <= 6)
+    return { fill: 0.42, color: "#ff7e01", text: "слабая магнитная буря" };
+  if (category <= 8)
+    return { fill: 0.67, color: "#c30101", text: "умеренная магнитная буря" };
+  if (category <= 2)
+    return { fill: 1, color: "#57348d", text: "сильная магнитная буря" };
+}
+
+export function getMoonPhase(category: number) {
+  return moonMap(category)
 }

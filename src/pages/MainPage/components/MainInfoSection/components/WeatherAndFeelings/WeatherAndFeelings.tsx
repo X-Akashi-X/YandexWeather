@@ -14,6 +14,9 @@ const WeatherAndFeelings = () => {
     currentUVIndex,
   } = useServices().getCurrentData || {};
 
+  const { todayMagneticField, todayMagneticFieldCategory, todayMoonPhase } =
+    useServices().getTodayData || {};
+
   return (
     <section className={styles.section_wrapper}>
       <h2>Погода и самочувствие</h2>
@@ -28,8 +31,8 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <img src={Pollen} alt="" />
-              <div className={styles.img_wrapper}>
+              <img className={styles.img_pollen} src={Pollen} alt="" />
+              <div className={styles.status_wrapper}>
                 <StatusArc category={currentPollenCategory} />
               </div>
             </div>
@@ -42,7 +45,10 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <p>4</p>
+              <p>{todayMagneticField}</p>
+              <div className={styles.status_wrapper}>
+                <StatusArc category={todayMagneticFieldCategory} />
+              </div>
             </div>
             <div className={styles.title_wrapper}>
               <h4>Магнитное поле</h4>
@@ -54,7 +60,7 @@ const WeatherAndFeelings = () => {
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{currentPressure}</p>
-              <div className={styles.img_wrapper}>
+              <div className={styles.status_wrapper}>
                 <StatusArc category={currentPressureCategory} />
               </div>
             </div>
@@ -67,11 +73,15 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <img src="" alt="" />
+              <img
+                className={styles.img_moon}
+                src={todayMoonPhase?.icon}
+                alt=""
+              />
             </div>
             <div className={styles.title_wrapper}>
               <h4>Луна</h4>
-              <p>убывающая</p>
+              <p>{todayMoonPhase?.text}</p>
             </div>
           </a>
         </SwiperSlide>
@@ -79,7 +89,7 @@ const WeatherAndFeelings = () => {
           <a className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{currentUVIndex}</p>
-              <div className={styles.img_wrapper}>
+              <div className={styles.status_wrapper}>
                 <StatusArc category={currentUVCategory} />
               </div>
             </div>

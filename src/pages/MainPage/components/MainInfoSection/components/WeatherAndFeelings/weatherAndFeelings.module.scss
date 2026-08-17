@@ -17,26 +17,25 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        .img_wrapper{
+        .status_wrapper {
           width: 45px;
         }
-        img:first-child {
+        .img_pollen {
           width: 26px;
           position: absolute;
           top: 10px;
-          
         }
-        img:last-child{
-          width: 45px;
+        .img_moon {
+          width: 35px;
         }
-        p{
+        p {
           position: absolute;
           font-weight: var(--week-bold-text);
           top: 13px;
         }
       }
       .title_wrapper {
-        h4{
+        h4 {
           font-weight: var(--week-bold-text);
         }
         p {

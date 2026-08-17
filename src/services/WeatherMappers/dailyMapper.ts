@@ -1,5 +1,7 @@
 import type { apiForecast } from "@ts/api";
 import {
+  getMagneticFieldCategory,
+  getMoonPhase,
   getPrecipitationProbability,
   getWeatherEffect,
   getWeatherInfo,
@@ -13,6 +15,11 @@ import {
 
 export const todayData = (dataForecast: apiForecast) => {
   if (!dataForecast?.daily) return null;
+
+  const magneticField = Math.abs(
+    Math.floor(dataForecast.daily.surface_pressure_max[1] * 0.75006) -
+      Math.floor(dataForecast.daily.surface_pressure_max[2] * 0.75006),
+  );
 
   return {
     todayMinTemperature: shouldShowPlus(
@@ -42,6 +49,9 @@ export const todayData = (dataForecast: apiForecast) => {
     ),
     todayWeatherEffect: getWeatherEffect(dataForecast.daily.weather_code[1]),
     todayWeatherInfo: getWeatherInfo(dataForecast.daily.weather_code[1]),
+    todayMagneticField: magneticField,
+    todayMagneticFieldCategory: getMagneticFieldCategory(magneticField),
+    todayMoonPhase: getMoonPhase(dataForecast.daily.moon_phase[1]),
   };
 };
 
