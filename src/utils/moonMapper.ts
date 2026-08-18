@@ -10,8 +10,7 @@ import waningSmall from "@assets/icons/moon/waningSmallIcon.svg";
 export function moonMap(category: number) {
   if (category <= 0.04) return { text: "новолуние", icon: newMoon };
   if (category <= 0.22) return { text: "молодая", icon: waxingSmall };
-  if (category <= 0.28)
-    return { text: "первая четверть", icon: firsthQuarter };
+  if (category <= 0.28) return { text: "первая четверть", icon: firsthQuarter };
   if (category <= 0.46) return { text: "растущая", icon: waxingBig };
   if (category <= 0.54) return { text: "полнолуние", icon: fullMoon };
   if (category <= 0.72) return { text: "убывающая", icon: waningBig };

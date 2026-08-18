@@ -237,8 +237,9 @@ export const advancedDaysData = (dataForecast: apiForecast) => {
       advancedUVCategory:
         typeof avgUV === "number" ? getUVCategory(Math.floor(avgUV)) : null,
       advancedMagnteticField: avgMagnetic,
-      advancedMagnteticFieldCategory:
-        avgMagnetic ? getMagneticFieldCategory(avgMagnetic) : null,
+      advancedMagnteticFieldCategory: avgMagnetic
+        ? getMagneticFieldCategory(avgMagnetic)
+        : null,
       advancedSunrise:
         typeof sunrise === "string" ? sunrise.split("T")[1] : null,
       advancedSunset: typeof sunset === "string" ? sunset.split("T")[1] : null,
