@@ -1,6 +1,11 @@
 import type { apiForecast } from "@ts/api";
 import type { DayGroups, PeriodData } from "@ts/weather";
-import { getUVCategory, getWeatherEffect } from "@utils/categories";
+import {
+  getMagneticFieldCategory,
+  getMoonPhase,
+  getUVCategory,
+  getWeatherEffect,
+} from "@utils/categories";
 import {
   getAvgWeatherCode,
   getWindDirection,
@@ -175,6 +180,28 @@ export const advancedDaysData = (dataForecast: apiForecast) => {
     return "-";
   };
 
+  const getAvgMagnetic = (targetDate: string) => {
+    if (!dataForecast?.daily) return null;
+
+    const { time, surface_pressure_max } = dataForecast.daily;
+
+    const index = time.indexOf(targetDate);
+
+    if (index !== -1) {
+      const todayMaXPressure = Math.floor(
+        surface_pressure_max[index] * 0.75006,
+      );
+
+      const tomorrowMaxPressure = surface_pressure_max[index + 1]
+        ? Math.floor(surface_pressure_max[index + 1] * 0.75006)
+        : todayMaXPressure;
+
+      return Math.abs(todayMaXPressure - tomorrowMaxPressure);
+    }
+
+    return null;
+  };
+
   const forecast = datesKeys.map((date) => {
     const dayData = groupedDays[date];
 
@@ -184,6 +211,8 @@ export const advancedDaysData = (dataForecast: apiForecast) => {
       date,
     );
     const avgUV = getDailyData(dataForecast.daily, "uv_index_max", date);
+    const avgMagnetic = getAvgMagnetic(date);
+    const avgMoon = getDailyData(dataForecast.daily, "moon_phase", date);
     const sunrise = getDailyData(dataForecast.daily, "sunrise", date);
     const sunset = getDailyData(dataForecast.daily, "sunset", date);
     const sunDay = getSunDay(date);
@@ -207,10 +236,15 @@ export const advancedDaysData = (dataForecast: apiForecast) => {
       advancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
       advancedUVCategory:
         typeof avgUV === "number" ? getUVCategory(Math.floor(avgUV)) : null,
+      advancedMagnteticField: avgMagnetic,
+      advancedMagnteticFieldCategory:
+        avgMagnetic ? getMagneticFieldCategory(avgMagnetic) : null,
       advancedSunrise:
         typeof sunrise === "string" ? sunrise.split("T")[1] : null,
       advancedSunset: typeof sunset === "string" ? sunset.split("T")[1] : null,
       advancedSunDay: sunDay,
+      advancedMoonPhase:
+        typeof avgMoon === "number" ? getMoonPhase(avgMoon) : null,
     };
   });
 

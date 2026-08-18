@@ -64,13 +64,13 @@ export function getUVCategory(category: number) {
 export function getMagneticFieldCategory(category: number) {
   if (category <= 2) return { fill: 0, color: "#33c115", text: "спокойное" };
   if (category <= 4)
-    return { fill: 0.17, color: "#ffd400", text: "небольшая активность" };
+    return { fill: 0.17, color: "#ffd400", text: "слабая буря" };
   if (category <= 6)
-    return { fill: 0.42, color: "#ff7e01", text: "слабая магнитная буря" };
+    return { fill: 0.42, color: "#ff7e01", text: "умеренная буря" };
   if (category <= 8)
-    return { fill: 0.67, color: "#c30101", text: "умеренная магнитная буря" };
+    return { fill: 0.67, color: "#c30101", text: "сильная буря" };
   if (category <= 2)
-    return { fill: 1, color: "#57348d", text: "сильная магнитная буря" };
+    return { fill: 1, color: "#57348d", text: "шторм" };
 }
 
 export function getMoonPhase(category: number) {

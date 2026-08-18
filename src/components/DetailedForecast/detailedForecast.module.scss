@@ -7,6 +7,15 @@
     border-radius: var(--default-radius);
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
+    .line {
+      position: absolute;
+      left: 70.5%;
+      top: 10%;
+      height: 82%;
+      width: 0.5px;
+      background-color: var(--color-light-grey);
+    }
     //GRID
     .grid_forecast_wrapper {
       display: grid;
@@ -15,15 +24,6 @@
       align-items: center;
       position: relative;
       row-gap: 15px;
-      &::after {
-        content: "";
-        position: absolute;
-        right: -85px;
-        top: 6%;
-        height: 91%;
-        width: 0.5px;
-        background-color: var(--color-light-grey);
-      }
       .forecast_date_gr {
         grid-column: span 2 / span 2;
       }
@@ -55,28 +55,22 @@
     .air_quality_wrapper {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: start;
+      .sunday_wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .light_arc{
+          width: 160px;
+        }
+      }
       .grid_air_quality_wrapper {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        justify-content: space-between;
+        grid-template-columns: minmax(auto, 100px) max-content;
         align-items: center;
         row-gap: 10px;
         column-gap: 15px;
         font-size: var(--font-small);
-        .air_quality_gr_str1 {
-          grid-row-start: 1;
-        }
-        .air_quality_gr_str2 {
-          grid-row-start: 2;
-        }
-        .air_quality_gr_str3 {
-          grid-row-start: 3;
-        }
-        .air_quality_gr_str4 {
-          grid-row-start: 4;
-        }
       }
     }
     //OTHER UI

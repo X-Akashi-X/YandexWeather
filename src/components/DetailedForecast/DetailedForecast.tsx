@@ -25,10 +25,14 @@ const DetailedForecast = () => {
           advancedSunDay,
           advancedSunrise,
           advancedSunset,
+          advancedMagnteticField,
+          advancedMagnteticFieldCategory,
+          advancedMoonPhase,
         } = item;
 
         return (
           <div className={styles.main_wrapper} key={i}>
+            <div className={styles.line}></div>
             <div className={styles.grid_forecast_wrapper}>
               <div
                 className={`${styles.forecast_date_gr} ${styles.title_date}`}
@@ -169,60 +173,49 @@ const DetailedForecast = () => {
                 {night?.advancedPressure}
               </div>
             </div>
+            {/*airQuality*/}
             <div className={styles.air_quality_wrapper}>
-              <img src={LightArc} alt="" />
-              <div className={styles.under_arc_wrapper}>
-                <div className={styles.sun_and_time_wrapper}>
-                  <img src={Sunrise} alt="" />
-                  <p>{advancedSunrise}</p>
-                </div>
-                <div className={styles.time_day_wrapper}>
-                  <p className={"small_grey_text"}>Световой день</p>
-                  <p>{advancedSunDay}</p>
-                </div>
-                <div>
-                  <img src={Sunset} alt="" />
-                  <p>{advancedSunset}</p>
+              <div className={styles.sunday_wrapper}>
+                <img className={styles.light_arc} src={LightArc} alt="" />
+                <div className={styles.under_arc_wrapper}>
+                  <div className={styles.sun_and_time_wrapper}>
+                    <img src={Sunrise} alt="" />
+                    <p>{advancedSunrise}</p>
+                  </div>
+                  <div className={styles.time_day_wrapper}>
+                    <p className={"small_grey_text"}>Световой день</p>
+                    <p>{advancedSunDay}</p>
+                  </div>
+                  <div>
+                    <img src={Sunset} alt="" />
+                    <p>{advancedSunset}</p>
+                  </div>
                 </div>
               </div>
+
               <div className={styles.grid_air_quality_wrapper}>
-                <div
-                  className={`${styles.air_quality_gr_str1} small_grey_text`}
-                >
-                  t° воды
-                </div>
-                <div
-                  className={`${styles.air_quality_gr_str1} ${styles.img_and_data_wrapper}`}
-                >
+                {/*string 1*/}
+                <div className="small_grey_text">t° воды</div>
+                <div className={styles.img_and_data_wrapper}>
                   <img src={WaterTemp} alt="" />
                   <p>{advancedAvgWaterTemp}°</p>
                 </div>
-                <div
-                  className={`${styles.air_quality_gr_str2} small_grey_text`}
-                >
-                  Фазы луны
+                {/*string 2*/}
+                <div className="small_grey_text">Фазы луны</div>
+                <div className={styles.img_and_data_wrapper}>
+                  <img src={advancedMoonPhase?.icon} alt="" />
+                  <p>{advancedMoonPhase?.text}</p>
                 </div>
-                <div
-                  className={`${styles.air_quality_gr_str2} ${styles.img_and_data_wrapper}`}
-                >
-                  <img src={WaterTemp} alt="" />
-                  <p>растущая!!!</p>
-                </div>
-                <div
-                  className={`${styles.air_quality_gr_str3} small_grey_text`}
-                >
-                  УФ-индекс
-                </div>
-                <div className={styles.air_quality_gr_str3}>
+                {/*string 3*/}
+                <div className="small_grey_text">УФ-индекс</div>
+                <div>
                   {advancedAvgUV}, {advancedUVCategory?.text}
                 </div>
-                <div
-                  className={`${styles.air_quality_gr_str4} small_grey_text`}
-                >
-                  Магнитное поле
-                </div>
+                {/*string 4*/}
+                <div className="small_grey_text">Магнитное поле</div>
                 <div className={styles.air_quality_gr_str4}>
-                  4, слабая буря!!!
+                  {advancedMagnteticField},{" "}
+                  {advancedMagnteticFieldCategory?.text}
                 </div>
               </div>
             </div>
