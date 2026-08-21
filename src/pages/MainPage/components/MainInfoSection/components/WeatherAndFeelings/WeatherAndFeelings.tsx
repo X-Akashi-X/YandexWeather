@@ -52,7 +52,7 @@ const WeatherAndFeelings = () => {
             </div>
             <div className={styles.title_wrapper}>
               <h4>Магнитное поле</h4>
-              <p>слабая буря</p>
+              <p>{todayMagneticFieldCategory?.text}</p>
             </div>
           </a>
         </SwiperSlide>

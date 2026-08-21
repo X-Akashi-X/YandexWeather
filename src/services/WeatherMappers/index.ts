@@ -5,5 +5,6 @@ export {
   weekData,
   weekendData,
   tenDaysData,
+  montlyData,
 } from "./dailyMapper";
 export { timeLineData, advancedDaysData, yesterdayData } from "./hourlyMapper";

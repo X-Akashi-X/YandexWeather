@@ -1,5 +1,6 @@
-import useAirQuality from "../hooks/useAirQuality";
-import useForecast from "../hooks/useForecast";
+import useAirQuality from "@hooks/useAirQuality";
+import useForecast from "@hooks/useForecast";
+import useArhive from "@hooks/useArchive";
 import { useMemo } from "react";
 import {
   currentData,
@@ -11,11 +12,13 @@ import {
   timeLineData,
   advancedDaysData,
   yesterdayData,
+  montlyData,
 } from "./WeatherMappers";
 
 const useServices = () => {
   const { dataForecast } = useForecast();
   const { dataAirQuality } = useAirQuality();
+  const { dataArhive } = useArhive();
 
   const advancedWeather = useMemo(() => {
     if (!dataForecast) return { tenDays: [], oneDay: null };
@@ -35,11 +38,12 @@ const useServices = () => {
       getWeekData: dataForecast ? weekData(dataForecast) : null,
       getWeekendData: dataForecast ? weekendData(dataForecast) : null,
       getTenDaysData: dataForecast ? tenDaysData(dataForecast) : null,
+      getMontlyData: dataArhive ? montlyData(dataArhive) : null,
       getTimeLineData: dataForecast ? timeLineData(dataForecast) : null,
       getAdvancedTenDaysData: advancedWeather.tenDays,
       getAdvancedOneDayData: advancedWeather.oneDay,
     };
-  }, [dataForecast, dataAirQuality, advancedWeather]);
+  }, [dataForecast, dataAirQuality, dataArhive, advancedWeather]);
 };
 
 export default useServices;

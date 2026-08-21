@@ -54,3 +54,11 @@ export type apiAirQuality = {
     grass_pollen: number;
   };
 };
+
+export type apiArhive = {
+  daily: {
+    time: string[];
+    temperature_2m_mean: number[];
+    weather_code: number[];
+  };
+};

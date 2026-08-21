@@ -16,6 +16,8 @@ body {
 
 main {
   overflow-x: hidden;
+  max-width: 1130px;
+  margin: 0 auto;
 }
 
 ul,
@@ -59,11 +61,6 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-.app {
-  max-width: 1130px;
-  margin: 0 auto;
 }
 
 .small_grey_text {

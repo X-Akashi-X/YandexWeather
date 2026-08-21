@@ -1,4 +1,4 @@
-import type { apiForecast } from "@ts/api";
+import type { apiArhive, apiForecast } from "@ts/api";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -180,4 +180,67 @@ export const tenDaysData = (dataForecast: apiForecast) => {
       dataForecast.daily.weather_code[i + 1],
     ),
   }));
+};
+
+export const montlyData = (dataArchive: apiArhive) => {
+  if (!dataArchive?.daily?.time) return null;
+
+  const dates = dataArchive.daily.time;
+  const temps = dataArchive.daily.temperature_2m_mean;
+  const weatherCodes = dataArchive.daily.weather_code;
+
+  const groupedData: Record<
+    string,
+    { totalTemp: number; countDays: number; totalWeatherCode: number[] }
+  > = {};
+
+  for (let i = 0; i < dates.length; i++) {
+    const temp = temps[i];
+    const weatherCode = weatherCodes[i];
+    const month = dates[i].split("-")[1];
+
+    if (!groupedData[month]) {
+      groupedData[month] = { totalTemp: 0, countDays: 0, totalWeatherCode: [] };
+    }
+
+    groupedData[month].totalTemp += temp;
+    groupedData[month].totalWeatherCode.push(weatherCode);
+    groupedData[month].countDays += 1;
+
+    if (!temp || !weatherCode) {
+      continue;
+    }
+  }
+
+  const monthNames = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
+
+  return Object.keys(groupedData)
+    .sort()
+    .map((key) => {
+      const monthIndex = parseInt(key, 10) - 1;
+      const monthly = monthNames[monthIndex];
+      const count = groupedData[key].countDays;
+      const avgTemp = count === 0 ? 0 : groupedData[key].totalTemp / count;
+      const avgWeatherCode = getAvgWeatherCode(
+        groupedData[key].totalWeatherCode,
+      );
+      return {
+        monthly,
+        montlyAvgTemperature: shouldShowPlus(Math.floor(avgTemp)),
+        montlyWeatherEffect: getWeatherEffect(avgWeatherCode),
+      };
+    });
 };

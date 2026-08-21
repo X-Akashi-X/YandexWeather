@@ -1,7 +1,7 @@
 import { moonMap } from "./moonMapper";
 import { weatherMap } from "./weatherMapper";
 
-function findWeather(code: number) {
+export function findWeather(code: number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(code));
 }
 

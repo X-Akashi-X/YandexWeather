@@ -1,6 +1,8 @@
 footer {
   padding: 15px;
   font-size: var(--font-small);
+  max-width: 1100px;
+  margin: 0 auto;
   .cities_wrapper {
     padding: 30px 0px;
     display: flex;
