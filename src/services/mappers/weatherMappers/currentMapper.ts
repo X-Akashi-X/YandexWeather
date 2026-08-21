@@ -1,4 +1,4 @@
-import type { apiAirQuality, apiForecast } from "@ts/api";
+import type { ApiAirQuality, ApiForecast } from "@ts/api";
 import {
   getPollenCategory,
   getPressureCategory,
@@ -10,8 +10,8 @@ import {
 import { getWindDirection, shouldShowPlus } from "@utils/formatters";
 
 export const currentData = (
-  dataForecast: apiForecast,
-  dataAirQuality: apiAirQuality,
+  dataForecast: ApiForecast,
+  dataAirQuality: ApiAirQuality,
 ) => {
   if (!dataForecast?.current || !dataAirQuality?.current) return null;
 

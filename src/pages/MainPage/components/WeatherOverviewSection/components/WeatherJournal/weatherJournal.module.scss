@@ -15,15 +15,15 @@
   .news_wrapper {
     border-radius: var(--default-radius);
     padding: 16px 14px;
-    background-image: url(@assets/image/weatherOverviewSection/news_bg.jpg);
     background-position: center;
     background-size: cover;
     height: calc(100% - 44px);
+    width: 100%;
     cursor: pointer;
     p {
       color: white;
       font-weight: var(--week-bold-text);
-      font-size: 17px;
+      font-size: 20px;
     }
   }
 }

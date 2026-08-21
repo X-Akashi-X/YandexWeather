@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import type { apiForecast } from "@ts/api";
+import type { ApiForecast } from "@ts/api";
 
 function useForecast() {
-  const [dataForecast, setData] = useState<apiForecast | null>(null);
+  const [dataForecast, setData] = useState<ApiForecast | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {

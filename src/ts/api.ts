@@ -1,4 +1,4 @@
-export type apiForecast = {
+export type ApiForecast = {
   current: {
     time: string;
     temperature_2m: number;
@@ -47,7 +47,7 @@ export type apiForecast = {
   };
 };
 
-export type apiAirQuality = {
+export type ApiAirQuality = {
   current: {
     time: string;
     uv_index: number;
@@ -55,7 +55,7 @@ export type apiAirQuality = {
   };
 };
 
-export type apiArhive = {
+export type ApiArhive = {
   daily: {
     time: string[];
     temperature_2m_mean: number[];

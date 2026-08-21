@@ -1,4 +1,4 @@
-import type { apiArhive, apiForecast } from "@ts/api";
+import type { ApiArhive, ApiForecast } from "@ts/api";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -13,7 +13,7 @@ import {
   shouldShowPlus,
 } from "@utils/formatters";
 
-export const todayData = (dataForecast: apiForecast) => {
+export const todayData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.daily) return null;
 
   const magneticField = Math.abs(
@@ -55,7 +55,7 @@ export const todayData = (dataForecast: apiForecast) => {
   };
 };
 
-export const tomorrowData = (dataForecast: apiForecast) => {
+export const tomorrowData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.daily) return null;
 
   return {
@@ -78,7 +78,7 @@ export const tomorrowData = (dataForecast: apiForecast) => {
   };
 };
 
-export const weekData = (dataForecast: apiForecast) => {
+export const weekData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.daily) return null;
 
   const avgDetails = (arg: number[]) => {
@@ -120,7 +120,7 @@ export const weekData = (dataForecast: apiForecast) => {
   };
 };
 
-export const weekendData = (dataForecast: apiForecast) => {
+export const weekendData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.daily?.time) return null;
 
   const weekendDays = dataForecast.daily.time
@@ -162,7 +162,7 @@ export const weekendData = (dataForecast: apiForecast) => {
   };
 };
 
-export const tenDaysData = (dataForecast: apiForecast) => {
+export const tenDaysData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.daily?.time) return null;
 
   const value = dataForecast.daily.time.slice(1, 11);
@@ -182,7 +182,7 @@ export const tenDaysData = (dataForecast: apiForecast) => {
   }));
 };
 
-export const montlyData = (dataArchive: apiArhive) => {
+export const montlyData = (dataArchive: ApiArhive) => {
   if (!dataArchive?.daily?.time) return null;
 
   const dates = dataArchive.daily.time;

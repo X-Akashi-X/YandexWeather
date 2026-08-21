@@ -1,4 +1,4 @@
-import type { apiForecast } from "@ts/api";
+import type { ApiForecast } from "@ts/api";
 import type { DayGroups, PeriodData } from "@ts/weather";
 import {
   getMagneticFieldCategory,
@@ -12,7 +12,7 @@ import {
   shouldShowPlus,
 } from "@utils/formatters";
 
-export const yesterdayData = (dataForecast: apiForecast) => {
+export const yesterdayData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.hourly) return null;
 
   const yesterdayDate = new Date();
@@ -37,7 +37,7 @@ export const yesterdayData = (dataForecast: apiForecast) => {
   };
 };
 
-export const timeLineData = (dataForecast: apiForecast) => {
+export const timeLineData = (dataForecast: ApiForecast) => {
   const now = new Date();
   const tomorrow = new Date(now);
   tomorrow.setDate(now.getDate() + 1);
@@ -64,7 +64,7 @@ export const timeLineData = (dataForecast: apiForecast) => {
     }));
 };
 
-export const advancedDaysData = (dataForecast: apiForecast) => {
+export const advancedDaysData = (dataForecast: ApiForecast) => {
   const groupedDays: Record<string, DayGroups> = {};
 
   dataForecast.hourly.time.forEach((timeStr, i) => {

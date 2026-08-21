@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import type { apiArhive } from "@ts/api";
+import type { ApiArhive } from "@ts/api";
 
 function useArhive() {
-  const [dataArhive, setData] = useState<apiArhive | null>(null);
+  const [dataArhive, setData] = useState<ApiArhive | null>(null);
 
   useEffect(() => {
     const fetchWeather = async () => {

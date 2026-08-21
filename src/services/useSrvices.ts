@@ -13,7 +13,7 @@ import {
   advancedDaysData,
   yesterdayData,
   montlyData,
-} from "./WeatherMappers";
+} from "./mappers/weatherMappers";
 
 const useServices = () => {
   const { dataForecast } = useForecast();

@@ -27,6 +27,7 @@
       "@services/*": ["./src/services/*"],
       "@ts/*": ["./src/ts/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@mocks/*": ["./src/mocks/*"],
     }
   },
 
