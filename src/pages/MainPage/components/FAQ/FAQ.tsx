@@ -47,7 +47,11 @@ const FAQ = () => {
           >
             <div className={styles.title_wrapper}>
               <p>Какая погода в Минске?</p>
-              <img src={Arrow} alt="" className={activeItem === "weather" ? "rotate180" : ""}/>
+              <img
+                src={Arrow}
+                alt=""
+                className={activeItem === "weather" ? "rotate180" : ""}
+              />
             </div>
             {activeItem === "weather" && (
               <p>
@@ -69,7 +73,11 @@ const FAQ = () => {
           >
             <div className={styles.title_wrapper}>
               <p>Сколько градусов в Минске?</p>
-              <img src={Arrow} alt=""  className={activeItem === "temp" ? "rotate180" : ""}/>
+              <img
+                src={Arrow}
+                alt=""
+                className={activeItem === "temp" ? "rotate180" : ""}
+              />
             </div>
             {activeItem === "temp" && (
               <p>
@@ -90,7 +98,11 @@ const FAQ = () => {
           >
             <div className={styles.title_wrapper}>
               <p>Какая скорость направления ветра в минске?</p>
-              <img src={Arrow} alt=""  className={activeItem === "wind" ? "rotate180" : ""}/>
+              <img
+                src={Arrow}
+                alt=""
+                className={activeItem === "wind" ? "rotate180" : ""}
+              />
             </div>
             {activeItem === "wind" && (
               <p>
@@ -114,7 +126,11 @@ const FAQ = () => {
           >
             <div className={styles.title_wrapper}>
               <p>Какая влажность воздуха в Минске?</p>
-              <img src={Arrow} alt=""  className={activeItem === "currentHumidity" ? "rotate180" : ""}/>
+              <img
+                src={Arrow}
+                alt=""
+                className={activeItem === "currentHumidity" ? "rotate180" : ""}
+              />
             </div>
             {activeItem === "currentHumidity" && (
               <p>
