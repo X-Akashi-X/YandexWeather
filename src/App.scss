@@ -68,6 +68,10 @@ input::-webkit-inner-spin-button {
   color: var(--color-light-grey);
 }
 
+.rotate180 {
+  transform: rotate(180deg);
+}
+
 //==================================SWIPER
 .swiper {
   overflow: visible;
@@ -88,7 +92,7 @@ input::-webkit-inner-spin-button {
   box-shadow: var(--default-shadow);
   width: 48px;
   height: 48px;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
   svg {
     color: black;
     stroke: black;
@@ -98,6 +102,11 @@ input::-webkit-inner-spin-button {
       stroke-width: 1.5;
     }
   }
+}
+.swiper-button-prev,
+.swiper-button-next:hover {
+  box-shadow: var(--button-shadow-hovered);
+  transform: scale(1.1);
 }
 .swiper-button-disabled {
   opacity: 0;

@@ -8,6 +8,9 @@
       border-radius: var(--default-radius);
       width: 100%;
       cursor: pointer;
+      h3{
+        transition: all 0.2s ease-in-out;
+      }
       .status_title_wrapper {
         display: flex;
         gap: 8px;
@@ -20,6 +23,9 @@
       &:last-child img {
         width: 26px;
       }
+    }
+    .status_item:hover h3{
+      color: var(--link-red-hovered);
     }
     button {
       background-color: var(--white-bg);

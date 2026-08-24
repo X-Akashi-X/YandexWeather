@@ -9,28 +9,33 @@
   .main_wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px ;
-    .column{
+    gap: 10px;
+    .column {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .faq_items{
+    .faq_items {
       background-color: var(--grey-bg-opacity-low);
       padding: 15px;
       border-radius: 12px;
       cursor: pointer;
-      .title_wrapper{
+      transition: all 0.2s ease-in-out;
+      .title_wrapper {
         display: flex;
         justify-content: space-between;
         font-weight: var(--week-bold-text);
-        img{
+        img {
           width: 14px;
+          transition: all 0.2s ease-in-out;
         }
       }
-      p:last-child{
+      p:last-child {
         margin-top: 30px;
       }
     }
+  }
+  .faq_items:hover {
+    background-color: var(--link-grey-hovered);
   }
 }

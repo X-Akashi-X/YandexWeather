@@ -38,7 +38,14 @@ header {
       background-color: inherit;
       align-items: center;
       font-size: 15px;
+      cursor: pointer;
     }
+    &.button_bg:hover {
+      background-color: var(--grey-bg-opacity-low)
+    }
+  }
+  a:hover{
+    color: var(--link-red-hovered);
   }
   button span {
     margin-right: 5px;
@@ -74,6 +81,7 @@ header {
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
+    cursor: text;
     img {
       width: 16px;
     }
@@ -104,6 +112,9 @@ header {
     img {
       width: 16px;
     }
+  }
+  a:hover{
+    background-color: var(--link-grey-hovered);
   }
 }
 

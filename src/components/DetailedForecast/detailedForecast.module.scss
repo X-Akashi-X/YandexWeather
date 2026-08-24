@@ -8,6 +8,8 @@
     align-items: center;
     margin-bottom: 10px;
     position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
     .line {
       position: absolute;
       left: 70.5%;
@@ -111,5 +113,9 @@
         width: 14px;
       }
     }
+  }
+  .main_wrapper:hover{
+    transform: scale(0.98);
+    box-shadow: var(--box-shadow-hovered);
   }
 }

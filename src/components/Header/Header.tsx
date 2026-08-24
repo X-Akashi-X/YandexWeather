@@ -36,7 +36,7 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) => (isActive ? styles.active : "")}
-            to="onMap"
+            to="/onMap"
           >
             На карте
           </NavLink>
