@@ -8,18 +8,43 @@ import Tracker from "@assets/icons/header/trackerIcon.svg";
 import Setting from "@assets/icons/header/settingIcon.svg";
 import Search from "@assets/icons/header/searchIcon.svg";
 import Clear from "@assets/icons/header/clearIcon.svg";
+import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
+  const [active, setActive] = useState(false);
+
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  function togleDropdown() {
+    setActive((prev) => (prev === false ? true : false));
+  }
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        active &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node)
+      ) {
+        setActive(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [active]);
+
   return (
     <header>
       <div className={styles.main_container}>
         <div className={styles.img_container}>
-          <a href="">
+          <a href="https://yandex.by/?via=ywhl" target="_blank">
             <img src={Logo} alt="Перейти на главную яндекса" />
           </a>
-          <a href="">
+          <Link to="/">
             <img src={Teg} alt="Перейти на главную яндекс.погода" />
-          </a>
+          </Link>
         </div>
         <nav className={styles.nav_container}>
           <NavLink
@@ -40,9 +65,32 @@ const Header = () => {
           >
             На карте
           </NavLink>
-          <button className={styles.button_bg}>
-            <span>Ещё</span> <img src={Arrow} alt="стрелка" />
+          <button className={styles.button_bg} onClick={togleDropdown}>
+            <span>Ещё</span>{" "}
+            <img
+              src={Arrow}
+              alt="стрелка"
+              className={active === true ? "rotate180" : ""}
+            />
           </button>
+          {active && (
+            <div className={styles.dropdown_menu} ref={menuRef}>
+              <Link to="/">На 10 дней</Link>
+              <Link to="/">На сегодня</Link>
+              <Link to="/">На завтра</Link>
+              <Link to="/">Прогноз на 3 дня</Link>
+              <Link to="/">Прогноз на 5 дней</Link>
+              <Link to="/">Прогноз на 7 дней</Link>
+              <Link to="/">Прогноз на 14 дней</Link>
+              <Link to="/">Прогноз на выходные</Link>
+              <Link to="/">Активность пыльцы</Link>
+              <Link to="/">Магнитные бури</Link>
+              <Link to="/">Фазы Луны</Link>
+              <Link to="/">УФ-индекс</Link>
+              <Link to="/">Атмосферное давление</Link>
+              <Link to="/">Статьи о погоде</Link>
+            </div>
+          )}
         </nav>
         <div className={styles.search_container}>
           <input type="search" id="search" placeholder=" " />

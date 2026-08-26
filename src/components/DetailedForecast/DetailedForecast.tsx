@@ -5,6 +5,7 @@ import LightArc from "@assets/image/detailedForecast/lightingDayArc.svg";
 import Sunrise from "@assets/icons/detailedForecast/sunriseIcon.svg";
 import Sunset from "@assets/icons/detailedForecast/sunsetIcon.svg";
 import WaterTemp from "@assets/icons/waterTempIcon.svg";
+import { Link } from "react-router-dom";
 
 const DetailedForecast = () => {
   const data = useServices().getAdvancedTenDaysData;
@@ -31,7 +32,7 @@ const DetailedForecast = () => {
         } = item;
 
         return (
-          <div className={styles.main_wrapper} key={i}>
+          <Link to="/" className={styles.main_wrapper} key={i}>
             <div className={styles.line}></div>
             <div className={styles.grid_forecast_wrapper}>
               <div
@@ -219,7 +220,7 @@ const DetailedForecast = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </section>

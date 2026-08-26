@@ -103,7 +103,7 @@ input::-webkit-inner-spin-button {
     }
   }
 }
-.swiper-button-prev,
+.swiper-button-prev:hover,
 .swiper-button-next:hover {
   box-shadow: var(--button-shadow-hovered);
   transform: scale(1.1);

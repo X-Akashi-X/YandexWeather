@@ -1,9 +1,9 @@
 import useServices from "@services/useSrvices";
 import styles from "./weekStatus.module.scss";
+import { Link } from "react-router-dom";
 import sourceData from "@assets/icons/mainInfoSection/sourceDataIcon.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { Link } from "react-router-dom";
 
 const WeakStatus = () => {
   const {
@@ -53,7 +53,7 @@ const WeakStatus = () => {
         navigation
       >
         <SwiperSlide>
-          <Link to="" className={styles.status_item}>
+          <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
               <img src={todayWeatherEffect} alt="" />
               <h3>Сегодня</h3>
@@ -64,10 +64,10 @@ const WeakStatus = () => {
               &nbsp;
               {todayMinMaxWindSpeed} м/с, порывы до {todayWindGusts} м/с
             </p>
-          </Link>
+          </a>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="" className={styles.status_item}>
+          <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
               <img src={tomorrowWeatherEffect} alt="" />
               <h3>Завтра</h3>
@@ -78,10 +78,10 @@ const WeakStatus = () => {
               &nbsp;
               {tomorrowMinMaxWindSpeed} м/с, порывы до {tomorrowWindGusts} м/с
             </p>
-          </Link>
+          </a>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="" className={styles.status_item}>
+          <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
               <img src={weekWeatherEffect} alt="" />
               <h3>На этой неделе</h3>
@@ -92,10 +92,10 @@ const WeakStatus = () => {
               {weekMaxTemperature}° · {weekWindCategory} {weekMinMaxWindSpeed}{" "}
               м/с, порывы до {weekWindGusts} м/с
             </p>
-          </Link>
+          </a>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="" className={styles.status_item}>
+          <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
               <img src={weekendWeatherEffect} alt="" />
               <h3>В выходные</h3>
@@ -105,10 +105,10 @@ const WeakStatus = () => {
               {weekendMaxTemperature}° · {weekendWindCategory}{" "}
               {weekendMinMaxWindSpeed} м/с, порывы до {weekendWindGusts} м/с
             </p>
-          </Link>
+          </a>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="" className={styles.status_item}>
+          <Link to="/" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
               <img src={sourceData} alt="" />
               <h3>Источник данных</h3>

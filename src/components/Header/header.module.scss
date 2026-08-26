@@ -29,11 +29,38 @@ header {
 .nav_container {
   display: flex;
   flex-shrink: 0;
+  position: relative;
+  .dropdown_menu{
+    position: absolute;
+    top: 50px;
+    right: -145px;
+    background-color: var(--white-bg);
+    padding: 20px 28px;
+    border-radius: var(--strong-radius);
+    max-height: 510px;
+    overflow: auto;
+    box-shadow: var(--default-shadow);
+    transition: all 0.2s ease-in-out;
+    &::-webkit-scrollbar{
+      display: none
+    };
+    scroll-behavior: smooth;
+    p{
+      margin: 25px 0px;
+      &:first-child{
+        margin-top: 0;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
   a,
   button {
     display: flex;
     padding: 12px 20px;
     border-radius: var(--strong-radius);
+    transition: all 0.2s ease-in-out;
     &.button_bg {
       background-color: inherit;
       align-items: center;
@@ -53,6 +80,7 @@ header {
   }
   button img {
     height: 12px;
+    transition: all 0.2s ease-in-out;
   }
 }
 

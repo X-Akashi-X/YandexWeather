@@ -1,4 +1,5 @@
 import styles from "./weatherAndFeelings.module.scss";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Pollen from "@assets/icons/mainInfoSection/pollenIcon.svg";
@@ -29,7 +30,7 @@ const WeatherAndFeelings = () => {
         navigation
       >
         <SwiperSlide>
-          <a className={styles.feelings_item}>
+          <Link to="/" className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <img className={styles.img_pollen} src={Pollen} alt="" />
               <div className={styles.status_wrapper}>
@@ -40,10 +41,10 @@ const WeatherAndFeelings = () => {
               <h4>Пыльца</h4>
               <p>{currentPollenCategory?.text}</p>
             </div>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a className={styles.feelings_item}>
+          <Link to="/" className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{todayMagneticField}</p>
               <div className={styles.status_wrapper}>
@@ -54,10 +55,10 @@ const WeatherAndFeelings = () => {
               <h4>Магнитное поле</h4>
               <p>{todayMagneticFieldCategory?.text}</p>
             </div>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a className={styles.feelings_item}>
+          <Link to="/" className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{currentPressure}</p>
               <div className={styles.status_wrapper}>
@@ -68,10 +69,10 @@ const WeatherAndFeelings = () => {
               <h4>Давление</h4>
               <p>{currentPressureCategory?.text}</p>
             </div>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a className={styles.feelings_item}>
+          <Link to="/" className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <img
                 className={styles.img_moon}
@@ -83,10 +84,10 @@ const WeatherAndFeelings = () => {
               <h4>Луна</h4>
               <p>{todayMoonPhase?.text}</p>
             </div>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a className={styles.feelings_item}>
+          <Link to="/" className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
               <p>{currentUVIndex}</p>
               <div className={styles.status_wrapper}>
@@ -97,7 +98,7 @@ const WeatherAndFeelings = () => {
               <h4>УФ-индекс</h4>
               <p>{currentUVCategory?.text}</p>
             </div>
-          </a>
+          </Link>
         </SwiperSlide>
       </Swiper>
     </section>

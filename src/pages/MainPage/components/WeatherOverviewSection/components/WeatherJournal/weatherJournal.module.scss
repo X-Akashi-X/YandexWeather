@@ -7,15 +7,10 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
     img {
       width: 12px;
       transform: rotate(270deg);
     }
-  }
-  .title_wrapper:hover{
-    color: var(--link-red-hovered)
   }
   .news_wrapper {
     border-radius: var(--default-radius);

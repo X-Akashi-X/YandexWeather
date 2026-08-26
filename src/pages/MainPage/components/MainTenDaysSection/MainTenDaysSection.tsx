@@ -1,13 +1,16 @@
 import DetailedForecast from "@components/DetailedForecast/DetailedForecast";
 import styles from "./mainTenDaysSection.module.scss";
 import Arrow from "@assets/icons/arrowMore.svg";
+import { Link } from "react-router-dom";
 
 const TenDaysForecastSection = () => {
   return (
     <section className={styles.section_wrapper}>
       <DetailedForecast />
       <button>
-        Прогноз на месяц <img src={Arrow} alt="" />
+        <Link to="/">
+          Прогноз на месяц <img src={Arrow} alt="" />
+        </Link>
       </button>
     </section>
   );

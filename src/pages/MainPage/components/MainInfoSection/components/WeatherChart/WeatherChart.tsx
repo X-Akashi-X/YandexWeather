@@ -1,5 +1,6 @@
 import useServices from "@services/useSrvices";
 import styles from "./weatherChart.module.scss";
+import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const WeatherChart = () => {
@@ -8,7 +9,7 @@ const WeatherChart = () => {
   return (
     <div className={styles.main_wrapper}>
       <h2>Прогноз на 10 дней</h2>
-      <a className={styles.days_wrapper}>
+      <Link to="/" className={styles.days_wrapper}>
         {data.map((item, i) => {
           const { tenDaysWeatherEffect, tenDaysWeekday, tenDaysDate } = item;
           return (
@@ -21,7 +22,7 @@ const WeatherChart = () => {
             </div>
           );
         })}
-      </a>
+      </Link>
       <div className={styles.chart_wrapper}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart

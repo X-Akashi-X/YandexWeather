@@ -1,4 +1,5 @@
 import styles from "./weatherTimeline.module.scss";
+import { Link } from "react-router-dom";
 import useServices from "@services/useSrvices";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -33,7 +34,7 @@ const WeatherTimeline = () => {
           return (
             <SwiperSlide className={styles.swiper_slide} key={i}>
               {isNewDay && <div className={styles.day_separator}></div>}
-              <div className={styles.weather_timeline_item}>
+              <Link to="/" className={styles.weather_timeline_item}>
                 <p>
                   {isNewDay
                     ? `${nextDayOfWeek}, ${timeLineTime}`
@@ -41,7 +42,7 @@ const WeatherTimeline = () => {
                 </p>
                 <img src={timeLineWeatherEffect} alt="" />
                 <p>{timeLineTemperature}°</p>
-              </div>
+              </Link>
             </SwiperSlide>
           );
         })}

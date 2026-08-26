@@ -1,4 +1,5 @@
 import styles from "./weatherOnMaps.module.scss";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Precipitation from "@assets/image/weatherOnMaps/precipitationMap.jpg";
@@ -20,52 +21,52 @@ const WeatherOnMaps = () => {
         navigation
       >
         <SwiperSlide>
-          <a
+          <Link to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Precipitation})` }}
           >
             <button>Карта осадков</button>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a
+          <Link to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Pollen})` }}
           >
             <button>Пыльца</button>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a
+          <Link to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Temp})` }}
           >
             <button>Температура</button>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a
+          <Link to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Snow})` }}
           >
             <button>Глубина снега</button>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a
+          <Link to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Wind})` }}
           >
             <button>Ветер</button>
-          </a>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <a
+          <Link to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Pressure})` }}
           >
             <button>Давление</button>
-          </a>
+          </Link>
         </SwiperSlide>
       </Swiper>
     </section>

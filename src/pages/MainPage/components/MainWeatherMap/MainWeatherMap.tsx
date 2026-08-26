@@ -1,5 +1,6 @@
 import useMap from "@hooks/useMap";
 import styles from "./mainWeatherMap.module.scss";
+import { Link } from "react-router-dom";
 
 const WeatherMap = () => {
   const { mapContainer } = useMap(false);
@@ -7,7 +8,9 @@ const WeatherMap = () => {
   return (
     <section className={styles.sectionWrapper}>
       <div ref={mapContainer}></div>
-      <button>Карта осадков</button>
+      <button>
+        <Link to="/">Карта осадков</Link>
+      </button>
     </section>
   );
 };
