@@ -59,7 +59,7 @@ function useMap(interactive: boolean, classNamePointer: string) {
 
       new maplibregl.Marker({
         element: pointerElement,
-        anchor:"bottom"
+        anchor: "bottom",
       })
         .setLngLat([DEFAULT_LON, DEFAULT_LAT])
         .addTo(map.current);
