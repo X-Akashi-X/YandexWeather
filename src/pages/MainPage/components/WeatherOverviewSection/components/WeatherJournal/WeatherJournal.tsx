@@ -12,7 +12,8 @@ const WeatherJournal = () => {
         <h3>Журнал погоды</h3>
         <img src={Arrow} alt="" />
       </div>
-      <Link to="/"
+      <Link
+        to="/"
         className={styles.news_wrapper}
         style={{ backgroundImage: `url(${randomNews.cover_img})` }}
       >

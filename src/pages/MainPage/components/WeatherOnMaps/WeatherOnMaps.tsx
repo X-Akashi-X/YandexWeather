@@ -21,7 +21,8 @@ const WeatherOnMaps = () => {
         navigation
       >
         <SwiperSlide>
-          <Link to="/"
+          <Link
+            to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Precipitation})` }}
           >
@@ -29,7 +30,8 @@ const WeatherOnMaps = () => {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="/"
+          <Link
+            to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Pollen})` }}
           >
@@ -37,7 +39,8 @@ const WeatherOnMaps = () => {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="/"
+          <Link
+            to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Temp})` }}
           >
@@ -45,7 +48,8 @@ const WeatherOnMaps = () => {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="/"
+          <Link
+            to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Snow})` }}
           >
@@ -53,7 +57,8 @@ const WeatherOnMaps = () => {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="/"
+          <Link
+            to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Wind})` }}
           >
@@ -61,7 +66,8 @@ const WeatherOnMaps = () => {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="/"
+          <Link
+            to="/"
             className={styles.maps_item}
             style={{ backgroundImage: `url(${Pressure})` }}
           >
