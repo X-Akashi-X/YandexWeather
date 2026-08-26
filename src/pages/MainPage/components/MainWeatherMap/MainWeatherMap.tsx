@@ -3,7 +3,7 @@ import styles from "./mainWeatherMap.module.scss";
 import { Link } from "react-router-dom";
 
 const WeatherMap = () => {
-  const { mapContainer } = useMap(false);
+  const { mapContainer } = useMap(false, "map_pointer");
 
   return (
     <section className={styles.sectionWrapper}>
