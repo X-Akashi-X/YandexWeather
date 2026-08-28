@@ -3,6 +3,7 @@
   border-radius: var(--default-radius);
   padding: 20px;
   margin-bottom: 10px;
+  overflow-x: hidden;
   h3 {
     margin-bottom: 15px;
   }
@@ -16,7 +17,7 @@
       background-position: center;
       background-size: cover;
       cursor: pointer;
-      button{
+      button {
         position: absolute;
         left: 10px;
         bottom: 10px;
@@ -27,11 +28,10 @@
         font-weight: var(--week-bold-text);
         cursor: pointer;
         transition: all 0.2s ease-in-out;
-        &:hover{
+        &:hover {
           box-shadow: var(--button-shadow-hovered);
         }
       }
     }
-
   }
 }

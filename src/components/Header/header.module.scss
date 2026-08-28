@@ -12,7 +12,7 @@ header {
     margin: 0 auto;
     display: flex;
     gap: 12px;
-    padding: 20px 0px;
+    padding: 20px 10px;
   }
 }
 
@@ -30,7 +30,7 @@ header {
   display: flex;
   flex-shrink: 0;
   position: relative;
-  .dropdown_menu{
+  .dropdown_menu {
     position: absolute;
     top: 50px;
     right: -145px;
@@ -41,16 +41,16 @@ header {
     overflow: auto;
     box-shadow: var(--default-shadow);
     transition: all 0.2s ease-in-out;
-    &::-webkit-scrollbar{
-      display: none
-    };
+    &::-webkit-scrollbar {
+      display: none;
+    }
     scroll-behavior: smooth;
-    p{
+    p {
       margin: 25px 0px;
-      &:first-child{
+      &:first-child {
         margin-top: 0;
       }
-      &:last-child{
+      &:last-child {
         margin-bottom: 0;
       }
     }
@@ -68,10 +68,10 @@ header {
       cursor: pointer;
     }
     &.button_bg:hover {
-      background-color: var(--grey-bg-opacity-low)
+      background-color: var(--grey-bg-opacity-low);
     }
   }
-  a:hover{
+  a:hover {
     color: var(--link-red-hovered);
   }
   button span {
@@ -141,7 +141,7 @@ header {
       width: 16px;
     }
   }
-  a:hover{
+  a:hover {
     background-color: var(--link-grey-hovered);
   }
 }

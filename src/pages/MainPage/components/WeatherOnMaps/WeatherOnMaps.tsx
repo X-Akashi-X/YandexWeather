@@ -18,6 +18,7 @@ const WeatherOnMaps = () => {
         modules={[Navigation]}
         slidesPerView={3}
         slidesPerGroup={1}
+        spaceBetween={10}
         navigation
       >
         <SwiperSlide>

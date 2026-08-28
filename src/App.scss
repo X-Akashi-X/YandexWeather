@@ -16,8 +16,9 @@ body {
 
 main {
   overflow-x: hidden;
-  max-width: 1130px;
+  max-width: 1150px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 ul,
@@ -120,7 +121,7 @@ input::-webkit-inner-spin-button {
 }
 
 //==================================MAP
-.map_pointer{
+.map_pointer {
   background-image: url(assets/icons/mapPointer.svg);
   background-size: contain;
   background-repeat: no-repeat;
