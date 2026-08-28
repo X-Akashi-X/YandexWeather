@@ -39,6 +39,8 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
 
 export const timeLineData = (dataForecast: ApiForecast) => {
   const now = new Date();
+  const current = new Date(now)
+  current.setHours(0, 0, 0, 0)
   const tomorrow = new Date(now);
   tomorrow.setDate(now.getDate() + 1);
   tomorrow.setHours(23, 59, 59, 999);
@@ -50,7 +52,7 @@ export const timeLineData = (dataForecast: ApiForecast) => {
     .filter(({ t }) => {
       const itemDate = new Date(t);
 
-      return itemDate >= now && itemDate <= tomorrow;
+      return itemDate >= current && itemDate <= tomorrow;
     })
     .map(({ t, i }) => ({
       timeLineDate: t.split("T")[0],

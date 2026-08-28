@@ -17,6 +17,10 @@
       background-position: center;
       background-size: cover;
       cursor: pointer;
+      @media (max-width: 1151px) {
+        width: 290px;
+        height: 188px;
+      }
       button{
         position: absolute;
         left: 10px;

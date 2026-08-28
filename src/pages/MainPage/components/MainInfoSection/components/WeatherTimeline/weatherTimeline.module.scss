@@ -13,9 +13,12 @@
       position: absolute;
       width: 1px;
       z-index: 5;
-      left: -50%;
+      right: calc(80% + 42px);
       top: 0;
       bottom: 0;
+      @media (max-width: 1151px) {
+        right: calc(60% + 42px);
+      }
     }
     .weather_timeline_item {
       height: 108px;
