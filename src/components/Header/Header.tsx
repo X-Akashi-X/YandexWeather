@@ -16,7 +16,7 @@ const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   function togleDropdown() {
-    setActive((prev) => (prev === false ? true : false));
+    setActive((prev) => (prev === true ? false : true));
   }
 
   useEffect(() => {
@@ -48,49 +48,67 @@ const Header = () => {
         </div>
         <nav className={styles.nav_container}>
           <NavLink
-            className={({ isActive }) => (isActive ? styles.active : "")}
+            className={({ isActive }) =>
+              `${isActive ? styles.active : ""} ${styles.nav_link}`
+            }
             to="/"
           >
             Главная
           </NavLink>
           <NavLink
-            className={({ isActive }) => (isActive ? styles.active : "")}
+            className={({ isActive }) =>
+              `${isActive ? styles.active : ""} ${styles.nav_link}`
+            }
             to="/onMonth"
           >
             На месяц
           </NavLink>
           <NavLink
-            className={({ isActive }) => (isActive ? styles.active : "")}
+            className={({ isActive }) =>
+              `${isActive ? styles.active : ""} ${styles.nav_link}`
+            }
             to="/onMap"
           >
             На карте
           </NavLink>
-          <button className={styles.button_bg} onClick={togleDropdown}>
-            <span>Ещё</span>{" "}
-            <img
-              src={Arrow}
-              alt="стрелка"
-              className={active === true ? "rotate180" : ""}
-            />
-          </button>
-          {active && (
-            <div className={styles.dropdown_menu} ref={menuRef}>
-              <Link to="/">На 10 дней</Link>
-              <Link to="/">На сегодня</Link>
-              <Link to="/">На завтра</Link>
-              <Link to="/">Прогноз на 3 дня</Link>
-              <Link to="/">Прогноз на 5 дней</Link>
-              <Link to="/">Прогноз на 7 дней</Link>
-              <Link to="/">Прогноз на 14 дней</Link>
-              <Link to="/">Прогноз на выходные</Link>
-              <Link to="/">Активность пыльцы</Link>
-              <Link to="/">Магнитные бури</Link>
-              <Link to="/">Фазы Луны</Link>
-              <Link to="/">УФ-индекс</Link>
-              <Link to="/">Атмосферное давление</Link>
-              <Link to="/">Статьи о погоде</Link>
-            </div>
-          )}
+          <div ref={menuRef} className={styles.dropdown_container}>
+            <button className={styles.button_bg} onClick={togleDropdown}>
+              <span className={styles.text_more}>Ещё</span>{" "}
+              <span className={styles.text_menu}>Меню</span>{" "}
+              <img
+                src={Arrow}
+                alt="стрелка"
+                className={active === true ? "rotate180" : ""}
+              />
+            </button>
+            {active && (
+              <div className={styles.dropdown_menu}>
+                <Link to="/" className={styles.nav_link_dropdown}>
+                  Главная
+                </Link>
+                <Link to="/onMonth" className={styles.nav_link_dropdown}>
+                  На месяц
+                </Link>
+                <Link to="/onMap" className={styles.nav_link_dropdown}>
+                  На карте
+                </Link>
+                <Link to="/">На 10 дней</Link>
+                <Link to="/">На сегодня</Link>
+                <Link to="/">На завтра</Link>
+                <Link to="/">Прогноз на 3 дня</Link>
+                <Link to="/">Прогноз на 5 дней</Link>
+                <Link to="/">Прогноз на 7 дней</Link>
+                <Link to="/">Прогноз на 14 дней</Link>
+                <Link to="/">Прогноз на выходные</Link>
+                <Link to="/">Активность пыльцы</Link>
+                <Link to="/">Магнитные бури</Link>
+                <Link to="/">Фазы Луны</Link>
+                <Link to="/">УФ-индекс</Link>
+                <Link to="/">Атмосферное давление</Link>
+                <Link to="/">Статьи о погоде</Link>
+              </div>
+            )}
+          </div>
         </nav>
         <div className={styles.search_container}>
           <input type="search" id="search" placeholder=" " />

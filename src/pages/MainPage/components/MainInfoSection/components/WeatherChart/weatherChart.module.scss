@@ -37,6 +37,9 @@
   }
   .chart_wrapper {
     width: 100%;
+    padding-left: calc(5% - 32px);
+    padding-right: calc(5% - 27px);
+    margin: 0 auto;
     height: 200px;
     .frame {
       border-radius: var(--default-radius);

@@ -27,7 +27,7 @@ const WeatherChart = () => {
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
-            margin={{ top: 10, right: 52, left: 52, bottom: 10 }}
+            margin={{ top: 10, right: 25, left: 25, bottom: 10 }}
           >
             <YAxis
               hide={true}

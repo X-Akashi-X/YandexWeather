@@ -2,21 +2,24 @@
   .main_wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 24px;
+    padding: 20px 24px;
     background-color: var(--white-bg);
     border-radius: var(--default-radius);
     align-items: center;
     margin-bottom: 10px;
     position: relative;
     cursor: pointer;
+    gap: 15px;
     transition: all 0.2s ease-in-out;
     .line {
-      position: absolute;
-      right: calc(50% - 240px);
-      top: 10%;
-      height: 82%;
+      margin-top: 5px;
+      height: 215px;
       width: 0.5px;
       background-color: var(--color-light-grey);
+      @media (max-width: 1151px) {
+        height: 240px;
+        margin-top: 0;
+      }
     }
     //GRID
     .grid_forecast_wrapper {
@@ -26,8 +29,14 @@
       align-items: center;
       position: relative;
       row-gap: 15px;
+      column-gap: 10px;
       .forecast_date_gr {
         grid-column: span 2 / span 2;
+        @media (max-width: 1151px) {
+          span {
+            display: block;
+          }
+        }
       }
       .forecast_feeling_gr {
         grid-column-start: 3;
@@ -104,6 +113,7 @@
       font-size: 14px;
       gap: 25px;
       margin-bottom: 25px;
+      white-space: nowrap;
     }
     .img_and_data_wrapper {
       display: flex;

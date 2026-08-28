@@ -3,6 +3,10 @@ footer {
   font-size: 14px;
   max-width: 1100px;
   margin: 0 auto;
+  @media (max-width: 1150px) {
+    max-width: 780px;
+    padding: 15px 30px;
+  }
   .meteum_link{
     color: blue;
     &:hover{

@@ -33,13 +33,12 @@ const DetailedForecast = () => {
 
         return (
           <Link to="/" className={styles.main_wrapper} key={i}>
-            <div className={styles.line}></div>
             <div className={styles.grid_forecast_wrapper}>
               <div
                 className={`${styles.forecast_date_gr} ${styles.title_date}`}
               >
                 {i === 0 ? "Сегодня" : i === 1 ? "Завтра" : advancedWeekday},{" "}
-                {advancedDate}
+                <span>{advancedDate}</span>
               </div>
               <div className={`${styles.forecast_feeling_gr} small_grey_text`}>
                 ощущается
@@ -174,6 +173,8 @@ const DetailedForecast = () => {
                 {night?.advancedPressure}
               </div>
             </div>
+            {/*Line*/}
+            <div className={styles.line}></div>
             {/*airQuality*/}
             <div className={styles.air_quality_wrapper}>
               <div className={styles.sunday_wrapper}>

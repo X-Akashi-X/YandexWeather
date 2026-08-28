@@ -19,6 +19,9 @@ main {
   max-width: 1150px;
   margin: 0 auto;
   padding: 0 10px;
+  @media (max-width: 1151px) {
+    max-width: 780px;
+  }
 }
 
 ul,

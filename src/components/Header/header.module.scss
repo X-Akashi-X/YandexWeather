@@ -13,6 +13,9 @@ header {
     display: flex;
     gap: 12px;
     padding: 20px 10px;
+    @media (max-width: 1151px) {
+      max-width: 780px;
+    }
   }
 }
 
@@ -25,11 +28,16 @@ header {
     height: 30px;
   }
 }
-
 .nav_container {
   display: flex;
   flex-shrink: 0;
   position: relative;
+  .nav_link {
+    display: block;
+    @media (max-width: 1151px) {
+      display: none;
+    }
+  }
   .dropdown_menu {
     position: absolute;
     top: 50px;
@@ -41,6 +49,12 @@ header {
     overflow: auto;
     box-shadow: var(--default-shadow);
     transition: all 0.2s ease-in-out;
+    .nav_link_dropdown{
+      display: none;
+      @media (max-width: 1151px) {
+        display: block;
+      }
+    }
     &::-webkit-scrollbar {
       display: none;
     }
@@ -66,6 +80,21 @@ header {
       align-items: center;
       font-size: 15px;
       cursor: pointer;
+      @media (max-width: 1151px) {
+        background-color: var(--grey-bg-opacity-low);
+      }
+      .text_more {
+        display: block;
+        @media (max-width: 1151px) {
+          display: none;
+        }
+      }
+      .text_menu {
+        display: none;
+        @media (max-width: 1151px) {
+          display: block;
+        }
+      }
     }
     &.button_bg:hover {
       background-color: var(--grey-bg-opacity-low);
