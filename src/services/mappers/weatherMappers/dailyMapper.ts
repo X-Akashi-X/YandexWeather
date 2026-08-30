@@ -170,6 +170,7 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
   return value.map((t, i) => ({
     tenDaysDate: new Date(t).getDate(),
     tenDaysWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
+    tenDaysWeekend: new Date(t).getDay(),
     tenDaysMaxTemperature: shouldShowPlus(
       Math.floor(dataForecast.daily.temperature_2m_max[i + 1]),
     ),

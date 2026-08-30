@@ -69,7 +69,7 @@ export function getMagneticFieldCategory(category: number) {
     return { fill: 0.42, color: "#ff7e01", text: "умеренная буря" };
   if (category <= 8)
     return { fill: 0.67, color: "#c30101", text: "сильная буря" };
-  if (category <= 2) return { fill: 1, color: "#57348d", text: "шторм" };
+  return { fill: 1, color: "#57348d", text: "шторм" };
 }
 
 export function getMoonPhase(category: number) {

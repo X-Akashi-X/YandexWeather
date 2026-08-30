@@ -27,11 +27,23 @@ const WeatherChart = () => {
         >
           <Link to="/" className={styles.days_wrapper}>
             {data.map((item, i) => {
-              const { tenDaysWeatherEffect, tenDaysWeekday, tenDaysDate } =
-                item;
+              const {
+                tenDaysWeatherEffect,
+                tenDaysWeekday,
+                tenDaysDate,
+                tenDaysWeekend,
+              } = item;
               return (
                 <div className={styles.day_wrapper} key={i}>
-                  <p>{tenDaysWeekday}</p>
+                  <p
+                    className={
+                      tenDaysWeekend === 6 || tenDaysWeekend === 0
+                        ? styles.weekend_day
+                        : ""
+                    }
+                  >
+                    {tenDaysWeekday}
+                  </p>
                   <p className="small_grey_text">
                     {i === 0 ? "Сегодня" : tenDaysDate}
                   </p>

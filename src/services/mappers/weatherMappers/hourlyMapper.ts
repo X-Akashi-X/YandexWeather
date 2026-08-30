@@ -237,6 +237,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
       advancedWeekday: new Date(date).toLocaleDateString("ru-RU", {
         weekday: "long",
       }),
+      advancedWeekend: new Date(date).getDay(),
       morning: averageData(dayData.morning),
       day: averageData(dayData.day),
       evening: averageData(dayData.evening),

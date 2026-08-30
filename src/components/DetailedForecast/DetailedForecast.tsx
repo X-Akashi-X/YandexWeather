@@ -24,6 +24,7 @@ const DetailedForecast = () => {
           advancedUVCategory,
           advancedWeekday,
           advancedDate,
+          advancedWeekend,
           advancedAvgWaterTemp,
           advancedSunDay,
           advancedSunrise,
@@ -39,7 +40,7 @@ const DetailedForecast = () => {
           <Link to="/" className={styles.main_wrapper} key={i}>
             <div className={styles.grid_forecast_wrapper}>
               <div
-                className={`${styles.forecast_date_gr} ${styles.title_date}`}
+                className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === 6 || advancedWeekend === 0 ? styles.weekend_day : ""}`}
               >
                 {i === 0 ? "Сегодня" : i === 1 ? "Завтра" : advancedWeekday},{" "}
                 <span>{advancedDate}</span>
@@ -275,7 +276,7 @@ const DetailedForecast = () => {
                 <div className="small_grey_text">Магнитное поле</div>
                 <div className={styles.air_quality_gr_str4}>
                   {advancedMagnteticField},{" "}
-                  {advancedMagnteticFieldCategory?.text}
+                  {advancedMagnteticFieldCategory?.text ?? "спокойное"}
                 </div>
               </div>
             </div>

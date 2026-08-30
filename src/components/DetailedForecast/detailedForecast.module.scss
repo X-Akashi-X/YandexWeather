@@ -66,6 +66,9 @@
         margin-bottom: 15px;
         grid-template-columns: repeat(3, 1fr);
       }
+      .weekend_day{
+        color: var(--link-red-hovered);
+      }
       .forecast_date_gr {
         grid-column: span 2 / span 2;
         @media (max-width: 1151px) {
