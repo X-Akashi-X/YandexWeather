@@ -30,8 +30,8 @@ const WeatherAndFeelings = () => {
         navigation
         breakpoints={{
           451: {
-            slidesPerView: 3
-          }
+            slidesPerView: 3,
+          },
         }}
       >
         <SwiperSlide>

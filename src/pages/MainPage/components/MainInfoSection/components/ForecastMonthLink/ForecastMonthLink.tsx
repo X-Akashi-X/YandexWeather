@@ -1,5 +1,5 @@
 import styles from "./forecastMonthLink.module.scss";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Calendar from "@assets/icons/chartSection/calendar.svg";
 import Arrow from "@assets/icons/arrowMore.svg";
 const ForecastMonthLink = () => {

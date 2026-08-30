@@ -32,7 +32,7 @@ const DetailedForecast = () => {
           advancedMagnteticFieldCategory,
           advancedMoonPhase,
           advancedAvgHumidity,
-          advancedAvgPressure
+          advancedAvgPressure,
         } = item;
 
         return (

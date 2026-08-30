@@ -214,8 +214,16 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
     );
     const avgUV = getDailyData(dataForecast.daily, "uv_index_max", date);
     const avgMagnetic = getAvgMagnetic(date);
-    const avgHumidity = getDailyData(dataForecast.daily, "relative_humidity_2m_mean", date)
-    const avgPressure = getDailyData(dataForecast.daily, "surface_pressure_mean", date)
+    const avgHumidity = getDailyData(
+      dataForecast.daily,
+      "relative_humidity_2m_mean",
+      date,
+    );
+    const avgPressure = getDailyData(
+      dataForecast.daily,
+      "surface_pressure_mean",
+      date,
+    );
     const avgMoon = getDailyData(dataForecast.daily, "moon_phase", date);
     const sunrise = getDailyData(dataForecast.daily, "sunrise", date);
     const sunset = getDailyData(dataForecast.daily, "sunset", date);

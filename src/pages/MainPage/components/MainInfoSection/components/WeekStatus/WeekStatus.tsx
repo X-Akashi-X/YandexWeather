@@ -52,9 +52,9 @@ const WeakStatus = () => {
         spaceBetween={8}
         navigation
         breakpoints={{
-          781:{
-            slidesPerView: 2
-          }
+          781: {
+            slidesPerView: 2,
+          },
         }}
       >
         <SwiperSlide>

@@ -24,11 +24,11 @@ const WeatherOnMaps = () => {
             slidesPerView: 3,
           },
           671: {
-            slidesPerView: 2.5
+            slidesPerView: 2.5,
           },
           521: {
-            slidesPerView: 2
-          }
+            slidesPerView: 2,
+          },
         }}
         navigation
       >

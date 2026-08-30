@@ -17,12 +17,12 @@ const WeatherTimeline = () => {
         slidesPerGroup={3}
         navigation
         breakpoints={{
-          781:{
-            slidesPerView: 10
+          781: {
+            slidesPerView: 10,
           },
-          601:{
-            slidesPerView: 9
-          }
+          601: {
+            slidesPerView: 9,
+          },
         }}
       >
         {data.map((item, i) => {
