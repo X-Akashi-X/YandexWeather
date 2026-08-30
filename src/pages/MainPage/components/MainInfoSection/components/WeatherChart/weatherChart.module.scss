@@ -1,7 +1,38 @@
 .main_wrapper {
   width: 100%;
+  .main_chart_wrapper {
+    @media (max-width: 781px) {
+      overflow-x: scroll;
+      display: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  .active{
+    display: block;
+  }
   h2 {
     margin-bottom: 20px;
+    @media (max-width: 781px) {
+      margin-bottom: 10px;
+    }
+  }
+  .dropdown_button {
+    display: none;
+    background-color: inherit;
+    gap: 5px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    img {
+      width: 12px;
+      transition: all 0.2s ease-in-out;
+    }
+    @media (max-width: 781px) {
+      display: flex;
+    }
   }
   .days_wrapper {
     display: flex;
@@ -19,6 +50,9 @@
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      @media (max-width: 781px) {
+        min-width: 62px;
+      }
       p:first-of-type {
         font-size: 20px;
         font-weight: var(--week-bold-text);
@@ -30,7 +64,7 @@
         margin-bottom: 7px;
       }
     }
-    .day_wrapper:hover{
+    .day_wrapper:hover {
       box-shadow: var(--button-shadow-hovered);
       color: var(--link-red-hovered);
     }
@@ -41,6 +75,11 @@
     padding-right: calc(5% - 27px);
     margin: 0 auto;
     height: 200px;
+    @media (max-width: 781px) {
+      padding-left: 5px;
+      padding-right: 0;
+      min-width: 705px;
+    }
     .frame {
       border-radius: var(--default-radius);
       width: 100%;

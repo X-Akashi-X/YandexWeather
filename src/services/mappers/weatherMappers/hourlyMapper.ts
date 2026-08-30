@@ -39,8 +39,8 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
 
 export const timeLineData = (dataForecast: ApiForecast) => {
   const now = new Date();
-  const current = new Date(now)
-  current.setHours(0, 0, 0, 0)
+  const current = new Date(now);
+  current.setMinutes(0, 0, 0);
   const tomorrow = new Date(now);
   tomorrow.setDate(now.getDate() + 1);
   tomorrow.setHours(23, 59, 59, 999);
@@ -214,6 +214,8 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
     );
     const avgUV = getDailyData(dataForecast.daily, "uv_index_max", date);
     const avgMagnetic = getAvgMagnetic(date);
+    const avgHumidity = getDailyData(dataForecast.daily, "relative_humidity_2m_mean", date)
+    const avgPressure = getDailyData(dataForecast.daily, "surface_pressure_mean", date)
     const avgMoon = getDailyData(dataForecast.daily, "moon_phase", date);
     const sunrise = getDailyData(dataForecast.daily, "sunrise", date);
     const sunset = getDailyData(dataForecast.daily, "sunset", date);
@@ -238,6 +240,8 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
       advancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : null,
       advancedUVCategory:
         typeof avgUV === "number" ? getUVCategory(Math.floor(avgUV)) : null,
+      advancedAvgHumidity: avgHumidity,
+      advancedAvgPressure: avgPressure,
       advancedMagnteticField: avgMagnetic,
       advancedMagnteticFieldCategory: avgMagnetic
         ? getMagneticFieldCategory(avgMagnetic)

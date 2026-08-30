@@ -6,6 +6,26 @@
     border-radius: 32px 32px 0px 0px;
     position: relative;
   }
+  .img_container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 10px;
+    bottom: 145px;
+    background-color: white;
+    border-radius: var(--strong-radius);
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
+    cursor: pointer;
+    img {
+      height: 25px;
+    }
+    @media (max-width: 781px) {
+      display: flex;
+    }
+  }
   button {
     position: absolute;
     right: 24px;
@@ -19,7 +39,7 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
   }
-  button:hover{
+  button:hover {
     color: var(--link-red-hovered);
     box-shadow: var(--default-shadow);
   }

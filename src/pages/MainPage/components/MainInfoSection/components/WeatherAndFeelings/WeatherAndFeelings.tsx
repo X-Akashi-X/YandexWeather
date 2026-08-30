@@ -24,10 +24,15 @@ const WeatherAndFeelings = () => {
       <Swiper
         className={styles.feelings_wrapper}
         modules={[Navigation]}
-        slidesPerView={3}
+        slidesPerView={2}
         slidesPerGroup={2}
         spaceBetween={15}
         navigation
+        breakpoints={{
+          451: {
+            slidesPerView: 3
+          }
+        }}
       >
         <SwiperSlide>
           <Link to="/" className={styles.feelings_item}>

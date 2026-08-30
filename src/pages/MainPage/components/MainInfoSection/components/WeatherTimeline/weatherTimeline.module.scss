@@ -19,6 +19,9 @@
       @media (max-width: 1151px) {
         right: calc(60% + 42px);
       }
+      @media (max-width: 781px) {
+        display: none;
+      }
     }
     .weather_timeline_item {
       height: 108px;

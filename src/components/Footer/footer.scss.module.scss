@@ -7,9 +7,9 @@ footer {
     max-width: 780px;
     padding: 15px 30px;
   }
-  .meteum_link{
+  .meteum_link {
     color: blue;
-    &:hover{
+    &:hover {
       color: var(--link-red-hovered);
     }
   }
@@ -21,7 +21,7 @@ footer {
     p {
       color: var(--color-light-grey);
       cursor: pointer;
-      &:hover{
+      &:hover {
         color: black;
       }
     }
@@ -31,12 +31,30 @@ footer {
     justify-content: space-between;
     padding: 30px 0px 20px 0px;
     border-bottom: 1px solid var(--color-light-grey-opacity-low);
+    @media (max-width: 781px) {
+      flex-wrap: wrap;
+      row-gap: 0;
+    }
+    @media (max-width: 431px) {
+      flex-direction: column;
+    }
+    .break {
+      display: none;
+      flex-basis: 100%;
+      height: 0;
+      @media (max-width: 781px) {
+        display: block;
+      }
+      @media (max-width: 431px) {
+        display: none;
+      }
+    }
     a {
       display: block;
       margin: 15px 0px;
       color: var(--color-light-grey);
       transition: all 0.2s ease-in-out;
-      &:hover{
+      &:hover {
         color: black;
       }
     }
@@ -46,10 +64,10 @@ footer {
       }
     }
   }
-  .requisite_wrapper{
+  .requisite_wrapper {
     color: var(--color-light-grey);
     padding: 30px 0px;
-    p:first-child{
+    p:first-child {
       margin-bottom: 15px;
     }
   }

@@ -16,13 +16,19 @@ const WeatherOnMaps = () => {
       <Swiper
         className={styles.maps_wrapper}
         modules={[Navigation]}
-        slidesPerView={2.5}
+        slidesPerView={1}
         slidesPerGroup={1}
         spaceBetween={10}
         breakpoints={{
           1151: {
             slidesPerView: 3,
           },
+          671: {
+            slidesPerView: 2.5
+          },
+          521: {
+            slidesPerView: 2
+          }
         }}
         navigation
       >

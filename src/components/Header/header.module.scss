@@ -27,6 +27,9 @@ header {
   img {
     height: 30px;
   }
+  @media (max-width: 781px) {
+    display: none;
+  }
 }
 .nav_container {
   display: flex;
@@ -35,6 +38,11 @@ header {
   .nav_link {
     display: block;
     @media (max-width: 1151px) {
+      display: none;
+    }
+  }
+  .dropdown_container{
+    @media (max-width:431px) {
       display: none;
     }
   }

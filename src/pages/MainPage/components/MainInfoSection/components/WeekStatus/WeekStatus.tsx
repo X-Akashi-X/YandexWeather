@@ -48,9 +48,14 @@ const WeakStatus = () => {
       <Swiper
         className={styles.status_wrapper}
         modules={[Navigation]}
-        slidesPerView={2}
+        slidesPerView={1}
         spaceBetween={8}
         navigation
+        breakpoints={{
+          781:{
+            slidesPerView: 2
+          }
+        }}
       >
         <SwiperSlide>
           <a href="" className={styles.status_item}>

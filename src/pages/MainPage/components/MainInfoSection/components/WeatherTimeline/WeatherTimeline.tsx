@@ -12,10 +12,18 @@ const WeatherTimeline = () => {
       <Swiper
         className={styles.timeline_wrapper}
         modules={[Navigation]}
-        slidesPerView={10}
-        spaceBetween={50}
+        slidesPerView={8}
+        spaceBetween={60}
         slidesPerGroup={3}
         navigation
+        breakpoints={{
+          781:{
+            slidesPerView: 10
+          },
+          601:{
+            slidesPerView: 9
+          }
+        }}
       >
         {data.map((item, i) => {
           const {

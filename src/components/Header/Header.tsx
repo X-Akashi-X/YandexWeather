@@ -114,7 +114,7 @@ const Header = () => {
           <input type="search" id="search" placeholder=" " />
           <label htmlFor="search">
             <img src={Search} alt="поиск" />
-            <span>Минск, Московский район</span>
+            <span>Минск</span>
           </label>
           <button>
             <img src={Clear} alt="" />

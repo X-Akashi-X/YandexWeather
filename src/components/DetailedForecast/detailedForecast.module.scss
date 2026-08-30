@@ -11,7 +11,10 @@
     cursor: pointer;
     gap: 15px;
     transition: all 0.2s ease-in-out;
-    .line {
+    @media (max-width: 781px) {
+      display: block;
+    }
+    .line_y {
       margin-top: 5px;
       height: 215px;
       width: 0.5px;
@@ -19,6 +22,34 @@
       @media (max-width: 1151px) {
         height: 240px;
         margin-top: 0;
+      }
+      @media (max-width: 781px) {
+        display: none;
+      }
+    }
+    .line_x {
+      height: 0.5px;
+      width: 100%;
+      background-color: var(--color-light-grey);
+      display: none;
+      @media (max-width: 781px) {
+        display: block;
+        margin-bottom: 15px;
+      }
+    }
+    .atmosphere_indicators {
+      display: none;
+      gap: 15px;
+      .atmosphere_indicators_item {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        img {
+          width: 17px;
+        }
+      }
+      @media (max-width: 781px) {
+        display: flex;
       }
     }
     //GRID
@@ -30,6 +61,11 @@
       position: relative;
       row-gap: 15px;
       column-gap: 10px;
+      @media (max-width: 781px) {
+        justify-content: space-between;
+        margin-bottom: 15px;
+        grid-template-columns: repeat(3, 1fr);
+      }
       .forecast_date_gr {
         grid-column: span 2 / span 2;
         @media (max-width: 1151px) {
@@ -37,18 +73,40 @@
             display: block;
           }
         }
+        @media (max-width: 781px) {
+          grid-column: 1;
+          span {
+            display: inline;
+          }
+        }
       }
       .forecast_feeling_gr {
         grid-column-start: 3;
+        @media (max-width: 781px) {
+          grid-column-start: none;
+          display: none;
+        }
       }
       .forecast_wind_gr {
         grid-column-start: 4;
+        @media (max-width: 781px) {
+          grid-column-start: none;
+          display: none;
+        }
       }
       .forecast_humidity_gr {
         grid-column-start: 5;
+        @media (max-width: 781px) {
+          grid-column-start: none;
+          display: none;
+        }
       }
       .forecast_pressure_gr {
         grid-column-start: 6;
+        @media (max-width: 781px) {
+          grid-column-start: none;
+          display: none;
+        }
       }
       .forecast_gr_str1 {
         grid-row-start: 2;
@@ -62,11 +120,39 @@
       .forecast_gr_str4 {
         grid-row-start: 5;
       }
+      .apparent_wrapper {
+        @media (max-width: 781px) {
+          display: none;
+        }
+      }
+      .humidity_wrapper {
+        @media (max-width: 781px) {
+          display: none;
+        }
+      }
+      .pressure_wrapper {
+        @media (max-width: 781px) {
+          display: none;
+        }
+      }
+      .temp_wrapper {
+        @media (max-width: 781px) {
+          justify-self: center;
+        }
+      }
+      .wind_wrapper {
+        @media (max-width: 781px) {
+          justify-self: end;
+        }
+      }
     }
     .air_quality_wrapper {
       display: flex;
       flex-direction: column;
       align-items: start;
+      @media (max-width: 781px) {
+        display: none;
+      }
       .sunday_wrapper {
         display: flex;
         flex-direction: column;
@@ -101,10 +187,17 @@
         width: 32px;
       }
     }
-    .wind_wrapper {
+    .wind_anvanced_wrapper {
       display: flex;
       align-items: center;
       gap: 2px;
+      text-align: left;
+      .m_per_sec {
+        display: none;
+        @media (max-width: 781px) {
+          display: block;
+        }
+      }
     }
     .under_arc_wrapper {
       display: flex;

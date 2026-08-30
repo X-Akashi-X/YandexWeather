@@ -48,6 +48,7 @@ const Footer = () => {
           <Link to="/">Атмосферное давление</Link>
           <Link to="/">Фазы Луны</Link>
         </div>
+        <div className={styles.break}></div>
         <div className={styles.partners_wrapper}>
           <h4>Партнёрам</h4>
           <a href="https://yandex.by/adv/products/context">Реклама</a>
