@@ -41,8 +41,8 @@ header {
       display: none;
     }
   }
-  .dropdown_container{
-    @media (max-width:431px) {
+  .menu_container {
+    @media (max-width: 781px) {
       display: none;
     }
   }
@@ -57,7 +57,7 @@ header {
     overflow: auto;
     box-shadow: var(--default-shadow);
     transition: all 0.2s ease-in-out;
-    .nav_link_dropdown{
+    .nav_link_dropdown {
       display: none;
       @media (max-width: 1151px) {
         display: block;
@@ -166,7 +166,8 @@ header {
 .button_container {
   display: flex;
   gap: 12px;
-  a {
+  position: relative;
+  button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -174,12 +175,147 @@ header {
     width: 44px;
     height: 44px;
     background-color: var(--grey-bg-opacity-low);
+    cursor: pointer;
     img {
       width: 16px;
     }
   }
-  a:hover {
+  button:hover {
     background-color: var(--link-grey-hovered);
+  }
+  .settings_container {
+    .setting_icon {
+      @media (max-width: 781px) {
+        display: none;
+      }
+    }
+    .menu_icon {
+      display: none;
+      @media (max-width: 781px) {
+        display: block;
+      }
+    }
+    .settings_dropdown {
+      position: absolute;
+      right: 3px;
+      top: 55px;
+      background-color: rgba(247, 248, 250, 1);
+      border-radius: var(--strong-radius);
+      box-shadow: var(--default-shadow);
+      display: flex;
+      flex-direction: column;
+      font-weight: normal;
+      gap: 8px;
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      scroll-behavior: smooth;
+      .profile_wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: var(--white-bg);
+        border-radius: var(--default-radius);
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          background-color: var(--grey-bg-opacity-low);
+        }
+        span {
+          width: 40px;
+          height: 40px;
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url(https://weather.yastatic.net/s3/weather-frontend/front2/_next/static/media/plusCircle.578f8995.svg);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+          }
+        }
+        img {
+          border-radius: var(--half-radius);
+          width: 32px;
+          margin: 4px;
+        }
+      }
+      .theme_wrapper {
+        background-color: var(--white-bg);
+        border-radius: var(--default-radius);
+        padding: 20px;
+        .title_wrapper {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-bottom: 10px;
+          img {
+            width: 24px;
+          }
+        }
+        .button_wrapper {
+          display: flex;
+          gap: 3px;
+          background-color: var(--color-light-grey-opacity-low);
+          border-radius: var(--default-radius);
+          padding: 3px;
+          button {
+            background-color: var(--white-bg);
+            min-width: 108px;
+            max-height: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+          }
+        }
+      }
+      .navigation_wrapper {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--white-bg);
+        border-radius: var(--default-radius);
+        max-height: 315px;
+        overflow-y: scroll;
+        padding: 5px;
+        .navigation_item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 15px;
+          padding: 15px;
+          background-color: transparent;
+          width: auto;
+          height: auto;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            background-color: var(--grey-bg-opacity-low);
+            border-radius: var(--default-radius);
+          }
+          .arrow_icon {
+            width: 16px;
+            transform: rotate(270deg);
+            display: flex;
+            justify-self: end;
+          }
+          .title_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .title_icon {
+              width: 24px;
+              font-size: 16px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

@@ -8,6 +8,7 @@
     height: 350px;
   }
   @media (max-width: 781px) {
-    display: none;
+    flex-direction: column;
+    height: auto;
   }
 }

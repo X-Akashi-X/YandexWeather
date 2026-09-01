@@ -1,5 +1,4 @@
 import CurrentWeather from "./components/CurrentWeather/CurrentWeather";
-import ForecastMonthLink from "./components/ForecastMonthLink/ForecastMonthLink";
 import WeatherAndFeelings from "./components/WeatherAndFeelings/WeatherAndFeelings";
 import WeatherChart from "./components/WeatherChart/WeatherChart";
 import WeatherTimeline from "./components/WeatherTimeline/WeatherTimeline";
@@ -13,7 +12,6 @@ const MainInfoSection = () => {
       <WeakStatus />
       <WeatherTimeline />
       <WeatherAndFeelings />
-      <ForecastMonthLink />
       <WeatherChart />
     </section>
   );

@@ -2,7 +2,7 @@ import styles from "./weatherAndFeelings.module.scss";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import Pollen from "@assets/icons/mainInfoSection/pollenIcon.svg";
+import Pollen from "@assets/icons/pollenIcon.svg";
 import useServices from "@services/useSrvices";
 import StatusArc from "@components/StatusArc/StatusArc";
 
