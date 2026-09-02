@@ -14,14 +14,16 @@ import {
   yesterdayData,
   montlyData,
 } from "./mappers/weatherMappers";
+import type { AdvancedWeather } from "@ts/weather";
+import { defaultOneDay } from "@constants/weather";
 
 const useServices = () => {
   const { dataForecast } = useForecast();
   const { dataAirQuality } = useAirQuality();
   const { dataArhive } = useArhive();
 
-  const advancedWeather = useMemo(() => {
-    if (!dataForecast) return { tenDays: [], oneDay: null };
+  const advancedWeather = useMemo<AdvancedWeather>(() => {
+    if (!dataForecast) return { tenDays: [], oneDay: defaultOneDay };
     return advancedDaysData(dataForecast);
   }, [dataForecast]);
 
@@ -31,15 +33,15 @@ const useServices = () => {
     return {
       getCurrentData: isForecastAndAir
         ? currentData(dataForecast, dataAirQuality)
-        : null,
-      getTodayData: dataForecast ? todayData(dataForecast) : null,
-      getTomorrowData: dataForecast ? tomorrowData(dataForecast) : null,
-      getYesterdayData: dataForecast ? yesterdayData(dataForecast) : null,
-      getWeekData: dataForecast ? weekData(dataForecast) : null,
-      getWeekendData: dataForecast ? weekendData(dataForecast) : null,
-      getTenDaysData: dataForecast ? tenDaysData(dataForecast) : null,
-      getMontlyData: dataArhive ? montlyData(dataArhive) : null,
-      getTimeLineData: dataForecast ? timeLineData(dataForecast) : null,
+        : {},
+      getTodayData: dataForecast ? todayData(dataForecast) : {},
+      getTomorrowData: dataForecast ? tomorrowData(dataForecast) : {},
+      getYesterdayData: dataForecast ? yesterdayData(dataForecast) : {},
+      getWeekData: dataForecast ? weekData(dataForecast) : {},
+      getWeekendData: dataForecast ? weekendData(dataForecast) : {},
+      getTenDaysData: dataForecast ? tenDaysData(dataForecast) : [],
+      getMontlyData: dataArhive ? montlyData(dataArhive) : [],
+      getTimeLineData: dataForecast ? timeLineData(dataForecast) : [],
       getAdvancedTenDaysData: advancedWeather.tenDays,
       getAdvancedOneDayData: advancedWeather.oneDay,
     };

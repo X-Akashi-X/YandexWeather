@@ -1,4 +1,4 @@
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 import styles from "./weekStatus.module.scss";
 import { Link } from "react-router-dom";
 import sourceData from "@assets/icons/mainInfoSection/sourceDataIcon.svg";
@@ -6,6 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 const WeakStatus = () => {
+  const { getTodayData, getTomorrowData, getWeekData, getWeekendData } =
+    useServices();
+
   const {
     todayMaxTemperature,
     todayMinTemperature,
@@ -14,7 +17,7 @@ const WeakStatus = () => {
     todayWeatherEffect,
     todayWeatherInfo,
     todayWindCategory,
-  } = useServices().getTodayData || {};
+  } = getTodayData;
   const {
     tomorrowWeatherEffect,
     tomorrowMinTemperature,
@@ -23,7 +26,7 @@ const WeakStatus = () => {
     tomorrowWindGusts,
     tomorrowWeatherInfo,
     tomorrowWindCategory,
-  } = useServices().getTomorrowData || {};
+  } = getTomorrowData;
   const {
     weekMinTemperature,
     weekMaxTemperature,
@@ -32,7 +35,7 @@ const WeakStatus = () => {
     weekWeatherEffect,
     weekWeatherInfo,
     weekWindCategory,
-  } = useServices().getWeekData || {};
+  } = getWeekData;
   const {
     weekendMinTemperature,
     weekendMaxTemperature,
@@ -41,7 +44,7 @@ const WeakStatus = () => {
     weekendWeatherEffect,
     weekendWeatherInfo,
     weekendWindCategory,
-  } = useServices().getWeekendData || {};
+  } = getWeekendData;
 
   return (
     <section className={styles.section_wrapper}>

@@ -28,6 +28,7 @@
       "@ts/*": ["./src/ts/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@mocks/*": ["./src/mocks/*"],
+      "@constants/*": ["./src/constants/*"],
     }
   },
 

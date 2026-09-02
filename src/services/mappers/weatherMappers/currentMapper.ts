@@ -13,7 +13,7 @@ export const currentData = (
   dataForecast: ApiForecast,
   dataAirQuality: ApiAirQuality,
 ) => {
-  if (!dataForecast?.current || !dataAirQuality?.current) return null;
+  if (!dataForecast?.current || !dataAirQuality?.current) return {};
 
   return {
     currentTemperature: shouldShowPlus(

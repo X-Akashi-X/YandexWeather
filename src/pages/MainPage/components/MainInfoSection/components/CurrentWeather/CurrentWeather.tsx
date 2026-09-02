@@ -3,9 +3,11 @@ import WindSpeed from "@assets/icons/mainInfoSection/windSpeedIcon.svg";
 import Pressure from "@assets/icons/mainInfoSection/pressureIcon.svg";
 import Humidity from "@assets/icons/mainInfoSection/humidityIcon.svg";
 import WaterTemp from "@assets/icons/waterTempIcon.svg";
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 
 const CurrentWeather = () => {
+  const { getCurrentData, getYesterdayData, getTodayData } = useServices();
+
   const {
     currentWeatherEffect,
     currentWeatherInfo,
@@ -16,9 +18,9 @@ const CurrentWeather = () => {
     currentWindSpeed,
     currentPressure,
     currentHumidity,
-  } = useServices().getCurrentData || {};
-  const { yesterdayCurrentTemp } = useServices().getYesterdayData || {};
-  const { todayPrecipitationProbability } = useServices().getTodayData || {};
+  } = getCurrentData;
+  const { yesterdayCurrentTemp } = getYesterdayData;
+  const { todayPrecipitationProbability } = getTodayData;
 
   return (
     <section className={styles.section_wrapper}>

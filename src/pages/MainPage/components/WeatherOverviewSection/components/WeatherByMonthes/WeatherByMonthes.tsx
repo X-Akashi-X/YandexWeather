@@ -1,16 +1,21 @@
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 import styles from "./weatherByMonthes.module.scss";
 import { Link } from "react-router-dom";
 
 const WeatherByMonthes = () => {
-  const dataArchive = useServices().getMontlyData || [];
+  const { getMontlyData } = useServices();
+  const data = getMontlyData;
 
   return (
     <section className={styles.section_wrapper}>
       <h3>Погода по месяцам</h3>
       <div className={styles.weather_wrapper}>
-        {dataArchive.map((item, i) => (
-          <Link to="/" className={styles.weather_wrapper_item} key={i}>
+        {data.map((item) => (
+          <Link
+            to="/"
+            className={styles.weather_wrapper_item}
+            key={item.monthly}
+          >
             <p>{item.monthly}</p>
             <div className={styles.tmp_and_effect_wrapper}>
               <p>{item.montlyAvgTemperature}°</p>

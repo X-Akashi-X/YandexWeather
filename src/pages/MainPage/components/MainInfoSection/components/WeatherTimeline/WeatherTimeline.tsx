@@ -1,11 +1,12 @@
 import styles from "./weatherTimeline.module.scss";
 import { Link } from "react-router-dom";
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 const WeatherTimeline = () => {
-  const data = useServices().getTimeLineData || [];
+  const { getTimeLineData } = useServices();
+  const data = getTimeLineData;
 
   return (
     <section className={styles.section_wrapper}>
@@ -25,35 +26,45 @@ const WeatherTimeline = () => {
           },
         }}
       >
-        {data.map((item, i) => {
-          const {
-            timeLineWeatherEffect,
-            timeLineDate,
-            timeLineTime,
-            timeLineTemperature,
-          } = item;
+        {data.map(
+          (
+            {
+              timeLineDateKey,
+              timeLineWeatherEffect,
+              timeLineDate,
+              timeLineTime,
+              timeLineTemperature,
+            },
+            i,
+          ) => {
+            const prev = data[i - 1];
+            const isNewDay = prev && prev.timeLineDate !== timeLineDate;
+            const nextDayOfWeek = new Date(timeLineDate).toLocaleString(
+              "ru-RU",
+              {
+                weekday: "short",
+              },
+            );
 
-          const prev = data[i - 1];
-          const isNewDay = prev && prev.timeLineDate !== timeLineDate;
-          const nextDayOfWeek = new Date(timeLineDate).toLocaleString("ru-RU", {
-            weekday: "short",
-          });
-
-          return (
-            <SwiperSlide className={styles.swiper_slide} key={i}>
-              {isNewDay && <div className={styles.day_separator}></div>}
-              <Link to="/" className={styles.weather_timeline_item}>
-                <p>
-                  {isNewDay
-                    ? `${nextDayOfWeek}, ${timeLineTime}`
-                    : timeLineTime}
-                </p>
-                <img src={timeLineWeatherEffect} alt="" />
-                <p>{timeLineTemperature}°</p>
-              </Link>
-            </SwiperSlide>
-          );
-        })}
+            return (
+              <SwiperSlide
+                className={styles.swiper_slide}
+                key={timeLineDateKey}
+              >
+                {isNewDay && <div className={styles.day_separator}></div>}
+                <Link to="/" className={styles.weather_timeline_item}>
+                  <p>
+                    {isNewDay
+                      ? `${nextDayOfWeek}, ${timeLineTime}`
+                      : timeLineTime}
+                  </p>
+                  <img src={timeLineWeatherEffect} alt="" />
+                  <p>{timeLineTemperature}°</p>
+                </Link>
+              </SwiperSlide>
+            );
+          },
+        )}
       </Swiper>
     </section>
   );

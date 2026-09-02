@@ -13,6 +13,7 @@ export default defineConfig({
       "@ts": path.resolve(__dirname, "./src/ts"),
       "@hooks": path.resolve(__dirname, "./src/hooks"),
       "@mocks": path.resolve(__dirname, "./src/mocks"),
+      "@constants": path.resolve(__dirname, "./src/constants"),
     },
   },
   css: {

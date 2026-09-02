@@ -14,7 +14,7 @@ import {
 } from "@utils/formatters";
 
 export const todayData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily) return null;
+  if (!dataForecast?.daily) return {};
 
   const magneticField = Math.abs(
     Math.floor(dataForecast.daily.surface_pressure_max[1] * 0.75006) -
@@ -56,7 +56,7 @@ export const todayData = (dataForecast: ApiForecast) => {
 };
 
 export const tomorrowData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily) return null;
+  if (!dataForecast?.daily) return {};
 
   return {
     tomorrowMinTemperature: shouldShowPlus(
@@ -79,7 +79,7 @@ export const tomorrowData = (dataForecast: ApiForecast) => {
 };
 
 export const weekData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily) return null;
+  if (!dataForecast?.daily) return {};
 
   const avgDetails = (arg: number[]) => {
     const week = arg.slice(1, 8);
@@ -121,7 +121,7 @@ export const weekData = (dataForecast: ApiForecast) => {
 };
 
 export const weekendData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily?.time) return null;
+  if (!dataForecast?.daily?.time) return {};
 
   const weekendDays = dataForecast.daily.time
     .map((date, i) => ({
@@ -163,11 +163,12 @@ export const weekendData = (dataForecast: ApiForecast) => {
 };
 
 export const tenDaysData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily?.time) return null;
+  if (!dataForecast?.daily?.time) return [];
 
   const value = dataForecast.daily.time.slice(1, 11);
 
   return value.map((t, i) => ({
+    tenDaysDateKey: t,
     tenDaysDate: new Date(t).getDate(),
     tenDaysWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
     tenDaysWeekend: new Date(t).getDay(),
@@ -184,7 +185,7 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
 };
 
 export const montlyData = (dataArchive: ApiArhive) => {
-  if (!dataArchive?.daily?.time) return null;
+  if (!dataArchive?.daily?.time) return [];
 
   const dates = dataArchive.daily.time;
   const temps = dataArchive.daily.temperature_2m_mean;

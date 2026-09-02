@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styles from "./FAQ.module.scss";
 import Arrow from "@assets/icons/arrowMore.svg";
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 
 const FAQ = () => {
+  const { getCurrentData, getTodayData, getAdvancedOneDayData } = useServices();
+
   const {
     currentTemperature,
     currentApparentTemperature,
@@ -12,7 +14,7 @@ const FAQ = () => {
     currentHumidity,
     currentPressure,
     currentWeatherInfo,
-  } = useServices().getCurrentData || {};
+  } = getCurrentData;
 
   const {
     todayMinTemperature,
@@ -25,10 +27,9 @@ const FAQ = () => {
     todayMinPressure,
     todayMaxPressure,
     todayWindCategory,
-  } = useServices().getTodayData || {};
+  } = getTodayData;
 
-  const { morning, day, evening, night } =
-    useServices().getAdvancedOneDayData || {};
+  const { morning, day, evening, night } = getAdvancedOneDayData;
 
   const [activeItem, setActiveItem] = useState<string | null>(null);
 

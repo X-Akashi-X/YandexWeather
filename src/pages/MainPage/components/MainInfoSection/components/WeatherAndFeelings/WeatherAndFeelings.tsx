@@ -3,20 +3,22 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Pollen from "@assets/icons/pollenIcon.svg";
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 import StatusArc from "@components/StatusArc/StatusArc";
 
 const WeatherAndFeelings = () => {
+  const { getCurrentData, getTodayData } = useServices();
+
   const {
     currentPressure,
     currentPressureCategory,
     currentPollenCategory,
     currentUVCategory,
     currentUVIndex,
-  } = useServices().getCurrentData || {};
+  } = getCurrentData;
 
   const { todayMagneticField, todayMagneticFieldCategory, todayMoonPhase } =
-    useServices().getTodayData || {};
+    getTodayData;
 
   return (
     <section className={styles.section_wrapper}>

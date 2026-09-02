@@ -22,7 +22,7 @@ import type { Dispatch, RefObject, SetStateAction } from "react";
 
 const Header = () => {
   const [activeMoreDropdown, setActiveMoreDropdown] = useState(false);
-  const [activeSettingDropdown, setActiveSettingDropdown] = useState(true);
+  const [activeSettingDropdown, setActiveSettingDropdown] = useState(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
@@ -214,19 +214,28 @@ const Header = () => {
                     </div>
                     <img src={Arrow} className={styles.arrow_icon} alt="" />
                   </button>
-                  <a href="https://yandex.ru/support/weather/ru/" className={styles.navigation_item}>
+                  <a
+                    href="https://yandex.ru/support/weather/ru/"
+                    className={styles.navigation_item}
+                  >
                     <div className={styles.title_wrapper}>
                       <img src={Help} className={styles.title_icon} alt="" />
                       <p>Справка</p>
                     </div>
                   </a>
-                  <a href="https://yandex.ru/support/weather/troubleshooting.xml" className={styles.navigation_item}>
+                  <a
+                    href="https://yandex.ru/support/weather/troubleshooting.xml"
+                    className={styles.navigation_item}
+                  >
                     <div className={styles.title_wrapper}>
                       <img src={Support} className={styles.title_icon} alt="" />
                       <p>Обратная связь</p>
                     </div>
                   </a>
-                  <a href="https://t.me/yandex_weather" className={styles.navigation_item}>
+                  <a
+                    href="https://t.me/yandex_weather"
+                    className={styles.navigation_item}
+                  >
                     <div className={styles.title_wrapper}>
                       <img src={TG} className={styles.title_icon} alt="" />
                       <p>Тепло в нашем ТГ-канале</p>

@@ -1,4 +1,4 @@
-import useServices from "@services/useSrvices";
+import useServices from "@services/useServices";
 import styles from "./weatherChart.module.scss";
 import Arrow from "@assets/icons/arrowMore.svg";
 import { Link } from "react-router-dom";
@@ -6,7 +6,8 @@ import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { useState } from "react";
 
 const WeatherChart = () => {
-  const data = useServices().getTenDaysData || [];
+  const { getTenDaysData } = useServices();
+  const data = getTenDaysData;
 
   const [active, setActive] = useState(false);
 
@@ -26,31 +27,36 @@ const WeatherChart = () => {
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}
         >
           <Link to="/" className={styles.days_wrapper}>
-            {data.map((item, i) => {
-              const {
-                tenDaysWeatherEffect,
-                tenDaysWeekday,
-                tenDaysDate,
-                tenDaysWeekend,
-              } = item;
-              return (
-                <div className={styles.day_wrapper} key={i}>
-                  <p
-                    className={
-                      tenDaysWeekend === 6 || tenDaysWeekend === 0
-                        ? styles.weekend_day
-                        : ""
-                    }
-                  >
-                    {tenDaysWeekday}
-                  </p>
-                  <p className="small_grey_text">
-                    {i === 0 ? "Сегодня" : tenDaysDate}
-                  </p>
-                  <img src={tenDaysWeatherEffect} alt="" />
-                </div>
-              );
-            })}
+            {data.map(
+              (
+                {
+                  tenDaysDateKey,
+                  tenDaysWeatherEffect,
+                  tenDaysWeekday,
+                  tenDaysDate,
+                  tenDaysWeekend,
+                },
+                i,
+              ) => {
+                return (
+                  <div className={styles.day_wrapper} key={tenDaysDateKey}>
+                    <p
+                      className={
+                        tenDaysWeekend === 6 || tenDaysWeekend === 0
+                          ? styles.weekend_day
+                          : ""
+                      }
+                    >
+                      {tenDaysWeekday}
+                    </p>
+                    <p className="small_grey_text">
+                      {i === 0 ? "Сегодня" : tenDaysDate}
+                    </p>
+                    <img src={tenDaysWeatherEffect} alt="" />
+                  </div>
+                );
+              },
+            )}
           </Link>
           <div className={styles.chart_wrapper}>
             <ResponsiveContainer width="100%" height="100%">
