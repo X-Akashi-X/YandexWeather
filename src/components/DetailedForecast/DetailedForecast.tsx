@@ -8,6 +8,7 @@ import WaterTemp from "@assets/icons/waterTempIcon.svg";
 import Humidity from "@assets/icons/mainInfoSection/humidityIcon.svg";
 import Pressure from "@assets/icons/mainInfoSection/pressureIcon.svg";
 import { Link } from "react-router-dom";
+import { SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();
@@ -43,10 +44,14 @@ const DetailedForecast = () => {
             <Link to="/" className={styles.main_wrapper} key={advancedDateKey}>
               <div className={styles.grid_forecast_wrapper}>
                 <div
-                  className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === 6 || advancedWeekend === 0 ? styles.weekend_day : ""}`}
+                  className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === SATURDAY || advancedWeekend === SUNDAY ? styles.weekend_day : ""}`}
                 >
-                  {i === 0 ? "Сегодня" : i === 1 ? "Завтра" : advancedWeekday},{" "}
-                  <span>{advancedDate}</span>
+                  {i === TODAY
+                    ? "Сегодня"
+                    : i === TOMORROW
+                      ? "Завтра"
+                      : advancedWeekday}
+                  , <span>{advancedDate}</span>
                 </div>
                 <div
                   className={`${styles.forecast_feeling_gr} small_grey_text`}

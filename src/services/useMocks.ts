@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import newsData from "@mocks/news/news.json";
+import newsData from "@mocks/news.json";
 import { allNews, randomNews } from "./mappers/newsMappers/newsMapper";
 
 const useMocks = () => {

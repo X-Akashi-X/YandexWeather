@@ -19,7 +19,7 @@ main {
   overflow-x: hidden;
   max-width: 1150px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 1px;
   @media (max-width: 1151px) {
     max-width: 780px;
   }
@@ -82,11 +82,6 @@ input::-webkit-inner-spin-button {
   overflow: visible;
 }
 
-.swiper-wrapper {
-  display: flex;
-  align-items: stretch;
-}
-
 .swiper-slide {
   height: auto;
   display: flex;
@@ -101,6 +96,9 @@ input::-webkit-inner-spin-button {
   width: 48px;
   height: 48px;
   transition: all 0.3s ease-in-out;
+  @media (max-width: 781px) {
+    display: none;
+  }
   svg {
     color: black;
     stroke: black;

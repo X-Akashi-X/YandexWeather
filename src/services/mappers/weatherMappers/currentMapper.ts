@@ -1,3 +1,4 @@
+import { HPA_TO_MMHG, WATER_TEMP_OFFSET } from "@constants/conversions";
 import type { ApiAirQuality, ApiForecast } from "@ts/api";
 import {
   getPollenCategory,
@@ -23,12 +24,12 @@ export const currentData = (
       Math.floor(dataForecast.current.apparent_temperature),
     ),
     currentWaterTemperature: shouldShowPlus(
-      Math.floor(dataForecast.current.temperature_2m - 3),
+      Math.floor(dataForecast.current.temperature_2m - WATER_TEMP_OFFSET),
     ),
     currentWindSpeed: Math.floor(dataForecast.current.wind_speed_10m),
     currentWindGusts: Math.floor(dataForecast.current.wind_gusts_10m),
     currentPressure: Math.floor(
-      dataForecast.current.surface_pressure * 0.75006,
+      dataForecast.current.surface_pressure * HPA_TO_MMHG,
     ),
     currentHumidity: dataForecast.current.relative_humidity_2m,
     currentUVIndex: Math.floor(dataAirQuality.current.uv_index),
@@ -42,7 +43,7 @@ export const currentData = (
       dataAirQuality.current.grass_pollen,
     ),
     currentPressureCategory: getPressureCategory(
-      dataForecast.current.surface_pressure * 0.75006,
+      dataForecast.current.surface_pressure * HPA_TO_MMHG,
     ),
     currentUVCategory: getUVCategory(dataAirQuality.current.uv_index),
   };

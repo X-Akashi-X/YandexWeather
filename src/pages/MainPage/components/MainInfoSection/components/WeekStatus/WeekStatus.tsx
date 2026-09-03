@@ -3,7 +3,7 @@ import styles from "./weekStatus.module.scss";
 import { Link } from "react-router-dom";
 import sourceData from "@assets/icons/mainInfoSection/sourceDataIcon.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 
 const WeakStatus = () => {
   const { getTodayData, getTomorrowData, getWeekData, getWeekendData } =
@@ -50,15 +50,12 @@ const WeakStatus = () => {
     <section className={styles.section_wrapper}>
       <Swiper
         className={styles.status_wrapper}
-        modules={[Navigation]}
-        slidesPerView={1}
+        modules={[Navigation, FreeMode]}
+        slidesPerView="auto"
         spaceBetween={8}
+        freeMode={true}
+        touchRatio={1}
         navigation
-        breakpoints={{
-          781: {
-            slidesPerView: 2,
-          },
-        }}
       >
         <SwiperSlide>
           <a href="" className={styles.status_item}>

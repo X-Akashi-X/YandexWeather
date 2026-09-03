@@ -3,6 +3,12 @@
   .feelings_wrapper {
     cursor: grab;
     padding: 16px 0px;
+    :global(.swiper-slide) {
+      width: 228px;
+       @media (max-width: 781px) {
+        width: 164px;
+      }
+    }
     .feelings_item {
       padding: 16px 20px;
       display: flex;
@@ -54,4 +60,8 @@
       box-shadow: var(--button-shadow-hovered);
     }
   }
+}
+
+.swiper_slide {
+  width: 228px;
 }

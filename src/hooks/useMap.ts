@@ -2,14 +2,15 @@ import { useEffect, useRef } from "react";
 import axios from "axios";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-
-const DEFAULT_LAT = 53.7;
-const DEFAULT_LON = 27.56;
-const DEFAULT_ZOOM = 6;
-const DEFAULT_TILE_SIZE = 256;
-const DEFAULT_MIN_ZOOM = 0;
-const DEFAULT_MAX_ZOOM = 8;
-const DEFAULT_OPACITY = 0.6;
+import {
+  DEFAULT_LAT,
+  DEFAULT_LON,
+  DEFAULT_MAX_ZOOM,
+  DEFAULT_MIN_ZOOM,
+  DEFAULT_OPACITY,
+  DEFAULT_TILE_SIZE,
+  DEFAULT_ZOOM,
+} from "@constants/hooks/map";
 
 function useMap(interactive: boolean, classNamePointer: string) {
   const mapContainer = useRef<HTMLDivElement>(null);

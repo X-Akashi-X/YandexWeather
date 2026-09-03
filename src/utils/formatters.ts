@@ -1,10 +1,13 @@
+import {
+  DEGREES_PER_DIRECTION,
+  TOTAL_WIND_DIRECTIONS,
+} from "@constants/conversions";
 import { weatherMap } from "./weatherMapper";
+import { WIND_DIRECTIONS } from "@constants/weather";
 
 export function getWindDirection(deg: number) {
-  const directions = ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"];
-
-  const index = Math.round(deg / 45) % 8;
-  return directions[index];
+  const index = Math.round(deg / DEGREES_PER_DIRECTION) % TOTAL_WIND_DIRECTIONS;
+  return WIND_DIRECTIONS[index];
 }
 
 export function getAvgWeatherCode(arg: number[]) {

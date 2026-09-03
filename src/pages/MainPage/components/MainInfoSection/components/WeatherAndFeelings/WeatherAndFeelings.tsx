@@ -1,7 +1,7 @@
 import styles from "./weatherAndFeelings.module.scss";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 import Pollen from "@assets/icons/pollenIcon.svg";
 import useServices from "@services/useServices";
 import StatusArc from "@components/StatusArc/StatusArc";
@@ -25,16 +25,13 @@ const WeatherAndFeelings = () => {
       <h2>Погода и самочувствие</h2>
       <Swiper
         className={styles.feelings_wrapper}
-        modules={[Navigation]}
-        slidesPerView={2}
+        modules={[Navigation, FreeMode]}
+        slidesPerView="auto"
         slidesPerGroup={2}
         spaceBetween={15}
+        freeMode={true}
+        touchRatio={1}
         navigation
-        breakpoints={{
-          451: {
-            slidesPerView: 3,
-          },
-        }}
       >
         <SwiperSlide>
           <Link to="/" className={styles.feelings_item}>

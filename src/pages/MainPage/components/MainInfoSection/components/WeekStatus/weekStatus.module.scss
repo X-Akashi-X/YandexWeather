@@ -2,6 +2,12 @@
   margin-bottom: 20px;
   .status_wrapper {
     cursor: grab;
+    :global(.swiper-slide) {
+      width: 460px;
+      @media(max-width: 781px) {
+        width: 100%;
+      }
+    }
     .status_item {
       padding: 16px 16px 12px;
       background-color: var(--blue-light-bg);

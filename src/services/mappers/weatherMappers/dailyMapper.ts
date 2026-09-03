@@ -1,3 +1,6 @@
+import { HPA_TO_MMHG } from "@constants/conversions";
+import { SATURDAY, SUNDAY, TOTAL_WEEKEND } from "@constants/daysCodes";
+import { MONTH_NAMES } from "@constants/weather";
 import type { ApiArhive, ApiForecast } from "@ts/api";
 import {
   getMagneticFieldCategory,
@@ -17,8 +20,8 @@ export const todayData = (dataForecast: ApiForecast) => {
   if (!dataForecast?.daily) return {};
 
   const magneticField = Math.abs(
-    Math.floor(dataForecast.daily.surface_pressure_max[1] * 0.75006) -
-      Math.floor(dataForecast.daily.surface_pressure_max[2] * 0.75006),
+    Math.floor(dataForecast.daily.surface_pressure_max[1] * HPA_TO_MMHG) -
+      Math.floor(dataForecast.daily.surface_pressure_max[2] * HPA_TO_MMHG),
   );
 
   return {
@@ -36,10 +39,10 @@ export const todayData = (dataForecast: ApiForecast) => {
     todayMinHumidity: dataForecast.daily.relative_humidity_2m_min[1],
     todayMaxHumidity: dataForecast.daily.relative_humidity_2m_max[1],
     todayMinPressure: Math.floor(
-      dataForecast.daily.surface_pressure_min[1] * 0.75006,
+      dataForecast.daily.surface_pressure_min[1] * HPA_TO_MMHG,
     ),
     todayMaxPressure: Math.floor(
-      dataForecast.daily.surface_pressure_max[1] * 0.75006,
+      dataForecast.daily.surface_pressure_max[1] * HPA_TO_MMHG,
     ),
     todayPrecipitationProbability: getPrecipitationProbability(
       dataForecast.daily.precipitation_probability_max[1],
@@ -84,14 +87,7 @@ export const weekData = (dataForecast: ApiForecast) => {
   const avgDetails = (arg: number[]) => {
     const week = arg.slice(1, 8);
 
-    let avg = week.reduce((a, b) => a + b, 0) / week.length;
-
-    if (
-      arg === dataForecast.daily.wind_speed_10m_max ||
-      arg === dataForecast.daily.wind_gusts_10m_max
-    ) {
-      avg = avg / 3.6;
-    }
+    const avg = week.reduce((a, b) => a + b, 0) / week.length;
 
     return Math.floor(avg);
   };
@@ -136,28 +132,38 @@ export const weekendData = (dataForecast: ApiForecast) => {
     }))
     .filter((d) => {
       const day = new Date(d.date).getDay();
-      return day === 6 || day === 0;
+      return day === SATURDAY || day === SUNDAY;
     })
     .slice(0, 2);
 
   return {
     weekendMinTemperature: shouldShowPlus(
-      Math.floor(weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / 2),
+      Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.minTemp, 0) / TOTAL_WEEKEND,
+      ),
     ),
     weekendMaxTemperature: shouldShowPlus(
-      Math.floor(weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / 2),
+      Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.maxTemp, 0) / TOTAL_WEEKEND,
+      ),
     ),
     weekendMinMaxWindSpeed: shouldShowDash(
-      Math.floor(weekendDays.reduce((sum, d) => sum + d.minWindSpeed, 0) / 2),
-      Math.floor(weekendDays.reduce((sum, d) => sum + d.maxWindSpeed, 0) / 2),
+      Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.minWindSpeed, 0) / TOTAL_WEEKEND,
+      ),
+      Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.maxWindSpeed, 0) / TOTAL_WEEKEND,
+      ),
     ),
     weekendWindGusts: Math.floor(
-      weekendDays.reduce((sum, d) => sum + d.windGusts, 0) / 2,
+      weekendDays.reduce((sum, d) => sum + d.windGusts, 0) / TOTAL_WEEKEND,
     ),
     weekendWeatherEffect: getWeatherEffect(weekendDays[0].weatherCode),
     weekendWeatherInfo: getWeatherInfo(weekendDays[0].weatherCode),
     weekendWindCategory: getWindCategory(
-      Math.floor(weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / 2),
+      Math.floor(
+        weekendDays.reduce((sum, d) => sum + d.windSpeed, 0) / TOTAL_WEEKEND,
+      ),
     ),
   };
 };
@@ -214,26 +220,11 @@ export const montlyData = (dataArchive: ApiArhive) => {
     }
   }
 
-  const monthNames = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
-  ];
-
   return Object.keys(groupedData)
     .sort()
     .map((key) => {
       const monthIndex = parseInt(key, 10) - 1;
-      const monthly = monthNames[monthIndex];
+      const monthly = MONTH_NAMES[monthIndex];
       const count = groupedData[key].countDays;
       const avgTemp = count === 0 ? 0 : groupedData[key].totalTemp / count;
       const avgWeatherCode = getAvgWeatherCode(

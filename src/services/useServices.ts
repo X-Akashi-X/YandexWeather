@@ -15,7 +15,7 @@ import {
   montlyData,
 } from "./mappers/weatherMappers";
 import type { AdvancedWeather } from "@ts/weather";
-import { defaultOneDay } from "@constants/weather";
+import { DEFAULT_ONE_DAY } from "@constants/weather";
 
 const useServices = () => {
   const { dataForecast } = useForecast();
@@ -23,7 +23,7 @@ const useServices = () => {
   const { dataArhive } = useArhive();
 
   const advancedWeather = useMemo<AdvancedWeather>(() => {
-    if (!dataForecast) return { tenDays: [], oneDay: defaultOneDay };
+    if (!dataForecast) return { tenDays: [], oneDay: DEFAULT_ONE_DAY };
     return advancedDaysData(dataForecast);
   }, [dataForecast]);
 

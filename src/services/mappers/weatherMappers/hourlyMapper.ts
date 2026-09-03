@@ -1,8 +1,14 @@
-import { defaultPeriodAverages } from "@constants/weather";
+import {
+  HPA_TO_MMHG,
+  SECONDS_IN_HOUR,
+  SECONDS_IN_MINUTE,
+  WATER_TEMP_OFFSET,
+} from "@constants/conversions";
+import { INDEXOF_NOT_FOUND } from "@constants/utils";
+import { DEFAULT_CATEGORY, DEFAULT_PERIOD_AVERAGES } from "@constants/weather";
 import type { ApiForecast } from "@ts/api";
 import type { DayGroups, PeriodData } from "@ts/weather";
 import {
-  defaultCategory,
   getMagneticFieldCategory,
   getMoonPhase,
   getUVCategory,
@@ -30,7 +36,7 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
     yesterdayCurrentMoment,
   );
 
-  if (indexCurrentMoment === -1) return {};
+  if (indexCurrentMoment === INDEXOF_NOT_FOUND) return {};
 
   return {
     yesterdayCurrentTemp: shouldShowPlus(
@@ -91,7 +97,9 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
       windSpeed: Math.floor(dataForecast.hourly.wind_speed_10m[i]),
       windDir: dataForecast.hourly.wind_direction_10m[i],
       humidity: dataForecast.hourly.relative_humidity_2m[i],
-      pressure: Math.floor(dataForecast.hourly.surface_pressure[i] * 0.75006),
+      pressure: Math.floor(
+        dataForecast.hourly.surface_pressure[i] * HPA_TO_MMHG,
+      ),
       weatherCode: dataForecast.hourly.weather_code[i],
     };
 
@@ -113,7 +121,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
   const datesKeys = Object.keys(groupedDays);
 
   const averageData = (periodArr: PeriodData[]) => {
-    if (!periodArr?.length) return defaultPeriodAverages;
+    if (!periodArr?.length) return DEFAULT_PERIOD_AVERAGES;
 
     const count = periodArr.length;
 
@@ -166,7 +174,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
   ) => {
     if (!dailySource?.time || !dailySource[arrKey]) return "-";
     const index = dailySource.time.indexOf(targetDate);
-    return index !== -1 ? dailySource[arrKey][index] : "-";
+    return index !== INDEXOF_NOT_FOUND ? dailySource[arrKey][index] : "-";
   };
 
   const getSunDay = (targetDate: string) => {
@@ -176,9 +184,11 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
 
     const index = time.indexOf(targetDate);
 
-    if (index !== -1) {
-      const hours = Math.floor(daylight_duration[index] / 3600);
-      const minutes = Math.floor((daylight_duration[index] % 3600) / 60);
+    if (index !== INDEXOF_NOT_FOUND) {
+      const hours = Math.floor(daylight_duration[index] / SECONDS_IN_HOUR);
+      const minutes = Math.floor(
+        (daylight_duration[index] % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,
+      );
 
       return `${hours} ч ${minutes} мин`;
     }
@@ -192,13 +202,13 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
 
     const index = time.indexOf(targetDate);
 
-    if (index !== -1) {
+    if (index !== INDEXOF_NOT_FOUND) {
       const todayMaXPressure = Math.floor(
-        surface_pressure_max[index] * 0.75006,
+        surface_pressure_max[index] * HPA_TO_MMHG,
       );
 
       const tomorrowMaxPressure = surface_pressure_max[index + 1]
-        ? Math.floor(surface_pressure_max[index + 1] * 0.75006)
+        ? Math.floor(surface_pressure_max[index + 1] * HPA_TO_MMHG)
         : todayMaXPressure;
 
       return Math.abs(todayMaXPressure - tomorrowMaxPressure);
@@ -248,19 +258,19 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
       night: averageData(dayData.night),
       advancedAvgWaterTemp:
         typeof avgTemp === "number"
-          ? shouldShowPlus(Math.floor(avgTemp - 3))
+          ? shouldShowPlus(Math.floor(avgTemp - WATER_TEMP_OFFSET))
           : "",
       advancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : 0,
       advancedUVCategory:
         typeof avgUV === "number"
           ? getUVCategory(Math.floor(avgUV))
-          : defaultCategory,
+          : DEFAULT_CATEGORY,
       advancedAvgHumidity: avgHumidity,
       advancedAvgPressure: avgPressure,
       advancedMagnteticField: avgMagnetic,
       advancedMagnteticFieldCategory: avgMagnetic
         ? getMagneticFieldCategory(avgMagnetic)
-        : defaultCategory,
+        : DEFAULT_CATEGORY,
       advancedSunrise: typeof sunrise === "string" ? sunrise.split("T")[1] : "",
       advancedSunset: typeof sunset === "string" ? sunset.split("T")[1] : "",
       advancedSunDay: sunDay,

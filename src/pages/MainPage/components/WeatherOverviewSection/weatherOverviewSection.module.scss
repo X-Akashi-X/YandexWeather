@@ -3,10 +3,7 @@
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 20px;
-  height: 400px;
-  @media (max-width: 1151px) {
-    height: 350px;
-  }
+  height: 360px;
   @media (max-width: 781px) {
     flex-direction: column;
     height: auto;

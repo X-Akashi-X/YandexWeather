@@ -4,6 +4,7 @@ import Arrow from "@assets/icons/arrowMore.svg";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { useState } from "react";
+import { SATURDAY, SUNDAY, TODAY } from "@constants/daysCodes";
 
 const WeatherChart = () => {
   const { getTenDaysData } = useServices();
@@ -12,7 +13,7 @@ const WeatherChart = () => {
   const [active, setActive] = useState(false);
 
   function toggleDropdown() {
-    setActive((prev) => (prev === true ? false : true));
+    setActive((prev) => !prev);
   }
 
   return (
@@ -42,7 +43,7 @@ const WeatherChart = () => {
                   <div className={styles.day_wrapper} key={tenDaysDateKey}>
                     <p
                       className={
-                        tenDaysWeekend === 6 || tenDaysWeekend === 0
+                        tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
                           ? styles.weekend_day
                           : ""
                       }
@@ -50,7 +51,7 @@ const WeatherChart = () => {
                       {tenDaysWeekday}
                     </p>
                     <p className="small_grey_text">
-                      {i === 0 ? "Сегодня" : tenDaysDate}
+                      {i === TODAY ? "Сегодня" : tenDaysDate}
                     </p>
                     <img src={tenDaysWeatherEffect} alt="" />
                   </div>

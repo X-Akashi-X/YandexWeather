@@ -1,7 +1,7 @@
 import styles from "./weatherOnMaps.module.scss";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 import Precipitation from "@assets/image/weatherOnMaps/precipitationMap.jpg";
 import Pollen from "@assets/image/weatherOnMaps/pollenMap.jpg";
 import Temp from "@assets/image/weatherOnMaps/tempMap.jpg";
@@ -15,21 +15,12 @@ const WeatherOnMaps = () => {
       <h3>Прогноз погоды на картах</h3>
       <Swiper
         className={styles.maps_wrapper}
-        modules={[Navigation]}
-        slidesPerView={1}
+        modules={[Navigation, FreeMode]}
+        slidesPerView="auto"
         slidesPerGroup={1}
         spaceBetween={10}
-        breakpoints={{
-          1151: {
-            slidesPerView: 3,
-          },
-          671: {
-            slidesPerView: 2.5,
-          },
-          521: {
-            slidesPerView: 2,
-          },
-        }}
+        freeMode={true}
+        touchRatio={1}
         navigation
       >
         <SwiperSlide>
