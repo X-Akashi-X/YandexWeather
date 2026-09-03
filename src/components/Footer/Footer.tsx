@@ -59,13 +59,13 @@ const Footer = () => {
         <div className={styles.stores_wrapper}>
           <h4>Скачайте приложение</h4>
           <a href="https://redirect.appmetrica.yandex.com/serve/173086637876675342?click_id=b9708b9a-2750-4cc6-9861-8ff01cab9ade">
-            <img src={GooglePlay} alt="" />
+            <img src={GooglePlay} alt="GooglePlay" />
           </a>
           <a href="https://redirect.appmetrica.yandex.com/serve/173086637876675342?click_id=d3d9629c-0feb-455e-bd67-406edcce3446">
-            <img src={AppStore} alt="" />
+            <img src={AppStore} alt="AppStore" />
           </a>
           <a href="https://redirect.appmetrica.yandex.com/serve/173086637876675342?click_id=b2e2263a-964b-43d9-ae80-6fb8c8859365">
-            <img src={AppGallery} alt="" />
+            <img src={AppGallery} alt="AppGallery" />
           </a>
         </div>
       </nav>

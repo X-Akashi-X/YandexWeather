@@ -60,7 +60,7 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={todayWeatherEffect} alt="" />
+              <img src={todayWeatherEffect} alt={todayWeatherInfo} />
               <h3>Сегодня</h3>
             </div>
             <p>
@@ -74,7 +74,7 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={tomorrowWeatherEffect} alt="" />
+              <img src={tomorrowWeatherEffect} alt={tomorrowWeatherInfo} />
               <h3>Завтра</h3>
             </div>
             <p>
@@ -88,7 +88,7 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={weekWeatherEffect} alt="" />
+              <img src={weekWeatherEffect} alt={weekWeatherInfo} />
               <h3>На этой неделе</h3>
             </div>
             <p>
@@ -102,7 +102,7 @@ const WeakStatus = () => {
         <SwiperSlide>
           <a href="" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={weekendWeatherEffect} alt="" />
+              <img src={weekendWeatherEffect} alt={weekendWeatherInfo} />
               <h3>В выходные</h3>
             </div>
             <p>
@@ -115,7 +115,7 @@ const WeakStatus = () => {
         <SwiperSlide>
           <Link to="/" className={styles.status_item}>
             <div className={styles.status_title_wrapper}>
-              <img src={sourceData} alt="" />
+              <img src={sourceData} alt="Источник данных" />
               <h3>Источник данных</h3>
             </div>
             <p>

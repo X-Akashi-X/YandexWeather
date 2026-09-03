@@ -5,7 +5,11 @@ import {
   WATER_TEMP_OFFSET,
 } from "@constants/conversions";
 import { INDEXOF_NOT_FOUND } from "@constants/utils";
-import { DEFAULT_CATEGORY, DEFAULT_PERIOD_AVERAGES } from "@constants/weather";
+import {
+  DEFAULT_CATEGORY,
+  DEFAULT_PERIOD_AVERAGES,
+  DEFAULT_YESTERDAY,
+} from "@constants/weather";
 import type { ApiForecast } from "@ts/api";
 import type { DayGroups, PeriodData } from "@ts/weather";
 import {
@@ -13,6 +17,7 @@ import {
   getMoonPhase,
   getUVCategory,
   getWeatherEffect,
+  getWeatherInfo,
 } from "@utils/categories";
 import {
   getAvgWeatherCode,
@@ -21,7 +26,7 @@ import {
 } from "@utils/formatters";
 
 export const yesterdayData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.hourly) return {};
+  if (!dataForecast.hourly) return DEFAULT_YESTERDAY;
 
   const yesterdayDate = new Date();
   yesterdayDate.setDate(yesterdayDate.getDate() - 1);
@@ -36,7 +41,7 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
     yesterdayCurrentMoment,
   );
 
-  if (indexCurrentMoment === INDEXOF_NOT_FOUND) return {};
+  if (indexCurrentMoment === INDEXOF_NOT_FOUND) return DEFAULT_YESTERDAY;
 
   return {
     yesterdayCurrentTemp: shouldShowPlus(
@@ -53,7 +58,7 @@ export const timeLineData = (dataForecast: ApiForecast) => {
   tomorrow.setDate(now.getDate() + 1);
   tomorrow.setHours(23, 59, 59, 999);
 
-  if (!dataForecast?.hourly?.time) return [];
+  if (!dataForecast.hourly.time) return [];
 
   return dataForecast.hourly.time
     .map((t, i) => ({ t, i }))
@@ -72,6 +77,7 @@ export const timeLineData = (dataForecast: ApiForecast) => {
       timeLineWeatherEffect: getWeatherEffect(
         dataForecast.hourly.weather_code[i],
       ),
+      timeLineWeatherInfo: getWeatherInfo(dataForecast.hourly.weather_code[i]),
     }));
 };
 
@@ -121,7 +127,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
   const datesKeys = Object.keys(groupedDays);
 
   const averageData = (periodArr: PeriodData[]) => {
-    if (!periodArr?.length) return DEFAULT_PERIOD_AVERAGES;
+    if (!periodArr.length) return DEFAULT_PERIOD_AVERAGES;
 
     const count = periodArr.length;
 
@@ -161,6 +167,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
       advancedWeatherEffect: getWeatherEffect(
         getAvgWeatherCode(arrWeatherCodes),
       ),
+      advancedWeatherInfo: getWeatherInfo(getAvgWeatherCode(arrWeatherCodes)),
     };
   };
 
@@ -172,13 +179,13 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
     arrKey: string,
     targetDate: string,
   ) => {
-    if (!dailySource?.time || !dailySource[arrKey]) return "-";
+    if (!dailySource.time || !dailySource[arrKey]) return "-";
     const index = dailySource.time.indexOf(targetDate);
     return index !== INDEXOF_NOT_FOUND ? dailySource[arrKey][index] : "-";
   };
 
   const getSunDay = (targetDate: string) => {
-    if (!dataForecast?.daily) return "-";
+    if (!dataForecast.daily) return "-";
 
     const { time, daylight_duration } = dataForecast.daily;
 
@@ -196,7 +203,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
   };
 
   const getAvgMagnetic = (targetDate: string) => {
-    if (!dataForecast?.daily) return 0;
+    if (!dataForecast.daily) return 0;
 
     const { time, surface_pressure_max } = dataForecast.daily;
 

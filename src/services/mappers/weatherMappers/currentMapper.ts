@@ -1,4 +1,5 @@
 import { HPA_TO_MMHG, WATER_TEMP_OFFSET } from "@constants/conversions";
+import { DEFAULT_CURRENT_DAY } from "@constants/weather";
 import type { ApiAirQuality, ApiForecast } from "@ts/api";
 import {
   getPollenCategory,
@@ -14,7 +15,7 @@ export const currentData = (
   dataForecast: ApiForecast,
   dataAirQuality: ApiAirQuality,
 ) => {
-  if (!dataForecast?.current || !dataAirQuality?.current) return {};
+  if (!dataForecast.current || !dataAirQuality.current) return DEFAULT_CURRENT_DAY;
 
   return {
     currentTemperature: shouldShowPlus(

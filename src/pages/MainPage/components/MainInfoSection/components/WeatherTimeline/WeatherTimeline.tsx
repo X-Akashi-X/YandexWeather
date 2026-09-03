@@ -29,6 +29,7 @@ const WeatherTimeline = () => {
               timeLineDate,
               timeLineTime,
               timeLineTemperature,
+              timeLineWeatherInfo
             },
             i,
           ) => {
@@ -48,16 +49,14 @@ const WeatherTimeline = () => {
                     <div className={styles.day_separator}></div>
                   </SwiperSlide>
                 )}
-                <SwiperSlide
-                  className={styles.swiper_slide}
-                >
+                <SwiperSlide className={styles.swiper_slide}>
                   <Link to="/" className={styles.weather_timeline_item}>
                     <p>
                       {isNewDay
                         ? `${nextDayOfWeek}, ${timeLineTime}`
                         : timeLineTime}
                     </p>
-                    <img src={timeLineWeatherEffect} alt="" />
+                    <img src={timeLineWeatherEffect} alt={timeLineWeatherInfo} />
                     <p>{timeLineTemperature}°</p>
                   </Link>
                 </SwiperSlide>

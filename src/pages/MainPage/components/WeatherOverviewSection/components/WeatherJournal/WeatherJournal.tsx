@@ -10,7 +10,7 @@ const WeatherJournal = () => {
     <section className={styles.section_wrapper}>
       <div className={styles.title_wrapper}>
         <h3>Журнал погоды</h3>
-        <img src={Arrow} alt="" />
+        <img src={Arrow} alt="Стрелка" />
       </div>
       <Link
         to="/"

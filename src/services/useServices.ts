@@ -15,7 +15,15 @@ import {
   montlyData,
 } from "./mappers/weatherMappers";
 import type { AdvancedWeather } from "@ts/weather";
-import { DEFAULT_ONE_DAY } from "@constants/weather";
+import {
+  DEFAULT_CURRENT_DAY,
+  DEFAULT_ONE_DAY,
+  DEFAULT_TODAY,
+  DEFAULT_TOMORROW,
+  DEFAULT_WEEK,
+  DEFAULT_WEEKEND,
+  DEFAULT_YESTERDAY,
+} from "@constants/weather";
 
 const useServices = () => {
   const { dataForecast } = useForecast();
@@ -33,12 +41,20 @@ const useServices = () => {
     return {
       getCurrentData: isForecastAndAir
         ? currentData(dataForecast, dataAirQuality)
-        : {},
-      getTodayData: dataForecast ? todayData(dataForecast) : {},
-      getTomorrowData: dataForecast ? tomorrowData(dataForecast) : {},
-      getYesterdayData: dataForecast ? yesterdayData(dataForecast) : {},
-      getWeekData: dataForecast ? weekData(dataForecast) : {},
-      getWeekendData: dataForecast ? weekendData(dataForecast) : {},
+        : DEFAULT_CURRENT_DAY,
+      getTodayData: dataForecast ? todayData(dataForecast) : DEFAULT_TODAY,
+      getTomorrowData: dataForecast
+        ? tomorrowData(dataForecast)
+        : DEFAULT_TOMORROW,
+      getYesterdayData: dataForecast
+        ? yesterdayData(dataForecast)
+        : DEFAULT_YESTERDAY,
+      getWeekData: dataForecast
+        ? weekData(dataForecast)
+        : DEFAULT_WEEK,
+      getWeekendData: dataForecast
+        ? weekendData(dataForecast)
+        : DEFAULT_WEEKEND,
       getTenDaysData: dataForecast ? tenDaysData(dataForecast) : [],
       getMontlyData: dataArhive ? montlyData(dataArhive) : [],
       getTimeLineData: dataForecast ? timeLineData(dataForecast) : [],

@@ -36,14 +36,14 @@ const WeatherAndFeelings = () => {
         <SwiperSlide>
           <Link to="/" className={styles.feelings_item}>
             <div className={styles.category_wrapper}>
-              <img className={styles.img_pollen} src={Pollen} alt="" />
+              <img className={styles.img_pollen} src={Pollen} alt="Пыльца" />
               <div className={styles.status_wrapper}>
                 <StatusArc category={currentPollenCategory} />
               </div>
             </div>
             <div className={styles.title_wrapper}>
               <h4>Пыльца</h4>
-              <p>{currentPollenCategory?.text}</p>
+              <p>{currentPollenCategory.text}</p>
             </div>
           </Link>
         </SwiperSlide>
@@ -57,7 +57,7 @@ const WeatherAndFeelings = () => {
             </div>
             <div className={styles.title_wrapper}>
               <h4>Магнитное поле</h4>
-              <p>{todayMagneticFieldCategory?.text}</p>
+              <p>{todayMagneticFieldCategory.text}</p>
             </div>
           </Link>
         </SwiperSlide>
@@ -71,7 +71,7 @@ const WeatherAndFeelings = () => {
             </div>
             <div className={styles.title_wrapper}>
               <h4>Давление</h4>
-              <p>{currentPressureCategory?.text}</p>
+              <p>{currentPressureCategory.text}</p>
             </div>
           </Link>
         </SwiperSlide>
@@ -80,13 +80,13 @@ const WeatherAndFeelings = () => {
             <div className={styles.category_wrapper}>
               <img
                 className={styles.img_moon}
-                src={todayMoonPhase?.icon}
-                alt=""
+                src={todayMoonPhase.icon}
+                alt="Фаза луны"
               />
             </div>
             <div className={styles.title_wrapper}>
               <h4>Луна</h4>
-              <p>{todayMoonPhase?.text}</p>
+              <p>{todayMoonPhase.text}</p>
             </div>
           </Link>
         </SwiperSlide>
@@ -100,7 +100,7 @@ const WeatherAndFeelings = () => {
             </div>
             <div className={styles.title_wrapper}>
               <h4>УФ-индекс</h4>
-              <p>{currentUVCategory?.text}</p>
+              <p>{currentUVCategory.text}</p>
             </div>
           </Link>
         </SwiperSlide>

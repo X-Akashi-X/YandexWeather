@@ -22,7 +22,7 @@ const WeatherChart = () => {
         <h2>Прогноз на 10 дней</h2>
         <button className={styles.dropdown_button} onClick={toggleDropdown}>
           <p>Краткий прогноз</p>
-          <img src={Arrow} alt="" className={active ? "rotate180" : ""} />
+          <img src={Arrow} alt="Стрелка" className={active ? "rotate180" : ""} />
         </button>
         <div
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}
@@ -36,6 +36,7 @@ const WeatherChart = () => {
                   tenDaysWeekday,
                   tenDaysDate,
                   tenDaysWeekend,
+                  tenDaysWeatherInfo,
                 },
                 i,
               ) => {
@@ -53,7 +54,7 @@ const WeatherChart = () => {
                     <p className="small_grey_text">
                       {i === TODAY ? "Сегодня" : tenDaysDate}
                     </p>
-                    <img src={tenDaysWeatherEffect} alt="" />
+                    <img src={tenDaysWeatherEffect} alt={tenDaysWeatherInfo} />
                   </div>
                 );
               },

@@ -29,7 +29,7 @@ const FAQ = () => {
     todayWindCategory,
   } = getTodayData;
 
-  const { morning, day, evening, night } = getAdvancedOneDayData;
+  const { morning, day, evening, night} = getAdvancedOneDayData;
 
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
@@ -50,7 +50,7 @@ const FAQ = () => {
               <p>Какая погода в Минске?</p>
               <img
                 src={Arrow}
-                alt=""
+                alt="Стрелка"
                 className={activeItem === "weather" ? "rotate180" : ""}
               />
             </div>
@@ -76,7 +76,7 @@ const FAQ = () => {
               <p>Сколько градусов в Минске?</p>
               <img
                 src={Arrow}
-                alt=""
+                alt="Стрелка"
                 className={activeItem === "temp" ? "rotate180" : ""}
               />
             </div>
@@ -85,9 +85,9 @@ const FAQ = () => {
                 Сейчас в Минске температура воздуха {currentTemperature}°.
                 Ощущается как {currentApparentTemperature}°,
                 {currentWeatherInfo}. Температура утром{" "}
-                {morning?.advancedTemperature}°, днем {day?.advancedTemperature}
-                °, вечером {evening?.advancedTemperature}°, ночью{" "}
-                {night?.advancedTemperature}°.
+                {morning.advancedTemperature}°, днем {day.advancedTemperature}
+                °, вечером {evening.advancedTemperature}°, ночью{" "}
+                {night.advancedTemperature}°.
               </p>
             )}
           </div>
@@ -101,20 +101,20 @@ const FAQ = () => {
               <p>Какая скорость направления ветра в минске?</p>
               <img
                 src={Arrow}
-                alt=""
+                alt="Стрелка"
                 className={activeItem === "wind" ? "rotate180" : ""}
               />
             </div>
             {activeItem === "wind" && (
               <p>
                 Скорость ветра в Минске сейчас {currentWindSpeed} м/с,{" "}
-                {currentWindDirection}. Утром ветер {morning?.advancedWindSpeed}{" "}
-                м/с, {morning?.advancedWindDirectionText}, днем{" "}
-                {day?.advancedWindSpeed} м/с, {day?.advancedWindDirectionText},
-                вечером {evening?.advancedWindSpeed} м/с,{" "}
-                {evening?.advancedWindDirectionText}, ночью{" "}
-                {night?.advancedWindSpeed} м/с,{" "}
-                {night?.advancedWindDirectionText}. Атмосферное давление{" "}
+                {currentWindDirection}. Утром ветер {morning.advancedWindSpeed}{" "}
+                м/с, {morning.advancedWindDirectionText}, днем{" "}
+                {day.advancedWindSpeed} м/с, {day.advancedWindDirectionText},
+                вечером {evening.advancedWindSpeed} м/с,{" "}
+                {evening.advancedWindDirectionText}, ночью{" "}
+                {night.advancedWindSpeed} м/с,{" "}
+                {night.advancedWindDirectionText}. Атмосферное давление{" "}
                 {todayMinPressure}-{todayMaxPressure} мм рт. ст., влажность{" "}
                 {todayMinHumidity}-{todayMaxHumidity}%, что также влияет на
                 ощущение погоды.
@@ -129,16 +129,16 @@ const FAQ = () => {
               <p>Какая влажность воздуха в Минске?</p>
               <img
                 src={Arrow}
-                alt=""
+                alt="Стрелка"
                 className={activeItem === "currentHumidity" ? "rotate180" : ""}
               />
             </div>
             {activeItem === "currentHumidity" && (
               <p>
                 Сейчас влажность воздуха в Минске составляет {currentHumidity}%.
-                Уровень влажности утром {morning?.advancedHumidity}%, днем{" "}
-                {day?.advancedHumidity}%, вечером {evening?.advancedHumidity}%,
-                ночью {night?.advancedHumidity}%.
+                Уровень влажности утром {morning.advancedHumidity}%, днем{" "}
+                {day.advancedHumidity}%, вечером {evening.advancedHumidity}%,
+                ночью {night.advancedHumidity}%.
               </p>
             )}
           </div>

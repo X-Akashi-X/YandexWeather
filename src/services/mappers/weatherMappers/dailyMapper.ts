@@ -1,6 +1,12 @@
 import { HPA_TO_MMHG } from "@constants/conversions";
 import { SATURDAY, SUNDAY, TOTAL_WEEKEND } from "@constants/daysCodes";
-import { MONTH_NAMES } from "@constants/weather";
+import {
+  DEFAULT_TODAY,
+  DEFAULT_TOMORROW,
+  DEFAULT_WEEK,
+  DEFAULT_WEEKEND,
+  MONTH_NAMES,
+} from "@constants/weather";
 import type { ApiArhive, ApiForecast } from "@ts/api";
 import {
   getMagneticFieldCategory,
@@ -17,7 +23,7 @@ import {
 } from "@utils/formatters";
 
 export const todayData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily) return {};
+  if (!dataForecast.daily) return DEFAULT_TODAY;
 
   const magneticField = Math.abs(
     Math.floor(dataForecast.daily.surface_pressure_max[1] * HPA_TO_MMHG) -
@@ -59,7 +65,7 @@ export const todayData = (dataForecast: ApiForecast) => {
 };
 
 export const tomorrowData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily) return {};
+  if (!dataForecast.daily) return DEFAULT_TOMORROW;
 
   return {
     tomorrowMinTemperature: shouldShowPlus(
@@ -82,7 +88,7 @@ export const tomorrowData = (dataForecast: ApiForecast) => {
 };
 
 export const weekData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily) return {};
+  if (!dataForecast.daily) return DEFAULT_WEEK;
 
   const avgDetails = (arg: number[]) => {
     const week = arg.slice(1, 8);
@@ -117,7 +123,7 @@ export const weekData = (dataForecast: ApiForecast) => {
 };
 
 export const weekendData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily?.time) return {};
+  if (!dataForecast.daily.time) return DEFAULT_WEEKEND;
 
   const weekendDays = dataForecast.daily.time
     .map((date, i) => ({
@@ -169,7 +175,7 @@ export const weekendData = (dataForecast: ApiForecast) => {
 };
 
 export const tenDaysData = (dataForecast: ApiForecast) => {
-  if (!dataForecast?.daily?.time) return [];
+  if (!dataForecast.daily.time) return [];
 
   const value = dataForecast.daily.time.slice(1, 11);
 
@@ -187,11 +193,12 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
     tenDaysWeatherEffect: getWeatherEffect(
       dataForecast.daily.weather_code[i + 1],
     ),
+    tenDaysWeatherInfo: getWeatherInfo(dataForecast.daily.weather_code[i + 1]),
   }));
 };
 
 export const montlyData = (dataArchive: ApiArhive) => {
-  if (!dataArchive?.daily?.time) return [];
+  if (!dataArchive.daily.time) return [];
 
   const dates = dataArchive.daily.time;
   const temps = dataArchive.daily.temperature_2m_mean;
@@ -234,6 +241,7 @@ export const montlyData = (dataArchive: ApiArhive) => {
         monthly,
         montlyAvgTemperature: shouldShowPlus(Math.floor(avgTemp)),
         montlyWeatherEffect: getWeatherEffect(avgWeatherCode),
+        montlyWeatherInfo: getWeatherInfo(avgWeatherCode)
       };
     });
 };

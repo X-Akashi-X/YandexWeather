@@ -9,7 +9,7 @@ const TenDaysForecastSection = () => {
       <DetailedForecast />
       <button>
         <Link to="/">
-          Прогноз на месяц <img src={Arrow} alt="" />
+          Прогноз на месяц <img src={Arrow} alt="Стрелка" />
         </Link>
       </button>
     </section>

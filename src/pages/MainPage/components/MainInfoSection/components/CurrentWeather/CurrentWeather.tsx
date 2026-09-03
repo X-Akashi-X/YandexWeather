@@ -29,7 +29,7 @@ const CurrentWeather = () => {
           {currentTemperature}
           <span>°</span>
         </p>
-        <img src={currentWeatherEffect} alt="" />
+        <img src={currentWeatherEffect} alt={currentWeatherInfo} />
         <div className={styles.break}></div>
         <div className={styles.summary}>
           <p className={styles.summary_item}>{currentWeatherInfo}</p>
@@ -45,21 +45,21 @@ const CurrentWeather = () => {
         </div>
         <div className={styles.effect_details}>
           <div className={styles.effect_details_item}>
-            <img src={WindSpeed} alt="" />
+            <img src={WindSpeed} alt="Скорость ветра" />
             <p>
               {currentWindSpeed} м/с, {currentWindDirection}
             </p>
           </div>
           <div className={styles.effect_details_item}>
-            <img src={Pressure} alt="" />
+            <img src={Pressure} alt="Давление" />
             <p>{currentPressure}</p>
           </div>
           <div className={styles.effect_details_item}>
-            <img src={Humidity} alt="" />
+            <img src={Humidity} alt="Влажность" />
             {currentHumidity}%
           </div>
           <div className={styles.effect_details_item}>
-            <img src={WaterTemp} alt="" />
+            <img src={WaterTemp} alt="Температура воды" />
             <p>{currentWaterTemperature}°</p>
           </div>
         </div>
