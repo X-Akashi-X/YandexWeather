@@ -22,7 +22,11 @@ const WeatherChart = () => {
         <h2>Прогноз на 10 дней</h2>
         <button className={styles.dropdown_button} onClick={toggleDropdown}>
           <p>Краткий прогноз</p>
-          <img src={Arrow} alt="Стрелка" className={active ? "rotate180" : ""} />
+          <img
+            src={Arrow}
+            alt="Стрелка"
+            className={active ? "rotate180" : ""}
+          />
         </button>
         <div
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}

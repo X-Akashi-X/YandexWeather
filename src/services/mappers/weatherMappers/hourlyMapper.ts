@@ -181,7 +181,7 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
   ) => {
     if (!dailySource.time || !dailySource[arrKey]) return "-";
     const index = dailySource.time.indexOf(targetDate);
-    return index !== INDEXOF_NOT_FOUND ? dailySource[arrKey][index] : "-";
+    return index === INDEXOF_NOT_FOUND ? "-" : dailySource[arrKey][index];
   };
 
   const getSunDay = (targetDate: string) => {

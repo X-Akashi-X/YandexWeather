@@ -80,7 +80,10 @@ const DetailedForecast = () => {
                 >
                   <div className={styles.tmp_effect_wrapper}>
                     <p>{morning.advancedTemperature}°</p>
-                    <img src={morning.advancedWeatherEffect} alt={morning.advancedWeatherInfo} />
+                    <img
+                      src={morning.advancedWeatherEffect}
+                      alt={morning.advancedWeatherInfo}
+                    />
                   </div>
                 </div>
                 <div
@@ -121,7 +124,10 @@ const DetailedForecast = () => {
                 >
                   <div className={styles.tmp_effect_wrapper}>
                     <p>{day.advancedTemperature}°</p>
-                    <img src={day.advancedWeatherEffect} alt={day.advancedWeatherInfo} />
+                    <img
+                      src={day.advancedWeatherEffect}
+                      alt={day.advancedWeatherInfo}
+                    />
                   </div>
                 </div>
                 <div
@@ -162,7 +168,10 @@ const DetailedForecast = () => {
                 >
                   <div className={styles.tmp_effect_wrapper}>
                     <p>{evening.advancedTemperature}°</p>
-                    <img src={evening.advancedWeatherEffect} alt={evening.advancedWeatherInfo} />
+                    <img
+                      src={evening.advancedWeatherEffect}
+                      alt={evening.advancedWeatherInfo}
+                    />
                   </div>
                 </div>
                 <div
@@ -203,7 +212,10 @@ const DetailedForecast = () => {
                 >
                   <div className={styles.tmp_effect_wrapper}>
                     <p>{night.advancedTemperature}°</p>
-                    <img src={night.advancedWeatherEffect} alt={night.advancedWeatherInfo} />
+                    <img
+                      src={night.advancedWeatherEffect}
+                      alt={night.advancedWeatherInfo}
+                    />
                   </div>
                 </div>
                 <div

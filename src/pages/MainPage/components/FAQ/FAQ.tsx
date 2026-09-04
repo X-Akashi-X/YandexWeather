@@ -29,11 +29,11 @@ const FAQ = () => {
     todayWindCategory,
   } = getTodayData;
 
-  const { morning, day, evening, night} = getAdvancedOneDayData;
+  const { morning, day, evening, night } = getAdvancedOneDayData;
 
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
-  function togleDropdown(id: string | null) {
+  function toggleDropdown(id: string | null) {
     setActiveItem((prev) => (prev === id ? null : id));
   }
 
@@ -44,7 +44,7 @@ const FAQ = () => {
         <div className={styles.column}>
           <div
             className={styles.faq_items}
-            onClick={() => togleDropdown("weather")}
+            onClick={() => toggleDropdown("weather")}
           >
             <div className={styles.title_wrapper}>
               <p>Какая погода в Минске?</p>
@@ -70,7 +70,7 @@ const FAQ = () => {
           </div>
           <div
             className={styles.faq_items}
-            onClick={() => togleDropdown("temp")}
+            onClick={() => toggleDropdown("temp")}
           >
             <div className={styles.title_wrapper}>
               <p>Сколько градусов в Минске?</p>
@@ -95,7 +95,7 @@ const FAQ = () => {
         <div className={styles.column}>
           <div
             className={styles.faq_items}
-            onClick={() => togleDropdown("wind")}
+            onClick={() => toggleDropdown("wind")}
           >
             <div className={styles.title_wrapper}>
               <p>Какая скорость направления ветра в минске?</p>
@@ -113,17 +113,16 @@ const FAQ = () => {
                 {day.advancedWindSpeed} м/с, {day.advancedWindDirectionText},
                 вечером {evening.advancedWindSpeed} м/с,{" "}
                 {evening.advancedWindDirectionText}, ночью{" "}
-                {night.advancedWindSpeed} м/с,{" "}
-                {night.advancedWindDirectionText}. Атмосферное давление{" "}
-                {todayMinPressure}-{todayMaxPressure} мм рт. ст., влажность{" "}
-                {todayMinHumidity}-{todayMaxHumidity}%, что также влияет на
-                ощущение погоды.
+                {night.advancedWindSpeed} м/с, {night.advancedWindDirectionText}
+                . Атмосферное давление {todayMinPressure}-{todayMaxPressure} мм
+                рт. ст., влажность {todayMinHumidity}-{todayMaxHumidity}%, что
+                также влияет на ощущение погоды.
               </p>
             )}
           </div>
           <div
             className={styles.faq_items}
-            onClick={() => togleDropdown("currentHumidity")}
+            onClick={() => toggleDropdown("currentHumidity")}
           >
             <div className={styles.title_wrapper}>
               <p>Какая влажность воздуха в Минске?</p>

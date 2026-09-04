@@ -30,7 +30,7 @@ const CurrentWeather = () => {
           <span>°</span>
         </p>
         <img src={currentWeatherEffect} alt={currentWeatherInfo} />
-        <div className={styles.break}></div>
+        <div className={styles.break} />
         <div className={styles.summary}>
           <p className={styles.summary_item}>{currentWeatherInfo}</p>
           <p className={styles.summary_item}>

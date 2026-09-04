@@ -15,7 +15,8 @@ export const currentData = (
   dataForecast: ApiForecast,
   dataAirQuality: ApiAirQuality,
 ) => {
-  if (!dataForecast.current || !dataAirQuality.current) return DEFAULT_CURRENT_DAY;
+  if (!dataForecast.current || !dataAirQuality.current)
+    return DEFAULT_CURRENT_DAY;
 
   return {
     currentTemperature: shouldShowPlus(

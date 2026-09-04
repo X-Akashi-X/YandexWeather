@@ -19,7 +19,10 @@ const WeatherByMonthes = () => {
             <p>{item.monthly}</p>
             <div className={styles.tmp_and_effect_wrapper}>
               <p>{item.montlyAvgTemperature}°</p>
-              <img src={item.montlyWeatherEffect} alt={item.montlyWeatherInfo} />
+              <img
+                src={item.montlyWeatherEffect}
+                alt={item.montlyWeatherInfo}
+              />
             </div>
           </Link>
         ))}

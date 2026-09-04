@@ -12,7 +12,7 @@ import {
   timeLineData,
   advancedDaysData,
   yesterdayData,
-  montlyData,
+  monthlyData,
 } from "./mappers/weatherMappers";
 import type { AdvancedWeather } from "@ts/weather";
 import {
@@ -49,14 +49,12 @@ const useServices = () => {
       getYesterdayData: dataForecast
         ? yesterdayData(dataForecast)
         : DEFAULT_YESTERDAY,
-      getWeekData: dataForecast
-        ? weekData(dataForecast)
-        : DEFAULT_WEEK,
+      getWeekData: dataForecast ? weekData(dataForecast) : DEFAULT_WEEK,
       getWeekendData: dataForecast
         ? weekendData(dataForecast)
         : DEFAULT_WEEKEND,
       getTenDaysData: dataForecast ? tenDaysData(dataForecast) : [],
-      getMontlyData: dataArhive ? montlyData(dataArhive) : [],
+      getMontlyData: dataArhive ? monthlyData(dataArhive) : [],
       getTimeLineData: dataForecast ? timeLineData(dataForecast) : [],
       getAdvancedTenDaysData: advancedWeather.tenDays,
       getAdvancedOneDayData: advancedWeather.oneDay,

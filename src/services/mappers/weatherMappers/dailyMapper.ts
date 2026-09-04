@@ -197,7 +197,7 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
   }));
 };
 
-export const montlyData = (dataArchive: ApiArhive) => {
+export const monthlyData = (dataArchive: ApiArhive) => {
   if (!dataArchive.daily.time) return [];
 
   const dates = dataArchive.daily.time;
@@ -228,7 +228,7 @@ export const montlyData = (dataArchive: ApiArhive) => {
   }
 
   return Object.keys(groupedData)
-    .sort()
+    .toSorted()
     .map((key) => {
       const monthIndex = parseInt(key, 10) - 1;
       const monthly = MONTH_NAMES[monthIndex];
@@ -241,7 +241,7 @@ export const montlyData = (dataArchive: ApiArhive) => {
         monthly,
         montlyAvgTemperature: shouldShowPlus(Math.floor(avgTemp)),
         montlyWeatherEffect: getWeatherEffect(avgWeatherCode),
-        montlyWeatherInfo: getWeatherInfo(avgWeatherCode)
+        montlyWeatherInfo: getWeatherInfo(avgWeatherCode),
       };
     });
 };

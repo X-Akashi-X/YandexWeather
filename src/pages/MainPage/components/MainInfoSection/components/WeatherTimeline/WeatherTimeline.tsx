@@ -29,7 +29,7 @@ const WeatherTimeline = () => {
               timeLineDate,
               timeLineTime,
               timeLineTemperature,
-              timeLineWeatherInfo
+              timeLineWeatherInfo,
             },
             i,
           ) => {
@@ -56,7 +56,10 @@ const WeatherTimeline = () => {
                         ? `${nextDayOfWeek}, ${timeLineTime}`
                         : timeLineTime}
                     </p>
-                    <img src={timeLineWeatherEffect} alt={timeLineWeatherInfo} />
+                    <img
+                      src={timeLineWeatherEffect}
+                      alt={timeLineWeatherInfo}
+                    />
                     <p>{timeLineTemperature}°</p>
                   </Link>
                 </SwiperSlide>

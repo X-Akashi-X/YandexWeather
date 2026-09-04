@@ -17,7 +17,7 @@ export function getAvgWeatherCode(arg: number[]) {
 
   for (const code of arg) {
     const groupName = Object.keys(weatherMap)
-      .sort()
+      .toSorted()
       .find((key) =>
         weatherMap[key as keyof typeof weatherMap].codes.includes(code),
       );

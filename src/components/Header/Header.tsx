@@ -27,8 +27,8 @@ const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
 
-  function togleDropdown(setActive: Dispatch<SetStateAction<boolean>>) {
-    setActive((prev) => (prev === true ? false : true));
+  function toggleDropdown(setActive: Dispatch<SetStateAction<boolean>>) {
+    setActive((prev) => !prev);
   }
 
   function handleClickOutside(
@@ -77,7 +77,7 @@ const Header = () => {
         <nav className={styles.nav_container}>
           <NavLink
             className={({ isActive }) =>
-              `${isActive ? styles.activeMoreDropdown : ""} ${styles.nav_link}`
+              `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
             }
             to="/"
           >
@@ -85,7 +85,7 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              `${isActive ? styles.activeMoreDropdown : ""} ${styles.nav_link}`
+              `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
             }
             to="/onMonth"
           >
@@ -93,7 +93,7 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              `${isActive ? styles.activeMoreDropdown : ""} ${styles.nav_link}`
+              `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
             }
             to="/onMap"
           >
@@ -102,14 +102,14 @@ const Header = () => {
           <div ref={menuRef} className={styles.menu_container}>
             <button
               className={styles.button_bg}
-              onClick={() => togleDropdown(setActiveMoreDropdown)}
+              onClick={() => toggleDropdown(setActiveMoreDropdown)}
             >
               <span className={styles.text_more}>Ещё</span>{" "}
               <span className={styles.text_menu}>Меню</span>{" "}
               <img
                 src={Arrow}
                 alt="стрелка"
-                className={activeMoreDropdown === true ? "rotate180" : ""}
+                className={activeMoreDropdown ? "rotate180" : ""}
               />
             </button>
             {activeMoreDropdown && (
@@ -155,8 +155,12 @@ const Header = () => {
             <img src={Tracker} alt="Местоположение" />
           </button>
           <div className={styles.settings_container} ref={settingsRef}>
-            <button onClick={() => togleDropdown(setActiveSettingDropdown)}>
-              <img src={Setting} alt="Настройки" className={styles.setting_icon} />
+            <button onClick={() => toggleDropdown(setActiveSettingDropdown)}>
+              <img
+                src={Setting}
+                alt="Настройки"
+                className={styles.setting_icon}
+              />
               <img src={Menu} alt="Меню" className={styles.menu_icon} />
             </button>
             {activeSettingDropdown && (
@@ -184,10 +188,18 @@ const Header = () => {
                 <div className={styles.navigation_wrapper}>
                   <button className={styles.navigation_item}>
                     <div className={styles.title_wrapper}>
-                      <img src={Pollen} className={styles.title_icon} alt="Пыльца" />
+                      <img
+                        src={Pollen}
+                        className={styles.title_icon}
+                        alt="Пыльца"
+                      />
                       <p>Мои аллерегны</p>
                     </div>
-                    <img src={Arrow} className={styles.arrow_icon} alt="Стрелка" />
+                    <img
+                      src={Arrow}
+                      className={styles.arrow_icon}
+                      alt="Стрелка"
+                    />
                   </button>
                   <button className={styles.navigation_item}>
                     <div className={styles.title_wrapper}>
@@ -198,28 +210,48 @@ const Header = () => {
                       />
                       <p>Уведомления о погоде</p>
                     </div>
-                    <img src={Arrow} className={styles.arrow_icon} alt="Стрелка" />
+                    <img
+                      src={Arrow}
+                      className={styles.arrow_icon}
+                      alt="Стрелка"
+                    />
                   </button>
                   <button className={styles.navigation_item}>
                     <div className={styles.title_wrapper}>
-                      <img src={Units} className={styles.title_icon} alt="Единицы измерения" />
+                      <img
+                        src={Units}
+                        className={styles.title_icon}
+                        alt="Единицы измерения"
+                      />
                       <p>Единицы измерений</p>
                     </div>
-                    <img src={Arrow} className={styles.arrow_icon} alt="Стрелка" />
+                    <img
+                      src={Arrow}
+                      className={styles.arrow_icon}
+                      alt="Стрелка"
+                    />
                   </button>
                   <button className={styles.navigation_item}>
                     <div className={styles.title_wrapper}>
                       <p className={styles.title_icon}>Ru</p>
                       <p>Выбор языка</p>
                     </div>
-                    <img src={Arrow} className={styles.arrow_icon} alt="Стрелка" />
+                    <img
+                      src={Arrow}
+                      className={styles.arrow_icon}
+                      alt="Стрелка"
+                    />
                   </button>
                   <a
                     href="https://yandex.ru/support/weather/ru/"
                     className={styles.navigation_item}
                   >
                     <div className={styles.title_wrapper}>
-                      <img src={Help} className={styles.title_icon} alt="Справка" />
+                      <img
+                        src={Help}
+                        className={styles.title_icon}
+                        alt="Справка"
+                      />
                       <p>Справка</p>
                     </div>
                   </a>
@@ -228,7 +260,11 @@ const Header = () => {
                     className={styles.navigation_item}
                   >
                     <div className={styles.title_wrapper}>
-                      <img src={Support} className={styles.title_icon} alt="Обратная связь" />
+                      <img
+                        src={Support}
+                        className={styles.title_icon}
+                        alt="Обратная связь"
+                      />
                       <p>Обратная связь</p>
                     </div>
                   </a>
@@ -237,7 +273,11 @@ const Header = () => {
                     className={styles.navigation_item}
                   >
                     <div className={styles.title_wrapper}>
-                      <img src={TG} className={styles.title_icon} alt="Телеграмм" />
+                      <img
+                        src={TG}
+                        className={styles.title_icon}
+                        alt="Телеграмм"
+                      />
                       <p>Тепло в нашем ТГ-канале</p>
                     </div>
                   </a>

@@ -23,7 +23,7 @@ export type PeriodAverages = {
   advancedHumidity: number;
   advancedPressure: number;
   advancedWeatherEffect: string;
-  advancedWeatherInfo: string
+  advancedWeatherInfo: string;
 };
 
 export type AdvancedDayItem = {

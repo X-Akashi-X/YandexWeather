@@ -4,7 +4,7 @@ import Arrow from "@assets/icons/arrowMore.svg";
 import { Link } from "react-router-dom";
 
 const WeatherJournal = () => {
-  const randomNews = useMocks().getRandomNews;
+  const {getRandomNews} = useMocks();
 
   return (
     <section className={styles.section_wrapper}>
@@ -15,9 +15,9 @@ const WeatherJournal = () => {
       <Link
         to="/"
         className={styles.news_wrapper}
-        style={{ backgroundImage: `url(${randomNews.cover_img})` }}
+        style={{ backgroundImage: `url(${getRandomNews.cover_img})` }}
       >
-        <p>{randomNews.title}</p>
+        <p>{getRandomNews.title}</p>
       </Link>
     </section>
   );
