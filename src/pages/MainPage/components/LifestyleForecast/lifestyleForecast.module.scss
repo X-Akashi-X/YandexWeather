@@ -28,21 +28,21 @@
       font-size: 14px;
       text-align: center;
     }
+    &:hover img {
+      transform: scale(1.1);
+    }
+    &:hover p {
+      color: var(--link-red-hovered);
+    }
     img {
       width: 30px;
     }
     p {
       font-weight: var(--week-bold-text);
     }
-    & img,
+    img,
     p {
       transition: all 0.2s ease-in-out;
     }
-  }
-  .item_wrapper:hover img {
-    transform: scale(1.1);
-  }
-  .item_wrapper:hover p {
-    color: var(--link-red-hovered);
   }
 }

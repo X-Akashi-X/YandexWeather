@@ -38,9 +38,9 @@
     font-weight: var(--week-bold-text);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-  }
-  button:hover {
-    color: var(--link-red-hovered);
-    box-shadow: var(--default-shadow);
+    &:hover {
+      color: var(--link-red-hovered);
+      box-shadow: var(--default-shadow);
+    }
   }
 }

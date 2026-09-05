@@ -5,7 +5,7 @@
     padding: 16px 0px;
     :global(.swiper-slide) {
       width: 228px;
-       @media (max-width: 781px) {
+      @media (max-width: 781px) {
         width: 164px;
       }
     }
@@ -19,6 +19,9 @@
       width: 100%;
       gap: 14px;
       cursor: pointer;
+      &:hover {
+        box-shadow: var(--button-shadow-hovered);
+      }
       @media (max-width: 781px) {
         flex-direction: column;
         align-items: start;
@@ -56,12 +59,5 @@
         }
       }
     }
-    .feelings_item:hover {
-      box-shadow: var(--button-shadow-hovered);
-    }
   }
-}
-
-.swiper_slide {
-  width: 228px;
 }

@@ -25,9 +25,9 @@ const CurrentWeather = () => {
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.weather_summary}>
-        <p className={styles.degrees}>
+        <p className={styles.temperature}>
           {currentTemperature}
-          <span>°</span>
+          <span className={styles.degrees}>°</span>
         </p>
         <img src={currentWeatherEffect} alt={currentWeatherInfo} />
         <div className={styles.break} />

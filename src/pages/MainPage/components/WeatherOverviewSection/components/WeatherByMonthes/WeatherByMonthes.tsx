@@ -8,7 +8,7 @@ const WeatherByMonthes = () => {
 
   return (
     <section className={styles.section_wrapper}>
-      <h3>Погода по месяцам</h3>
+      <h3 className={styles.title_main}>Погода по месяцам</h3>
       <div className={styles.weather_wrapper}>
         {data.map((item) => (
           <Link

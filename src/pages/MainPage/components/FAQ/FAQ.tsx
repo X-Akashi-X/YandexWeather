@@ -39,7 +39,7 @@ const FAQ = () => {
 
   return (
     <section className={styles.section_wrapper}>
-      <h3>FAQ</h3>
+      <h3 className={styles.title_main}>FAQ</h3>
       <div className={styles.main_wrapper}>
         <div className={styles.column}>
           <div
@@ -55,7 +55,7 @@ const FAQ = () => {
               />
             </div>
             {activeItem === "weather" && (
-              <p>
+              <p className={styles.forecast}>
                 Сейчас в Минске {currentWeatherInfo}, температура воздуха{" "}
                 {currentTemperature}°, ощущается как{" "}
                 {currentApparentTemperature}

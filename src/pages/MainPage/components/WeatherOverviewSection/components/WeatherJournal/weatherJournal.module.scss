@@ -24,14 +24,14 @@
     width: 100%;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    p {
+    &:hover {
+      box-shadow: inset 0px 70px rgba(1, 1, 1, 0.3);
+      border-radius: 0 0 var(--default-radius) var(--default-radius);
+    }
+    .tilte_main {
       color: white;
       font-weight: var(--week-bold-text);
       font-size: 20px;
     }
-  }
-  .news_wrapper:hover{
-    box-shadow: inset 0px 70px rgba(1, 1, 1, 0.3);
-    border-radius: 0 0 var(--default-radius) var(--default-radius);
   }
 }

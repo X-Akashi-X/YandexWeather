@@ -19,7 +19,7 @@ const WeatherChart = () => {
   return (
     <>
       <div className={styles.main_wrapper}>
-        <h2>Прогноз на 10 дней</h2>
+        <h2 className={styles.title_main}>Прогноз на 10 дней</h2>
         <button className={styles.dropdown_button} onClick={toggleDropdown}>
           <p>Краткий прогноз</p>
           <img
@@ -48,9 +48,9 @@ const WeatherChart = () => {
                   <div className={styles.day_wrapper} key={tenDaysDateKey}>
                     <p
                       className={
-                        tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
+                        `${tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
                           ? styles.weekend_day
-                          : ""
+                          : ""} ${styles.day_week}`
                       }
                     >
                       {tenDaysWeekday}

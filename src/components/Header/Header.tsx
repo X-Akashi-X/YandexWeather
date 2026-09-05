@@ -147,7 +147,7 @@ const Header = () => {
             <img src={Clear} alt="Очистить" />
           </button>
         </div>
-        <div className={styles.button_container}>
+        <div className={styles.buttons_container}>
           <button>
             <img src={Favorite} alt="Избранное" />
           </button>
@@ -166,7 +166,7 @@ const Header = () => {
             {activeSettingDropdown && (
               <div className={styles.settings_dropdown}>
                 <div className={styles.profile_wrapper}>
-                  <span>
+                  <span className={styles.circle}>
                     <img
                       src="https://avatars.mds.yandex.net/get-yapic/30431/gJS84bRtM7UxkDuAfwsVIz9lZgM-1/islands-middle"
                       alt="Аватарка"

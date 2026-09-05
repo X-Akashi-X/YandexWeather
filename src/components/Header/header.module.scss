@@ -21,9 +21,7 @@ header {
 
 .img_container {
   display: flex;
-  a:last-child {
-    margin-right: 12px;
-  }
+  margin-right: 12px;
   img {
     height: 30px;
   }
@@ -163,7 +161,7 @@ header {
   }
 }
 
-.button_container {
+.buttons_container {
   display: flex;
   gap: 12px;
   position: relative;
@@ -179,9 +177,9 @@ header {
     img {
       width: 16px;
     }
-  }
-  button:hover {
-    background-color: var(--link-grey-hovered);
+    &:hover {
+      background-color: var(--link-grey-hovered);
+    }
   }
   .settings_container {
     .setting_icon {
@@ -222,7 +220,7 @@ header {
         &:hover {
           background-color: var(--grey-bg-opacity-low);
         }
-        span {
+        .circle {
           width: 40px;
           height: 40px;
           position: relative;
@@ -269,7 +267,7 @@ header {
             min-width: 108px;
             max-height: 40px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: var(--week-bold-text);
             cursor: pointer;
           }
         }
@@ -310,7 +308,7 @@ header {
             .title_icon {
               width: 24px;
               font-size: 16px;
-              font-weight: 600;
+              font-weight: var(--week-bold-text);
             }
           }
         }

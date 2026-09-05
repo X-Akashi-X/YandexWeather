@@ -51,7 +51,7 @@ const DetailedForecast = () => {
                     : i === TOMORROW
                       ? "Завтра"
                       : advancedWeekday}
-                  , <span>{advancedDate}</span>
+                  , <span className={styles.advanced_date}>{advancedDate}</span>
                 </div>
                 <div
                   className={`${styles.forecast_feeling_gr} small_grey_text`}
@@ -249,8 +249,8 @@ const DetailedForecast = () => {
                 </div>
               </div>
               {/*Line*/}
-              <div className={styles.line_y}></div>
-              <div className={styles.line_x}></div>
+              <div className={styles.line_y} />
+              <div className={styles.line_x} />
               <div
                 className={`${styles.atmosphere_indicators} small_grey_text`}
               >

@@ -10,10 +10,7 @@
       }
     }
   }
-  .active{
-    display: block;
-  }
-  h2 {
+  .title_main {
     margin-bottom: 20px;
     @media (max-width: 781px) {
       margin-bottom: 10px;
@@ -51,10 +48,14 @@
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      &:hover {
+        box-shadow: var(--button-shadow-hovered);
+        color: var(--link-red-hovered);
+      }
       @media (max-width: 781px) {
         min-width: 62px;
       }
-      p:first-of-type {
+      .day_week {
         font-size: 20px;
         font-weight: var(--week-bold-text);
         text-transform: capitalize;
@@ -64,13 +65,9 @@
         width: 32px;
         margin-bottom: 7px;
       }
-      .weekend_day{
+      .weekend_day {
         color: var(--link-red-hovered);
       }
-    }
-    .day_wrapper:hover {
-      box-shadow: var(--button-shadow-hovered);
-      color: var(--link-red-hovered);
     }
   }
   .chart_wrapper {
@@ -101,5 +98,8 @@
         background-color: #c5ccd4;
       }
     }
+  }
+  .active {
+    display: block;
   }
 }

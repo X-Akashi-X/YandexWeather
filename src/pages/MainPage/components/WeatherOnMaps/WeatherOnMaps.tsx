@@ -12,7 +12,7 @@ import Pressure from "@assets/image/weatherOnMaps/pressureMap.jpg";
 const WeatherOnMaps = () => {
   return (
     <section className={styles.section_wrapper}>
-      <h3>Прогноз погоды на картах</h3>
+      <h3 className={styles.title_main}>Прогноз погоды на картах</h3>
       <Swiper
         className={styles.maps_wrapper}
         modules={[Navigation, FreeMode]}

@@ -4,7 +4,7 @@
     cursor: grab;
     :global(.swiper-slide) {
       width: 460px;
-      @media(max-width: 781px) {
+      @media (max-width: 781px) {
         width: 100%;
       }
     }
@@ -14,35 +14,23 @@
       border-radius: var(--default-radius);
       width: 100%;
       cursor: pointer;
-      h3{
-        transition: all 0.2s ease-in-out;
+      &:hover .status_title_wrapper h3 {
+        color: var(--link-red-hovered);
       }
       .status_title_wrapper {
         display: flex;
         gap: 8px;
         margin-bottom: 8px;
         align-items: center;
+        h3 {
+          transition: all 0.2s ease-in-out;
+        }
         img {
           width: 35px;
         }
       }
       &:last-child img {
         width: 26px;
-      }
-    }
-    .status_item:hover h3{
-      color: var(--link-red-hovered);
-    }
-    button {
-      background-color: var(--white-bg);
-      border-radius: var(--half-radius);
-      padding: 16px;
-      box-shadow: var(--default-shadow);
-      width: 48px;
-      height: 48px;
-      cursor: pointer;
-      img {
-        width: 16px;
       }
     }
   }

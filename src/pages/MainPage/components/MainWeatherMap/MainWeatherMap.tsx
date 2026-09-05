@@ -9,7 +9,7 @@ const WeatherMap = () => {
 
   return (
     <section className={styles.sectionWrapper}>
-      <div ref={mapContainer}></div>
+      <div className={styles.map_container} ref={mapContainer} />
       <div className={styles.img_container}>
         <a href="https://yandex.by/?via=ywhl" target="_blank">
           <img src={Logo} alt="Перейти на главную яндекса" />

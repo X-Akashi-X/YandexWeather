@@ -70,7 +70,7 @@ const Footer = () => {
         </div>
       </nav>
       <div className={styles.requisite_wrapper}>
-        <p>
+        <p className={styles.requisite_sources}>
           Исходные данные: ООО «Яндекс.Пробки»; Росгидромет, ФГБУ «ЦАО»; NOAA;
           Белгидромет
         </p>
