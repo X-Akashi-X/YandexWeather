@@ -1,0 +1,41 @@
+.section_wrapper {
+  font-size: 17px;
+  margin-bottom: 15px;
+  .timeline_wrapper {
+    :global(.swiper-slide) {
+      width: 75px;
+    }
+    cursor: grab;
+    .swiper_slide {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .line_slide {
+      width: 37px;
+      .day_separator {
+        background-color: var(--color-light-grey-opacity-low);
+        width: 1px;
+        height: 100%;
+        transform: translate(+12px);
+      }
+    }
+    .weather_timeline_item {
+      height: 108px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      .time {
+        text-transform: capitalize;
+        white-space: nowrap;
+      }
+      img {
+        width: 43px;
+      }
+      .temperature {
+        font-weight: var(--week-bold-text);
+      }
+    }
+  }
+}

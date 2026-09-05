@@ -1,0 +1,132 @@
+@font-face {
+  font-family: "YSText";
+  src: url(./assets/fonts/YSText-Upright-weight-VF.ttf) format("truetype");
+}
+
+* {
+  font-family: "YSText", sans-serif;
+  color: rgba(38, 38, 51, 1);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background-color: rgba(247, 248, 250, 1);
+}
+
+main {
+  overflow-x: hidden;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 1px;
+  @media (max-width: 1151px) {
+    max-width: 780px;
+  }
+}
+
+ul,
+li,
+dl {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+  display: inline-block;
+}
+
+button {
+  border: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.small_grey_text {
+  font-size: var(--font-small);
+  color: var(--color-light-grey);
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+//==================================SWIPER
+.swiper {
+  overflow: visible;
+}
+
+.swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: var(--white-bg);
+  border-radius: var(--half-radius);
+  padding: 16px;
+  box-shadow: var(--default-shadow);
+  width: 48px;
+  height: 48px;
+  transition: all 0.3s ease-in-out;
+  @media (max-width: 781px) {
+    display: none;
+  }
+  svg {
+    color: black;
+    stroke: black;
+    fill: black;
+    width: 7px;
+    path {
+      stroke-width: 1.5;
+    }
+  }
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  box-shadow: var(--button-shadow-hovered);
+  transform: scale(1.1);
+}
+
+.swiper-button-disabled {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+//==================================MAP
+.map_pointer {
+  background-image: url(assets/icons/mapPointer.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center 45px;
+}

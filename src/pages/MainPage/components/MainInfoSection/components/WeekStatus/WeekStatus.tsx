@@ -1,0 +1,131 @@
+import useServices from "@services/useServices";
+import styles from "./weekStatus.module.scss";
+import { Link } from "react-router-dom";
+import sourceData from "@assets/icons/mainInfoSection/sourceDataIcon.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation } from "swiper/modules";
+
+const WeakStatus = () => {
+  const { getTodayData, getTomorrowData, getWeekData, getWeekendData } =
+    useServices();
+
+  const {
+    todayMaxTemperature,
+    todayMinTemperature,
+    todayWindGusts,
+    todayMinMaxWindSpeed,
+    todayWeatherEffect,
+    todayWeatherInfo,
+    todayWindCategory,
+  } = getTodayData;
+  const {
+    tomorrowWeatherEffect,
+    tomorrowMinTemperature,
+    tomorrowMaxTemperature,
+    tomorrowMinMaxWindSpeed,
+    tomorrowWindGusts,
+    tomorrowWeatherInfo,
+    tomorrowWindCategory,
+  } = getTomorrowData;
+  const {
+    weekMinTemperature,
+    weekMaxTemperature,
+    weekMinMaxWindSpeed,
+    weekWindGusts,
+    weekWeatherEffect,
+    weekWeatherInfo,
+    weekWindCategory,
+  } = getWeekData;
+  const {
+    weekendMinTemperature,
+    weekendMaxTemperature,
+    weekendMinMaxWindSpeed,
+    weekendWindGusts,
+    weekendWeatherEffect,
+    weekendWeatherInfo,
+    weekendWindCategory,
+  } = getWeekendData;
+
+  return (
+    <section className={styles.section_wrapper}>
+      <Swiper
+        className={styles.status_wrapper}
+        modules={[Navigation, FreeMode]}
+        slidesPerView="auto"
+        spaceBetween={8}
+        freeMode={true}
+        touchRatio={1}
+        navigation
+      >
+        <SwiperSlide>
+          <a href="" className={styles.status_item}>
+            <div className={styles.status_title_wrapper}>
+              <img src={todayWeatherEffect} alt={todayWeatherInfo} />
+              <h3>Сегодня</h3>
+            </div>
+            <p>
+              {todayWeatherInfo} · {todayMinTemperature}...
+              {todayMaxTemperature}° · {todayWindCategory}
+              &nbsp;
+              {todayMinMaxWindSpeed} м/с, порывы до {todayWindGusts} м/с
+            </p>
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="" className={styles.status_item}>
+            <div className={styles.status_title_wrapper}>
+              <img src={tomorrowWeatherEffect} alt={tomorrowWeatherInfo} />
+              <h3>Завтра</h3>
+            </div>
+            <p>
+              {tomorrowWeatherInfo} · {tomorrowMinTemperature}...
+              {tomorrowMaxTemperature}° · {tomorrowWindCategory}
+              &nbsp;
+              {tomorrowMinMaxWindSpeed} м/с, порывы до {tomorrowWindGusts} м/с
+            </p>
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="" className={styles.status_item}>
+            <div className={styles.status_title_wrapper}>
+              <img src={weekWeatherEffect} alt={weekWeatherInfo} />
+              <h3>На этой неделе</h3>
+            </div>
+            <p>
+              {weekWeatherInfo} · {weekMinTemperature}
+              ...
+              {weekMaxTemperature}° · {weekWindCategory} {weekMinMaxWindSpeed}{" "}
+              м/с, порывы до {weekWindGusts} м/с
+            </p>
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="" className={styles.status_item}>
+            <div className={styles.status_title_wrapper}>
+              <img src={weekendWeatherEffect} alt={weekendWeatherInfo} />
+              <h3>В выходные</h3>
+            </div>
+            <p>
+              {weekendWeatherInfo} · {weekendMinTemperature}...
+              {weekendMaxTemperature}° · {weekendWindCategory}{" "}
+              {weekendMinMaxWindSpeed} м/с, порывы до {weekendWindGusts} м/с
+            </p>
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Link to="/" className={styles.status_item}>
+            <div className={styles.status_title_wrapper}>
+              <img src={sourceData} alt="Источник данных" />
+              <h3>Источник данных</h3>
+            </div>
+            <p>
+              Нажмите чтобы посмотреть показания с источников погодных данных
+            </p>
+          </Link>
+        </SwiperSlide>
+      </Swiper>
+    </section>
+  );
+};
+
+export default WeakStatus;

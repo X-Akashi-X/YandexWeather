@@ -1,0 +1,41 @@
+.section_wrapper {
+  background-color: var(--white-bg);
+  border-radius: var(--default-radius);
+  padding: 20px;
+  margin-bottom: 10px;
+  overflow-x: hidden;
+  .title_main {
+    margin-bottom: 15px;
+  }
+  .maps_wrapper {
+    cursor: grab;
+    :global(.swiper-slide) {
+      width: 290px;
+      height: 188px;
+    }
+    .maps_item {
+      width: 290px;
+      height: 188px;
+      position: relative;
+      border-radius: var(--default-radius);
+      background-position: center;
+      background-size: cover;
+      cursor: pointer;
+      button{
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        background-color: var(--white-bg);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 16px;
+        font-weight: var(--week-bold-text);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover{
+          box-shadow: var(--button-shadow-hovered);
+        }
+      }
+    }
+  }
+}
