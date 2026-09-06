@@ -71,9 +71,6 @@
       }
       .weekend_day {
         color: var(--link-red-hovered);
-      }
-      .forecast_date_gr {
-        grid-column: span 2 / span 2;
         .advanced_date {
           @media (max-width: 1151px) {
             display: block;
@@ -83,6 +80,9 @@
             display: inline;
           }
         }
+      }
+      .forecast_date_gr {
+        grid-column: span 2 / span 2;
       }
       .forecast_feeling_gr {
         grid-column-start: 3;

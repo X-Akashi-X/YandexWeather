@@ -1,14 +1,9 @@
 import styles from "./detailedForecast.module.scss";
 import useServices from "@services/useServices";
 import WIndDirectionArrow from "@components/WindDirectionArrow/WIndDirectionArrow";
-import LightArc from "@assets/image/detailedForecast/lightingDayArc.svg";
-import Sunrise from "@assets/icons/detailedForecast/sunriseIcon.svg";
-import Sunset from "@assets/icons/detailedForecast/sunsetIcon.svg";
-import WaterTemp from "@assets/icons/waterTempIcon.svg";
-import Humidity from "@assets/icons/mainInfoSection/humidityIcon.svg";
-import Pressure from "@assets/icons/mainInfoSection/pressureIcon.svg";
 import { Link } from "react-router-dom";
 import { SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
+import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();

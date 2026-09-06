@@ -2,12 +2,8 @@ import styles from "./weatherOnMaps.module.scss";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
-import Precipitation from "@assets/image/weatherOnMaps/precipitationMap.jpg";
-import Pollen from "@assets/image/weatherOnMaps/pollenMap.jpg";
-import Temp from "@assets/image/weatherOnMaps/tempMap.jpg";
-import Snow from "@assets/image/weatherOnMaps/snowMap.jpg";
-import Wind from "@assets/image/weatherOnMaps/windMap.jpg";
-import Pressure from "@assets/image/weatherOnMaps/pressureMap.jpg";
+import { Pollen, Precipitation, Pressure, Snow, Temp, Wind } from ".";
+
 
 const WeatherOnMaps = () => {
   return (

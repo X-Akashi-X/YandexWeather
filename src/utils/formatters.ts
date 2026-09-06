@@ -2,7 +2,7 @@ import {
   DEGREES_PER_DIRECTION,
   TOTAL_WIND_DIRECTIONS,
 } from "@constants/conversions";
-import { weatherMap } from "./weatherMapper";
+import { weatherMap } from "./weatherMapper/weatherMapper";
 import { WIND_DIRECTIONS } from "@constants/weather";
 
 export function getWindDirection(deg: number) {

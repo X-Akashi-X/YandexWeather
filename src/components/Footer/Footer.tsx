@@ -1,7 +1,6 @@
+import { AppGallery, AppStore, GooglePlay } from ".";
 import styles from "./footer.scss.module.scss";
-import GooglePlay from "@assets/icons/footer/googlePlayIcon.svg";
-import AppStore from "@assets/icons/footer/appStoreIcon.svg";
-import AppGallery from "@assets/icons/footer/appGalleryIcon.svg";
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {

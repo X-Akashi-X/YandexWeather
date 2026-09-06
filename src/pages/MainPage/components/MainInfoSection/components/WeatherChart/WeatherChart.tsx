@@ -47,11 +47,11 @@ const WeatherChart = () => {
                 return (
                   <div className={styles.day_wrapper} key={tenDaysDateKey}>
                     <p
-                      className={
-                        `${tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
+                      className={`${
+                        tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
                           ? styles.weekend_day
-                          : ""} ${styles.day_week}`
-                      }
+                          : ""
+                      } ${styles.day_week}`}
                     >
                       {tenDaysWeekday}
                     </p>

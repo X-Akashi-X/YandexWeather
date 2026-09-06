@@ -1,11 +1,13 @@
-import newMoon from "@assets/icons/moon/newMoonIcon.svg";
-import waxingSmall from "@assets/icons/moon/waxingSmallIcon.svg";
-import firsthQuarter from "@assets/icons/moon/quarterFirstIcon.svg";
-import waxingBig from "@assets/icons/moon/waxingBigIcon.svg";
-import fullMoon from "@assets/icons/moon/fullMoonIcon.svg";
-import waningBig from "@assets/icons/moon/waningBigIcon.svg";
-import lastQuarter from "@assets/icons/moon/quarterLastIcon.svg";
-import waningSmall from "@assets/icons/moon/waningSmallIcon.svg";
+import {
+  firsthQuarter,
+  fullMoon,
+  lastQuarter,
+  newMoon,
+  waningBig,
+  waningSmall,
+  waxingBig,
+  waxingSmall,
+} from ".";
 
 export function moonMap(category: number) {
   if (category <= 0.04) return { text: "новолуние", icon: newMoon };

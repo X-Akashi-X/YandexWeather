@@ -1,8 +1,6 @@
+import { Humidity, Pressure, WaterTemp, WindSpeed } from ".";
 import styles from "./currentWeather.module.scss";
-import WindSpeed from "@assets/icons/mainInfoSection/windSpeedIcon.svg";
-import Pressure from "@assets/icons/mainInfoSection/pressureIcon.svg";
-import Humidity from "@assets/icons/mainInfoSection/humidityIcon.svg";
-import WaterTemp from "@assets/icons/waterTempIcon.svg";
+
 import useServices from "@services/useServices";
 
 const CurrentWeather = () => {
