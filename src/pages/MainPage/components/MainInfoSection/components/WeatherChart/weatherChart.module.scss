@@ -1,7 +1,7 @@
 .main_wrapper {
   width: 100%;
   .main_chart_wrapper {
-    @media (max-width: 781px) {
+    @media (max-width: $tablet-screen) {
       overflow-x: scroll;
       display: none;
       padding: 0px 10px;
@@ -12,7 +12,7 @@
   }
   .title_main {
     margin-bottom: 20px;
-    @media (max-width: 781px) {
+    @media (max-width: $tablet-screen) {
       margin-bottom: 10px;
     }
   }
@@ -28,7 +28,7 @@
       width: 12px;
       transition: all 0.2s ease-in-out;
     }
-    @media (max-width: 781px) {
+    @media (max-width: $tablet-screen) {
       display: flex;
     }
   }
@@ -39,9 +39,9 @@
       width: 100%;
       text-align: center;
       padding: 10px 6px;
-      background-color: var(--white-bg);
-      border-radius: var(--default-radius);
-      box-shadow: var(--default-shadow);
+      background-color: $white-bg;
+      border-radius: $default-radius;
+      box-shadow: $default-shadow;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -49,15 +49,15 @@
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       &:hover {
-        box-shadow: var(--button-shadow-hovered);
-        color: var(--link-red-hovered);
+        box-shadow: $button-shadow-hovered;
+        color: $link-red-hovered;
       }
-      @media (max-width: 781px) {
+      @media (max-width: $tablet-screen) {
         min-width: 62px;
       }
       .day_week {
         font-size: 20px;
-        font-weight: var(--week-bold-text);
+        font-weight: $week-bold-text;
         text-transform: capitalize;
         margin-bottom: 5px;
       }
@@ -66,7 +66,7 @@
         margin-bottom: 7px;
       }
       .weekend_day {
-        color: var(--link-red-hovered);
+        color: $link-red-hovered;
       }
     }
   }
@@ -76,13 +76,13 @@
     padding-right: calc(5% - 27px);
     margin: 0 auto;
     height: 200px;
-    @media (max-width: 781px) {
+    @media (max-width: $tablet-screen) {
       padding-left: 5px;
       padding-right: 0;
       min-width: 705px;
     }
     .frame {
-      border-radius: var(--default-radius);
+      border-radius: $default-radius;
       width: 100%;
       height: 100%;
       font-size: 12px;

@@ -1,5 +1,5 @@
 .sectionWrapper {
-  background-color: var(--white-bg);
+  background-color: $white-bg;
   position: relative;
   top: -60px;
   border-radius: 32px 32px 24px 24px;
@@ -18,7 +18,7 @@
     z-index: 2;
     pointer-events: none;
   }
-  @media (max-width: 781px) {
+  @media (max-width: $tablet-screen) {
     &::after {
       content: none;
     }

@@ -2,7 +2,6 @@ import { Car, Fishing, Garden, Pollen, Running, waterSport } from ".";
 import styles from "./lifestyleForecast.module.scss";
 import { Link } from "react-router-dom";
 
-
 const LifestyleForecast = () => {
   return (
     <section className={styles.section_wrapper}>

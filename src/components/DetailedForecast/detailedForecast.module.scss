@@ -3,8 +3,8 @@
     display: flex;
     justify-content: space-between;
     padding: 20px 24px;
-    background-color: var(--white-bg);
-    border-radius: var(--default-radius);
+    background-color: $white-bg;
+    border-radius: $default-radius;
     align-items: center;
     margin-bottom: 10px;
     position: relative;
@@ -12,30 +12,30 @@
     gap: 15px;
     transition: all 0.2s ease-in-out;
     &:hover {
-      box-shadow: var(--box-shadow-hovered);
+      box-shadow: $box-shadow-hovered;
     }
-    @media (max-width: 781px) {
+    @media (max-width: $tablet-screen) {
       display: block;
     }
     .line_y {
       margin-top: 5px;
       height: 215px;
       width: 0.5px;
-      background-color: var(--color-light-grey);
-      @media (max-width: 1151px) {
+      background-color: $color-light-grey;
+      @media (max-width: $laptop-screen) {
         height: 240px;
         margin-top: 0;
       }
-      @media (max-width: 781px) {
+      @media (max-width: $tablet-screen) {
         display: none;
       }
     }
     .line_x {
       height: 0.5px;
       width: 100%;
-      background-color: var(--color-light-grey);
+      background-color: $color-light-grey;
       display: none;
-      @media (max-width: 781px) {
+      @media (max-width: $tablet-screen) {
         display: block;
         margin-bottom: 15px;
       }
@@ -51,63 +51,66 @@
           width: 17px;
         }
       }
-      @media (max-width: 781px) {
+      @media (max-width: $tablet-screen) {
         display: flex;
       }
     }
     //GRID
     .grid_forecast_wrapper {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: 70px 180px repeat(4, 1fr);
       grid-template-rows: repeat(5, 1fr);
       align-items: center;
       position: relative;
       row-gap: 15px;
       column-gap: 10px;
-      @media (max-width: 781px) {
+      @media (max-width: $laptop-screen) {
+        grid-template-columns: repeat(6, 1fr)
+      }
+      @media (max-width: $tablet-screen) {
         justify-content: space-between;
         margin-bottom: 15px;
         grid-template-columns: repeat(3, 1fr);
       }
       .weekend_day {
-        color: var(--link-red-hovered);
+        color: $link-red-hovered;
+      }
+      .forecast_date_gr {
+        grid-column: span 2 / span 2;
         .advanced_date {
-          @media (max-width: 1151px) {
+          @media (max-width: $laptop-screen) {
             display: block;
           }
-          @media (max-width: 781px) {
+          @media (max-width: $tablet-screen) {
             grid-column: span 2;
             display: inline;
           }
         }
       }
-      .forecast_date_gr {
-        grid-column: span 2 / span 2;
-      }
       .forecast_feeling_gr {
         grid-column-start: 3;
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           grid-column-start: none;
           display: none;
         }
       }
       .forecast_wind_gr {
         grid-column-start: 4;
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           grid-column-start: none;
           display: none;
         }
       }
       .forecast_humidity_gr {
         grid-column-start: 5;
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           grid-column-start: none;
           display: none;
         }
       }
       .forecast_pressure_gr {
         grid-column-start: 6;
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           grid-column-start: none;
           display: none;
         }
@@ -125,27 +128,27 @@
         grid-row-start: 5;
       }
       .apparent_wrapper {
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           display: none;
         }
       }
       .humidity_wrapper {
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           display: none;
         }
       }
       .pressure_wrapper {
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           display: none;
         }
       }
       .temp_wrapper {
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           justify-self: center;
         }
       }
       .wind_wrapper {
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           justify-self: end;
         }
       }
@@ -155,7 +158,7 @@
       flex-direction: column;
       align-items: start;
       max-width: 210px;
-      @media (max-width: 781px) {
+      @media (max-width: $tablet-screen) {
         display: none;
       }
       .sunday_wrapper {
@@ -172,24 +175,29 @@
         align-items: center;
         row-gap: 10px;
         column-gap: 15px;
-        font-size: var(--font-small);
+        font-size: $font-small;
       }
     }
     //OTHER UI
     .title_date {
       font-size: 16px;
-      font-weight: var(--week-bold-text);
+      font-weight: $week-bold-text;
       text-transform: capitalize;
     }
     .tmp_effect_wrapper {
       display: flex;
       align-items: center;
       gap: 5px;
-      p {
-        font-weight: var(--week-bold-text);
+      .temperature {
+        font-weight: $week-bold-text;
       }
       img {
         width: 32px;
+      }
+      .info{
+        @media (max-width: $laptop-screen) {
+          display: none;
+        }
       }
     }
     .wind_anvanced_wrapper {
@@ -199,7 +207,7 @@
       text-align: left;
       .m_per_sec {
         display: none;
-        @media (max-width: 781px) {
+        @media (max-width: $tablet-screen) {
           display: block;
         }
       }

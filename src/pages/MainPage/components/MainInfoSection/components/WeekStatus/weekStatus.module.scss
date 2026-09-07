@@ -4,18 +4,18 @@
     cursor: grab;
     :global(.swiper-slide) {
       width: 460px;
-      @media (max-width: 781px) {
+      @media (max-width: $tablet-screen) {
         width: 100%;
       }
     }
     .status_item {
       padding: 16px 16px 12px;
-      background-color: var(--blue-light-bg);
-      border-radius: var(--default-radius);
+      background-color: $blue-light-bg;
+      border-radius: $default-radius;
       width: 100%;
       cursor: pointer;
       &:hover .status_title_wrapper h3 {
-        color: var(--link-red-hovered);
+        color: $link-red-hovered;
       }
       .status_title_wrapper {
         display: flex;

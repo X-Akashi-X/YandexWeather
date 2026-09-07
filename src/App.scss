@@ -18,11 +18,11 @@ body {
 
 main {
   overflow-x: hidden;
-  max-width: 1150px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 0 1px;
-  @media (max-width: 1151px) {
-    max-width: 780px;
+  @media (max-width: $laptop-screen) {
+    max-width: 792px;
   }
 }
 
@@ -70,8 +70,8 @@ input::-webkit-inner-spin-button {
 }
 
 .small_grey_text {
-  font-size: var(--font-small);
-  color: var(--color-light-grey);
+  font-size: $font-small;
+  color: $color-light-grey;
 }
 
 .rotate180 {
@@ -90,14 +90,14 @@ input::-webkit-inner-spin-button {
 
 .swiper-button-prev,
 .swiper-button-next {
-  background-color: var(--white-bg);
-  border-radius: var(--half-radius);
+  background-color: $white-bg;
+  border-radius: $half-radius;
   padding: 16px;
-  box-shadow: var(--default-shadow);
+  box-shadow: $default-shadow;
   width: 48px;
   height: 48px;
   transition: all 0.3s ease-in-out;
-  @media (max-width: 781px) {
+  @media (max-width: $tablet-screen) {
     display: none;
   }
   svg {
@@ -113,7 +113,7 @@ input::-webkit-inner-spin-button {
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  box-shadow: var(--button-shadow-hovered);
+  box-shadow: $button-shadow-hovered;
   transform: scale(1.1);
 }
 

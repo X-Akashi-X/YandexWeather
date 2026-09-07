@@ -14,7 +14,7 @@
     .line_slide {
       width: 37px;
       .day_separator {
-        background-color: var(--color-light-grey-opacity-low);
+        background-color: $color-light-grey-opacity-low;
         width: 1px;
         height: 100%;
         transform: translate(+12px);
@@ -34,7 +34,7 @@
         width: 43px;
       }
       .temperature {
-        font-weight: var(--week-bold-text);
+        font-weight: $week-bold-text;
       }
     }
   }

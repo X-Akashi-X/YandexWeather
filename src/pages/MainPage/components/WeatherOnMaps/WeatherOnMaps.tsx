@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import { Pollen, Precipitation, Pressure, Snow, Temp, Wind } from ".";
 
-
 const WeatherOnMaps = () => {
   return (
     <section className={styles.section_wrapper}>

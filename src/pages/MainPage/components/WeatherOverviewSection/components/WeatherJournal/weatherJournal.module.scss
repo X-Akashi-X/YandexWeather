@@ -1,9 +1,9 @@
 .section_wrapper {
-  background-color: var(--white-bg);
-  border-radius: var(--default-radius);
+  background-color: $white-bg;
+  border-radius: $default-radius;
   padding: 20px 24px;
   width: 50%;
-  @media (max-width: 781px) {
+  @media (max-width: $tablet-screen) {
     width: 100%;
   }
   .title_wrapper {
@@ -16,7 +16,7 @@
     }
   }
   .news_wrapper {
-    border-radius: var(--default-radius);
+    border-radius: $default-radius;
     padding: 16px 14px;
     background-position: center;
     background-size: cover;
@@ -26,11 +26,11 @@
     transition: all 0.3s ease-in-out;
     &:hover {
       box-shadow: inset 0px 70px rgba(1, 1, 1, 0.3);
-      border-radius: 0 0 var(--default-radius) var(--default-radius);
+      border-radius: 0 0 $default-radius $default-radius;
     }
     .tilte_main {
       color: white;
-      font-weight: var(--week-bold-text);
+      font-weight: $week-bold-text;
       font-size: 20px;
     }
   }

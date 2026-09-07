@@ -10,7 +10,17 @@ import Support from "@assets/icons/header/settingsDropdown/supportIcon.svg";
 import TG from "@assets/icons/header/settingsDropdown/tgIcon.svg";
 import { useEffect, useRef, useState } from "react";
 import type { Dispatch, RefObject, SetStateAction } from "react";
-import { Arrow, Clear, Favorite, Logo, Menu, Search, Setting, Teg, Tracker } from ".";
+import {
+  Arrow,
+  Clear,
+  Favorite,
+  Logo,
+  Menu,
+  Search,
+  Setting,
+  Teg,
+  Tracker,
+} from ".";
 
 const Header = () => {
   const [activeMoreDropdown, setActiveMoreDropdown] = useState(false);

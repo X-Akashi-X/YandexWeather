@@ -1,12 +1,12 @@
 .section_wrapper {
   display: flex;
   padding: 10px 16px;
-  background-color: var(--white-bg);
-  border-radius: var(--default-radius);
+  background-color: $white-bg;
+  border-radius: $default-radius;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
-  @media (max-width: 781px) {
+  @media (max-width: $tablet-screen) {
     overflow-x: scroll;
     &::-webkit-scrollbar {
       display: none;
@@ -21,7 +21,7 @@
     font-size: 16px;
     cursor: pointer;
     padding: 0px 8px;
-    @media (max-width: 781px) {
+    @media (max-width: $tablet-screen) {
       flex-direction: column;
       gap: 5px;
       align-content: center;
@@ -32,13 +32,13 @@
       transform: scale(1.1);
     }
     &:hover p {
-      color: var(--link-red-hovered);
+      color: $link-red-hovered;
     }
     img {
       width: 30px;
     }
     p {
-      font-weight: var(--week-bold-text);
+      font-weight: $week-bold-text;
     }
     img,
     p {

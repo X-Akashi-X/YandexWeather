@@ -1,6 +1,6 @@
 .section_wrapper {
-  background-color: var(--white-bg);
-  border-radius: var(--default-radius);
+  background-color: $white-bg;
+  border-radius: $default-radius;
   padding: 20px;
   margin-bottom: 10px;
   overflow-x: hidden;
@@ -17,7 +17,7 @@
       width: 290px;
       height: 188px;
       position: relative;
-      border-radius: var(--default-radius);
+      border-radius: $default-radius;
       background-position: center;
       background-size: cover;
       cursor: pointer;
@@ -25,15 +25,15 @@
         position: absolute;
         left: 10px;
         bottom: 10px;
-        background-color: var(--white-bg);
+        background-color: $white-bg;
         border-radius: 10px;
         padding: 12px 14px;
         font-size: 16px;
-        font-weight: var(--week-bold-text);
+        font-weight: $week-bold-text;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
         &:hover{
-          box-shadow: var(--button-shadow-hovered);
+          box-shadow: $button-shadow-hovered;
         }
       }
     }

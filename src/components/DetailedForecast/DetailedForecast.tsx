@@ -74,11 +74,16 @@ const DetailedForecast = () => {
                   className={`${styles.forecast_gr_str1} ${styles.temp_wrapper}`}
                 >
                   <div className={styles.tmp_effect_wrapper}>
-                    <p>{morning.advancedTemperature}°</p>
+                    <p className={styles.temperature}>
+                      {morning.advancedTemperature}°
+                    </p>
                     <img
                       src={morning.advancedWeatherEffect}
                       alt={morning.advancedWeatherInfo}
                     />
+                    <p className={`${styles.info} small_grey_text`}>
+                      {morning.advancedWeatherInfo}
+                    </p>
                   </div>
                 </div>
                 <div
@@ -118,11 +123,16 @@ const DetailedForecast = () => {
                   className={`${styles.forecast_gr_str2} ${styles.temp_wrapper}`}
                 >
                   <div className={styles.tmp_effect_wrapper}>
-                    <p>{day.advancedTemperature}°</p>
+                    <p className={styles.temperature}>
+                      {day.advancedTemperature}°
+                    </p>
                     <img
                       src={day.advancedWeatherEffect}
                       alt={day.advancedWeatherInfo}
                     />
+                    <p className={`${styles.info} small_grey_text`}>
+                      {day.advancedWeatherInfo}
+                    </p>
                   </div>
                 </div>
                 <div
@@ -162,11 +172,16 @@ const DetailedForecast = () => {
                   className={`${styles.forecast_gr_str3} ${styles.temp_wrapper}`}
                 >
                   <div className={styles.tmp_effect_wrapper}>
-                    <p>{evening.advancedTemperature}°</p>
+                    <p className={styles.temperature}>
+                      {evening.advancedTemperature}°
+                    </p>
                     <img
                       src={evening.advancedWeatherEffect}
                       alt={evening.advancedWeatherInfo}
                     />
+                    <p className={`${styles.info} small_grey_text`}>
+                      {evening.advancedWeatherInfo}
+                    </p>
                   </div>
                 </div>
                 <div
@@ -206,11 +221,16 @@ const DetailedForecast = () => {
                   className={`${styles.forecast_gr_str4} ${styles.temp_wrapper}`}
                 >
                   <div className={styles.tmp_effect_wrapper}>
-                    <p>{night.advancedTemperature}°</p>
+                    <p className={styles.temperature}>
+                      {night.advancedTemperature}°
+                    </p>
                     <img
                       src={night.advancedWeatherEffect}
                       alt={night.advancedWeatherInfo}
                     />
+                    <p className={`${styles.info} small_grey_text`}>
+                      {night.advancedWeatherInfo}
+                    </p>
                   </div>
                 </div>
                 <div
