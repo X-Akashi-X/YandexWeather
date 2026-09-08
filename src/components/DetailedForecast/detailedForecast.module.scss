@@ -19,7 +19,7 @@
     }
     .line_y {
       margin-top: 5px;
-      height: 215px;
+      height: 220px;
       width: 0.5px;
       background-color: $color-light-grey;
       @media (max-width: $laptop-screen) {
@@ -58,17 +58,16 @@
     //GRID
     .grid_forecast_wrapper {
       display: grid;
-      grid-template-columns: 70px 180px repeat(4, 1fr);
+      grid-template-columns: 80px 200px repeat(4, 1fr);
       grid-template-rows: repeat(5, 1fr);
       align-items: center;
       position: relative;
       row-gap: 15px;
       column-gap: 10px;
       @media (max-width: $laptop-screen) {
-        grid-template-columns: repeat(6, 1fr)
+        grid-template-columns: repeat(6, 1fr);
       }
       @media (max-width: $tablet-screen) {
-        justify-content: space-between;
         margin-bottom: 15px;
         grid-template-columns: repeat(3, 1fr);
       }
@@ -87,45 +86,15 @@
           }
         }
       }
-      .forecast_feeling_gr {
-        grid-column-start: 3;
+      .time_of_day {
         @media (max-width: $tablet-screen) {
-          grid-column-start: none;
-          display: none;
+          grid-column: 1;
         }
       }
-      .forecast_wind_gr {
-        grid-column-start: 4;
+      .category_title {
         @media (max-width: $tablet-screen) {
-          grid-column-start: none;
           display: none;
         }
-      }
-      .forecast_humidity_gr {
-        grid-column-start: 5;
-        @media (max-width: $tablet-screen) {
-          grid-column-start: none;
-          display: none;
-        }
-      }
-      .forecast_pressure_gr {
-        grid-column-start: 6;
-        @media (max-width: $tablet-screen) {
-          grid-column-start: none;
-          display: none;
-        }
-      }
-      .forecast_gr_str1 {
-        grid-row-start: 2;
-      }
-      .forecast_gr_str2 {
-        grid-row-start: 3;
-      }
-      .forecast_gr_str3 {
-        grid-row-start: 4;
-      }
-      .forecast_gr_str4 {
-        grid-row-start: 5;
       }
       .apparent_wrapper {
         @media (max-width: $tablet-screen) {
@@ -172,7 +141,6 @@
       .grid_air_quality_wrapper {
         display: grid;
         grid-template-columns: minmax(auto, 100px) max-content;
-        align-items: center;
         row-gap: 10px;
         column-gap: 15px;
         font-size: $font-small;
@@ -180,12 +148,15 @@
     }
     //OTHER UI
     .title_date {
-      font-size: 16px;
       font-weight: $week-bold-text;
       text-transform: capitalize;
+      @media (max-width: $laptop-screen) {
+        font-size: 15px;
+      }
     }
     .tmp_effect_wrapper {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, 35px) 1fr;
       align-items: center;
       gap: 5px;
       .temperature {
@@ -193,8 +164,9 @@
       }
       img {
         width: 32px;
+        height: 32px;
       }
-      .info{
+      .info {
         @media (max-width: $laptop-screen) {
           display: none;
         }
@@ -202,9 +174,12 @@
     }
     .wind_anvanced_wrapper {
       display: flex;
-      align-items: center;
       gap: 2px;
-      text-align: left;
+      align-items: center;
+      @media (max-width: $tablet-screen) {
+        display: grid;
+        grid-template-columns: auto 25px 15px minmax(auto, 20px);
+      }
       .m_per_sec {
         display: none;
         @media (max-width: $tablet-screen) {

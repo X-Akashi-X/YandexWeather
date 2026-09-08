@@ -1,6 +1,7 @@
 .section_wrapper {
   font-size: 17px;
   margin-bottom: 15px;
+  margin: 0 -10px;
   .timeline_wrapper {
     :global(.swiper-slide) {
       width: 75px;
@@ -17,7 +18,7 @@
         background-color: $color-light-grey-opacity-low;
         width: 1px;
         height: 100%;
-        transform: translate(+12px);
+        transform: translateX(+12px);
       }
     }
     .weather_timeline_item {
