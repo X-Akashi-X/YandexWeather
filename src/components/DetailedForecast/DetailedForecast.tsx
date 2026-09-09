@@ -3,7 +3,7 @@ import useServices from "@services/useServices";
 import { Link } from "react-router-dom";
 import { SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
 import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
-import TimeOfDayForecast from "./components/TimeOfDayForecast";
+import TimeOfDayForecast from "./components/TimeOfDayForecast/TimeOfDayForecast";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();

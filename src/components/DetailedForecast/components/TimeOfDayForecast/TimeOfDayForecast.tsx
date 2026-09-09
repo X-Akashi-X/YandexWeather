@@ -1,6 +1,6 @@
 import type { TimeOfDayItems } from "@ts/props";
 import styles from "./timeOfDayForecast.module.scss";
-import { Arrow } from "..";
+import Arrow from "@assets/icons/detailedForecast/directionArrowIcon.svg";
 
 const TimeOfDayForecast = ({
   temp,

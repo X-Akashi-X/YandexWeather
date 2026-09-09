@@ -1,6 +1,6 @@
-import { Humidity, Pressure, WaterTemp, WindSpeed } from ".";
+import EffectDetailsItem from "./components/EffectDetailsItem/EffectDetailsItem";
+import { getEffectDetailsConfig } from "./config";
 import styles from "./currentWeather.module.scss";
-
 import useServices from "@services/useServices";
 
 const CurrentWeather = () => {
@@ -9,16 +9,13 @@ const CurrentWeather = () => {
   const {
     currentWeatherEffect,
     currentWeatherInfo,
-    currentWindDirection,
     currentTemperature,
     currentApparentTemperature,
-    currentWaterTemperature,
-    currentWindSpeed,
-    currentPressure,
-    currentHumidity,
   } = getCurrentData;
   const { yesterdayCurrentTemp } = getYesterdayData;
   const { todayPrecipitationProbability } = getTodayData;
+
+  const effectDetails = getEffectDetailsConfig(getCurrentData);
 
   return (
     <section className={styles.section_wrapper}>
@@ -42,24 +39,9 @@ const CurrentWeather = () => {
           <p>Вчера было {yesterdayCurrentTemp}°</p>
         </div>
         <div className={styles.effect_details}>
-          <div className={styles.effect_details_item}>
-            <img src={WindSpeed} alt="Скорость ветра" />
-            <p>
-              {currentWindSpeed} м/с, {currentWindDirection}
-            </p>
-          </div>
-          <div className={styles.effect_details_item}>
-            <img src={Pressure} alt="Давление" />
-            <p>{currentPressure}</p>
-          </div>
-          <div className={styles.effect_details_item}>
-            <img src={Humidity} alt="Влажность" />
-            {currentHumidity}%
-          </div>
-          <div className={styles.effect_details_item}>
-            <img src={WaterTemp} alt="Температура воды" />
-            <p>{currentWaterTemperature}°</p>
-          </div>
+          {effectDetails.map(({ icon, alt, text, id }) => (
+            <EffectDetailsItem icon={icon} alt={alt} text={text} key={id} />
+          ))}
         </div>
       </div>
     </section>

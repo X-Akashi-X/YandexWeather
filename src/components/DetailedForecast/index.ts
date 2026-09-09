@@ -4,6 +4,5 @@ import Sunset from "@assets/icons/detailedForecast/sunsetIcon.svg";
 import WaterTemp from "@assets/icons/waterTempIcon.svg";
 import Humidity from "@assets/icons/mainInfoSection/humidityIcon.svg";
 import Pressure from "@assets/icons/mainInfoSection/pressureIcon.svg";
-import Arrow from "@assets/icons/detailedForecast/directionArrowIcon.svg"
 
-export { LightArc, Sunrise, Sunset, WaterTemp, Humidity, Pressure, Arrow };
+export { LightArc, Sunrise, Sunset, WaterTemp, Humidity, Pressure };
