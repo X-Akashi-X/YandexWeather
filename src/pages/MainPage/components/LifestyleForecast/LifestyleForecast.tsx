@@ -5,8 +5,8 @@ import styles from "./lifestyleForecast.module.scss";
 const LifestyleForecast = () => {
   return (
     <section className={styles.section_wrapper}>
-      {configLinks.map(({link, icon, title, id}) => (
-        <LifestyleLink link={link} icon={icon} title={title} key={id}/>
+      {configLinks.map(({ link, icon, title, id }) => (
+        <LifestyleLink link={link} icon={icon} title={title} key={id} />
       ))}
     </section>
   );

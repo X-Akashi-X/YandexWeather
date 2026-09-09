@@ -16,7 +16,7 @@ export const getEffectDetailsConfig = ({
     },
     {
       icon: Pressure,
-      text: `${ currentPressure }`,
+      text: `${currentPressure}`,
       alt: "Давление",
       id: "pressure",
     },
