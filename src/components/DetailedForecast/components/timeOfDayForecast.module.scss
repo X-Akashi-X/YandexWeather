@@ -1,0 +1,63 @@
+.time_of_day {
+  @media (max-width: $tablet-screen) {
+    grid-column: 1;
+  }
+}
+.apparent_wrapper {
+  @media (max-width: $tablet-screen) {
+    display: none;
+  }
+}
+.humidity_wrapper {
+  @media (max-width: $tablet-screen) {
+    display: none;
+  }
+}
+.pressure_wrapper {
+  @media (max-width: $tablet-screen) {
+    display: none;
+  }
+}
+.temp_wrapper {
+  @media (max-width: $tablet-screen) {
+    justify-self: center;
+  }
+  .tmp_effect_wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 35px) 1fr;
+    align-items: center;
+    gap: 5px;
+    .temperature {
+      font-weight: $week-bold-text;
+    }
+    img {
+      width: 32px;
+      height: 32px;
+    }
+    .info {
+      @media (max-width: $laptop-screen) {
+        display: none;
+      }
+    }
+  }
+}
+.wind_wrapper {
+  @media (max-width: $tablet-screen) {
+    justify-self: end;
+  }
+  .wind_anvanced_wrapper {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    @media (max-width: $tablet-screen) {
+      display: grid;
+      grid-template-columns: auto 25px 15px minmax(auto, 20px);
+    }
+    .m_per_sec {
+      display: none;
+      @media (max-width: $tablet-screen) {
+        display: block;
+      }
+    }
+  }
+}

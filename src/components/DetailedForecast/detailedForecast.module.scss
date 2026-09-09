@@ -71,6 +71,13 @@
         margin-bottom: 15px;
         grid-template-columns: repeat(3, 1fr);
       }
+      .title_date {
+        font-weight: $week-bold-text;
+        text-transform: capitalize;
+        @media (max-width: $laptop-screen) {
+          font-size: 15px;
+        }
+      }
       .weekend_day {
         color: $link-red-hovered;
       }
@@ -86,39 +93,9 @@
           }
         }
       }
-      .time_of_day {
-        @media (max-width: $tablet-screen) {
-          grid-column: 1;
-        }
-      }
       .category_title {
         @media (max-width: $tablet-screen) {
           display: none;
-        }
-      }
-      .apparent_wrapper {
-        @media (max-width: $tablet-screen) {
-          display: none;
-        }
-      }
-      .humidity_wrapper {
-        @media (max-width: $tablet-screen) {
-          display: none;
-        }
-      }
-      .pressure_wrapper {
-        @media (max-width: $tablet-screen) {
-          display: none;
-        }
-      }
-      .temp_wrapper {
-        @media (max-width: $tablet-screen) {
-          justify-self: center;
-        }
-      }
-      .wind_wrapper {
-        @media (max-width: $tablet-screen) {
-          justify-self: end;
         }
       }
     }
@@ -147,46 +124,6 @@
       }
     }
     //OTHER UI
-    .title_date {
-      font-weight: $week-bold-text;
-      text-transform: capitalize;
-      @media (max-width: $laptop-screen) {
-        font-size: 15px;
-      }
-    }
-    .tmp_effect_wrapper {
-      display: grid;
-      grid-template-columns: repeat(2, 35px) 1fr;
-      align-items: center;
-      gap: 5px;
-      .temperature {
-        font-weight: $week-bold-text;
-      }
-      img {
-        width: 32px;
-        height: 32px;
-      }
-      .info {
-        @media (max-width: $laptop-screen) {
-          display: none;
-        }
-      }
-    }
-    .wind_anvanced_wrapper {
-      display: flex;
-      gap: 2px;
-      align-items: center;
-      @media (max-width: $tablet-screen) {
-        display: grid;
-        grid-template-columns: auto 25px 15px minmax(auto, 20px);
-      }
-      .m_per_sec {
-        display: none;
-        @media (max-width: $tablet-screen) {
-          display: block;
-        }
-      }
-    }
     .under_arc_wrapper {
       display: flex;
       align-items: end;

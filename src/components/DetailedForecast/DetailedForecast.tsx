@@ -1,9 +1,9 @@
 import styles from "./detailedForecast.module.scss";
 import useServices from "@services/useServices";
-import WIndDirectionArrow from "@components/WindDirectionArrow/WIndDirectionArrow";
 import { Link } from "react-router-dom";
 import { SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
 import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
+import TimeOfDayForecast from "./components/TimeOfDayForecast";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();
@@ -48,172 +48,62 @@ const DetailedForecast = () => {
                       : advancedWeekday}
                   , <span className={styles.advanced_date}>{advancedDate}</span>
                 </h3>
-                <div
-                  className={`${styles.category_title} small_grey_text`}
-                >
+                <div className={`${styles.category_title} small_grey_text`}>
                   ощущается
                 </div>
                 <div className={`${styles.category_title} small_grey_text`}>
                   ветер, м/с
                 </div>
-                <div
-                  className={`${styles.category_title} small_grey_text`}
-                >
+                <div className={`${styles.category_title} small_grey_text`}>
                   влажность
                 </div>
-                <div
-                  className={`${styles.category_title} small_grey_text`}
-                >
+                <div className={`${styles.category_title} small_grey_text`}>
                   давление, мм рт. ст
                 </div>
-                {/*string 1*/}
-                <div className={`${styles.time_of_day} small_grey_text`}>Утром</div>
-                <div className={styles.temp_wrapper}>
-                  <div className={styles.tmp_effect_wrapper}>
-                    <p className={styles.temperature}>
-                      {morning.advancedTemperature}°
-                    </p>
-                    <img
-                      src={morning.advancedWeatherEffect}
-                      alt={morning.advancedWeatherInfo}
-                    />
-                    <p className={`${styles.info} small_grey_text`}>
-                      {morning.advancedWeatherInfo}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.apparent_wrapper}>
-                  <p>{morning.advancedApparentTemperature}°</p>
-                </div>
-                <div className={styles.wind_wrapper}>
-                  <div className={styles.wind_anvanced_wrapper}>
-                    <p>{morning.advancedWindSpeed}</p>
-                    <p className={styles.m_per_sec}>м/с</p>
-                    <WIndDirectionArrow
-                      windDirection={morning.advancedWindDirection}
-                    />
-                    <p className="small_grey_text">
-                      {morning.advancedWindDirectionText}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.humidity_wrapper}>
-                  {morning.advancedHumidity}%
-                </div>
-                <div className={styles.pressure_wrapper}>
-                  {morning.advancedPressure}
-                </div>
-                {/*string 2*/}
-                <div className="small_grey_text">Днём</div>
-                <div className={styles.temp_wrapper}>
-                  <div className={styles.tmp_effect_wrapper}>
-                    <p className={styles.temperature}>
-                      {day.advancedTemperature}°
-                    </p>
-                    <img
-                      src={day.advancedWeatherEffect}
-                      alt={day.advancedWeatherInfo}
-                    />
-                    <p className={`${styles.info} small_grey_text`}>
-                      {day.advancedWeatherInfo}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.apparent_wrapper}>
-                  <p>{day.advancedApparentTemperature}°</p>
-                </div>
-                <div className={styles.wind_wrapper}>
-                  <div className={styles.wind_anvanced_wrapper}>
-                    <p>{day.advancedWindSpeed}</p>
-                    <p className={styles.m_per_sec}>м/с</p>
-                    <WIndDirectionArrow
-                      windDirection={day.advancedWindDirection}
-                    />
-                    <p className="small_grey_text">
-                      {day.advancedWindDirectionText}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.humidity_wrapper}>
-                  {day.advancedHumidity}%
-                </div>
-                <div className={styles.pressure_wrapper}>
-                  {day.advancedPressure}
-                </div>
-                {/*string 3*/}
-                <div className="small_grey_text">Вечером</div>
-                <div className={styles.temp_wrapper}>
-                  <div className={styles.tmp_effect_wrapper}>
-                    <p className={styles.temperature}>
-                      {evening.advancedTemperature}°
-                    </p>
-                    <img
-                      src={evening.advancedWeatherEffect}
-                      alt={evening.advancedWeatherInfo}
-                    />
-                    <p className={`${styles.info} small_grey_text`}>
-                      {evening.advancedWeatherInfo}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.apparent_wrapper}>
-                  <p>{evening.advancedApparentTemperature}°</p>
-                </div>
-                <div className={styles.wind_wrapper}>
-                  <div className={styles.wind_anvanced_wrapper}>
-                    <p>{evening.advancedWindSpeed}</p>
-                    <p className={styles.m_per_sec}>м/с</p>
-                    <WIndDirectionArrow
-                      windDirection={evening.advancedWindDirection}
-                    />
-                    <p className="small_grey_text">
-                      {evening.advancedWindDirectionText}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.humidity_wrapper}>
-                  {evening.advancedHumidity}%
-                </div>
-                <div className={styles.pressure_wrapper}>
-                  {evening.advancedPressure}
-                </div>
-                {/*string 4*/}
-                <div className="small_grey_text">Ночью</div>
-                <div className={styles.temp_wrapper}>
-                  <div className={styles.tmp_effect_wrapper}>
-                    <p className={styles.temperature}>
-                      {night.advancedTemperature}°
-                    </p>
-                    <img
-                      src={night.advancedWeatherEffect}
-                      alt={night.advancedWeatherInfo}
-                    />
-                    <p className={`${styles.info} small_grey_text`}>
-                      {night.advancedWeatherInfo}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.apparent_wrapper}>
-                  <p>{evening.advancedApparentTemperature}°</p>
-                </div>
-                <div className={styles.wind_wrapper}>
-                  <div className={styles.wind_anvanced_wrapper}>
-                    <p>{night.advancedWindSpeed}</p>
-                    <p className={styles.m_per_sec}>м/с</p>
-                    <WIndDirectionArrow
-                      windDirection={night.advancedWindDirection}
-                    />
-                    <p className="small_grey_text">
-                      {night.advancedWindDirectionText}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.humidity_wrapper}>
-                  {night.advancedHumidity}%
-                </div>
-                <div className={styles.pressure_wrapper}>
-                  {night.advancedPressure}
-                </div>
+                <TimeOfDayForecast
+                  temp={morning.advancedTemperature}
+                  effect={morning.advancedWeatherEffect}
+                  info={morning.advancedWeatherInfo}
+                  apparentTemp={morning.advancedApparentTemperature}
+                  windSpeed={morning.advancedWindSpeed}
+                  windDirection={morning.advancedWindDirection}
+                  windDirectionText={morning.advancedWindDirectionText}
+                  humidity={morning.advancedHumidity}
+                  pressure={morning.advancedPressure}
+                />
+                <TimeOfDayForecast
+                  temp={day.advancedTemperature}
+                  effect={day.advancedWeatherEffect}
+                  info={day.advancedWeatherInfo}
+                  apparentTemp={day.advancedApparentTemperature}
+                  windSpeed={day.advancedWindSpeed}
+                  windDirection={day.advancedWindDirection}
+                  windDirectionText={day.advancedWindDirectionText}
+                  humidity={day.advancedHumidity}
+                  pressure={day.advancedPressure}
+                />
+                <TimeOfDayForecast
+                  temp={evening.advancedTemperature}
+                  effect={evening.advancedWeatherEffect}
+                  info={evening.advancedWeatherInfo}
+                  apparentTemp={evening.advancedApparentTemperature}
+                  windSpeed={evening.advancedWindSpeed}
+                  windDirection={evening.advancedWindDirection}
+                  windDirectionText={evening.advancedWindDirectionText}
+                  humidity={evening.advancedHumidity}
+                  pressure={evening.advancedPressure}
+                />
+                <TimeOfDayForecast
+                  temp={night.advancedTemperature}
+                  effect={night.advancedWeatherEffect}
+                  info={night.advancedWeatherInfo}
+                  apparentTemp={night.advancedApparentTemperature}
+                  windSpeed={night.advancedWindSpeed}
+                  windDirection={night.advancedWindDirection}
+                  windDirectionText={night.advancedWindDirectionText}
+                  humidity={night.advancedHumidity}
+                  pressure={night.advancedPressure}
+                />
               </div>
               {/*Line*/}
               <div className={styles.line_y} />
@@ -264,15 +154,15 @@ const DetailedForecast = () => {
                   </div>
                   {/*string 3*/}
                   <div className="small_grey_text">УФ-индекс</div>
-                  <div>
+                  <p>
                     {advancedAvgUV}, {advancedUVCategory.text}
-                  </div>
+                  </p>
                   {/*string 4*/}
                   <div className="small_grey_text">Магнитное поле</div>
-                  <div className={styles.air_quality_gr_str4}>
+                  <p>
                     {advancedMagnteticField},{" "}
-                    {advancedMagnteticFieldCategory.text ?? "спокойное"}
-                  </div>
+                    {advancedMagnteticFieldCategory.text}
+                  </p>
                 </div>
               </div>
             </Link>
