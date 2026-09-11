@@ -1,7 +1,4 @@
-import type {
-  defaultCategoryType,
-  getMoonPhase,
-} from "@utils/categories";
+import type { defaultCategoryType, getMoonPhase } from "@utils/categories";
 
 export type PeriodData = {
   temp: number;

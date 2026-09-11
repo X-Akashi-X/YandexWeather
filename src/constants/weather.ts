@@ -61,7 +61,7 @@ export const DEFAULT_CURRENT_DAY = {
 export const DEFAULT_TODAY = {
   todayMinTemperature: "",
   todayMaxTemperature: "",
-  todayMinMaxWindSpeed: 0,
+  todayMinMaxWindSpeed: "",
   todayWindGusts: 0,
   todayMinHumidity: 0,
   todayMaxHumidity: 0,

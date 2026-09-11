@@ -63,3 +63,59 @@ export type FeelingSlidesItems = {
   number: number | undefined;
   link: string;
 };
+{
+  /*WeekStatus*/
+}
+export type TodayWeekStatusSlides = {
+  todayMaxTemperature: string;
+  todayMinTemperature: string;
+  todayWindGusts: number;
+  todayMinMaxWindSpeed: string;
+  todayWeatherEffect: string;
+  todayWeatherInfo: string;
+  todayWindCategory: string;
+};
+
+export type TomorrowWeekStatusSlides = {
+  tomorrowWeatherEffect: string;
+  tomorrowMinTemperature: string;
+  tomorrowMaxTemperature: string;
+  tomorrowMinMaxWindSpeed: string;
+  tomorrowWindGusts: number;
+  tomorrowWeatherInfo: string;
+  tomorrowWindCategory: string;
+};
+
+export type WeeklyWeekStatusSlides = {
+  weekMinTemperature: string;
+  weekMaxTemperature: string;
+  weekMinMaxWindSpeed: string;
+  weekWindGusts: number;
+  weekWeatherEffect: string;
+  weekWeatherInfo: string;
+  weekWindCategory: string;
+};
+
+export type WeekendWeekStatusSlides = {
+  weekendMinTemperature: string;
+  weekendMaxTemperature: string;
+  weekendMinMaxWindSpeed: string;
+  weekendWindGusts: number;
+  weekendWeatherEffect: string;
+  weekendWeatherInfo: string;
+  weekendWindCategory: string;
+};
+
+export type WeekStatusItems = {
+  link: string | undefined;
+  img: string;
+  title: string;
+  info: string;
+  minTemp: string | undefined;
+  maxTemp: string | undefined;
+  windCategory: string | undefined;
+  minMaxWindSpeed: string | undefined;
+  windGusts: number | undefined;
+  linkRout: string | undefined;
+  staticText: string | undefined;
+};
