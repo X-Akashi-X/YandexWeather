@@ -1,0 +1,13 @@
+.section_wrapper {
+  margin-bottom: 20px;
+  .status_wrapper {
+    cursor: grab;
+    height: auto;
+    :global(.swiper-slide) {
+      width: 460px;
+      @media (max-width: $tablet-screen) {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+footer {
+  padding: 20px;
+  font-size: 14px;
+  max-width: 1000px;
+  margin: 0 auto;
+  @media (max-width: $laptop-screen) {
+    max-width: 768px;
+  }
+  .meteum_link {
+    color: blue;
+    &:hover {
+      color: $link-red-hovered;
+    }
+  }
+  .cities_wrapper {
+    padding: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-light-grey-opacity-low;
+    p {
+      color: $color-light-grey;
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 119px;
+    padding: 30px 0px 20px 0px;
+    border-bottom: 1px solid $color-light-grey-opacity-low;
+    @media (max-width: $laptop-screen) {
+      column-gap: 40px;
+    }
+    @media (max-width: $tablet-screen) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    a {
+      display: block;
+      margin: 15px 0px;
+      color: $color-light-grey;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: black;
+      }
+    }
+    .stores_wrapper {
+      img {
+        width: 120px;
+        height: auto;
+      }
+    }
+  }
+  .requisite_wrapper {
+    color: $color-light-grey;
+    padding: 30px 0px;
+    .requisite_sources {
+      margin-bottom: 15px;
+    }
+  }
+}

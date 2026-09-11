@@ -1,0 +1,13 @@
+.section_wrapper {
+  padding: 16px 0px;
+  .feelings_wrapper {
+    cursor: grab;
+    padding: 16px 0px;
+    :global(.swiper-slide) {
+      width: 228px;
+      @media (max-width: $tablet-screen) {
+        width: 164px;
+      }
+    }
+  }
+}

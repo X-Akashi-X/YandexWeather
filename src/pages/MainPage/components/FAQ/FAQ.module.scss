@@ -1,0 +1,45 @@
+.section_wrapper {
+  background-color: $white-bg;
+  border-radius: $default-radius;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  .title_main {
+    margin-bottom: 20px;
+  }
+  .main_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    @media (max-width: $tablet-screen) {
+      grid-template-columns: 1fr;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq_items {
+      background-color: $grey-bg-opacity-low;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      .title_wrapper {
+        display: flex;
+        justify-content: space-between;
+        font-weight: $week-bold-text;
+        img {
+          width: 14px;
+          height: auto;
+          transition: all 0.2s ease-in-out;
+        }
+      }
+      .forecast {
+        margin-top: 30px;
+      }
+    }
+  }
+  .faq_items:hover {
+    background-color: $link-grey-hovered;
+  }
+}
