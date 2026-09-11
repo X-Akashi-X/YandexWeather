@@ -72,6 +72,10 @@ export function getMagneticFieldCategory(category: number) {
   return { fill: 1, color: "#57348d", text: "шторм" };
 }
 
+export const defaultCategoryType = () => {
+  return { fill: 0, color: "", text: "" };
+};
+
 export function getMoonPhase(category: number) {
   return moonMap(category);
 }

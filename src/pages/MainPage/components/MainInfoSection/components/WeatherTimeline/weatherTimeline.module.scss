@@ -5,6 +5,7 @@
   .timeline_wrapper {
     :global(.swiper-slide) {
       width: 75px;
+      height: auto;
     }
     cursor: grab;
     .swiper_slide {
@@ -14,6 +15,7 @@
     }
     .line_slide {
       width: 37px;
+      height: auto;
       .day_separator {
         background-color: $color-light-grey-opacity-low;
         width: 1px;
@@ -33,6 +35,7 @@
       }
       img {
         width: 43px;
+        height: auto;
       }
       .temperature {
         font-weight: $week-bold-text;

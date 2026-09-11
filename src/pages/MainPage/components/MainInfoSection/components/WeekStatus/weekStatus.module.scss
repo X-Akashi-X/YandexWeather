@@ -27,10 +27,12 @@
         }
         img {
           width: 35px;
+          height: auto;
         }
       }
       &:last-child img {
         width: 26px;
+        height: auto;
       }
     }
   }

@@ -71,7 +71,7 @@ export const DEFAULT_TODAY = {
   todayWindCategory: "",
   todayWeatherEffect: "",
   todayWeatherInfo: "",
-  todayMagneticField: "",
+  todayMagneticField: 0,
   todayMagneticFieldCategory: DEFAULT_CATEGORY,
   todayMoonPhase: DEFAULT_MOON_PHASE,
 };

@@ -1,7 +1,6 @@
 import type {
-  getMagneticFieldCategory,
+  defaultCategoryType,
   getMoonPhase,
-  getUVCategory,
 } from "@utils/categories";
 
 export type PeriodData = {
@@ -37,11 +36,11 @@ export type AdvancedDayItem = {
   night: PeriodAverages;
   advancedAvgWaterTemp: string;
   advancedAvgUV: number;
-  advancedUVCategory: ReturnType<typeof getUVCategory>;
+  advancedUVCategory: ReturnType<typeof defaultCategoryType>;
   advancedAvgHumidity: number | string;
   advancedAvgPressure: number | string;
   advancedMagnteticField: number;
-  advancedMagnteticFieldCategory: ReturnType<typeof getMagneticFieldCategory>;
+  advancedMagnteticFieldCategory: ReturnType<typeof defaultCategoryType>;
   advancedSunrise: string;
   advancedSunset: string;
   advancedSunDay: string;

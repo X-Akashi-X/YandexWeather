@@ -26,6 +26,7 @@
     cursor: pointer;
     img {
       width: 12px;
+      height: auto;
       transition: all 0.2s ease-in-out;
     }
     @media (max-width: $tablet-screen) {
@@ -63,6 +64,7 @@
       }
       img {
         width: 32px;
+        height: auto;
         margin-bottom: 7px;
       }
       .weekend_day {
