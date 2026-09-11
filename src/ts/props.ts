@@ -126,4 +126,4 @@ export type MiniMapSlides = {
   link: string;
   bgURL: string;
   title: string;
-}
+};
