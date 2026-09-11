@@ -1,8 +1,8 @@
 import styles from "./weatherOnMaps.module.scss";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
-import { Pollen, Precipitation, Pressure, Snow, Temp, Wind } from ".";
+import { maps } from "./config";
+import MiniMapSlide from "./components/MiniMapSlide/MiniMapSlide";
 
 const WeatherOnMaps = () => {
   return (
@@ -18,60 +18,11 @@ const WeatherOnMaps = () => {
         touchRatio={1}
         navigation
       >
-        <SwiperSlide>
-          <Link
-            to="/"
-            className={styles.maps_item}
-            style={{ backgroundImage: `url(${Precipitation})` }}
-          >
-            <button>Карта осадков</button>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link
-            to="/"
-            className={styles.maps_item}
-            style={{ backgroundImage: `url(${Pollen})` }}
-          >
-            <button>Пыльца</button>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link
-            to="/"
-            className={styles.maps_item}
-            style={{ backgroundImage: `url(${Temp})` }}
-          >
-            <button>Температура</button>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link
-            to="/"
-            className={styles.maps_item}
-            style={{ backgroundImage: `url(${Snow})` }}
-          >
-            <button>Глубина снега</button>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link
-            to="/"
-            className={styles.maps_item}
-            style={{ backgroundImage: `url(${Wind})` }}
-          >
-            <button>Ветер</button>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link
-            to="/"
-            className={styles.maps_item}
-            style={{ backgroundImage: `url(${Pressure})` }}
-          >
-            <button>Давление</button>
-          </Link>
-        </SwiperSlide>
+        {maps.map(({ link, bgURL, title, id }) => (
+          <SwiperSlide key={id}>
+            <MiniMapSlide link={link} bgURL={bgURL} title={title} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

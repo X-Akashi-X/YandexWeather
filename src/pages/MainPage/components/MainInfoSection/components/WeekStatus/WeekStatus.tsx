@@ -40,7 +40,7 @@ const WeakStatus = () => {
             windGusts,
             linkRout,
             staticText,
-            id
+            id,
           }) => (
             <SwiperSlide key={id}>
               <WeekStatusSlide

@@ -119,3 +119,11 @@ export type WeekStatusItems = {
   linkRout: string | undefined;
   staticText: string | undefined;
 };
+{
+  /*WeatherOnMaps*/
+}
+export type MiniMapSlides = {
+  link: string;
+  bgURL: string;
+  title: string;
+}
