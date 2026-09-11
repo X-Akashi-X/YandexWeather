@@ -1,4 +1,4 @@
-import { AppGallery, AppStore, GooglePlay } from ".";
+import { cities, forecast, partners, services, stores } from "./config";
 import styles from "./footer.scss.module.scss";
 
 import { Link } from "react-router-dom";
@@ -17,54 +17,42 @@ const Footer = () => {
         </a>
       </p>
       <div className={styles.cities_wrapper}>
-        <p>Минск</p>
-        <p>Брест</p>
-        <p>Витебск</p>
-        <p>Гродно</p>
-        <p>Гомель</p>
+        {cities.map(({ title, id }) => (
+          <p key={id}>{title}</p>
+        ))}
       </div>
       <nav>
         <div className={styles.links_wrapper}>
           <h4>Ссылки</h4>
-          <a href="https://yandex.ru/support/weather/">Справка</a>
-          <a href="https://yandex.ru/support/weather/">Обратная связь</a>
-          <a href="https://yandex.ru/pogoda/b2b?utm_source=yandex&utm_medium=referral&utm_content=footer__business_solutions">
-            Для бизнеса
-          </a>
-          <a href="https://yandex.ru/pogoda/b2b/smarthome">Для умного дома</a>
-          <a href="https://yandex.ru/pogoda/b2b/smarthome">
-            Пользовательское соглашение
-          </a>
+          {services.map(({ link, title, id }) => (
+            <a href={link} key={id}>
+              {title}
+            </a>
+          ))}
         </div>
         <div className={styles.forecast_wrapper}>
           <h4>Прогнозы</h4>
-          <Link to="/">Прогноз погоды</Link>
-          <Link to="/">Погода на месяц</Link>
-          <Link to="/">Карта погоды</Link>
-          <Link to="/">Погода на 10 дней</Link>
-          <Link to="/">УФ-Индекс</Link>
-          <Link to="/">Магнитные бури</Link>
-          <Link to="/">Атмосферное давление</Link>
-          <Link to="/">Фазы Луны</Link>
+          {forecast.map(({ link, title, id }) => (
+            <Link to={link} key={id}>
+              {title}
+            </Link>
+          ))}
         </div>
         <div className={styles.partners_wrapper}>
           <h4>Партнёрам</h4>
-          <a href="https://yandex.by/adv/products/context">Реклама</a>
-          <a href="https://yandex.ru/pogoda/b2b?utm_source=footer">
-            API Яндекс.Погоды
-          </a>
+          {partners.map(({ link, title, id }) => (
+            <a href={link} key={id}>
+              {title}
+            </a>
+          ))}
         </div>
         <div className={styles.stores_wrapper}>
           <h4>Скачайте приложение</h4>
-          <a href="https://redirect.appmetrica.yandex.com/serve/173086637876675342?click_id=b9708b9a-2750-4cc6-9861-8ff01cab9ade">
-            <img src={GooglePlay} alt="GooglePlay" />
-          </a>
-          <a href="https://redirect.appmetrica.yandex.com/serve/173086637876675342?click_id=d3d9629c-0feb-455e-bd67-406edcce3446">
-            <img src={AppStore} alt="AppStore" />
-          </a>
-          <a href="https://redirect.appmetrica.yandex.com/serve/173086637876675342?click_id=b2e2263a-964b-43d9-ae80-6fb8c8859365">
-            <img src={AppGallery} alt="AppGallery" />
-          </a>
+          {stores.map(({ link, img, id }) => (
+            <a href={link} key={id}>
+              <img src={img} alt={id} />
+            </a>
+          ))}
         </div>
       </nav>
       <div className={styles.requisite_wrapper}>
