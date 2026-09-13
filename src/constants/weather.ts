@@ -67,7 +67,7 @@ export const DEFAULT_TODAY = {
   todayMaxHumidity: 0,
   todayMinPressure: 0,
   todayMaxPressure: 0,
-  todayPrecipitationProbability: 0,
+  todayPrecipitationProbability: "",
   todayWindCategory: "",
   todayWeatherEffect: "",
   todayWeatherInfo: "",

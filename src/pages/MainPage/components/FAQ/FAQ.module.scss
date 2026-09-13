@@ -10,36 +10,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    align-items: start;
     @media (max-width: $tablet-screen) {
       grid-template-columns: 1fr;
     }
-    .column {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .faq_items {
-      background-color: $grey-bg-opacity-low;
-      padding: 15px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      .title_wrapper {
-        display: flex;
-        justify-content: space-between;
-        font-weight: $week-bold-text;
-        img {
-          width: 14px;
-          height: auto;
-          transition: all 0.2s ease-in-out;
-        }
-      }
-      .forecast {
-        margin-top: 30px;
-      }
-    }
-  }
-  .faq_items:hover {
-    background-color: $link-grey-hovered;
   }
 }

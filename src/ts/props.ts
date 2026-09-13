@@ -1,4 +1,5 @@
 import type { defaultCategoryType, getMoonPhase } from "@utils/categories";
+import type { PeriodAverages } from "./weather";
 {
   /*DetailedForecast*/
 }
@@ -126,4 +127,44 @@ export type MiniMapSlides = {
   link: string;
   bgURL: string;
   title: string;
+};
+{
+  /*FAQ*/
+}
+export type FAQCurrentItems = {
+  currentTemperature: string;
+  currentApparentTemperature: string;
+  currentWindSpeed: number;
+  currentWindDirection: string;
+  currentHumidity: number;
+  currentPressure: number;
+  currentWeatherInfo: string;
+};
+
+export type FAQTodayItems = {
+  todayMinTemperature: string;
+  todayMaxTemperature: string;
+  todayPrecipitationProbability: string;
+  todayMinMaxWindSpeed: string;
+  todayWindGusts: number;
+  todayMinHumidity: number;
+  todayMaxHumidity: number;
+  todayMinPressure: number;
+  todayMaxPressure: number;
+  todayWindCategory: string;
+};
+
+export type FAQAdvancedItems = {
+  morning: PeriodAverages;
+  day: PeriodAverages;
+  evening: PeriodAverages;
+  night: PeriodAverages;
+};
+
+export type FAQItems = {
+  activeItem: number | null;
+  text: string;
+  title: string;
+  i: number;
+  toggle: (i: number) => void;
 };
