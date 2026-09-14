@@ -5,6 +5,8 @@ import type { Dispatch, RefObject, SetStateAction } from "react";
 import Arrow from "@assets/icons/arrowMore.svg";
 import { Clear, Favorite, Logo, Menu, Search, Setting, Teg, Tracker } from ".";
 import SettingsDropdown from "./components/SettingsDropdown/SettingsDropdown";
+import { navLinks } from "./config";
+import MenuDropdown from "./components/MenuDropdown/MenuDropdown";
 
 const Header = () => {
   const [activeMoreDropdown, setActiveMoreDropdown] = useState(false);
@@ -61,30 +63,17 @@ const Header = () => {
           </Link>
         </div>
         <nav className={styles.nav_container}>
-          <NavLink
-            className={({ isActive }) =>
-              `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
-            }
-            to="/"
-          >
-            Главная
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
-            }
-            to="/onMonth"
-          >
-            На месяц
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
-            }
-            to="/onMap"
-          >
-            На карте
-          </NavLink>
+          {navLinks.map(({ link, title, id }) => (
+            <NavLink
+              className={({ isActive }) =>
+                `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
+              }
+              to={link}
+              key={id}
+            >
+              {title}
+            </NavLink>
+          ))}
           <div ref={menuRef} className={styles.menu_container}>
             <button
               className={styles.button_bg}
@@ -98,29 +87,7 @@ const Header = () => {
                 className={activeMoreDropdown ? "rotate180" : ""}
               />
             </button>
-            {activeMoreDropdown && (
-              <div className={styles.dropdown_menu}>
-                <div className={styles.nav_link_dropdown}>
-                  <Link to="/">Главная</Link>
-                  <Link to="/onMonth">На месяц</Link>
-                  <Link to="/onMap">На карте</Link>
-                </div>
-                <Link to="/">На 10 дней</Link>
-                <Link to="/">На сегодня</Link>
-                <Link to="/">На завтра</Link>
-                <Link to="/">Прогноз на 3 дня</Link>
-                <Link to="/">Прогноз на 5 дней</Link>
-                <Link to="/">Прогноз на 7 дней</Link>
-                <Link to="/">Прогноз на 14 дней</Link>
-                <Link to="/">Прогноз на выходные</Link>
-                <Link to="/">Активность пыльцы</Link>
-                <Link to="/">Магнитные бури</Link>
-                <Link to="/">Фазы Луны</Link>
-                <Link to="/">УФ-индекс</Link>
-                <Link to="/">Атмосферное давление</Link>
-                <Link to="/">Статьи о погоде</Link>
-              </div>
-            )}
+            {activeMoreDropdown && <MenuDropdown />}
           </div>
         </nav>
         <div className={styles.search_container}>

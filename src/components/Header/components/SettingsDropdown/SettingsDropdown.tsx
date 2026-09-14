@@ -1,7 +1,7 @@
 import { navigationItems } from "@components/Header/config";
 import styles from "./settingsDropdown.module.scss";
 import LightTheme from "@assets/icons/header/settingsDropdown/lightThemeIcon.svg";
-import NavigationItem from "./components/NavigationItem";
+import NavigationItem from "./components/NavigationItem/NavigationItem";
 
 const SettingsDropdown = () => {
   return (

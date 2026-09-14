@@ -44,37 +44,6 @@ header {
       display: none;
     }
   }
-  .dropdown_menu {
-    position: absolute;
-    top: 50px;
-    right: -145px;
-    background-color: $white-bg;
-    padding: 20px 28px;
-    border-radius: $strong-radius;
-    max-height: 510px;
-    overflow: auto;
-    box-shadow: $default-shadow;
-    transition: all 0.2s ease-in-out;
-    .nav_link_dropdown {
-      display: none;
-      @media (max-width: $laptop-screen) {
-        display: block;
-      }
-    }
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    scroll-behavior: smooth;
-    p {
-      margin: 25px 0px;
-      &:first-child {
-        margin-top: 0;
-      }
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
   a,
   button {
     display: flex;
