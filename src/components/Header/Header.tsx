@@ -1,26 +1,10 @@
 import styles from "./header.module.scss";
 import { Link, NavLink } from "react-router-dom";
-
-import LightTheme from "@assets/icons/header/settingsDropdown/lightThemeIcon.svg";
-import Pollen from "@assets/icons/pollenIcon.svg";
-import Notification_ from "@assets/icons/header/settingsDropdown/notificationIcon.svg";
-import Units from "@assets/icons/header/settingsDropdown/unitsIcon.svg";
-import Help from "@assets/icons/header/settingsDropdown/helpIcon.svg";
-import Support from "@assets/icons/header/settingsDropdown/supportIcon.svg";
-import TG from "@assets/icons/header/settingsDropdown/tgIcon.svg";
 import { useEffect, useRef, useState } from "react";
 import type { Dispatch, RefObject, SetStateAction } from "react";
-import {
-  Arrow,
-  Clear,
-  Favorite,
-  Logo,
-  Menu,
-  Search,
-  Setting,
-  Teg,
-  Tracker,
-} from ".";
+import Arrow from "@assets/icons/arrowMore.svg";
+import { Clear, Favorite, Logo, Menu, Search, Setting, Teg, Tracker } from ".";
+import SettingsDropdown from "./components/SettingsDropdown/SettingsDropdown";
 
 const Header = () => {
   const [activeMoreDropdown, setActiveMoreDropdown] = useState(false);
@@ -149,15 +133,18 @@ const Header = () => {
             <img src={Clear} alt="Очистить" />
           </button>
         </div>
-        <div className={styles.buttons_container}>
-          <button>
+        <div className={styles.toolbar}>
+          <button className={styles.toolbar_buttons}>
             <img src={Favorite} alt="Избранное" />
           </button>
-          <button>
+          <button className={styles.toolbar_buttons}>
             <img src={Tracker} alt="Местоположение" />
           </button>
           <div className={styles.settings_container} ref={settingsRef}>
-            <button onClick={() => toggleDropdown(setActiveSettingDropdown)}>
+            <button
+              className={styles.toolbar_buttons}
+              onClick={() => toggleDropdown(setActiveSettingDropdown)}
+            >
               <img
                 src={Setting}
                 alt="Настройки"
@@ -165,127 +152,7 @@ const Header = () => {
               />
               <img src={Menu} alt="Меню" className={styles.menu_icon} />
             </button>
-            {activeSettingDropdown && (
-              <div className={styles.settings_dropdown}>
-                <div className={styles.profile_wrapper}>
-                  <span className={styles.circle}>
-                    <img
-                      src="https://avatars.mds.yandex.net/get-yapic/30431/gJS84bRtM7UxkDuAfwsVIz9lZgM-1/islands-middle"
-                      alt="Аватарка"
-                    />
-                  </span>
-                  <p>tiger2vlad</p>
-                </div>
-                <div className={styles.theme_wrapper}>
-                  <div className={styles.title_wrapper}>
-                    <img src={LightTheme} alt="Тема" />
-                    <p>Тема</p>
-                  </div>
-                  <div className={styles.button_wrapper}>
-                    <button>Светлая</button>
-                    <button>Тёмная</button>
-                    <button>Системная</button>
-                  </div>
-                </div>
-                <div className={styles.navigation_wrapper}>
-                  <button className={styles.navigation_item}>
-                    <div className={styles.title_wrapper}>
-                      <img
-                        src={Pollen}
-                        className={styles.title_icon}
-                        alt="Пыльца"
-                      />
-                      <p>Мои аллерегны</p>
-                    </div>
-                    <img
-                      src={Arrow}
-                      className={styles.arrow_icon}
-                      alt="Стрелка"
-                    />
-                  </button>
-                  <button className={styles.navigation_item}>
-                    <div className={styles.title_wrapper}>
-                      <img
-                        src={Notification_}
-                        className={styles.title_icon}
-                        alt="Уведомления"
-                      />
-                      <p>Уведомления о погоде</p>
-                    </div>
-                    <img
-                      src={Arrow}
-                      className={styles.arrow_icon}
-                      alt="Стрелка"
-                    />
-                  </button>
-                  <button className={styles.navigation_item}>
-                    <div className={styles.title_wrapper}>
-                      <img
-                        src={Units}
-                        className={styles.title_icon}
-                        alt="Единицы измерения"
-                      />
-                      <p>Единицы измерений</p>
-                    </div>
-                    <img
-                      src={Arrow}
-                      className={styles.arrow_icon}
-                      alt="Стрелка"
-                    />
-                  </button>
-                  <button className={styles.navigation_item}>
-                    <div className={styles.title_wrapper}>
-                      <p className={styles.title_icon}>Ru</p>
-                      <p>Выбор языка</p>
-                    </div>
-                    <img
-                      src={Arrow}
-                      className={styles.arrow_icon}
-                      alt="Стрелка"
-                    />
-                  </button>
-                  <a
-                    href="https://yandex.ru/support/weather/ru/"
-                    className={styles.navigation_item}
-                  >
-                    <div className={styles.title_wrapper}>
-                      <img
-                        src={Help}
-                        className={styles.title_icon}
-                        alt="Справка"
-                      />
-                      <p>Справка</p>
-                    </div>
-                  </a>
-                  <a
-                    href="https://yandex.ru/support/weather/troubleshooting.xml"
-                    className={styles.navigation_item}
-                  >
-                    <div className={styles.title_wrapper}>
-                      <img
-                        src={Support}
-                        className={styles.title_icon}
-                        alt="Обратная связь"
-                      />
-                      <p>Обратная связь</p>
-                    </div>
-                  </a>
-                  <a
-                    href="https://t.me/yandex_weather"
-                    className={styles.navigation_item}
-                  >
-                    <div className={styles.title_wrapper}>
-                      <img
-                        src={TG}
-                        className={styles.title_icon}
-                        alt="Телеграмм"
-                      />
-                      <p>Тепло в нашем ТГ-канале</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            )}
+            {activeSettingDropdown && <SettingsDropdown />}
           </div>
         </div>
       </div>

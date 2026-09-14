@@ -168,3 +168,12 @@ export type FAQItems = {
   i: number;
   toggle: (i: number) => void;
 };
+{
+  /*SettingsDropdown*/
+}
+export type NavigationItems = {
+  imgTitle: string | undefined;
+  imgTextTitle: string | undefined;
+  title: string;
+  link: string | undefined;
+};
