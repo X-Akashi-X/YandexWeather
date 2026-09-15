@@ -275,9 +275,10 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
       advancedAvgHumidity: avgHumidity,
       advancedAvgPressure: avgPressure,
       advancedMagnteticField: avgMagnetic,
-      advancedMagnteticFieldCategory: avgMagnetic
-        ? getMagneticFieldCategory(avgMagnetic)
-        : DEFAULT_CATEGORY,
+      advancedMagnteticFieldCategory:
+        typeof avgMagnetic === "number"
+          ? getMagneticFieldCategory(avgMagnetic)
+          : DEFAULT_CATEGORY,
       advancedSunrise: typeof sunrise === "string" ? sunrise.split("T")[1] : "",
       advancedSunset: typeof sunset === "string" ? sunset.split("T")[1] : "",
       advancedSunDay: sunDay,

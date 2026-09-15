@@ -105,3 +105,15 @@
     display: block;
   }
 }
+
+.chart_wrapper :global {
+  svg,
+  position,
+  rect,
+  g,
+  circle,
+  path,
+  text {
+    outline: none;
+  }
+}

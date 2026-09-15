@@ -31,7 +31,7 @@ const WeatherChart = () => {
         <div
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}
         >
-          <Link to="/" className={styles.days_wrapper}>
+          <div className={styles.days_wrapper}>
             {data.map(
               (
                 {
@@ -45,7 +45,7 @@ const WeatherChart = () => {
                 i,
               ) => {
                 return (
-                  <div className={styles.day_wrapper} key={tenDaysDateKey}>
+                  <Link to="/" className={styles.day_wrapper} key={tenDaysDateKey}>
                     <p
                       className={`${
                         tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
@@ -59,16 +59,17 @@ const WeatherChart = () => {
                       {i === TODAY ? "Сегодня" : tenDaysDate}
                     </p>
                     <img src={tenDaysWeatherEffect} alt={tenDaysWeatherInfo} />
-                  </div>
+                  </Link>
                 );
               },
             )}
-          </Link>
+          </div>
           <div className={styles.chart_wrapper}>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%"  style={{outline: "none"}}>
               <LineChart
                 data={data}
                 margin={{ top: 10, right: 25, left: 25, bottom: 10 }}
+                style={{ outline: "none" }}
               >
                 <YAxis
                   hide={true}
@@ -83,6 +84,7 @@ const WeatherChart = () => {
                   tickLine={false}
                   tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
                   tickFormatter={(value) => `${value}°`}
+                   style={{outline: "none"}}
                 />
                 <Line
                   type="monotone"
@@ -188,6 +190,7 @@ const WeatherChart = () => {
                   tickLine={false}
                   tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
                   tickFormatter={(value) => `${value}°`}
+                   style={{outline: "none"}}
                 />
               </LineChart>
             </ResponsiveContainer>

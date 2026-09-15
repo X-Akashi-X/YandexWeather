@@ -2,6 +2,10 @@
 
 A modern, responsive web application for weather tracking built with **React 19**, **TypeScript**, and **Vite**. The project features interactive maps, detailed charts, and custom UI components with smooth animations.
 
+## 🌐 Netlify
+
+Dropped application: `https://yandexweather.netlify.app`
+
 ## 🚀 Tech Stack
 
 *   **Frontend:** React 19, TypeScript, Vite (Bundler)
