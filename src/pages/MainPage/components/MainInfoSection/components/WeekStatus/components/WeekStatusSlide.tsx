@@ -18,7 +18,7 @@ const WeekStatusSlide = ({
   const defaultContent = (
     <>
       <div className={styles.status_title_wrapper}>
-        <img src={img} alt={info} />
+        {img && <img src={img} alt={info} />}
         <h3>{title}</h3>
       </div>
       {staticText ? (

@@ -24,7 +24,7 @@ const WeatherTimeline = () => {
         {data.map(
           (
             {
-              timeLineDateKey,
+              timeLineKey,
               timeLineWeatherEffect,
               timeLineDate,
               timeLineTime,
@@ -43,13 +43,19 @@ const WeatherTimeline = () => {
             );
 
             return (
-              <Fragment key={timeLineDateKey}>
+              <Fragment key={timeLineKey}>
                 {isNewDay && (
-                  <SwiperSlide className={styles.line_slide}>
+                  <SwiperSlide
+                    className={styles.separator_slide}
+                    key={`separator-${timeLineKey}`}
+                  >
                     <div className={styles.day_separator} />
                   </SwiperSlide>
                 )}
-                <SwiperSlide className={styles.swiper_slide}>
+                <SwiperSlide
+                  className={styles.swiper_slide}
+                  key={`item-${timeLineKey}`}
+                >
                   <Link to="/" className={styles.weather_timeline_item}>
                     <p className={styles.time}>
                       {isNewDay

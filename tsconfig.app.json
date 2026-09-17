@@ -29,6 +29,7 @@
       "@hooks/*": ["./src/hooks/*"],
       "@mocks/*": ["./src/mocks/*"],
       "@constants/*": ["./src/constants/*"],
+      "@store/*": ["./src/store/*"],
     }
   },
 

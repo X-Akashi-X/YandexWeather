@@ -68,7 +68,7 @@ export const timeLineData = (dataForecast: ApiForecast) => {
       return itemDate >= current && itemDate <= tomorrow;
     })
     .map(({ t, i }) => ({
-      timeLineDateKey: t,
+      timeLineKey: t,
       timeLineDate: t.split("T")[0],
       timeLineTime: t.split("T")[1].slice(0, 5),
       timeLineTemperature: shouldShowPlus(

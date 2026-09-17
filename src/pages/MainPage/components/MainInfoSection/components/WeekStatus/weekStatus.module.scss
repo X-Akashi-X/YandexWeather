@@ -5,6 +5,9 @@
     height: auto;
     :global(.swiper-slide) {
       width: 460px;
+      @media(max-width: $laptop-screen) {
+        width: 356px;
+      }
       @media (max-width: $tablet-screen) {
         width: 100%;
       }

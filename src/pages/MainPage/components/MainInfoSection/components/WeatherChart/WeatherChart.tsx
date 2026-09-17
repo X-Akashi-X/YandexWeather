@@ -45,7 +45,11 @@ const WeatherChart = () => {
                 i,
               ) => {
                 return (
-                  <Link to="/" className={styles.day_wrapper} key={tenDaysDateKey}>
+                  <Link
+                    to="/"
+                    className={styles.day_wrapper}
+                    key={tenDaysDateKey}
+                  >
                     <p
                       className={`${
                         tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
@@ -65,7 +69,11 @@ const WeatherChart = () => {
             )}
           </div>
           <div className={styles.chart_wrapper}>
-            <ResponsiveContainer width="100%" height="100%"  style={{outline: "none"}}>
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              style={{ outline: "none" }}
+            >
               <LineChart
                 data={data}
                 margin={{ top: 10, right: 25, left: 25, bottom: 10 }}
@@ -84,7 +92,7 @@ const WeatherChart = () => {
                   tickLine={false}
                   tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
                   tickFormatter={(value) => `${value}°`}
-                   style={{outline: "none"}}
+                  style={{ outline: "none" }}
                 />
                 <Line
                   type="monotone"
@@ -190,7 +198,7 @@ const WeatherChart = () => {
                   tickLine={false}
                   tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
                   tickFormatter={(value) => `${value}°`}
-                   style={{outline: "none"}}
+                  style={{ outline: "none" }}
                 />
               </LineChart>
             </ResponsiveContainer>

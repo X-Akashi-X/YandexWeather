@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import axios from "axios";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
@@ -11,10 +10,19 @@ import {
   DEFAULT_TILE_SIZE,
   DEFAULT_ZOOM,
 } from "@constants/hooks/map";
+import { useGetRadarQuery } from "@store/apis/rainViewerApi";
 
 function useMap(interactive: boolean, classNamePointer: string) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+
+  const { data: rainViewerData, isSuccess } = useGetRadarQuery();
+
+  const lastTimestamp =
+    rainViewerData?.radar.past[rainViewerData.radar.past.length - 1];
+  const tileUrl = lastTimestamp
+    ? rainViewerData.host + lastTimestamp.path + "/256/{z}/{x}/{y}/2/1_1.png"
+    : undefined;
 
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
@@ -27,25 +35,36 @@ function useMap(interactive: boolean, classNamePointer: string) {
       interactive: interactive,
     });
 
-    const addLayer = async () => {
-      const res = await axios.get(
-        "https://api.rainviewer.com/public/weather-maps.json",
-      );
+    const pointerElement = document.createElement("div");
 
-      const lastTimestamp = res.data.radar.past[res.data.radar.past.length - 1];
+    pointerElement.className = classNamePointer;
 
-      const tileUrl =
-        res.data.host + lastTimestamp.path + "/256/{z}/{x}/{y}/2/1_1.png";
+    new maplibregl.Marker({
+      element: pointerElement,
+      anchor: "bottom",
+    })
+      .setLngLat([DEFAULT_LON, DEFAULT_LAT])
+      .addTo(map.current);
 
-      if (!map.current) return;
+    return () => {
+      map.current?.remove();
+      map.current = null;
+    };
+  }, [interactive, classNamePointer]);
 
-      map.current.addSource("rainviewer-radar", {
+  useEffect(() => {
+    const currentMap = map.current;
+    if (!currentMap || !isSuccess || !tileUrl) return;
+    const addRadarLayer = () => {
+      if (currentMap.getSource("rainviewer-radar")) return;
+
+      currentMap.addSource("rainviewer-radar", {
         type: "raster",
         tiles: [tileUrl],
         tileSize: DEFAULT_TILE_SIZE,
       });
 
-      map.current.addLayer({
+      currentMap.addLayer({
         id: "rainviewer-radar",
         type: "raster",
         source: "rainviewer-radar",
@@ -53,26 +72,14 @@ function useMap(interactive: boolean, classNamePointer: string) {
         maxzoom: DEFAULT_MAX_ZOOM,
         paint: { "raster-opacity": DEFAULT_OPACITY },
       });
-
-      const pointerElement = document.createElement("div");
-
-      pointerElement.className = classNamePointer;
-
-      new maplibregl.Marker({
-        element: pointerElement,
-        anchor: "bottom",
-      })
-        .setLngLat([DEFAULT_LON, DEFAULT_LAT])
-        .addTo(map.current);
     };
 
-    map.current.on("load", addLayer);
-
-    return () => {
-      map.current?.remove();
-      map.current = null;
-    };
-  }, [interactive, classNamePointer]);
+    if (currentMap.isStyleLoaded()) {
+      addRadarLayer();
+    } else {
+      currentMap.on("load", addRadarLayer);
+    }
+  }, [tileUrl, isSuccess]);
 
   return { mapContainer };
 }

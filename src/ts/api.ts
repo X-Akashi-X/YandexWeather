@@ -1,3 +1,6 @@
+{
+  /*Forecast*/
+}
 type ForecastCurrent = {
   time: string;
   temperature_2m: number;
@@ -52,7 +55,9 @@ export type ApiForecast = {
   hourly: ForecastHourly;
   daily: ForecastDaily;
 };
-
+{
+  /*AirQuality*/
+}
 type AirQualityCurrent = {
   time: string;
   uv_index: number;
@@ -62,7 +67,9 @@ type AirQualityCurrent = {
 export type ApiAirQuality = {
   current: AirQualityCurrent;
 };
-
+{
+  /*Archive*/
+}
 type ArchiveDaily = {
   time: string[];
   temperature_2m_mean: number[];
@@ -71,4 +78,20 @@ type ArchiveDaily = {
 
 export type ApiArhive = {
   daily: ArchiveDaily;
+};
+{
+  /*RainViewer*/
+}
+type RainViewerPast = {
+  time: number;
+  path: string;
+};
+
+type RainViewerRadar = {
+  past: RainViewerPast[];
+};
+
+export type ApiRainViewer = {
+  host: string;
+  radar: RainViewerRadar;
 };

@@ -1,6 +1,3 @@
-import useAirQuality from "@hooks/useAirQuality";
-import useForecast from "@hooks/useForecast";
-import useArhive from "@hooks/useArchive";
 import { useMemo } from "react";
 import {
   currentData,
@@ -24,11 +21,12 @@ import {
   DEFAULT_WEEKEND,
   DEFAULT_YESTERDAY,
 } from "@constants/weather";
+import { useGetAirQualityQuery, useGetArchiveQuery, useGetForecastQuery } from "@store/apis/weatherApi";
 
 const useServices = () => {
-  const { dataForecast } = useForecast();
-  const { dataAirQuality } = useAirQuality();
-  const { dataArhive } = useArhive();
+  const {data: dataForecast} = useGetForecastQuery()
+  const {data: dataAirQuality} = useGetAirQualityQuery()
+  const {data: dataArhive} = useGetArchiveQuery()
 
   const advancedWeather = useMemo<AdvancedWeather>(() => {
     if (!dataForecast) return { tenDays: [], oneDay: DEFAULT_ONE_DAY };
