@@ -1,0 +1,34 @@
+.navigation_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  padding: 15px;
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: $grey-bg-opacity-low;
+    border-radius: $default-radius;
+  }
+  .arrow_icon {
+    width: 16px;
+    height: auto;
+    transform: rotate(270deg);
+    display: flex;
+    justify-self: end;
+  }
+  .title_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .title_icon {
+      width: 24px;
+      height: auto;
+      font-size: 16px;
+      font-weight: $week-bold-text;
+    }
+  }
+}

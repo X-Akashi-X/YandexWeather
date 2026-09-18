@@ -38,12 +38,14 @@ export default tseslint.config( // Используем хелпер для ти
       ...prettierConfig.rules, // Отключаем конфликтующие правила ESLint
       'prettier/prettier': 'error',
       'react/jsx-no-target-blank': 'off',
+      "react/prop-types": "off",
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
       // В TS лучше использовать версию правила от tseslint
-      '@typescript-eslint/no-unused-vars': 'warn', 
+      '@typescript-eslint/no-unused-vars': 'warn',
+      "@typescript-eslint/no-explicit-any": "off", 
       'no-unused-vars': 'off', // Отключаем стандартное, чтобы не было конфликтов
       'prefer-const': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],

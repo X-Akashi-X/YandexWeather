@@ -1,0 +1,16 @@
+.section_wrapper {
+  display: flex;
+  padding: 10px 16px;
+  background-color: $white-bg;
+  border-radius: $default-radius;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  @media (max-width: $tablet-screen) {
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scroll-behavior: smooth;
+  }
+}
