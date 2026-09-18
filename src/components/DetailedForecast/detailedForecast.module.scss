@@ -71,6 +71,7 @@
       @media (max-width: $tablet-screen) {
         margin-bottom: 15px;
         grid-template-columns: repeat(3, 1fr);
+        row-gap: 2px;
       }
       .title_date {
         font-weight: $week-bold-text;

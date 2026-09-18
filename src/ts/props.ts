@@ -4,6 +4,7 @@ import type { PeriodAverages } from "./weather";
   /*DetailedForecast*/
 }
 export type TimeOfDayItems = {
+  timeOfDay: string;
   temp: string;
   effect: string;
   info: string;

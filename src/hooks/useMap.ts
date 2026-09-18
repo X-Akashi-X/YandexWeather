@@ -2,8 +2,6 @@ import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
-  DEFAULT_LAT,
-  DEFAULT_LON,
   DEFAULT_MAX_ZOOM,
   DEFAULT_MIN_ZOOM,
   DEFAULT_OPACITY,
@@ -11,12 +9,16 @@ import {
   DEFAULT_ZOOM,
 } from "@constants/hooks/map";
 import { useGetRadarQuery } from "@store/apis/rainViewerApi";
+import { useSelector } from "react-redux";
+import type { RootState } from "@store/store";
 
 function useMap(interactive: boolean, classNamePointer: string) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const marker = useRef<maplibregl.Marker | null>(null);
 
   const { data: rainViewerData, isSuccess } = useGetRadarQuery();
+  const { lat, lon } = useSelector((state: RootState) => state.geo);
 
   const lastTimestamp =
     rainViewerData?.radar.past[rainViewerData.radar.past.length - 1];
@@ -30,7 +32,7 @@ function useMap(interactive: boolean, classNamePointer: string) {
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       style: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
-      center: [DEFAULT_LON, DEFAULT_LAT],
+      center: [lon, lat],
       zoom: DEFAULT_ZOOM,
       interactive: interactive,
     });
@@ -39,11 +41,12 @@ function useMap(interactive: boolean, classNamePointer: string) {
 
     pointerElement.className = classNamePointer;
 
-    new maplibregl.Marker({
+    marker.current = new maplibregl.Marker({
       element: pointerElement,
       anchor: "bottom",
     })
-      .setLngLat([DEFAULT_LON, DEFAULT_LAT])
+      .setLngLat([lon, lat])
+      .setOffset([0, 75])
       .addTo(map.current);
 
     return () => {
@@ -80,6 +83,16 @@ function useMap(interactive: boolean, classNamePointer: string) {
       currentMap.on("load", addRadarLayer);
     }
   }, [tileUrl, isSuccess]);
+
+  useEffect(() => {
+    if (!map.current || !lat || !lon) return;
+
+    map.current.flyTo({ center: [lon, lat] });
+
+    if (marker.current) {
+      marker.current.setLngLat([lon, lat]);
+    }
+  }, [lat, lon]);
 
   return { mapContainer };
 }

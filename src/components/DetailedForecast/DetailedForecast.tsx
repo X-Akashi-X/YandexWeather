@@ -61,6 +61,7 @@ const DetailedForecast = () => {
                   давление, мм рт. ст
                 </div>
                 <TimeOfDayForecast
+                  timeOfDay="Утром"
                   temp={morning.advancedTemperature}
                   effect={morning.advancedWeatherEffect}
                   info={morning.advancedWeatherInfo}
@@ -72,6 +73,7 @@ const DetailedForecast = () => {
                   pressure={morning.advancedPressure}
                 />
                 <TimeOfDayForecast
+                  timeOfDay="Днём"
                   temp={day.advancedTemperature}
                   effect={day.advancedWeatherEffect}
                   info={day.advancedWeatherInfo}
@@ -83,6 +85,7 @@ const DetailedForecast = () => {
                   pressure={day.advancedPressure}
                 />
                 <TimeOfDayForecast
+                  timeOfDay="Вечером"
                   temp={evening.advancedTemperature}
                   effect={evening.advancedWeatherEffect}
                   info={evening.advancedWeatherInfo}
@@ -94,6 +97,7 @@ const DetailedForecast = () => {
                   pressure={evening.advancedPressure}
                 />
                 <TimeOfDayForecast
+                  timeOfDay="Ночью"
                   temp={night.advancedTemperature}
                   effect={night.advancedWeatherEffect}
                   info={night.advancedWeatherInfo}

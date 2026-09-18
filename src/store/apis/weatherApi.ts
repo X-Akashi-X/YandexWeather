@@ -53,21 +53,16 @@ const AIR_QUALITY_CURRENT_FIELDS = ["uv_index", "grass_pollen"].join(",");
 
 const ARCHIVE_DAILY_FIELDS = ["temperature_2m_mean", "weather_code"].join(",");
 
-const MINSK_COORDS = {
-  lat: 53.9,
-  lon: 27.56,
-};
-
 export const weatherApi = createApi({
   reducerPath: "weatherApi",
   baseQuery: fetchBaseQuery({ baseUrl: "" }),
   endpoints: (builder) => ({
-    getForecast: builder.query<ApiForecast, void>({
-      query: () => ({
+    getForecast: builder.query<ApiForecast, {lat: number, lon: number}>({
+      query: ({lat, lon}) => ({
         url: "https://api.open-meteo.com/v1/forecast",
         params: {
-          latitude: MINSK_COORDS.lat,
-          longitude: MINSK_COORDS.lon,
+          latitude: lat,
+          longitude: lon,
           past_days: 1,
           forecast_days: 14,
           wind_speed_unit: "ms",
@@ -77,23 +72,23 @@ export const weatherApi = createApi({
         },
       }),
     }),
-    getAirQuality: builder.query<ApiAirQuality, void>({
-      query: () => ({
+    getAirQuality: builder.query<ApiAirQuality, {lat: number, lon: number}>({
+      query: ({lat, lon}) => ({
         url: "https://air-quality-api.open-meteo.com/v1/air-quality",
         params: {
-          latitude: MINSK_COORDS.lat,
-          longitude: MINSK_COORDS.lon,
+          latitude: lat,
+          longitude: lon,
           current: AIR_QUALITY_CURRENT_FIELDS,
           forecast_days: 1,
         },
       }),
     }),
-    getArchive: builder.query<ApiArhive, void>({
-      query: () => ({
+    getArchive: builder.query<ApiArhive, {lat: number, lon: number}>({
+      query: ({lat, lon}) => ({
         url: "https://archive-api.open-meteo.com/v1/archive",
         params: {
-          latitude: MINSK_COORDS.lat,
-          longitude: MINSK_COORDS.lon,
+          latitude: lat,
+          longitude: lon,
           start_date: "2023-01-01",
           end_date: "2025-12-31",
           daily: ARCHIVE_DAILY_FIELDS,

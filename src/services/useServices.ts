@@ -21,12 +21,20 @@ import {
   DEFAULT_WEEKEND,
   DEFAULT_YESTERDAY,
 } from "@constants/weather";
-import { useGetAirQualityQuery, useGetArchiveQuery, useGetForecastQuery } from "@store/apis/weatherApi";
+import {
+  useGetAirQualityQuery,
+  useGetArchiveQuery,
+  useGetForecastQuery,
+} from "@store/apis/weatherApi";
+import { useSelector } from "react-redux";
+import type { RootState } from "@store/store";
 
 const useServices = () => {
-  const {data: dataForecast} = useGetForecastQuery()
-  const {data: dataAirQuality} = useGetAirQualityQuery()
-  const {data: dataArhive} = useGetArchiveQuery()
+  const { lat, lon } = useSelector((state: RootState) => state.geo);
+
+  const { data: dataForecast } = useGetForecastQuery({ lat, lon });
+  const { data: dataAirQuality } = useGetAirQualityQuery({ lat, lon });
+  const { data: dataArhive } = useGetArchiveQuery({ lat, lon });
 
   const advancedWeather = useMemo<AdvancedWeather>(() => {
     if (!dataForecast) return { tenDays: [], oneDay: DEFAULT_ONE_DAY };

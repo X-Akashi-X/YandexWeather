@@ -1,10 +1,11 @@
 import { AppGallery, AppStore, GooglePlay } from ".";
 export const cities = [
-  { title: "Минск", id: "Минск" },
-  { title: "Брест", id: "" },
-  { title: "Витебск", id: "Витебск" },
-  { title: "Гродно", id: "Гродно" },
-  { title: "Гомель", id: "Гомель" },
+  { title: "Минск", lat: 53.9, lon: 27.56, id: "Минск" },
+  { title: "Брест", lat: 52.09, lon: 23.68, id: "Брест" },
+  { title: "Витебск", lat: 55.19, lon: 30.2, id: "Витебск" },
+  { title: "Гродно", lat: 53.66, lon: 23.82, id: "Гродно" },
+  { title: "Гомель", lat: 52.44, lon: 30.98, id: "Гомель" },
+  { title: "Могилев", lat: 53.91, lon: 30.34, id: "Могилев" },
 ];
 
 export const services = [

@@ -3,6 +3,7 @@ import styles from "./timeOfDayForecast.module.scss";
 import Arrow from "@assets/icons/detailedForecast/directionArrowIcon.svg";
 
 const TimeOfDayForecast = ({
+  timeOfDay,
   temp,
   effect,
   info,
@@ -15,7 +16,7 @@ const TimeOfDayForecast = ({
 }: TimeOfDayItems) => {
   return (
     <>
-      <div className={`${styles.time_of_day} small_grey_text`}>Утром</div>
+      <p className={`${styles.time_of_day} small_grey_text`}>{timeOfDay}</p>
       <div className={styles.temp_wrapper}>
         <div className={styles.tmp_effect_wrapper}>
           <p className={styles.temperature}>{temp}°</p>

@@ -24,7 +24,7 @@ const NavigationItem = ({
   return (
     <>
       {link ? (
-        <a href={link} className={styles.navigation_item}>
+        <a href={link} target="_blank" className={styles.navigation_item}>
           {defaultContent}
         </a>
       ) : (

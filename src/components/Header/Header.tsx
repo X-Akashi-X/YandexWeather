@@ -52,7 +52,7 @@ const Header = () => {
   }, [activeSettingDropdown]);
 
   return (
-    <header>
+    <header id="header">
       <div className={styles.main_container}>
         <div className={styles.img_container}>
           <a href="https://yandex.by/?via=ywhl" target="_blank">

@@ -1,9 +1,17 @@
+import { useDispatch } from "react-redux";
 import { cities, forecast, partners, services, stores } from "./config";
 import styles from "./footer.scss.module.scss";
 
 import { Link } from "react-router-dom";
+import { setCoordinates } from "@store/slices/geoSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+
+  const handleSelectCity = (lat: number, lon: number) => {
+    dispatch(setCoordinates({ lat: lat, lon: lon }));
+  };
+
   return (
     <footer>
       <p>
@@ -11,21 +19,24 @@ const Footer = () => {
         точностью до района — рассчитан с помощью{" "}
         <a
           href="https://yandex.ru/pogoda/technology?utm_source=main_page"
+          target="_blank"
           className={styles.meteum_link}
         >
           собственной технологии Метеум
         </a>
       </p>
       <div className={styles.cities_wrapper}>
-        {cities.map(({ title, id }) => (
-          <p key={id}>{title}</p>
+        {cities.map(({ title, id, lat, lon }) => (
+          <Link to="#header" onClick={() => handleSelectCity(lat, lon)} key={id}>
+            {title}
+          </Link>
         ))}
       </div>
       <nav>
         <div className={styles.links_wrapper}>
           <h4>Ссылки</h4>
           {services.map(({ link, title, id }) => (
-            <a href={link} key={id}>
+            <a href={link} target="_blank" key={id}>
               {title}
             </a>
           ))}
@@ -41,7 +52,7 @@ const Footer = () => {
         <div className={styles.partners_wrapper}>
           <h4>Партнёрам</h4>
           {partners.map(({ link, title, id }) => (
-            <a href={link} key={id}>
+            <a href={link} target="_blank" key={id}>
               {title}
             </a>
           ))}
@@ -49,7 +60,7 @@ const Footer = () => {
         <div className={styles.stores_wrapper}>
           <h4>Скачайте приложение</h4>
           {stores.map(({ link, img, id }) => (
-            <a href={link} key={id}>
+            <a href={link} target="_blank" key={id}>
               <img src={img} alt={id} />
             </a>
           ))}
