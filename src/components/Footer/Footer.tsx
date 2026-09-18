@@ -27,7 +27,11 @@ const Footer = () => {
       </p>
       <div className={styles.cities_wrapper}>
         {cities.map(({ title, id, lat, lon }) => (
-          <Link to="#header" onClick={() => handleSelectCity(lat, lon)} key={id}>
+          <Link
+            to="#header"
+            onClick={() => handleSelectCity(lat, lon)}
+            key={id}
+          >
             {title}
           </Link>
         ))}

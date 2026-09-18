@@ -57,8 +57,8 @@ export const weatherApi = createApi({
   reducerPath: "weatherApi",
   baseQuery: fetchBaseQuery({ baseUrl: "" }),
   endpoints: (builder) => ({
-    getForecast: builder.query<ApiForecast, {lat: number, lon: number}>({
-      query: ({lat, lon}) => ({
+    getForecast: builder.query<ApiForecast, { lat: number; lon: number }>({
+      query: ({ lat, lon }) => ({
         url: "https://api.open-meteo.com/v1/forecast",
         params: {
           latitude: lat,
@@ -72,8 +72,8 @@ export const weatherApi = createApi({
         },
       }),
     }),
-    getAirQuality: builder.query<ApiAirQuality, {lat: number, lon: number}>({
-      query: ({lat, lon}) => ({
+    getAirQuality: builder.query<ApiAirQuality, { lat: number; lon: number }>({
+      query: ({ lat, lon }) => ({
         url: "https://air-quality-api.open-meteo.com/v1/air-quality",
         params: {
           latitude: lat,
@@ -83,8 +83,8 @@ export const weatherApi = createApi({
         },
       }),
     }),
-    getArchive: builder.query<ApiArhive, {lat: number, lon: number}>({
-      query: ({lat, lon}) => ({
+    getArchive: builder.query<ApiArhive, { lat: number; lon: number }>({
+      query: ({ lat, lon }) => ({
         url: "https://archive-api.open-meteo.com/v1/archive",
         params: {
           latitude: lat,

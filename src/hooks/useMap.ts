@@ -53,6 +53,7 @@ function useMap(interactive: boolean, classNamePointer: string) {
       map.current?.remove();
       map.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interactive, classNamePointer]);
 
   useEffect(() => {
