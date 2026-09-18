@@ -10,7 +10,7 @@ const Footer = () => {
 
   const handleSelectCity = (lat: number, lon: number) => {
     dispatch(setCoordinates({ lat: lat, lon: lon }));
-    window.scrollTo({top: 0, behavior: "smooth"})
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
