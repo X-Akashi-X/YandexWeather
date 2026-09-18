@@ -13,18 +13,29 @@ export function getWindDirection(deg: number) {
 export function getAvgWeatherCode(arg: number[]) {
   if (!arg?.length) return 0;
 
+  const codeCounts: Record<number, { name: string; weight: number }> = {};
+  const sortedKeys = Object.keys(weatherMap).toSorted();
+
+  for (const key of sortedKeys) {
+    const group = weatherMap[key as keyof typeof weatherMap];
+    for (const code of group.codes) {
+      codeCounts[code] = {
+        name: key,
+        weight: group.weight,
+      };
+    }
+  }
+
   const groupCounts: Record<string, number> = {};
 
   for (const code of arg) {
-    const groupName = Object.keys(weatherMap)
-      .toSorted()
-      .find((key) =>
-        weatherMap[key as keyof typeof weatherMap].codes.includes(code),
-      );
-    if (groupName) groupCounts[groupName] = (groupCounts[groupName] || 0) + 1;
+    const result = codeCounts[code];
+    if (result) {
+      groupCounts[result.name] = (groupCounts[result.name] || 0) + result.weight;
+    }
   }
 
-  const currentGroup = Object.keys(groupCounts).sort(
+  const currentGroup = Object.keys(groupCounts).toSorted(
     (a, b) => groupCounts[b] - groupCounts[a],
   )[0];
 
