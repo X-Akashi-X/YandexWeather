@@ -52,7 +52,7 @@ const Header = () => {
   }, [activeSettingDropdown]);
 
   return (
-    <header id="header">
+    <header>
       <div className={styles.main_container}>
         <div className={styles.img_container}>
           <a href="https://yandex.by/?via=ywhl" target="_blank">
@@ -66,7 +66,7 @@ const Header = () => {
           {navLinks.map(({ link, title, id }) => (
             <NavLink
               className={({ isActive }) =>
-                `${isActive && styles.activeMoreDropdown} ${styles.nav_link}`
+                `${isActive && styles.active} ${styles.nav_link}`
               }
               to={link}
               key={id}

@@ -31,7 +31,8 @@ export function getAvgWeatherCode(arg: number[]) {
   for (const code of arg) {
     const result = codeCounts[code];
     if (result) {
-      groupCounts[result.name] = (groupCounts[result.name] || 0) + result.weight;
+      groupCounts[result.name] =
+        (groupCounts[result.name] || 0) + result.weight;
     }
   }
 
