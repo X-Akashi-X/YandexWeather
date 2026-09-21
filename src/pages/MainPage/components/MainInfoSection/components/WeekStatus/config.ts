@@ -46,7 +46,7 @@ export const getWeekStatusSlide = (
 ) => {
   return [
     {
-      link: "",
+      link: "today",
       img: todayWeatherEffect,
       title: "Сегодня",
       info: todayWeatherInfo,
@@ -58,7 +58,7 @@ export const getWeekStatusSlide = (
       id: "Сегодня",
     },
     {
-      link: "",
+      link: "tomorrow",
       img: tomorrowWeatherEffect,
       title: "Завтра",
       info: tomorrowWeatherInfo,
@@ -70,7 +70,7 @@ export const getWeekStatusSlide = (
       id: "Завтра",
     },
     {
-      link: "",
+      link: "today",
       img: weekWeatherEffect,
       title: "На этой неделе",
       info: weekWeatherInfo,
@@ -82,7 +82,7 @@ export const getWeekStatusSlide = (
       id: "На этой неделе",
     },
     {
-      link: "",
+      link: "weekend",
       img: weekendWeatherEffect,
       title: "В выходные",
       info: weekendWeatherInfo,

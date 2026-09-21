@@ -16,12 +16,8 @@
       transition: all 0.2s ease-in-out;
     }
     img {
-      width: 35px;
+      width: 32px;
       height: auto;
     }
-  }
-  &:last-child img {
-    width: 26px;
-    height: auto;
   }
 }

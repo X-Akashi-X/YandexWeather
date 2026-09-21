@@ -26,9 +26,10 @@ footer {
       row-gap: 10px;
       column-gap: 40px;
     }
-    a {
+    button {
       color: $color-light-grey;
       cursor: pointer;
+      background-color: inherit;
       &:hover {
         color: black;
       }

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
 import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
 import TimeOfDayForecast from "./components/TimeOfDayForecast/TimeOfDayForecast";
+import { getTimeOfDayForecastConfig } from "./config";
+import { getAdvancedItemId } from "@utils/formatters";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();
@@ -35,9 +37,21 @@ const DetailedForecast = () => {
           },
           i,
         ) => {
+          const timeOfDayForecast = getTimeOfDayForecastConfig({
+            morning,
+            day,
+            evening,
+            night,
+          });
+
           return (
             <Link to="/" className={styles.main_wrapper} key={advancedDateKey}>
-              <div className={styles.grid_forecast_wrapper}>
+              <div
+                className={styles.grid_forecast_wrapper}
+                id={
+                  getAdvancedItemId(i, advancedWeekend)
+                }
+              >
                 <h3
                   className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === SATURDAY || advancedWeekend === SUNDAY ? styles.weekend_day : ""}`}
                 >
@@ -60,54 +74,34 @@ const DetailedForecast = () => {
                 <div className={`${styles.category_title} small_grey_text`}>
                   давление, мм рт. ст
                 </div>
-                <TimeOfDayForecast
-                  timeOfDay="Утром"
-                  temp={morning.advancedTemperature}
-                  effect={morning.advancedWeatherEffect}
-                  info={morning.advancedWeatherInfo}
-                  apparentTemp={morning.advancedApparentTemperature}
-                  windSpeed={morning.advancedWindSpeed}
-                  windDirection={morning.advancedWindDirection}
-                  windDirectionText={morning.advancedWindDirectionText}
-                  humidity={morning.advancedHumidity}
-                  pressure={morning.advancedPressure}
-                />
-                <TimeOfDayForecast
-                  timeOfDay="Днём"
-                  temp={day.advancedTemperature}
-                  effect={day.advancedWeatherEffect}
-                  info={day.advancedWeatherInfo}
-                  apparentTemp={day.advancedApparentTemperature}
-                  windSpeed={day.advancedWindSpeed}
-                  windDirection={day.advancedWindDirection}
-                  windDirectionText={day.advancedWindDirectionText}
-                  humidity={day.advancedHumidity}
-                  pressure={day.advancedPressure}
-                />
-                <TimeOfDayForecast
-                  timeOfDay="Вечером"
-                  temp={evening.advancedTemperature}
-                  effect={evening.advancedWeatherEffect}
-                  info={evening.advancedWeatherInfo}
-                  apparentTemp={evening.advancedApparentTemperature}
-                  windSpeed={evening.advancedWindSpeed}
-                  windDirection={evening.advancedWindDirection}
-                  windDirectionText={evening.advancedWindDirectionText}
-                  humidity={evening.advancedHumidity}
-                  pressure={evening.advancedPressure}
-                />
-                <TimeOfDayForecast
-                  timeOfDay="Ночью"
-                  temp={night.advancedTemperature}
-                  effect={night.advancedWeatherEffect}
-                  info={night.advancedWeatherInfo}
-                  apparentTemp={night.advancedApparentTemperature}
-                  windSpeed={night.advancedWindSpeed}
-                  windDirection={night.advancedWindDirection}
-                  windDirectionText={night.advancedWindDirectionText}
-                  humidity={night.advancedHumidity}
-                  pressure={night.advancedPressure}
-                />
+                {timeOfDayForecast.map(
+                  ({
+                    timeOfDay,
+                    temp,
+                    effect,
+                    info,
+                    apparentTemp,
+                    windSpeed,
+                    windDirection,
+                    windDirectionText,
+                    humidity,
+                    pressure,
+                  }) => (
+                    <TimeOfDayForecast
+                      timeOfDay={timeOfDay}
+                      temp={temp}
+                      effect={effect}
+                      info={info}
+                      apparentTemp={apparentTemp}
+                      windSpeed={windSpeed}
+                      windDirection={windDirection}
+                      windDirectionText={windDirectionText}
+                      humidity={humidity}
+                      pressure={pressure}
+                      key={timeOfDay}
+                    />
+                  ),
+                )}
               </div>
               {/*Line*/}
               <div className={styles.line_y} />

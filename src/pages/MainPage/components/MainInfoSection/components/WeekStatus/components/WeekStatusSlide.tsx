@@ -32,6 +32,14 @@ const WeekStatusSlide = ({
     </>
   );
 
+  const handleSrcollToElement = () => {
+    if (link) {
+      document
+        .getElementById(link)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
     <>
       {linkRout ? (
@@ -39,9 +47,13 @@ const WeekStatusSlide = ({
           {defaultContent}
         </Link>
       ) : (
-        <a href={link} className={styles.status_item}>
+        <button
+          type="button"
+          onClick={handleSrcollToElement}
+          className={styles.status_item}
+        >
           {defaultContent}
-        </a>
+        </button>
       )}
     </>
   );

@@ -10,7 +10,7 @@ const Footer = () => {
 
   const handleSelectCity = (lat: number, lon: number) => {
     dispatch(setCoordinates({ lat: lat, lon: lon }));
-    window.scrollTo({top: 0, behavior: "smooth"})
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -28,16 +28,14 @@ const Footer = () => {
       </p>
       <div className={styles.cities_wrapper}>
         {cities.map(({ title, id, lat, lon }) => (
-          <Link
-            to=""
-            onClick={(e) => {
-              e.preventDefault();
+          <button
+            onClick={() => {
               handleSelectCity(lat, lon);
             }}
             key={id}
           >
             {title}
-          </Link>
+          </button>
         ))}
       </div>
       <nav>
