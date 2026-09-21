@@ -48,9 +48,7 @@ const DetailedForecast = () => {
             <Link to="/" className={styles.main_wrapper} key={advancedDateKey}>
               <div
                 className={styles.grid_forecast_wrapper}
-                id={
-                  getAdvancedItemId(i, advancedWeekend)
-                }
+                id={getAdvancedItemId(i, advancedWeekend)}
               >
                 <h3
                   className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === SATURDAY || advancedWeekend === SUNDAY ? styles.weekend_day : ""}`}

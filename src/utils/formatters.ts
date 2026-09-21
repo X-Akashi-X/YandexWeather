@@ -56,5 +56,5 @@ export function getAdvancedItemId(i: number, weekend: number) {
   if (i === TODAY) return "today";
   if (i === TOMORROW) return "tomorrow";
   if (weekend === SATURDAY) return "weekend";
-  return undefined
+  return undefined;
 }
