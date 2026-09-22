@@ -3,7 +3,7 @@ import styles from "./weekStatusSlide.module.scss";
 import { Link } from "react-router-dom";
 
 const WeekStatusSlide = ({
-  link,
+  attribute,
   img,
   title,
   info,
@@ -33,9 +33,9 @@ const WeekStatusSlide = ({
   );
 
   const handleSrcollToElement = () => {
-    if (link) {
+    if (attribute) {
       document
-        .getElementById(link)
+        .querySelector(`[data-detailed-${attribute}="true"]`)
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };

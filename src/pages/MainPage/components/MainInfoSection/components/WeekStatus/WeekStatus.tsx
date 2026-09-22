@@ -29,7 +29,7 @@ const WeakStatus = () => {
       >
         {weekStatusSlides.map(
           ({
-            link,
+            attribute,
             img,
             title,
             info,
@@ -44,7 +44,7 @@ const WeakStatus = () => {
           }) => (
             <SwiperSlide key={id}>
               <WeekStatusSlide
-                link={link}
+                attribute={attribute}
                 img={img}
                 title={title}
                 info={info}

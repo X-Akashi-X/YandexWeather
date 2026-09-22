@@ -3,3 +3,4 @@ export const SUNDAY = 0;
 export const TODAY = 0;
 export const TOMORROW = 1;
 export const TOTAL_WEEKEND = 2;
+export const MIDWEEK = 3

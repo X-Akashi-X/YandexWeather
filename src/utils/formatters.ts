@@ -4,7 +4,7 @@ import {
 } from "@constants/conversions";
 import { weatherMap } from "./weatherMapper/weatherMapper";
 import { WIND_DIRECTIONS } from "@constants/weather";
-import { SATURDAY, TODAY, TOMORROW } from "@constants/daysCodes";
+import { MIDWEEK, SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
 
 export function getWindDirection(deg: number) {
   const index = Math.round(deg / DEGREES_PER_DIRECTION) % TOTAL_WIND_DIRECTIONS;
@@ -52,9 +52,12 @@ export function shouldShowDash(min: number, max: number) {
   return min === max ? String(min) : `${min}-${max}`;
 }
 
-export function getAdvancedItemId(i: number, weekend: number) {
-  if (i === TODAY) return "today";
-  if (i === TOMORROW) return "tomorrow";
-  if (weekend === SATURDAY) return "weekend";
-  return undefined;
+export function getDetailedItemAttributes(i: number, weekend: number) {
+  return{
+    id: `day-${i}`,
+    "data-detailed-today": i === TODAY,
+    "data-detailed-tomorrow": i === TOMORROW,
+    "data-detailed-midweek": i === MIDWEEK,
+    "data-detailed-weekend": weekend === SATURDAY || weekend === SUNDAY
+  }
 }

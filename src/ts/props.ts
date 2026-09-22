@@ -109,7 +109,7 @@ export type WeekendWeekStatusSlides = {
 };
 
 export type WeekStatusItems = {
-  link: string | undefined;
+  attribute: string | undefined;
   img: string;
   title: string;
   info: string;
