@@ -94,7 +94,7 @@ export const getWeekStatusSlide = (
       id: "В выходные",
     },
     {
-      linkRout: "/",
+      linkRout: "sources",
       img: sourceData,
       title: "Источник данных",
       info: "Источник данных",

@@ -178,3 +178,18 @@ export type NavigationItems = {
   title: string;
   link: string | undefined;
 };
+{
+  /*CurrentForecastData*/
+}
+export type DataLeftItems = {
+  currentTemperature: string;
+  currentWindSpeed: number;
+};
+export type DataRightItems = {
+  currentHumidity: number;
+  currentUVIndex: number;
+};
+export type DataItems = {
+  title: string;
+  forecastText: string;
+};

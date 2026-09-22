@@ -1,0 +1,32 @@
+.section_wrapper {
+  margin-bottom: 32px;
+  h3 {
+    margin-bottom: 16px;
+  }
+  .meteostation_wrapper {
+    background-color: $grey-bg-opacity-low;
+    padding: 12px 20px;
+    border-radius: $default-radius;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .location_wrapper {
+      .title {
+        font-size: 17px;
+        font-weight: $week-bold-text;
+        margin-bottom: 4px;
+      }
+    }
+    .weather_wrapper{
+      display: flex;
+      align-items: center;
+      img{
+        width: 24px;
+        height: auto;
+      }
+      p{
+        font-size: 15px;
+      }
+    }
+  }
+}
