@@ -3,6 +3,10 @@
   background-color: $blue-light-bg;
   border-radius: $default-radius;
   width: 100%;
+  height: 100%;               
+  display: flex;              
+  flex-direction: column;     
+  justify-content: flex-start;
   cursor: pointer;
   &:hover .status_title_wrapper h3 {
     color: $link-red-hovered;
@@ -10,14 +14,18 @@
   .status_title_wrapper {
     display: flex;
     gap: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     align-items: center;
     h3 {
       transition: all 0.2s ease-in-out;
     }
-    img {
-      width: 32px;
-      height: auto;
-    }
   }
+}
+:global(.swiper-slide):last-child {
+  .status_item .status_title_wrapper {
+    margin-bottom: 8px;
+  & img {
+    width: 24px;
+    height: 24px;
+  }}
 }

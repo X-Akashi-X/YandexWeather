@@ -1,11 +1,14 @@
 import styles from "./detailedForecast.module.scss";
 import useServices from "@services/useServices";
 import { Link } from "react-router-dom";
-import { SATURDAY, SUNDAY, TODAY, TOMORROW } from "@constants/daysCodes";
+import { SATURDAY, SUNDAY} from "@constants/daysCodes";
 import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
 import TimeOfDayForecast from "./components/TimeOfDayForecast/TimeOfDayForecast";
 import { getTimeOfDayForecastConfig } from "./config";
-import { getDetailedItemAttributes } from "@utils/formatters";
+import {
+  getDetailedItemAttributes,
+  getDetailedItemDayLabel,
+} from "@utils/formatters";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();
@@ -52,12 +55,8 @@ const DetailedForecast = () => {
                 <h3
                   className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === SATURDAY || advancedWeekend === SUNDAY ? styles.weekend_day : ""}`}
                 >
-                  {i === TODAY
-                    ? "Сегодня"
-                    : i === TOMORROW
-                      ? "Завтра"
-                      : advancedWeekday}
-                  , <span className={styles.advanced_date}>{advancedDate}</span>
+                  {getDetailedItemDayLabel(i, advancedWeekday)},{" "}
+                  <span className={styles.advanced_date}>{advancedDate}</span>
                 </h3>
                 <div className={`${styles.category_title} small_grey_text`}>
                   ощущается
