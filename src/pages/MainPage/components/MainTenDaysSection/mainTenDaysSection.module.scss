@@ -1,0 +1,27 @@
+.section_wrapper{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  button{
+    padding: 20px;
+    width: 50%;
+    background-color:$white-bg;
+    border-radius: 50px;
+    align-self: center;
+    font-size: 16px;
+    font-weight: $week-bold-text;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    @media (max-width: $tablet-screen) {
+      width: 100%;
+    }
+    img{
+      width: 10px;
+      height: auto;
+      transform: rotate(270deg);
+    }
+  }
+  button:hover{
+    color: $link-red-hovered;
+  }
+}
