@@ -1,19 +1,20 @@
-import type { TimeOfDayItems } from "@ts/props";
+import type { TimeOfDayItemsObject } from "@ts/props";
 import styles from "./timeOfDayForecast.module.scss";
 import Arrow from "@assets/icons/detailedForecast/directionArrowIcon.svg";
 
-const TimeOfDayForecast = ({
-  timeOfDay,
-  temp,
-  effect,
-  info,
-  apparentTemp,
-  windSpeed,
-  windDirection,
-  windDirectionText,
-  humidity,
-  pressure,
-}: TimeOfDayItems) => {
+const TimeOfDayForecast = ({ data }: TimeOfDayItemsObject) => {
+  const {
+    timeOfDay,
+    temp,
+    effect,
+    info,
+    apparentTemp,
+    windSpeed,
+    windDirection,
+    windDirectionText,
+    humidity,
+    pressure,
+  } = data;
   return (
     <>
       <p className={`${styles.time_of_day} small_grey_text`}>{timeOfDay}</p>

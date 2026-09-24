@@ -3,7 +3,7 @@ import type { PeriodAverages } from "./weather";
 {
   /*DetailedForecast*/
 }
-export type TimeOfDayItems = {
+type TimeOfDayItems = {
   timeOfDay: string;
   temp: string;
   effect: string;
@@ -15,6 +15,10 @@ export type TimeOfDayItems = {
   humidity: number;
   pressure: number;
 };
+
+export type TimeOfDayItemsObject = {
+  data: TimeOfDayItems
+}
 {
   /*LifestyleForecast*/
 }
@@ -56,15 +60,19 @@ export type TodayFeelingSlides = {
   todayMoonPhase: ReturnType<typeof getMoonPhase>;
 };
 
-export type FeelingSlidesItems = {
-  img: string | undefined;
-  category: ReturnType<typeof defaultCategoryType> | undefined;
+type FeelingSlidesItems = {
+  img?: string;
+  category?: ReturnType<typeof defaultCategoryType>;
   title: string;
   text: string;
-  classImg: string | undefined;
-  number: number | undefined;
+  classImg?: string;
+  number?: number;
   link: string;
 };
+
+export type FeelingSlidesItemsObject = {
+  data: FeelingSlidesItems
+}
 {
   /*WeekStatus*/
 }
@@ -108,19 +116,23 @@ export type WeekendWeekStatusSlides = {
   weekendWindCategory: string;
 };
 
-export type WeekStatusItems = {
-  attribute: string | undefined;
+type WeekStatusItems = {
+  attribute?: string;
   img: string;
   title: string;
   info: string;
-  minTemp: string | undefined;
-  maxTemp: string | undefined;
-  windCategory: string | undefined;
-  minMaxWindSpeed: string | undefined;
-  windGusts: number | undefined;
-  linkRout: string | undefined;
-  staticText: string | undefined;
+  minTemp?: string;
+  maxTemp?: string;
+  windCategory?: string;
+  minMaxWindSpeed?: string;
+  windGusts?: number;
+  linkRout?: string;
+  staticText?: string;
 };
+
+export type WeekStatusItemsObject = {
+  data: WeekStatusItems
+}
 {
   /*WeatherOnMaps*/
 }
@@ -173,10 +185,10 @@ export type FAQItems = {
   /*SettingsDropdown*/
 }
 export type NavigationItems = {
-  imgTitle: string | undefined;
-  imgTextTitle: string | undefined;
+  imgTitle?: string;
+  imgTextTitle?: string;
   title: string;
-  link: string | undefined;
+  link?: string;
 };
 {
   /*CurrentForecastData*/

@@ -1,6 +1,13 @@
 .main_wrapper {
   width: 100%;
-
+  .main_chart_wrapper{
+    :global(.swiper-slide) {
+    display: block;
+    width: 100%;
+    min-width: 700px;
+    height: 100%;
+  }
+  }
   .title_main {
     margin-bottom: 20px;
   }
@@ -91,7 +98,6 @@
     }
   }
 
-  // 🛠 Исправленный класс: теперь специфичность выше, display: block не перебивается
   .main_chart_wrapper.active {
     display: block;
   }
@@ -109,19 +115,11 @@
   }
 }
 
-// ==========================================
-// 📱 МЕДИА-ЗАПРОС ДЛЯ ПЛАНШЕТОВ (TABLET)
-// ==========================================
 @media (max-width: $tablet-screen) {
   .main_wrapper {
     .main_chart_wrapper {
-      overflow-x: scroll;
       display: none;
       padding: 0px 10px;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
 
     .title_main {

@@ -1,7 +1,7 @@
 import styles from "./detailedForecast.module.scss";
 import useServices from "@services/useServices";
 import { Link } from "react-router-dom";
-import { SATURDAY, SUNDAY} from "@constants/daysCodes";
+import { SATURDAY, SUNDAY } from "@constants/daysCodes";
 import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
 import TimeOfDayForecast from "./components/TimeOfDayForecast/TimeOfDayForecast";
 import { getTimeOfDayForecastConfig } from "./config";
@@ -70,34 +70,9 @@ const DetailedForecast = () => {
                 <div className={`${styles.category_title} small_grey_text`}>
                   давление, мм рт. ст
                 </div>
-                {timeOfDayForecast.map(
-                  ({
-                    timeOfDay,
-                    temp,
-                    effect,
-                    info,
-                    apparentTemp,
-                    windSpeed,
-                    windDirection,
-                    windDirectionText,
-                    humidity,
-                    pressure,
-                  }) => (
-                    <TimeOfDayForecast
-                      timeOfDay={timeOfDay}
-                      temp={temp}
-                      effect={effect}
-                      info={info}
-                      apparentTemp={apparentTemp}
-                      windSpeed={windSpeed}
-                      windDirection={windDirection}
-                      windDirectionText={windDirectionText}
-                      humidity={humidity}
-                      pressure={pressure}
-                      key={timeOfDay}
-                    />
-                  ),
-                )}
+                {timeOfDayForecast.map((data) => (
+                  <TimeOfDayForecast data={data} key={data.timeOfDay} />
+                ))}
               </div>
               {/*Line*/}
               <div className={styles.line_y} />

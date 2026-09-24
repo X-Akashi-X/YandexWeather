@@ -69,7 +69,7 @@ export function getDetailedItemAttributes(i: number, weekend: number) {
 }
 
 export function getDetailedItemDayLabel(i: number, weekday: string) {
-  if(i === TODAY) return "Сегодня"
-  if(i === TOMORROW) return "Завтра"
-  return weekday
+  if (i === TODAY) return "Сегодня";
+  if (i === TOMORROW) return "Завтра";
+  return weekday;
 }

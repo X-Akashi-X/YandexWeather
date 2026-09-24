@@ -27,34 +27,11 @@ const WeakStatus = () => {
         touchRatio={1}
         navigation
       >
-        {weekStatusSlides.map(
-          ({
-            attribute,
-            img,
-            title,
-            info,
-            minTemp,
-            maxTemp,
-            windCategory,
-            minMaxWindSpeed,
-            windGusts,
-            linkRout,
-            staticText,
-            id,
-          }) => (
-            <SwiperSlide key={id}>
+        {weekStatusSlides.map( 
+          (data) => (
+            <SwiperSlide key={data.id}>
               <WeekStatusSlide
-                attribute={attribute}
-                img={img}
-                title={title}
-                info={info}
-                minTemp={minTemp}
-                maxTemp={maxTemp}
-                windCategory={windCategory}
-                minMaxWindSpeed={minMaxWindSpeed}
-                windGusts={windGusts}
-                linkRout={linkRout}
-                staticText={staticText}
+                data={data}
               />
             </SwiperSlide>
           ),

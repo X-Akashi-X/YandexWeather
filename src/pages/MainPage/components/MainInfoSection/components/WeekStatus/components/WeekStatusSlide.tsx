@@ -1,20 +1,22 @@
-import type { WeekStatusItems } from "@ts/props";
+import type { WeekStatusItemsObject } from "@ts/props";
 import styles from "./weekStatusSlide.module.scss";
 import { Link } from "react-router-dom";
 
-const WeekStatusSlide = ({
-  attribute,
-  img,
-  title,
-  info,
-  minTemp,
-  maxTemp,
-  windCategory,
-  minMaxWindSpeed,
-  windGusts,
-  linkRout,
-  staticText,
-}: WeekStatusItems) => {
+const WeekStatusSlide = ({ data }: WeekStatusItemsObject) => {
+  const {
+    attribute,
+    img,
+    title,
+    info,
+    minTemp,
+    maxTemp,
+    windCategory,
+    minMaxWindSpeed,
+    windGusts,
+    linkRout,
+    staticText,
+  } = data;
+
   const defaultContent = (
     <>
       <div className={styles.status_title_wrapper}>

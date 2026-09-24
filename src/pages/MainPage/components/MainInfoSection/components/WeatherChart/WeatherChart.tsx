@@ -3,6 +3,8 @@ import styles from "./weatherChart.module.scss";
 import Arrow from "@assets/icons/arrowMore.svg";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation } from "swiper/modules";
 import { useState } from "react";
 import { SATURDAY, SUNDAY, TODAY } from "@constants/daysCodes";
 
@@ -28,10 +30,16 @@ const WeatherChart = () => {
             className={active ? "rotate180" : ""}
           />
         </button>
-        <div
+        <Swiper
+          modules={[FreeMode, Navigation]}
+          slidesPerView="auto"
+          freeMode={true}
+          touchRatio={1}
+          navigation
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}
         >
-          <div className={styles.days_wrapper}>
+          <SwiperSlide>
+            <div className={styles.days_wrapper}>
             {data.map(
               (
                 {
@@ -203,7 +211,8 @@ const WeatherChart = () => {
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
     </>
   );
