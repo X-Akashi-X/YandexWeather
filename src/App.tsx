@@ -13,7 +13,9 @@ import SourcesPage from "./pages/SourcesPage/SourcesPage";
 function App() {
   const { cityUrl } = useSelector((state: RootState) => state.geo);
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+    >
       <div className="app">
         <Header />
         <main>

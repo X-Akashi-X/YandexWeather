@@ -18,8 +18,6 @@ const WeatherChart = () => {
     setActive((prev) => !prev);
   }
 
-  const isTablet = window.innerWidth < 768
-
   return (
     <>
       <div className={styles.main_wrapper}>
@@ -39,8 +37,9 @@ const WeatherChart = () => {
           touchRatio={1}
           navigation
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}
+          key={active ? "open" : "closed"}
         >
-          <SwiperSlide>
+          <SwiperSlide className={styles.slide}>
             <div className={styles.days_wrapper}>
               {data.map(
                 (
@@ -84,7 +83,7 @@ const WeatherChart = () => {
             </div>
             <div className={styles.chart_wrapper}>
               <ResponsiveContainer
-                width={isTablet ? 700 : "100%"}
+                width="100%"
                 height={200}
                 style={{ outline: "none" }}
               >
