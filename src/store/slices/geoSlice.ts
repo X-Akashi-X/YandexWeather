@@ -12,12 +12,12 @@ export const getSlice = createSlice({
   name: "geo",
   initialState,
   reducers: {
-    setCoordinates: (state, action) => {
-      state.lat = action.payload.lat;
-      state.lon = action.payload.lon;
-      state.cityUrl = action.payload.cityUrl;
-      state.cityName = action.payload.cityName;
-      state.stationDistance = action.payload.stationDistance;
+    setCoordinates: (state, {payload}) => {
+      state.lat = payload.lat;
+      state.lon = payload.lon;
+      state.cityUrl = payload.cityUrl;
+      state.cityName = payload.cityName;
+      state.stationDistance = payload.stationDistance;
     },
   },
 });

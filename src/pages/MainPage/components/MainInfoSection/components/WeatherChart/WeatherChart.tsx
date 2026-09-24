@@ -18,6 +18,8 @@ const WeatherChart = () => {
     setActive((prev) => !prev);
   }
 
+  const isTablet = window.innerWidth < 768
+
   return (
     <>
       <div className={styles.main_wrapper}>
@@ -40,177 +42,181 @@ const WeatherChart = () => {
         >
           <SwiperSlide>
             <div className={styles.days_wrapper}>
-            {data.map(
-              (
-                {
-                  tenDaysDateKey,
-                  tenDaysWeatherEffect,
-                  tenDaysWeekday,
-                  tenDaysDate,
-                  tenDaysWeekend,
-                  tenDaysWeatherInfo,
-                },
-                i,
-              ) => {
-                return (
-                  <Link
-                    to="/"
-                    className={styles.day_wrapper}
-                    key={tenDaysDateKey}
-                  >
-                    <p
-                      className={`${
-                        tenDaysWeekend === SATURDAY || tenDaysWeekend === SUNDAY
-                          ? styles.weekend_day
-                          : ""
-                      } ${styles.day_week}`}
+              {data.map(
+                (
+                  {
+                    tenDaysDateKey,
+                    tenDaysWeatherEffect,
+                    tenDaysWeekday,
+                    tenDaysDate,
+                    tenDaysWeekend,
+                    tenDaysWeatherInfo,
+                  },
+                  i,
+                ) => {
+                  return (
+                    <Link
+                      to="/"
+                      className={styles.day_wrapper}
+                      key={tenDaysDateKey}
                     >
-                      {tenDaysWeekday}
-                    </p>
-                    <p className="small_grey_text">
-                      {i === TODAY ? "Сегодня" : tenDaysDate}
-                    </p>
-                    <img src={tenDaysWeatherEffect} alt={tenDaysWeatherInfo} />
-                  </Link>
-                );
-              },
-            )}
-          </div>
-          <div className={styles.chart_wrapper}>
-            <ResponsiveContainer
-              width="100%"
-              height="100%"
-              style={{ outline: "none" }}
-            >
-              <LineChart
-                data={data}
-                margin={{ top: 10, right: 25, left: 25, bottom: 10 }}
+                      <p
+                        className={`${
+                          tenDaysWeekend === SATURDAY ||
+                          tenDaysWeekend === SUNDAY
+                            ? styles.weekend_day
+                            : ""
+                        } ${styles.day_week}`}
+                      >
+                        {tenDaysWeekday}
+                      </p>
+                      <p className="small_grey_text">
+                        {i === TODAY ? "Сегодня" : tenDaysDate}
+                      </p>
+                      <img
+                        src={tenDaysWeatherEffect}
+                        alt={tenDaysWeatherInfo}
+                      />
+                    </Link>
+                  );
+                },
+              )}
+            </div>
+            <div className={styles.chart_wrapper}>
+              <ResponsiveContainer
+                width={isTablet ? 700 : "100%"}
+                height={200}
                 style={{ outline: "none" }}
               >
-                <YAxis
-                  hide={true}
-                  yAxisId="top"
-                  domain={["dataMin - 10", "dataMax + 1"]}
-                />
-                <XAxis
-                  dataKey="tenDaysMaxTemperature"
-                  xAxisId="top"
-                  orientation="top"
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
-                  tickFormatter={(value) => `${value}°`}
+                <LineChart
+                  data={data}
+                  margin={{ top: 10, right: 25, left: 25, bottom: 10 }}
                   style={{ outline: "none" }}
-                />
-                <Line
-                  type="monotone"
-                  activeDot={false}
-                  yAxisId="top"
-                  xAxisId="top"
-                  dataKey="tenDaysMaxTemperature"
-                  stroke="#5388D7"
-                  strokeWidth={2}
-                  dot={(props) => {
-                    const { cx, cy, index } = props;
+                >
+                  <YAxis
+                    hide={true}
+                    yAxisId="top"
+                    domain={["dataMin - 10", "dataMax + 1"]}
+                  />
+                  <XAxis
+                    dataKey="tenDaysMaxTemperature"
+                    xAxisId="top"
+                    orientation="top"
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
+                    tickFormatter={(value) => `${value}°`}
+                    style={{ outline: "none" }}
+                  />
+                  <Line
+                    type="monotone"
+                    activeDot={false}
+                    yAxisId="top"
+                    xAxisId="top"
+                    dataKey="tenDaysMaxTemperature"
+                    stroke="#5388D7"
+                    strokeWidth={2}
+                    dot={(props) => {
+                      const { cx, cy, index } = props;
 
-                    if (
-                      cx === undefined ||
-                      cy === undefined ||
-                      index === undefined
-                    )
-                      return null;
+                      if (
+                        cx === undefined ||
+                        cy === undefined ||
+                        index === undefined
+                      )
+                        return null;
 
-                    if (index === 0) {
-                      return (
-                        <foreignObject
-                          key={index}
-                          x={cx - 22}
-                          y={cy - 10}
-                          width={45}
-                          height={20}
-                        >
-                          <div
-                            className={`${styles.frame} ${styles.frame_day}`}
+                      if (index === 0) {
+                        return (
+                          <foreignObject
+                            key={index}
+                            x={cx - 22}
+                            y={cy - 10}
+                            width={45}
+                            height={20}
                           >
-                            День
-                          </div>
-                        </foreignObject>
-                      );
-                    }
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={4}
-                        fill="#5388D7"
-                        key={index}
-                      />
-                    );
-                  }}
-                />
-                <YAxis
-                  hide={true}
-                  yAxisId="bottom"
-                  domain={["dataMin - 1", "dataMax + 10"]}
-                />
-                <Line
-                  type="monotone"
-                  activeDot={false}
-                  dataKey="tenDaysMinTemperature"
-                  xAxisId="bottom"
-                  yAxisId="bottom"
-                  stroke="#C5CCD4"
-                  strokeWidth={2}
-                  dot={(props) => {
-                    const { cx, cy, index } = props;
-
-                    if (
-                      cx === undefined ||
-                      cy === undefined ||
-                      index === undefined
-                    )
-                      return null;
-
-                    if (index === 0) {
+                            <div
+                              className={`${styles.frame} ${styles.frame_day}`}
+                            >
+                              День
+                            </div>
+                          </foreignObject>
+                        );
+                      }
                       return (
-                        <foreignObject
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={4}
+                          fill="#5388D7"
                           key={index}
-                          x={cx - 22}
-                          y={cy - 10}
-                          width={45}
-                          height={20}
-                        >
-                          <div
-                            className={`${styles.frame} ${styles.frame_night}`}
-                          >
-                            Ночь
-                          </div>
-                        </foreignObject>
+                        />
                       );
-                    }
-                    return (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={4}
-                        fill="#C5CCD4"
-                        key={index}
-                      />
-                    );
-                  }}
-                />
-                <XAxis
-                  dataKey="tenDaysMinTemperature"
-                  xAxisId="bottom"
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
-                  tickFormatter={(value) => `${value}°`}
-                  style={{ outline: "none" }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+                    }}
+                  />
+                  <YAxis
+                    hide={true}
+                    yAxisId="bottom"
+                    domain={["dataMin - 1", "dataMax + 10"]}
+                  />
+                  <Line
+                    type="monotone"
+                    activeDot={false}
+                    dataKey="tenDaysMinTemperature"
+                    xAxisId="bottom"
+                    yAxisId="bottom"
+                    stroke="#C5CCD4"
+                    strokeWidth={2}
+                    dot={(props) => {
+                      const { cx, cy, index } = props;
+
+                      if (
+                        cx === undefined ||
+                        cy === undefined ||
+                        index === undefined
+                      )
+                        return null;
+
+                      if (index === 0) {
+                        return (
+                          <foreignObject
+                            key={index}
+                            x={cx - 22}
+                            y={cy - 10}
+                            width={45}
+                            height={20}
+                          >
+                            <div
+                              className={`${styles.frame} ${styles.frame_night}`}
+                            >
+                              Ночь
+                            </div>
+                          </foreignObject>
+                        );
+                      }
+                      return (
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={4}
+                          fill="#C5CCD4"
+                          key={index}
+                        />
+                      );
+                    }}
+                  />
+                  <XAxis
+                    dataKey="tenDaysMinTemperature"
+                    xAxisId="bottom"
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: "black", fontSize: 20, fontWeight: 600 }}
+                    tickFormatter={(value) => `${value}°`}
+                    style={{ outline: "none" }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </SwiperSlide>
         </Swiper>
       </div>

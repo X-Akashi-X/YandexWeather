@@ -27,15 +27,11 @@ const WeakStatus = () => {
         touchRatio={1}
         navigation
       >
-        {weekStatusSlides.map( 
-          (data) => (
-            <SwiperSlide key={data.id}>
-              <WeekStatusSlide
-                data={data}
-              />
-            </SwiperSlide>
-          ),
-        )}
+        {weekStatusSlides.map((data) => (
+          <SwiperSlide key={data.id}>
+            <WeekStatusSlide data={data} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

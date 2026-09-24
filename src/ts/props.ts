@@ -17,8 +17,8 @@ type TimeOfDayItems = {
 };
 
 export type TimeOfDayItemsObject = {
-  data: TimeOfDayItems
-}
+  data: TimeOfDayItems;
+};
 {
   /*LifestyleForecast*/
 }
@@ -71,8 +71,8 @@ type FeelingSlidesItems = {
 };
 
 export type FeelingSlidesItemsObject = {
-  data: FeelingSlidesItems
-}
+  data: FeelingSlidesItems;
+};
 {
   /*WeekStatus*/
 }
@@ -131,8 +131,8 @@ type WeekStatusItems = {
 };
 
 export type WeekStatusItemsObject = {
-  data: WeekStatusItems
-}
+  data: WeekStatusItems;
+};
 {
   /*WeatherOnMaps*/
 }
