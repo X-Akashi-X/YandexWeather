@@ -1,32 +1,13 @@
-import { useDispatch } from "react-redux";
-import { cities, forecast, partners, services, stores } from "./config";
+import { forecast, partners, services, stores } from "./config";
 import styles from "./footer.scss.module.scss";
-
 import { Link, useNavigate } from "react-router-dom";
-import { setCoordinates } from "@store/slices/geoSlice";
+import { cities } from "@configs/cities";
 
 const Footer = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSelectCity = (
-    lat: number,
-    lon: number,
-    cityUrl: string,
-    cityName: string,
-    stationDistance: number,
-  ) => {
-    dispatch(
-      setCoordinates({
-        lat: lat,
-        lon: lon,
-        cityUrl: cityUrl,
-        cityName: cityName,
-        stationDistance: stationDistance,
-      }),
-    );
+  const handleSelectCity = (cityUrl: string) => {
     navigate(`/${cityUrl}`);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -43,10 +24,10 @@ const Footer = () => {
         </a>
       </p>
       <div className={styles.cities_wrapper}>
-        {cities.map(({ title, id, lat, lon, stationDistance }) => (
+        {cities.map(({ title, id }) => (
           <button
             onClick={() => {
-              handleSelectCity(lat, lon, id, title, stationDistance);
+              handleSelectCity(id);
             }}
             key={id}
           >

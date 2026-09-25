@@ -86,14 +86,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    .frame_day {
+      background-color: #5388d7;
+    }
 
-      &_day {
-        background-color: #5388d7;
-      }
-
-      &_night {
-        background-color: #c5ccd4;
-      }
+    .frame_night {
+      background-color: #c5ccd4;
     }
   }
 

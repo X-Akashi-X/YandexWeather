@@ -39,7 +39,7 @@ const WeatherChart = () => {
           className={`${styles.main_chart_wrapper} ${active ? styles.active : ""}`}
           key={active ? "open" : "closed"}
         >
-          <SwiperSlide className={styles.slide}>
+          <SwiperSlide>
             <div className={styles.days_wrapper}>
               {data.map(
                 (
