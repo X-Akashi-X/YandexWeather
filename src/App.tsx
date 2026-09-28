@@ -13,7 +13,7 @@ import CityLayout from "./layout/CityLayout";
 import { useScrollToTop } from "@hooks/useScrollToTop";
 
 function App() {
-  useScrollToTop()
+  useScrollToTop();
   const { cityUrl } = useSelector((state: RootState) => state.geo);
 
   return (

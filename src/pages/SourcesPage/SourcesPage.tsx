@@ -1,4 +1,4 @@
-import SourceDataSection from "./components/MeteostationDataSection/SourceDataSection";
+import SourceDataSection from "./components/MeteostationDataSection/MeteostationDataSection";
 
 const SourcesPage = () => {
   return <SourceDataSection />;

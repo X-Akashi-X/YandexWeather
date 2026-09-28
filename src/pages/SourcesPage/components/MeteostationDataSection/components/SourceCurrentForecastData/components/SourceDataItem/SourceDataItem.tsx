@@ -1,5 +1,5 @@
 import type { DataItems } from "@ts/props";
-import styles from "./dataItem.module.scss";
+import styles from "./sourceDataItem.module.scss";
 
 const DataItem = ({ title, forecastText }: DataItems) => {
   return (

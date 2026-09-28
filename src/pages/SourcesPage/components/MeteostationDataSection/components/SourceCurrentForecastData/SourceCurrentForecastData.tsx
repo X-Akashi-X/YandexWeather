@@ -1,7 +1,7 @@
 import useServices from "@services/useServices";
 import { getDataLeftItemConfig, getDataRightItemConfig } from "./config";
-import styles from "./currentForecastData.module.scss";
-import DataItem from "./components/DataItem/DataItem";
+import styles from "./sourceCurrentForecastData.module.scss";
+import DataItem from "./components/SourceDataItem/SourceDataItem";
 
 const CurrentForecastData = () => {
   const { getCurrentData } = useServices();

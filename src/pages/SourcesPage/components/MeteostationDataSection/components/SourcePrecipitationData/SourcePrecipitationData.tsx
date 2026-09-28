@@ -1,4 +1,4 @@
-import styles from "./precipitationData.module.scss";
+import styles from "./sourcePrecipitationData.module.scss";
 
 const PrecipitationData = () => {
   return (

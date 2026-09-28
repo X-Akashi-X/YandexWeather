@@ -1,5 +1,5 @@
 import useServices from "@services/useServices";
-import styles from "./meteostationData.module.scss";
+import styles from "./sourceMeteostationData.module.scss";
 import { useSelector } from "react-redux";
 import type { RootState } from "@store/store";
 

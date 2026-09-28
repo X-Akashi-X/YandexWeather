@@ -1,7 +1,7 @@
-import CurrentForecastData from "./components/CurrentForecastData/CurrentForecastData";
-import MeteostationData from "./components/MeteostationData/MeteostationData";
-import PrecipitationData from "./components/PrecipitationData/PrecipitationData";
-import styles from "./sourceDataSection.module.scss";
+import CurrentForecastData from "./components/SourceCurrentForecastData/SourceCurrentForecastData";
+import MeteostationData from "./components/SourceMeteostationData/SourceMeteostationData";
+import PrecipitationData from "./components/SourcePrecipitationData/SourcePrecipitationData";
+import styles from "./meteostationDataSection.module.scss";
 
 const SourceDataSection = () => {
   return (
