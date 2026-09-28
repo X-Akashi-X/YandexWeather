@@ -31,3 +31,17 @@
     }
   }
 }
+
+@media (max-width: $mobile-screen) {
+  .section_wrapper {
+    .current_wrapper {
+      .feelings_wrapper {
+        width: 125px;
+        height: 125px;
+        .title {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}

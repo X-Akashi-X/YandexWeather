@@ -133,6 +133,8 @@ input::-webkit-inner-spin-button {
 }
 //==================================MAP
 .map_pointer {
+  width: 150px;
+  height: 150px;
   background-image: url(assets/icons/mapPointer.svg);
   background-size: contain;
   background-repeat: no-repeat;

@@ -1,7 +1,13 @@
+import HomeTabletButton from "@components/HomeTabletButton/HomeTabletButton";
 import SourceDataSection from "./components/MeteostationDataSection/MeteostationDataSection";
 
 const SourcesPage = () => {
-  return <SourceDataSection />;
+  return (
+    <>
+      <HomeTabletButton style={{marginBottom: "20px"}}/>
+      <SourceDataSection />;
+    </>
+  );
 };
 
 export default SourcesPage;

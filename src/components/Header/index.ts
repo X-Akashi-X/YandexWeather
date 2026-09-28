@@ -1,8 +1,8 @@
 {
   /*Header*/
 }
-import Logo from "@assets/icons/header/yandexLogo.svg";
-import Teg from "@assets/icons/header/yandexTeg.svg";
+import Logo from "@assets/icons/yandexLogo.svg";
+import Teg from "@assets/icons/yandexTeg.svg";
 import Favorite from "@assets/icons/header/favoriteIcon.svg";
 import Tracker from "@assets/icons/header/trackerIcon.svg";
 import Setting from "@assets/icons/header/settingIcon.svg";

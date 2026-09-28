@@ -4,6 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import {
   DEFAULT_MAX_ZOOM,
   DEFAULT_MIN_ZOOM,
+  DEFAULT_OFFSET,
   DEFAULT_OPACITY,
   DEFAULT_TILE_SIZE,
   DEFAULT_ZOOM,
@@ -46,7 +47,7 @@ function useMap(interactive: boolean, classNamePointer: string) {
       anchor: "bottom",
     })
       .setLngLat([lon, lat])
-      .setOffset([0, 75])
+      .setOffset(DEFAULT_OFFSET)
       .addTo(map.current);
 
     return () => {
