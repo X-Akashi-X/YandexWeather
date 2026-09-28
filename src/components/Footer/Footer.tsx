@@ -1,13 +1,15 @@
 import { forecast, partners, services, stores } from "./config";
 import styles from "./footer.scss.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cities } from "@configs/cities";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const {pathname, search} = useLocation()
 
   const handleSelectCity = (cityUrl: string) => {
-    navigate(`/${cityUrl}`);
+    const [, ...restPath] = pathname.split("/").filter(Boolean)
+    navigate(`/${[cityUrl, ...restPath].join("/")}${search}`);
   };
 
   return (

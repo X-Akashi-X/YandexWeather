@@ -4,7 +4,7 @@ import SourceDataSection from "./components/MeteostationDataSection/Meteostation
 const SourcesPage = () => {
   return (
     <>
-      <HomeTabletButton style={{marginBottom: "20px"}}/>
+      <HomeTabletButton style={{ marginBottom: "20px" }} />
       <SourceDataSection />;
     </>
   );

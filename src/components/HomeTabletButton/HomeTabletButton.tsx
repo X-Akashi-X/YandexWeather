@@ -4,7 +4,7 @@ import Logo from "@assets/icons/yandexLogo.svg";
 import Teg from "@assets/icons/yandexTeg.svg";
 import type React from "react";
 
-const HomeTabletButton = ({ style }: {style: React.CSSProperties}) => {
+const HomeTabletButton = ({ style }: { style: React.CSSProperties }) => {
   return (
     <div className={styles.img_container} style={style}>
       <a href="https://yandex.by/?via=ywhl" target="_blank">
