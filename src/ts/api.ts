@@ -62,6 +62,11 @@ type AirQualityCurrent = {
   time: string;
   uv_index: number;
   grass_pollen: number;
+  birch_pollen: number;
+  alder_pollen: number;
+  mugwort_pollen: number;
+  olive_pollen: number;
+  ragweed_pollen: number;
 };
 
 export type ApiAirQuality = {

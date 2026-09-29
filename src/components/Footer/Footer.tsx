@@ -5,10 +5,10 @@ import { cities } from "@configs/cities";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const {pathname, search} = useLocation()
+  const { pathname, search } = useLocation();
 
   const handleSelectCity = (cityUrl: string) => {
-    const [, ...restPath] = pathname.split("/").filter(Boolean)
+    const [, ...restPath] = pathname.split("/").filter(Boolean);
     navigate(`/${[cityUrl, ...restPath].join("/")}${search}`);
   };
 

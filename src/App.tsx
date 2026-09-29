@@ -11,6 +11,7 @@ import Footer from "@components/Footer/Footer";
 import SourcesPage from "./pages/SourcesPage/SourcesPage";
 import CityLayout from "./layout/CityLayout";
 import { useScrollToTop } from "@hooks/useScrollToTop";
+import AllergiesPage from "./pages/PollenPage/AllergiesPage";
 
 function App() {
   useScrollToTop();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/:cityName" element={<CityLayout />}>
             <Route index element={<MainPage />} />
             <Route path="sources" element={<SourcesPage />} />
+            <Route path="allergies" element={<AllergiesPage />} />
           </Route>
         </Routes>
       </main>

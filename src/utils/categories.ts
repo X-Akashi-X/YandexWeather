@@ -32,14 +32,12 @@ export function getWindCategory(speed: number) {
 }
 
 export function getPollenCategory(category: number) {
-  if (category <= 2) return { fill: 0, color: "#33c115", text: "отсутствует" };
-  if (category <= 5)
-    return { fill: 0.17, color: "#ffd400", text: "низкая активность" };
-  if (category <= 7)
-    return { fill: 0.42, color: "#ff7e01", text: "умеренная активность" };
-  if (category <= 10)
-    return { fill: 0.67, color: "#c30101", text: "высокая активность" };
-  return { fill: 1, color: "#57348d", text: "очень высокая активность" };
+  if (category <= 1) return { fill: 0, color: "#33c115", text: "отсутствует" };
+  if (category <= 3)
+    return { fill: 0.22, color: "#ffd400", text: "низкая активность" };
+  if (category <= 6)
+    return { fill: 0.6, color: "#ff7e01", text: "умеренная активность" };
+  return { fill: 1, color: "#c30101", text: "высокая активность" };
 }
 
 export function getPressureCategory(category: number) {

@@ -1,0 +1,39 @@
+.section_wrapper{
+  position: relative;
+  padding: 25px 0px;
+  background-color: rgba(255, 233, 147, 1);
+  border-radius: $default-radius;
+  overflow: hidden;
+  .category_img{
+    position: absolute;
+    right: -45px;
+    top: 0;
+  }
+  .stats{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 672px;
+    margin: 0 auto;
+    .title{
+      font-weight: $week-bold-text;
+    }
+    .category_pollen{
+      font-size: 30px;
+      font-weight: $week-bold-text;
+    }
+    .allergics_around{
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background-color: $white-bg;
+      padding: 8px;
+      border-radius: $strong-radius;
+      width: fit-content;
+      img{
+        width: 20px;
+        height: auto;
+      }
+    }
+  }
+}

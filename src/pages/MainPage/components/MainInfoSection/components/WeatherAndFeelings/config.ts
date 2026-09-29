@@ -16,7 +16,7 @@ export const getFeelingSlide = (
 ) => {
   return [
     {
-      link: "/",
+      link: "allergies",
       img: Pollen,
       category: currentPollenCategory,
       title: "Пыльца",

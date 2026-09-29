@@ -1,5 +1,5 @@
 import { HPA_TO_MMHG, WATER_TEMP_OFFSET } from "@constants/conversions";
-import { DEFAULT_CURRENT_DAY } from "@constants/weather";
+import { ALLERGIES, DEFAULT_CURRENT_DAY } from "@constants/weather";
 import type { ApiAirQuality, ApiForecast } from "@ts/api";
 import {
   getPollenCategory,
@@ -17,6 +17,31 @@ export const currentData = (
 ) => {
   if (!dataForecast.current || !dataAirQuality.current)
     return DEFAULT_CURRENT_DAY;
+
+  const groupPollen = {
+    grass: dataAirQuality.current.grass_pollen,
+    alder: dataAirQuality.current.alder_pollen,
+    birch: dataAirQuality.current.birch_pollen,
+    mugwort: dataAirQuality.current.mugwort_pollen,
+    olive: dataAirQuality.current.olive_pollen,
+    ragweed: dataAirQuality.current.ragweed_pollen,
+  };
+
+  function pollenMaxAllergies() {
+    const groupPollenSorted = Object.entries(groupPollen)
+      .map(([key, value]) => ({ name: ALLERGIES[key], value }))
+      .toSorted((a, b) => b.value - a.value);
+
+    const activeAllergies = groupPollenSorted.filter((item) => item.value >= 1);
+
+    if (activeAllergies.length === 0) {
+      return "Аллергены отсутствуют";
+    }
+
+    const topAllergies = activeAllergies.slice(0, 2).map((item) => item.name);
+
+    return topAllergies.join(" и ");
+  }
 
   return {
     currentTemperature: shouldShowPlus(
@@ -42,8 +67,9 @@ export const currentData = (
       dataForecast.current.wind_direction_10m,
     ),
     currentPollenCategory: getPollenCategory(
-      dataAirQuality.current.grass_pollen,
+      Math.max(...Object.values(groupPollen)),
     ),
+    currentAllergies: pollenMaxAllergies(),
     currentPressureCategory: getPressureCategory(
       dataForecast.current.surface_pressure * HPA_TO_MMHG,
     ),

@@ -54,6 +54,7 @@ export const DEFAULT_CURRENT_DAY = {
   currentWindCategory: "-",
   currentWindDirection: "-",
   currentPollenCategory: DEFAULT_CATEGORY,
+  currentAllergies: "-",
   currentPressureCategory: DEFAULT_CATEGORY,
   currentUVCategory: DEFAULT_CATEGORY,
 };
@@ -126,3 +127,12 @@ export const MONTH_NAMES = [
 ];
 
 export const WIND_DIRECTIONS = ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"];
+
+export const ALLERGIES: Record<string, string> = {
+  grass: "элаковые",
+  alder: "ольха",
+  birch: "береза",
+  mugwort: "полынь",
+  olive: "олива",
+  ragweed: "амброзия",
+};
