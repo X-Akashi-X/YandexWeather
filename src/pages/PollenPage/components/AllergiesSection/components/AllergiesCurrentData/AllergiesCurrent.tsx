@@ -4,19 +4,25 @@ import Report from "@assets/icons/allergiesSection/reportIcon.svg";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@store/store";
-import { MAX_RANDOM, MIN_RANDOM } from "@constants/components/allergiesCurrent";
 
 const AllergiesCurrentData = () => {
   const { getCurrentData } = useServices();
   const { currentPollenCategory, currentAllergies } = getCurrentData;
   const { cityUrl } = useSelector((state: RootState) => state.geo);
 
+  const maxAllergicsCount = currentPollenCategory.maxAllergicsCount;
+  const minAllergicsCount = currentPollenCategory.maxAllergicsCount;
+
   const [allergics, setAllergics] = useState(0);
 
   useEffect(() => {
-    const randomAllergics = Math.round(
-      Math.random() * (MAX_RANDOM - MIN_RANDOM + 1) + MIN_RANDOM,
-    );
+    const randomAllergics =
+      maxAllergicsCount === minAllergicsCount
+        ? minAllergicsCount
+        : Math.round(
+            Math.random() * (maxAllergicsCount - minAllergicsCount) +
+              minAllergicsCount,
+          );
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setAllergics(randomAllergics);
   }, [cityUrl]);

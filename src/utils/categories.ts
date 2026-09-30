@@ -1,5 +1,14 @@
+import {
+  ALLERGICS_WEAK_MAX,
+  ALLERGICS_WEAK_MIN,
+  ALLERGICS_MODERATE_MAX,
+  ALLERGICS_MODERATE_MIN,
+  ALLERGICS_STRONG_MAX,
+  ALLERGICS_STRONG_MIN,
+} from "@constants/components/allergiesCurrent";
 import { moonMap } from "./moonMapper/moonMapper";
 import { weatherMap } from "./weatherMapper/weatherMapper";
+import type { DefaultCategoryPollen } from "@ts/weather";
 
 export function findWeather(code: number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(code));
@@ -31,13 +40,38 @@ export function getWindCategory(speed: number) {
   return "ураган";
 }
 
-export function getPollenCategory(category: number) {
-  if (category <= 1) return { fill: 0, color: "#33c115", text: "отсутствует" };
+export function getPollenCategory(category: number): DefaultCategoryPollen {
+  if (category <= 1)
+    return {
+      fill: 0,
+      color: "#33c115",
+      text: "отсутствует",
+      minAllergicsCount: 0,
+      maxAllergicsCount: 0,
+    };
   if (category <= 3)
-    return { fill: 0.22, color: "#ffd400", text: "низкая активность" };
+    return {
+      fill: 0.22,
+      color: "#ffd400",
+      text: "низкая активность",
+      minAllergicsCount: ALLERGICS_WEAK_MIN,
+      maxAllergicsCount: ALLERGICS_WEAK_MAX,
+    };
   if (category <= 6)
-    return { fill: 0.6, color: "#ff7e01", text: "умеренная активность" };
-  return { fill: 1, color: "#c30101", text: "высокая активность" };
+    return {
+      fill: 0.6,
+      color: "#ff7e01",
+      text: "умеренная активность",
+      minAllergicsCount: ALLERGICS_MODERATE_MIN,
+      maxAllergicsCount: ALLERGICS_MODERATE_MAX,
+    };
+  return {
+    fill: 1,
+    color: "#c30101",
+    text: "высокая активность",
+    minAllergicsCount: ALLERGICS_STRONG_MIN,
+    maxAllergicsCount: ALLERGICS_STRONG_MAX,
+  };
 }
 
 export function getPressureCategory(category: number) {

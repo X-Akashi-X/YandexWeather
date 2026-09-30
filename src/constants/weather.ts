@@ -1,7 +1,15 @@
+import type { DefaultCategoryPollen } from "@ts/weather";
+
 export const DEFAULT_CATEGORY = {
   fill: 0,
   color: "grey",
   text: "данные отсутствуют",
+};
+
+export const DEFAULT_CATEGORY_POLLEN: DefaultCategoryPollen = {
+  ...DEFAULT_CATEGORY,
+  minAllergicsCount: 0,
+  maxAllergicsCount: 0,
 };
 
 export const DEFAULT_MOON_PHASE = { text: "данные отсутствуют", icon: "-" };
@@ -53,7 +61,7 @@ export const DEFAULT_CURRENT_DAY = {
   currentWeatherInfo: "-",
   currentWindCategory: "-",
   currentWindDirection: "-",
-  currentPollenCategory: DEFAULT_CATEGORY,
+  currentPollenCategory: DEFAULT_CATEGORY_POLLEN,
   currentAllergies: "-",
   currentPressureCategory: DEFAULT_CATEGORY,
   currentUVCategory: DEFAULT_CATEGORY,
