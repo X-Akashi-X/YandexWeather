@@ -18,7 +18,7 @@ import {
   getUVCategory,
   getWeatherEffect,
   getWeatherInfo,
-} from "@utils/categories";
+} from "@utils/categories/categories";
 import {
   getAvgWeatherCode,
   getWindDirection,

@@ -1,4 +1,7 @@
-import type { defaultCategoryType, getMoonPhase } from "@utils/categories";
+import type {
+  defaultCategoryType,
+  getMoonPhase,
+} from "@utils/categories/categories";
 import type { PeriodAverages } from "./weather";
 {
   /*DetailedForecast*/

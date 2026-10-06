@@ -14,6 +14,11 @@ export const DEFAULT_CATEGORY_POLLEN: DefaultCategoryPollen = {
 
 export const DEFAULT_MOON_PHASE = { text: "данные отсутствуют", icon: "-" };
 
+export const DEFAULT_ALLERGIES = {
+  allAllergies: [],
+  topAllergies: "-",
+};
+
 export const DEFAULT_PERIOD_AVERAGES = {
   advancedTemperature: "-",
   advancedApparentTemperature: "-",
@@ -62,7 +67,7 @@ export const DEFAULT_CURRENT_DAY = {
   currentWindCategory: "-",
   currentWindDirection: "-",
   currentPollenCategory: DEFAULT_CATEGORY_POLLEN,
-  currentAllergies: "-",
+  currentAllergies: DEFAULT_ALLERGIES,
   currentPressureCategory: DEFAULT_CATEGORY,
   currentUVCategory: DEFAULT_CATEGORY,
 };
@@ -137,7 +142,7 @@ export const MONTH_NAMES = [
 export const WIND_DIRECTIONS = ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"];
 
 export const ALLERGIES: Record<string, string> = {
-  grass: "элаковые",
+  grass: "злаковые",
   alder: "ольха",
   birch: "береза",
   mugwort: "полынь",

@@ -1,4 +1,7 @@
-import type { defaultCategoryType, getMoonPhase } from "@utils/categories";
+import type {
+  defaultCategoryType,
+  getMoonPhase,
+} from "@utils/categories/categories";
 
 type DefaultCategory = {
   fill: number;
@@ -9,6 +12,8 @@ type DefaultCategory = {
 export type DefaultCategoryPollen = DefaultCategory & {
   minAllergicsCount: number;
   maxAllergicsCount: number;
+  colorAllergies: string;
+  imgAllergies: { img: string; y: string; x: string };
 };
 
 export type PeriodData = {

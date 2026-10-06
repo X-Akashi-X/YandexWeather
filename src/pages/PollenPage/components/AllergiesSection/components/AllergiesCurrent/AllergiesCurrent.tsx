@@ -11,7 +11,8 @@ const AllergiesCurrentData = () => {
   const { cityUrl } = useSelector((state: RootState) => state.geo);
 
   const maxAllergicsCount = currentPollenCategory.maxAllergicsCount;
-  const minAllergicsCount = currentPollenCategory.maxAllergicsCount;
+  const minAllergicsCount = currentPollenCategory.minAllergicsCount;
+  const topAllergies = currentAllergies.topAllergies;
 
   const [allergics, setAllergics] = useState(0);
 
@@ -20,28 +21,38 @@ const AllergiesCurrentData = () => {
       maxAllergicsCount === minAllergicsCount
         ? minAllergicsCount
         : Math.round(
-            Math.random() * (maxAllergicsCount - minAllergicsCount) +
+            Math.random() * (maxAllergicsCount - minAllergicsCount + 1) +
               minAllergicsCount,
           );
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setAllergics(randomAllergics);
-  }, [cityUrl]);
+  }, [cityUrl, maxAllergicsCount, minAllergicsCount]);
 
   return (
-    <section className={styles.section_wrapper}>
-      <img
-        className={styles.category_img}
-        src="https://weather.yastatic.net/s3/weather-frontend/front2/_next/static/media/weak-desktop.a4ec3a6f.svg"
-        alt="Категория"
-      />
+    <section
+      className={styles.section_wrapper}
+      style={{ backgroundColor: currentPollenCategory.colorAllergies }}
+    >
+      {currentPollenCategory.imgAllergies && (
+        <img
+          className={styles.category_img}
+          src={currentPollenCategory.imgAllergies.img}
+          style={{
+            bottom: currentPollenCategory.imgAllergies.y,
+            right: currentPollenCategory.imgAllergies.x,
+          }}
+        />
+      )}
       <div className={styles.stats}>
         <p className={styles.title}>Пыльца</p>
         <p className={styles.category_pollen}>
           Сейчас {currentPollenCategory.text}
         </p>
-        <p>
-          {currentAllergies}{" "}
-          {currentAllergies === "Аллергены отсутствуют" ? "" : "щекочут нос"}
+        <p className={styles.allergies}>
+          {topAllergies}{" "}
+          {topAllergies === "Пыльца не летает, не раздражает"
+            ? ""
+            : "щекочут нос"}
         </p>
         <div className={styles.allergics_around}>
           <img src={Report} alt="Внимание" />

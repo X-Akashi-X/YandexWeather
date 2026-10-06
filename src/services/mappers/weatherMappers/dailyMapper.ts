@@ -15,7 +15,7 @@ import {
   getWeatherEffect,
   getWeatherInfo,
   getWindCategory,
-} from "@utils/categories";
+} from "@utils/categories/categories";
 import {
   getAvgWeatherCode,
   shouldShowDash,

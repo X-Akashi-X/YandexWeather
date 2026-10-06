@@ -6,9 +6,15 @@ import {
   ALLERGICS_STRONG_MAX,
   ALLERGICS_STRONG_MIN,
 } from "@constants/components/allergiesCurrent";
-import { moonMap } from "./moonMapper/moonMapper";
-import { weatherMap } from "./weatherMapper/weatherMapper";
+import { moonMap } from "../moonMapper/moonMapper";
+import { weatherMap } from "../weatherMapper/weatherMapper";
 import type { DefaultCategoryPollen } from "@ts/weather";
+import {
+  ClearAllergies,
+  NormalAllergies,
+  StrongAllergies,
+  WeakAllergies,
+} from ".";
 
 export function findWeather(code: number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(code));
@@ -44,33 +50,45 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
   if (category <= 1)
     return {
       fill: 0,
-      color: "#33c115",
-      text: "отсутствует",
+      color: "grey",
+      colorAllergies: "rgba(180, 184, 204, 0.52)",
+      text: "нет активности",
       minAllergicsCount: 0,
       maxAllergicsCount: 0,
+      imgAllergies: {
+        img: ClearAllergies,
+        y: "0",
+        x: "0",
+      },
     };
   if (category <= 3)
     return {
       fill: 0.22,
       color: "#ffd400",
+      colorAllergies: "rgba(255, 233, 147, 1)",
       text: "низкая активность",
       minAllergicsCount: ALLERGICS_WEAK_MIN,
       maxAllergicsCount: ALLERGICS_WEAK_MAX,
+      imgAllergies: { img: WeakAllergies, y: "0", x: "-60px" },
     };
   if (category <= 6)
     return {
       fill: 0.6,
       color: "#ff7e01",
+      colorAllergies: "rgba(255, 196, 130, 1)",
       text: "умеренная активность",
       minAllergicsCount: ALLERGICS_MODERATE_MIN,
       maxAllergicsCount: ALLERGICS_MODERATE_MAX,
+      imgAllergies: { img: NormalAllergies, y: "0", x: "-32px" },
     };
   return {
     fill: 1,
     color: "#c30101",
+    colorAllergies: "rgba(239, 128, 109, 1)",
     text: "высокая активность",
     minAllergicsCount: ALLERGICS_STRONG_MIN,
     maxAllergicsCount: ALLERGICS_STRONG_MAX,
+    imgAllergies: { img: StrongAllergies, y: "0", x: "-120px" },
   };
 }
 

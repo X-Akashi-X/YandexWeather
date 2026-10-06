@@ -8,7 +8,7 @@ import {
   getWeatherEffect,
   getWeatherInfo,
   getWindCategory,
-} from "@utils/categories";
+} from "@utils/categories/categories";
 import { getWindDirection, shouldShowPlus } from "@utils/formatters";
 
 export const currentData = (
@@ -27,20 +27,26 @@ export const currentData = (
     ragweed: dataAirQuality.current.ragweed_pollen,
   };
 
-  function pollenMaxAllergies() {
-    const groupPollenSorted = Object.entries(groupPollen)
+  function pollenAllergies() {
+    const allAllergies = Object.entries(groupPollen)
       .map(([key, value]) => ({ name: ALLERGIES[key], value }))
       .toSorted((a, b) => b.value - a.value);
 
-    const activeAllergies = groupPollenSorted.filter((item) => item.value >= 1);
+    const activeAllergies = allAllergies.filter((item) => item.value >= 1);
 
     if (activeAllergies.length === 0) {
-      return "Аллергены отсутствуют";
+      return {
+        topAllergies: "Пыльца не летает, не раздражает",
+        allAllergies,
+      };
     }
 
-    const topAllergies = activeAllergies.slice(0, 2).map((item) => item.name);
+    const topAllergies = activeAllergies
+      .slice(0, 2)
+      .map((item) => item.name)
+      .join(" и ");
 
-    return topAllergies.join(" и ");
+    return { allAllergies, topAllergies };
   }
 
   return {
@@ -69,7 +75,7 @@ export const currentData = (
     currentPollenCategory: getPollenCategory(
       Math.max(...Object.values(groupPollen)),
     ),
-    currentAllergies: pollenMaxAllergies(),
+    currentAllergies: pollenAllergies(),
     currentPressureCategory: getPressureCategory(
       dataForecast.current.surface_pressure * HPA_TO_MMHG,
     ),
