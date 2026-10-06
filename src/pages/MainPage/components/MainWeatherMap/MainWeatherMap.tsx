@@ -1,26 +1,20 @@
 import useMap from "@hooks/useMap";
 import styles from "./mainWeatherMap.module.scss";
-import Logo from "@assets/icons/header/yandexLogo.svg";
-import Teg from "@assets/icons/header/yandexTeg.svg";
 import { Link } from "react-router-dom";
+import HomeTabletButton from "@components/HomeTabletButton/HomeTabletButton";
 
 const WeatherMap = () => {
   const { mapContainer } = useMap(false, "map_pointer");
 
   return (
     <section className={styles.sectionWrapper}>
-      <div className={styles.map_container} ref={mapContainer} />
-      <div className={styles.img_container}>
-        <a href="https://yandex.by/?via=ywhl" target="_blank">
-          <img src={Logo} alt="Перейти на главную яндекса" />
-        </a>
-        <Link to="/">
-          <img src={Teg} alt="Перейти на главную яндекс.погода" />
-        </Link>
-      </div>
-      <button>
-        <Link to="/">Карта осадков</Link>
-      </button>
+      <div className={styles.main_container} ref={mapContainer} />
+      <HomeTabletButton
+        style={{ position: "absolute", left: "10px", top: "5px" }}
+      />
+      <Link className={styles.precipitation_link} to="/">
+        Карта осадков
+      </Link>
     </section>
   );
 };

@@ -3,3 +3,4 @@ export const DEFAULT_TILE_SIZE = 256;
 export const DEFAULT_MIN_ZOOM = 0;
 export const DEFAULT_MAX_ZOOM = 8;
 export const DEFAULT_OPACITY = 0.6;
+export const DEFAULT_OFFSET: [number, number] = [0, 60];

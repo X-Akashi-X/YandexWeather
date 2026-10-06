@@ -2,32 +2,36 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./App.scss";
-import { Provider } from "react-redux";
-import { store } from "@store/store";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { type RootState } from "@store/store";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "@components/Header/Header";
 import MainPage from "./pages/MainPage/MainPage";
-import OnMonthPage from "./pages/OnMonthPage";
-import OnMapPage from "./pages/OnMapPage";
 import Footer from "@components/Footer/Footer";
+import SourcesPage from "./pages/SourcesPage/SourcesPage";
+import CityLayout from "./layout/CityLayout";
+import { useScrollToTop } from "@hooks/useScrollToTop";
+import AllergiesPage from "./pages/PollenPage/AllergiesPage";
 
 function App() {
+  useScrollToTop();
+  const { cityUrl } = useSelector((state: RootState) => state.geo);
+
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <div className="app">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/OnMonth" element={<OnMonthPage />} />
-              <Route path="/OnMap" element={<OnMapPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </Provider>
+    <div className="app">
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to={`/${cityUrl}`} replace />} />
+          <Route path="/:cityName" element={<CityLayout />}>
+            <Route index element={<MainPage />} />
+            <Route path="sources" element={<SourcesPage />} />
+            <Route path="allergies" element={<AllergiesPage />} />
+          </Route>
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

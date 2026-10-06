@@ -15,6 +15,7 @@ export default defineConfig({
       "@mocks": path.resolve(__dirname, "./src/mocks"),
       "@constants": path.resolve(__dirname, "./src/constants"),
       "@store": path.resolve(__dirname, "./src/store"),
+      "@configs": path.resolve(__dirname, "./src/configs"),
     },
   },
   css: {

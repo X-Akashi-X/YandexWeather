@@ -1,0 +1,21 @@
+.img_container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: $strong-radius;
+  height: auto;
+  max-width: 125px;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  img {
+    height: 20px;
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .img_container {
+    display: flex;
+  }
+}

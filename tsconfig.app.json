@@ -30,6 +30,7 @@
       "@mocks/*": ["./src/mocks/*"],
       "@constants/*": ["./src/constants/*"],
       "@store/*": ["./src/store/*"],
+      "@configs/*": ["./src/configs/*"],
     }
   },
 

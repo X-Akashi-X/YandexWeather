@@ -1,0 +1,28 @@
+.main_wrapper {
+  :global(.swiper-slide) {
+    max-width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 16px;
+  }
+  .slide {
+    background-color: $grey-bg-opacity-low;
+    padding: 12px;
+    max-width: fit-content;
+    border-radius: $strong-radius;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .circle {
+      width: 8px;
+      height: 8px;
+      border-radius: $strong-radius;
+      border: 0.1px solid rgba(180, 184, 204, 0.64);
+    }
+    .name {
+      font-weight: $week-bold-text;
+      &::first-letter{
+        text-transform: uppercase;
+      }
+    }
+  }
+}

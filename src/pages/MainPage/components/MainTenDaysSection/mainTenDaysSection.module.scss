@@ -12,6 +12,7 @@
     font-weight: $week-bold-text;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    text-align: center;
     @media (max-width: $tablet-screen) {
       width: 100%;
     }

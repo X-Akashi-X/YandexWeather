@@ -3,21 +3,17 @@
   border-radius: $default-radius;
   padding: 20px 24px;
   width: 50%;
-  @media (max-width: $tablet-screen) {
-    width: 100%;
-  }
+
   .title_main {
     margin-bottom: 20px;
   }
+
   .weather_wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 5px;
-    @media (max-width: $laptop-screen) {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-    }
+
     .weather_wrapper_item {
       display: flex;
       flex-direction: column;
@@ -26,12 +22,9 @@
       text-align: center;
       padding: 19px 20px;
       border-radius: $default-radius;
-      @media (max-width: $laptop-screen) {
-        gap: 3px;
-        padding: 10px 20px;
-      }
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+
       .tmp_and_effect_wrapper {
         display: flex;
         justify-content: center;
@@ -39,8 +32,29 @@
         gap: 5px;
       }
     }
+
     .weather_wrapper_item:hover {
       background-color: $text-blue_hovered;
     }
+  }
+}
+
+@media (max-width: $laptop-screen) {
+  .section_wrapper {
+    .weather_wrapper {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+
+      .weather_wrapper_item {
+        gap: 3px;
+        padding: 10px 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    width: 100%;
   }
 }

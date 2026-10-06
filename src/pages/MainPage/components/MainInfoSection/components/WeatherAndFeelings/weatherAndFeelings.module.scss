@@ -4,7 +4,10 @@
     cursor: grab;
     padding: 16px 0px;
     :global(.swiper-slide) {
-      width: 228px;
+      width: 256px;
+      @media (max-width: $laptop-screen) {
+        width: 228px;
+      }
       @media (max-width: $tablet-screen) {
         width: 164px;
       }

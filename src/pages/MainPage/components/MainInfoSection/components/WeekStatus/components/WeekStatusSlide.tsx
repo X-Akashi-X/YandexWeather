@@ -1,20 +1,22 @@
-import type { WeekStatusItems } from "@ts/props";
+import type { WeekStatusItemsObject } from "@ts/props";
 import styles from "./weekStatusSlide.module.scss";
 import { Link } from "react-router-dom";
 
-const WeekStatusSlide = ({
-  link,
-  img,
-  title,
-  info,
-  minTemp,
-  maxTemp,
-  windCategory,
-  minMaxWindSpeed,
-  windGusts,
-  linkRout,
-  staticText,
-}: WeekStatusItems) => {
+const WeekStatusSlide = ({ data }: WeekStatusItemsObject) => {
+  const {
+    attribute,
+    img,
+    title,
+    info,
+    minTemp,
+    maxTemp,
+    windCategory,
+    minMaxWindSpeed,
+    windGusts,
+    linkRout,
+    staticText,
+  } = data;
+
   const defaultContent = (
     <>
       <div className={styles.status_title_wrapper}>
@@ -32,6 +34,14 @@ const WeekStatusSlide = ({
     </>
   );
 
+  const handleSrcollToElement = () => {
+    if (attribute) {
+      document
+        .querySelector(`[data-detailed-${attribute}="true"]`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
     <>
       {linkRout ? (
@@ -39,9 +49,13 @@ const WeekStatusSlide = ({
           {defaultContent}
         </Link>
       ) : (
-        <a href={link} className={styles.status_item}>
+        <button
+          type="button"
+          onClick={handleSrcollToElement}
+          className={styles.status_item}
+        >
           {defaultContent}
-        </a>
+        </button>
       )}
     </>
   );

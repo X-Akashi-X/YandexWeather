@@ -1,16 +1,15 @@
-import { useDispatch } from "react-redux";
-import { cities, forecast, partners, services, stores } from "./config";
+import { forecast, partners, services, stores } from "./config";
 import styles from "./footer.scss.module.scss";
-
-import { Link } from "react-router-dom";
-import { setCoordinates } from "@store/slices/geoSlice";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { cities } from "@configs/cities";
 
 const Footer = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { pathname, search } = useLocation();
 
-  const handleSelectCity = (lat: number, lon: number) => {
-    dispatch(setCoordinates({ lat: lat, lon: lon }));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleSelectCity = (cityUrl: string) => {
+    const [, ...restPath] = pathname.split("/").filter(Boolean);
+    navigate(`/${[cityUrl, ...restPath].join("/")}${search}`);
   };
 
   return (
@@ -27,17 +26,15 @@ const Footer = () => {
         </a>
       </p>
       <div className={styles.cities_wrapper}>
-        {cities.map(({ title, id, lat, lon }) => (
-          <Link
-            to=""
-            onClick={(e) => {
-              e.preventDefault();
-              handleSelectCity(lat, lon);
+        {cities.map(({ title, id }) => (
+          <button
+            onClick={() => {
+              handleSelectCity(id);
             }}
             key={id}
           >
             {title}
-          </Link>
+          </button>
         ))}
       </div>
       <nav>

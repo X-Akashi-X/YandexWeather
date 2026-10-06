@@ -1,17 +1,10 @@
 import styles from "./feelingSlide.module.scss";
 import { Link } from "react-router-dom";
 import StatusArc from "@components/StatusArc/StatusArc";
-import type { FeelingSlidesItems } from "@ts/props";
+import type { FeelingSlidesItemsObject } from "@ts/props";
 
-const FeelingSlide = ({
-  img,
-  category,
-  title,
-  text,
-  classImg,
-  number,
-  link,
-}: FeelingSlidesItems) => {
+const FeelingSlide = ({ data }: FeelingSlidesItemsObject) => {
+  const { img, category, title, text, classImg, number, link } = data;
   const currentClassImg = classImg ? styles[classImg] : "";
 
   return (

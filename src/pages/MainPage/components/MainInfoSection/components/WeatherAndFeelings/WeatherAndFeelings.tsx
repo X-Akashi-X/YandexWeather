@@ -23,21 +23,11 @@ const WeatherAndFeelings = () => {
         touchRatio={1}
         navigation
       >
-        {feelingSlides.map(
-          ({ img, category, title, text, classImg, number, link, id }) => (
-            <SwiperSlide key={id}>
-              <FeelingSlide
-                img={img}
-                category={category}
-                title={title}
-                text={text}
-                classImg={classImg}
-                number={number}
-                link={link}
-              />
-            </SwiperSlide>
-          ),
-        )}
+        {feelingSlides.map((data) => (
+          <SwiperSlide key={data.id}>
+            <FeelingSlide data={data} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

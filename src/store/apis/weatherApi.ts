@@ -49,7 +49,15 @@ const FORECAST_CURRENT_FIELDS = [
   "weather_code",
 ].join(",");
 
-const AIR_QUALITY_CURRENT_FIELDS = ["uv_index", "grass_pollen"].join(",");
+const AIR_QUALITY_CURRENT_FIELDS = [
+  "uv_index",
+  "birch_pollen",
+  "alder_pollen",
+  "grass_pollen",
+  "mugwort_pollen",
+  "olive_pollen",
+  "ragweed_pollen",
+].join(",");
 
 const ARCHIVE_DAILY_FIELDS = ["temperature_2m_mean", "weather_code"].join(",");
 

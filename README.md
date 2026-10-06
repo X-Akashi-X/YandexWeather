@@ -11,7 +11,7 @@ Dropped application: `https://yandexweather.netlify.app`
 *   **Frontend:** React 19, TypeScript, Vite (Bundler)
 *   **State Management:** Redux Toolkit, React-Redux
 *   **Routing:** React Router v6
-*   **Data Fetching:** Axios
+*   **Data Fetching:** RTK Query
 *   **UI & Charts:** Recharts (Graphs), Swiper (Forecast slider), MapLibre GL (Interactive weather map)
 *   **Forms & Validation:** React Hook Form, Yup, Hook Form Resolvers
 *   **Styling:** Sass (SCSS) + Responsive Design (Mobile First)
