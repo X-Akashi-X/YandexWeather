@@ -1,13 +1,14 @@
 import { HPA_TO_MMHG } from "@constants/conversions";
 import { SATURDAY, SUNDAY, TOTAL_WEEKEND } from "@constants/daysCodes";
 import {
+  ALLERGIES,
   DEFAULT_TODAY,
   DEFAULT_TOMORROW,
   DEFAULT_WEEK,
   DEFAULT_WEEKEND,
   MONTH_NAMES,
 } from "@constants/weather";
-import type { ApiArhive, ApiForecast } from "@ts/api";
+import type { ApiAirQuality, ApiArhive, ApiForecast } from "@ts/api";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -87,8 +88,11 @@ export const tomorrowData = (dataForecast: ApiForecast) => {
   };
 };
 
-export const weekData = (dataForecast: ApiForecast) => {
-  if (!dataForecast.daily) return DEFAULT_WEEK;
+export const weekData = (
+  dataForecast: ApiForecast,
+  dataAirQuality: ApiAirQuality,
+) => {
+  if (!dataForecast.daily || !dataAirQuality.hourly) return DEFAULT_WEEK;
 
   const avgDetails = (arg: number[]) => {
     const week = arg.slice(1, 8);
@@ -102,23 +106,77 @@ export const weekData = (dataForecast: ApiForecast) => {
     dataForecast.daily.weather_code.slice(1, 8),
   );
 
+  const hourlyToDailyAQ = () => {
+    const groupedDays: Record<string, number[]> = {};
+    const dailyGroupedData: Record<string, Record<string, number>> = {};
+
+    dataAirQuality.hourly.time.forEach((t, i) => {
+      const dateKey = t.split("T")[0];
+
+      if (!groupedDays[dateKey]) {
+        groupedDays[dateKey] = [];
+      }
+
+      groupedDays[dateKey].push(i);
+    });
+
+    Object.keys(groupedDays).forEach((dateKey) => {
+      const hourlyIndex = groupedDays[dateKey];
+
+      dailyGroupedData[dateKey] = {
+        grass: Math.max(
+          ...hourlyIndex.map((i) => dataAirQuality.hourly.grass_pollen[i]),
+        ),
+        alder: Math.max(
+          ...hourlyIndex.map((i) => dataAirQuality.hourly.alder_pollen[i]),
+        ),
+        birch: Math.max(
+          ...hourlyIndex.map((i) => dataAirQuality.hourly.birch_pollen[i]),
+        ),
+        mugwort: Math.max(
+          ...hourlyIndex.map((i) => dataAirQuality.hourly.mugwort_pollen[i]),
+        ),
+        olive: Math.max(
+          ...hourlyIndex.map((i) => dataAirQuality.hourly.olive_pollen[i]),
+        ),
+        ragweed: Math.max(
+          ...hourlyIndex.map((i) => dataAirQuality.hourly.ragweed_pollen[i]),
+        ),
+      };
+    });
+
+    return Object.entries(dailyGroupedData).map(([weekday, value]) => {
+      const weekDay = new Date(weekday).toLocaleDateString("ru-RU", {
+        weekday: "short",
+      });
+      const valueParsed = Object.fromEntries(
+        Object.entries(value).map(([key, value]) => [ALLERGIES[key], value]),
+      );
+      return {
+        weekDay,
+        ...valueParsed,
+      };
+    });
+  };
+
   return {
-    weekMinTemperature: shouldShowPlus(
+    weekAvgMinTemperature: shouldShowPlus(
       avgDetails(dataForecast.daily.temperature_2m_min),
     ),
-    weekMaxTemperature: shouldShowPlus(
+    weekAvgMaxTemperature: shouldShowPlus(
       avgDetails(dataForecast.daily.temperature_2m_max),
     ),
-    weekMinMaxWindSpeed: shouldShowDash(
+    weekAvgMinMaxWindSpeed: shouldShowDash(
       avgDetails(dataForecast.daily.wind_speed_10m_min),
       avgDetails(dataForecast.daily.wind_gusts_10m_max),
     ),
-    weekWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_mean),
-    weekWeatherEffect: getWeatherEffect(avgWeatherCode),
-    weekWeatherInfo: getWeatherInfo(avgWeatherCode),
-    weekWindCategory: getWindCategory(
+    weekAvgWindGusts: avgDetails(dataForecast.daily.wind_gusts_10m_mean),
+    weekAvgWeatherEffect: getWeatherEffect(avgWeatherCode),
+    weekAvgWeatherInfo: getWeatherInfo(avgWeatherCode),
+    weekAvgWindCategory: getWindCategory(
       avgDetails(dataForecast.daily.wind_speed_10m_mean),
     ),
+    weekAQData: hourlyToDailyAQ(),
   };
 };
 

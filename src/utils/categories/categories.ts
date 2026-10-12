@@ -47,7 +47,7 @@ export function getWindCategory(speed: number) {
 }
 
 export function getPollenCategory(category: number): DefaultCategoryPollen {
-  if (category <= 1)
+  if (category < 1)
     return {
       fill: 0,
       color: "grey",
@@ -61,7 +61,7 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
         x: "0",
       },
     };
-  if (category <= 3)
+  if (category <= 20)
     return {
       fill: 0.22,
       color: "#ffd400",
@@ -71,7 +71,7 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
       maxAllergicsCount: ALLERGICS_WEAK_MAX,
       imgAllergies: { img: WeakAllergies, y: "0", x: "-60px" },
     };
-  if (category <= 6)
+  if (category <= 60)
     return {
       fill: 0.6,
       color: "#ff7e01",

@@ -55,7 +55,9 @@ const useServices = () => {
       getYesterdayData: dataForecast
         ? yesterdayData(dataForecast)
         : DEFAULT_YESTERDAY,
-      getWeekData: dataForecast ? weekData(dataForecast) : DEFAULT_WEEK,
+      getWeekData: isForecastAndAir
+        ? weekData(dataForecast, dataAirQuality)
+        : DEFAULT_WEEK,
       getWeekendData: dataForecast
         ? weekendData(dataForecast)
         : DEFAULT_WEEKEND,

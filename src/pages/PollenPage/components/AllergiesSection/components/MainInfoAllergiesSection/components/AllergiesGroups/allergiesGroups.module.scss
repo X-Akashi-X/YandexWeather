@@ -1,8 +1,8 @@
 .main_wrapper {
-  :global(.swiper-slide) {
+  :global(.swiper-wrapper) {
     max-width: fit-content;
     margin: 0 auto;
-    margin-bottom: 16px;
+    padding-bottom: 16px;
   }
   .slide {
     background-color: $grey-bg-opacity-low;
@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
     .circle {
       width: 8px;
       height: 8px;
@@ -20,7 +21,7 @@
     }
     .name {
       font-weight: $week-bold-text;
-      &::first-letter{
+      &::first-letter {
         text-transform: uppercase;
       }
     }

@@ -101,13 +101,14 @@ export const DEFAULT_YESTERDAY = {
 };
 
 export const DEFAULT_WEEK = {
-  weekMinTemperature: "",
-  weekMaxTemperature: "",
-  weekMinMaxWindSpeed: "",
-  weekWindGusts: 0,
-  weekWeatherEffect: "",
-  weekWeatherInfo: "",
-  weekWindCategory: "",
+  weekAvgMinTemperature: "",
+  weekAvgMaxTemperature: "",
+  weekAvgMinMaxWindSpeed: "",
+  weekAvgWindGusts: 0,
+  weekAvgWeatherEffect: "",
+  weekAvgWeatherInfo: "",
+  weekAvgWindCategory: "",
+  weekAQData: [],
 };
 
 export const DEFAULT_WEEKEND = {

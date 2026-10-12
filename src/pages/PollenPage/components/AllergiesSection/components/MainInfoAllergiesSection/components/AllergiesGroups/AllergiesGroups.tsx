@@ -3,10 +3,15 @@ import { FreeMode, Navigation } from "swiper/modules";
 import styles from "./allergiesGroups.module.scss";
 import useServices from "@services/useServices";
 import { getPollenCategory } from "@utils/categories/categories";
+import type { AllergiesStateActive } from "@ts/props";
 
-const AllergiesGroups = () => {
+const AllergiesGroups = ({ active, setActive }: AllergiesStateActive) => {
   const { getCurrentData } = useServices();
   const { currentAllergies } = getCurrentData;
+
+  const handleActive = (name: string) => {
+    setActive?.(name);
+  };
 
   return (
     <Swiper
@@ -18,22 +23,29 @@ const AllergiesGroups = () => {
       touchRatio={1}
       navigation
       enabled={true}
-      breakpoints={{
-        781: {
-          enabled: false,
-        },
-      }}
     >
       {currentAllergies.allAllergies.map(({ name, value }) => {
         const category = getPollenCategory(value);
 
         return (
-          <SwiperSlide className={styles.slide} key={name}>
+          <SwiperSlide
+            className={styles.slide}
+            style={
+              active === name ? { backgroundColor: "rgba(38, 38, 51, 1)" } : {}
+            }
+            key={name}
+            onClick={() => handleActive(name)}
+          >
             <div
               className={styles.circle}
               style={{ backgroundColor: `${category.colorAllergies}` }}
             ></div>
-            <p className={styles.name}>{name}</p>
+            <p
+              className={styles.name}
+              style={active === name ? { color: "white" } : {}}
+            >
+              {name}
+            </p>
           </SwiperSlide>
         );
       })}

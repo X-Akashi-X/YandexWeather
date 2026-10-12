@@ -59,6 +59,16 @@ const AIR_QUALITY_CURRENT_FIELDS = [
   "ragweed_pollen",
 ].join(",");
 
+const AIR_QUALITY_HOURLY_FIELDS = [
+  "uv_index",
+  "birch_pollen",
+  "alder_pollen",
+  "grass_pollen",
+  "mugwort_pollen",
+  "olive_pollen",
+  "ragweed_pollen",
+].join(",");
+
 const ARCHIVE_DAILY_FIELDS = ["temperature_2m_mean", "weather_code"].join(",");
 
 export const weatherApi = createApi({
@@ -87,7 +97,8 @@ export const weatherApi = createApi({
           latitude: lat,
           longitude: lon,
           current: AIR_QUALITY_CURRENT_FIELDS,
-          forecast_days: 1,
+          hourly: AIR_QUALITY_HOURLY_FIELDS,
+          forecast_days: 7,
         },
       }),
     }),

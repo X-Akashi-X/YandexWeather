@@ -1,0 +1,14 @@
+.section_wrapper {
+  padding: 8px 8px 8px 24px;
+  background-color: $grey-bg-opacity-low;
+  border-radius: $default-radius;
+  h3 {
+    margin: 8px 0 2px 0;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  .chart_wrapper {
+    width: 50%;
+  }
+}

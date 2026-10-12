@@ -3,6 +3,7 @@ import type {
   getMoonPhase,
 } from "@utils/categories/categories";
 import type { PeriodAverages } from "./weather";
+import type { Dispatch, SetStateAction } from "react";
 {
   /*DetailedForecast*/
 }
@@ -100,13 +101,13 @@ export type TomorrowWeekStatusSlides = {
 };
 
 export type WeeklyWeekStatusSlides = {
-  weekMinTemperature: string;
-  weekMaxTemperature: string;
-  weekMinMaxWindSpeed: string;
-  weekWindGusts: number;
-  weekWeatherEffect: string;
-  weekWeatherInfo: string;
-  weekWindCategory: string;
+  weekAvgMinTemperature: string;
+  weekAvgMaxTemperature: string;
+  weekAvgMinMaxWindSpeed: string;
+  weekAvgWindGusts: number;
+  weekAvgWeatherEffect: string;
+  weekAvgWeatherInfo: string;
+  weekAvgWindCategory: string;
 };
 
 export type WeekendWeekStatusSlides = {
@@ -207,4 +208,13 @@ export type DataRightItems = {
 export type DataItems = {
   title: string;
   forecastText: string;
+};
+{
+  /*MainInfoAllergiesSection*/
+}
+export type AllergiesStateActive = {
+  active: null | string;
+  value?: null | number;
+  setActive?: Dispatch<SetStateAction<string | null>>;
+  setValue?: Dispatch<SetStateAction<number | null>>;
 };
