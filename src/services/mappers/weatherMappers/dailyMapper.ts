@@ -146,14 +146,14 @@ export const weekData = (
     });
 
     return Object.entries(dailyGroupedData).map(([day, value]) => {
-      const dateObj = new Date(day)
+      const dateObj = new Date(day);
       const weekDay = dateObj.toLocaleDateString("ru-RU", {
         weekday: "short",
       });
       const formattedDate = dateObj.toLocaleDateString("ru-Ru", {
         day: "2-digit",
-        month: "2-digit"
-      }) 
+        month: "2-digit",
+      });
 
       const valueParsed = Object.fromEntries(
         Object.entries(value).map(([key, value]) => [ALLERGIES[key], value]),

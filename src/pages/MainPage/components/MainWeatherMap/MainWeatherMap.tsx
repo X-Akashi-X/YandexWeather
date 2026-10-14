@@ -7,7 +7,7 @@ const WeatherMap = () => {
   const { mapContainer } = useMap(false, "map_pointer");
 
   return (
-    <section className={styles.sectionWrapper}>
+    <section className={styles.section_wrapper}>
       <div className={styles.main_container} ref={mapContainer} />
       <HomeTabletButton
         style={{ position: "absolute", left: "10px", top: "5px" }}

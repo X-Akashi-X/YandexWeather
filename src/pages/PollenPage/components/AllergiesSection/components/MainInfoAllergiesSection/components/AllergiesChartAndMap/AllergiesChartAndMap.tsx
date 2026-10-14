@@ -2,6 +2,7 @@ import type { AllergiesStateActive } from "@ts/props";
 import styles from "./allergiesChartAndMap.module.scss";
 import AllergiesWeekChart from "./components/AllergiesWeekChart/AllergiesWeekChart";
 import { getPollenCategory } from "@utils/categories/categories";
+import AllergiesMap from "./components/AllergiesMap/AllergiesMap";
 
 const AllergiesChartAndMap = ({ active }: AllergiesStateActive) => {
   const value = active ? active.value : 0;
@@ -16,6 +17,7 @@ const AllergiesChartAndMap = ({ active }: AllergiesStateActive) => {
         </p>
         <AllergiesWeekChart active={active} />
       </div>
+       <AllergiesMap />
     </section>
   );
 };
