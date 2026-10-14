@@ -213,8 +213,6 @@ export type DataItems = {
   /*MainInfoAllergiesSection*/
 }
 export type AllergiesStateActive = {
-  active: null | string;
-  value?: null | number;
-  setActive?: Dispatch<SetStateAction<string | null>>;
-  setValue?: Dispatch<SetStateAction<number | null>>;
+  active: { name: string; value: number } | null;
+  setActive?: Dispatch<SetStateAction<{ name: string; value: number } | null>>;
 };

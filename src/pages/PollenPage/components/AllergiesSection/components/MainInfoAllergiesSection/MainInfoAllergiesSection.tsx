@@ -8,12 +8,14 @@ const MainInfoAllergiesSection = () => {
   const { getCurrentData } = useServices();
   const { currentAllergies } = getCurrentData;
 
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<{ name: string; value: number } | null>(
+    null,
+  );
 
   useEffect(() => {
     if (!active && currentAllergies.allAllergies.length > 0) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setActive(currentAllergies.allAllergies[0].name);
+      setActive(currentAllergies.allAllergies[0]);
     }
   }, [active, currentAllergies.allAllergies]);
 

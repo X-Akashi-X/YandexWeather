@@ -9,8 +9,8 @@ const AllergiesGroups = ({ active, setActive }: AllergiesStateActive) => {
   const { getCurrentData } = useServices();
   const { currentAllergies } = getCurrentData;
 
-  const handleActive = (name: string) => {
-    setActive?.(name);
+  const handleActive = (item: { name: string; value: number }) => {
+    setActive?.(item);
   };
 
   return (
@@ -31,10 +31,12 @@ const AllergiesGroups = ({ active, setActive }: AllergiesStateActive) => {
           <SwiperSlide
             className={styles.slide}
             style={
-              active === name ? { backgroundColor: "rgba(38, 38, 51, 1)" } : {}
+              active?.name === name
+                ? { backgroundColor: "rgba(38, 38, 51, 1)" }
+                : {}
             }
             key={name}
-            onClick={() => handleActive(name)}
+            onClick={() => handleActive({ name, value })}
           >
             <div
               className={styles.circle}
@@ -42,7 +44,7 @@ const AllergiesGroups = ({ active, setActive }: AllergiesStateActive) => {
             ></div>
             <p
               className={styles.name}
-              style={active === name ? { color: "white" } : {}}
+              style={active?.name === name ? { color: "white" } : {}}
             >
               {name}
             </p>
