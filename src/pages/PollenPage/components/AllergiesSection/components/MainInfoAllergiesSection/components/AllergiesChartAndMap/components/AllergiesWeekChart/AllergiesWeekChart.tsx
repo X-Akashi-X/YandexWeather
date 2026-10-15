@@ -85,7 +85,7 @@ const AllergiesWeekChart = ({ active }: AllergiesStateActive) => {
             shape={renderBar}
             barSize={17}
             minPointSize={3}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", fontWeight: "var(--week-bold-text)" }}
           />
         </BarChart>
       </ResponsiveContainer>

@@ -41,7 +41,7 @@ const AllergiesGroups = ({ active, setActive }: AllergiesStateActive) => {
             <div
               className={styles.circle}
               style={{ backgroundColor: `${category.colorAllergies}` }}
-            ></div>
+            />
             <p
               className={styles.name}
               style={active?.name === name ? { color: "white" } : {}}
