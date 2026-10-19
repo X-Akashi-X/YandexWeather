@@ -1,0 +1,32 @@
+.section_wrapper {
+  background-color: $grey-bg-opacity-low;
+  border-radius: $default-radius;
+  display: flex;
+  padding: 16px 0 16px 24px;
+  gap: 5px;
+  margin-bottom: 32px;
+  .title_logo_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 96px;
+    margin-bottom: 8px;
+    img {
+      width: 82px;
+    }
+  }
+  .slides_wrapper {
+    overflow: hidden;
+    :global(.swiper-button-prev),
+    :global(.swiper-button-next) {
+      display: none;
+    }
+    .slide {
+      width: 160px;
+      height: 216px;
+      border-radius: $default-radius;
+      overflow: hidden;
+    }
+  }
+}

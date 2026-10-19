@@ -3,7 +3,6 @@ import styles from "./allergiesChartAndMap.module.scss";
 import AllergiesWeekChart from "./components/AllergiesWeekChart/AllergiesWeekChart";
 import { getPollenCategory } from "@utils/categories/categories";
 import AllergiesMap from "./components/AllergiesMap/AllergiesMap";
-import AllergiesForecastFooter from "../AllergiesForecastFooter/AllergiesForecastFooter";
 
 const AllergiesChartAndMap = ({ active }: AllergiesStateActive) => {
   const value = active ? active.value : 0;
@@ -21,7 +20,6 @@ const AllergiesChartAndMap = ({ active }: AllergiesStateActive) => {
         </div>
         <AllergiesMap />
       </section>
-      <AllergiesForecastFooter />
     </>
   );
 };

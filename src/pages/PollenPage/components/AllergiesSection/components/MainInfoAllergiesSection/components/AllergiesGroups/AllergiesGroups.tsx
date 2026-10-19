@@ -22,7 +22,6 @@ const AllergiesGroups = ({ active, setActive }: AllergiesStateActive) => {
       freeMode={true}
       touchRatio={1}
       navigation
-      enabled={true}
     >
       {currentAllergies.allAllergies.map(({ name, value }) => {
         const category = getPollenCategory(value);

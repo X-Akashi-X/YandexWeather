@@ -3,6 +3,8 @@ import AllergiesChartAndMap from "./components/AllergiesChartAndMap/AllergiesCha
 import AllergiesGroups from "./components/AllergiesGroups/AllergiesGroups";
 import styles from "./mainInfoAllergiesSection.module.scss";
 import useServices from "@services/useServices";
+import AllergiesForecastFooter from "./components/AllergiesForecastFooter/AllergiesForecastFooter";
+import AllergiesDoctors from "./components/AllergiesDoctors/AllergiesDoctors";
 
 const MainInfoAllergiesSection = () => {
   const { getCurrentData } = useServices();
@@ -23,6 +25,8 @@ const MainInfoAllergiesSection = () => {
     <section className={styles.section_wrapper}>
       <AllergiesGroups active={active} setActive={setActive} />
       <AllergiesChartAndMap active={active} />
+      <AllergiesForecastFooter />
+      <AllergiesDoctors />
     </section>
   );
 };
