@@ -146,6 +146,18 @@ export const MONTH_NAMES = [
   "Декабрь",
 ];
 
+export const POLLEN_SHORT_MONTH = [
+  "мар",
+  "апр",
+  "май",
+  "июн",
+  "июл",
+  "авг",
+  "сен",
+  "окт",
+  "ноя",
+];
+
 export const WIND_DIRECTIONS = ["С", "СВ", "В", "ЮВ", "Ю", "ЮЗ", "З", "СЗ"];
 
 export const ALLERGIES: Record<string, string> = {

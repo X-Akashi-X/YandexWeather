@@ -5,6 +5,7 @@ import styles from "./mainInfoAllergiesSection.module.scss";
 import useServices from "@services/useServices";
 import AllergiesForecastFooter from "./components/AllergiesForecastFooter/AllergiesForecastFooter";
 import AllergiesDoctors from "./components/AllergiesDoctors/AllergiesDoctors";
+import PollenCalendar from "./components/PollenCalendar/PollenCalendar";
 
 const MainInfoAllergiesSection = () => {
   const { getCurrentData } = useServices();
@@ -27,6 +28,7 @@ const MainInfoAllergiesSection = () => {
       <AllergiesChartAndMap active={active} />
       <AllergiesForecastFooter />
       <AllergiesDoctors />
+      <PollenCalendar />
     </section>
   );
 };

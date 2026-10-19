@@ -1,0 +1,45 @@
+.section_wrapper {
+  width: 100%;
+  h3 {
+    margin-bottom: 16px;
+  }
+  .timeline {
+    position: relative;
+    height: 340px;
+    max-width: 768px;
+    .timeline_lanes {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 3px;
+      inset: 0;
+      .timeline_lane {
+        border-radius: $default-radius;
+        background-color: $grey-bg-opacity-low;
+      }
+    }
+    .timeline_months {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 3px;
+      top: 12px;
+      right: 0px;
+      left: 0px;
+      z-index: 1;
+      .timeline_month {
+        text-align: center;
+      }
+      .current_month{
+        font-weight: $week-bold-text;
+      }
+    }
+    .timeline_chart {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      top: 35px;
+      bottom: 15px;
+    }
+  }
+}
