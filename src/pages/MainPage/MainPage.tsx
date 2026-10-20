@@ -4,7 +4,7 @@ import WeatherMap from "./components/MainWeatherMap/MainWeatherMap";
 import TenDaysForecastSection from "./components/MainTenDaysSection/MainTenDaysSection";
 import WeatherOnMaps from "./components/WeatherOnMaps/WeatherOnMaps";
 import WeatherOverviewSection from "./components/WeatherOverviewSection/WeatherOverviewSection";
-import FAQ from "./components/FAQ/FAQ";
+import FAQMainSection from "./components/FAQMainSection/FAQMainSection";
 
 const MainPage = () => {
   return (
@@ -15,7 +15,7 @@ const MainPage = () => {
       <TenDaysForecastSection />
       <WeatherOnMaps />
       <WeatherOverviewSection />
-      <FAQ />
+      <FAQMainSection />
     </>
   );
 };

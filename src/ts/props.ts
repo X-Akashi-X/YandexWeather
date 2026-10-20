@@ -148,7 +148,7 @@ export type MiniMapSlides = {
 {
   /*FAQ*/
 }
-export type FAQCurrentItems = {
+export type FAQMainCurrentItems = {
   currentTemperature: string;
   currentApparentTemperature: string;
   currentWindSpeed: number;
@@ -158,7 +158,7 @@ export type FAQCurrentItems = {
   currentWeatherInfo: string;
 };
 
-export type FAQTodayItems = {
+export type FAQMainTodayItems = {
   todayMinTemperature: string;
   todayMaxTemperature: string;
   todayPrecipitationProbability: string;
@@ -171,17 +171,21 @@ export type FAQTodayItems = {
   todayWindCategory: string;
 };
 
-export type FAQAdvancedItems = {
+export type FAQMainAdvancedItems = {
   morning: PeriodAverages;
   day: PeriodAverages;
   evening: PeriodAverages;
   night: PeriodAverages;
 };
 
-export type FAQItems = {
-  activeItem: number | null;
+export type FAQItemData = {
   text: string;
   title: string;
+  id?: string;
+};
+
+export type FAQItemProps = FAQItemData & {
+  activeItem: number | null;
   i: number;
   toggle: (i: number) => void;
 };

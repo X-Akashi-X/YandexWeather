@@ -1,8 +1,8 @@
-import type { FAQItems } from "@ts/props";
+import type { FAQItemProps } from "@ts/props";
 import styles from "./FAQItem.module.scss";
 import Arrow from "@assets/icons/arrowMore.svg";
 
-const FAQItem = ({ activeItem, text, title, toggle, i }: FAQItems) => {
+const FAQItem = ({ activeItem, text, title, toggle, i }: FAQItemProps) => {
   return (
     <div className={styles.faq_items} onClick={() => toggle(i)}>
       <div className={styles.title_wrapper}>

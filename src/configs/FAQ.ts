@@ -1,0 +1,106 @@
+import type {
+  FAQMainAdvancedItems,
+  FAQMainCurrentItems,
+  FAQMainTodayItems,
+} from "@ts/props";
+
+export const getFAQMainItems = (
+  {
+    currentTemperature,
+    currentApparentTemperature,
+    currentWindSpeed,
+    currentWindDirection,
+    currentHumidity,
+    currentPressure,
+    currentWeatherInfo,
+  }: FAQMainCurrentItems,
+  {
+    todayMinTemperature,
+    todayMaxTemperature,
+    todayPrecipitationProbability,
+    todayMinMaxWindSpeed,
+    todayWindGusts,
+    todayMinHumidity,
+    todayMaxHumidity,
+    todayMinPressure,
+    todayMaxPressure,
+    todayWindCategory,
+  }: FAQMainTodayItems,
+  { morning, day, evening, night }: FAQMainAdvancedItems,
+) => {
+  return [
+    {
+      title: "Какая погода в Минске?",
+      text: `Сейчас в Минске ${currentWeatherInfo}, температура воздуха${" "} 
+      ${currentTemperature}°, ощущается как${" "} 
+      ${currentApparentTemperature} 
+      °. Ветер ${currentWindSpeed} м/с, ${currentWindDirection}, 
+      влажность ${currentHumidity}%, атмосферное давление${" "} 
+      ${currentPressure} мм рт. ст. Сегодня: ${todayMinTemperature}... 
+      ${todayMaxTemperature}°, ${todayPrecipitationProbability},${" "} 
+      ${todayWindCategory} ${todayMinMaxWindSpeed} м/с, порывы до${" "} 
+      ${todayWindGusts} м/с.`,
+      id: "weather",
+    },
+    {
+      title: "Сколько градусов в Минске?",
+      text: `Сейчас в Минске температура воздуха ${currentTemperature}°.
+      Ощущается как ${currentApparentTemperature}°,
+      ${currentWeatherInfo}. Температура утром${" "}
+      ${morning.advancedTemperature}°, днем ${day.advancedTemperature}
+      °, вечером ${evening.advancedTemperature}°, ночью${" "}
+      ${night.advancedTemperature}°.`,
+      id: "temp",
+    },
+    {
+      title: "Какая скорость направления ветра в минске?",
+      text: `Скорость ветра в Минске сейчас ${currentWindSpeed} м/с,${" "}
+      ${currentWindDirection}. Утром ветер ${morning.advancedWindSpeed}${" "}
+      м/с, ${morning.advancedWindDirectionText}, днем${" "}
+      ${day.advancedWindSpeed} м/с, ${day.advancedWindDirectionText},
+      вечером ${evening.advancedWindSpeed} м/с,${" "}
+      ${evening.advancedWindDirectionText}, ночью${" "}
+      ${night.advancedWindSpeed} м/с, ${night.advancedWindDirectionText}.
+      Атмосферное давление ${todayMinPressure}-${todayMaxPressure} мм рт.
+      ст., влажность ${todayMinHumidity}-${todayMaxHumidity}%, что также
+      влияет на ощущение погоды.`,
+      id: "wind",
+    },
+    {
+      title: "Какая влажность воздуха в Минске?",
+      text: `Сейчас влажность воздуха в Минске составляет ${currentHumidity}%.
+      Уровень влажности утром ${morning.advancedHumidity}%, днем${" "}
+      ${day.advancedHumidity}%, вечером ${evening.advancedHumidity}%,
+      ночью ${night.advancedHumidity}%.`,
+      id: "humidity",
+    },
+  ];
+};
+
+export const getFAQAllergiesItems = [
+  {
+    title: "Почему пыльца вызывает аллергию?",
+    text: "Пыльца вызывает аллергию из-за белков, которые в ней содержатся. Эти белки могут спровоцировать оборонительную реакцию у иммунной системы некоторых людей — она воспринимает их как внешнюю угрозу, несмотря на то, что на самом деле они безвредны. Такая реакция порождает антитела, которые пытаются бороться с «опасностью», вызывая симптомы аллергии.",
+    id: "whyAllergies",
+  },
+  {
+    title: "Активность пыльцы — что это?",
+    text: "Активность пыльцы рассчитывается по уникальной формуле, которая учитывает периоды цветения растений, прогноз погоды и сообщения от пользователей о самочувствии. Такой прогноз позволяет оценить, насколько сильным будет влияние конкретного аллергена на ваше самочувствие в определённый день.",
+    id: "activity",
+  },
+  {
+    title: "Карта пыльцы: как она помогает при поллинозе",
+    text: "Карта пыльцы показывает уровни концентрации пыльцы в разных регионах. На ней показано, какие типы пыльцы преобладают в определённое время года и что помогает людям с аллергией на пыльцу лучше планировать свои действия. На основании карты пыльцы можно выбрать регион для временного переезда, где ваш аллерген не активен: например, уехать в Карелию.",
+    id: "map",
+  },
+  {
+    title: "Календарь цветения: как пользоваться?",
+    text: "Календарь цветения показывает время цветения растений-аллергенов в разных регионах России. Используя его, нужно помнить: растения зацветают не в строго определённые даты, а тогда, когда сложатся подходящие погодные условия.",
+    id: "calendar",
+  },
+  {
+    title: "Может ли быть аллергия на семена тополя?",
+    text: "Аллергия на семена тополя встречается редко. Большинство реакций, которые возникают у людей при контакте с семенами тополя, вызваны не самими семенами, а содержащейся в них пыльцой. Тополиный пух витает в воздухе одновременно с пыльцой многих других растений, поэтому люди могут думать, что у них аллергия на тополиный пух, хотя это не так.",
+    id: "poplarSeeds",
+  },
+];

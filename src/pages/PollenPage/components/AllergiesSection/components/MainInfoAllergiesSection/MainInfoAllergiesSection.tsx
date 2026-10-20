@@ -6,6 +6,7 @@ import useServices from "@services/useServices";
 import AllergiesForecastFooter from "./components/AllergiesForecastFooter/AllergiesForecastFooter";
 import AllergiesDoctors from "./components/AllergiesDoctors/AllergiesDoctors";
 import PollenCalendar from "./components/PollenCalendar/PollenCalendar";
+import FAQAllergiesSection from "./components/FAQAllergiesSection/FAQAllergiesSection";
 
 const MainInfoAllergiesSection = () => {
   const { getCurrentData } = useServices();
@@ -29,6 +30,7 @@ const MainInfoAllergiesSection = () => {
       <AllergiesForecastFooter />
       <AllergiesDoctors />
       <PollenCalendar />
+      <FAQAllergiesSection />
     </section>
   );
 };
