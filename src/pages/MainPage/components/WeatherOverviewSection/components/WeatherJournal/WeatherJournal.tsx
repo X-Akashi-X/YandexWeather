@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const WeatherJournal = () => {
   const { getRandomNews } = useMocks();
+  const { forecast } = getRandomNews;
 
   return (
     <section className={styles.section_wrapper}>
@@ -15,9 +16,9 @@ const WeatherJournal = () => {
       <Link
         to="/"
         className={styles.news_wrapper}
-        style={{ backgroundImage: `url(${getRandomNews.cover_img})` }}
+        style={{ backgroundImage: `url(${forecast.cover_img})` }}
       >
-        <p className={styles.tilte_main}>{getRandomNews.title}</p>
+        <p className={styles.tilte_main}>{forecast.title}</p>
       </Link>
     </section>
   );

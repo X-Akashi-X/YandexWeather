@@ -6,7 +6,10 @@ const useMocks = () => {
   return {
     getAllNews: allNews(newsData),
     getRandomNews: useMemo(() => {
-      return randomNews(newsData);
+      return {
+        forecast: randomNews(newsData.forecastNews),
+        allergies: randomNews(newsData.allergiesNews),
+      };
     }, []),
   };
 };

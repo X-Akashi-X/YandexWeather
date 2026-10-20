@@ -3,7 +3,11 @@ import styles from "./FAQ.module.scss";
 import FAQItem from "./components/FAQItem";
 import type { FAQItemData } from "@ts/props";
 
-const FAQ = <T extends FAQItemData>({ config }: { config: T[] | (() => T[]) }) => {
+const FAQ = <T extends FAQItemData>({
+  config,
+}: {
+  config: T[] | (() => T[]);
+}) => {
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   function toggleDropdown(i: number) {
