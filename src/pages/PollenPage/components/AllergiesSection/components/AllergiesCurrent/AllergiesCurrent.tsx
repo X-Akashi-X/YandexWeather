@@ -4,6 +4,7 @@ import Report from "@assets/icons/allergiesSection/reportIcon.svg";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@store/store";
+import HomeTabletButton from "@components/HomeTabletButton/HomeTabletButton";
 
 const AllergiesCurrentData = () => {
   const { getCurrentData } = useServices();
@@ -33,16 +34,9 @@ const AllergiesCurrentData = () => {
       className={styles.section_wrapper}
       style={{ backgroundColor: currentPollenCategory.colorAllergies }}
     >
-      {currentPollenCategory.imgAllergies && (
-        <img
-          className={styles.category_img}
-          src={currentPollenCategory.imgAllergies.img}
-          style={{
-            bottom: currentPollenCategory.imgAllergies.y,
-            right: currentPollenCategory.imgAllergies.x,
-          }}
-        />
-      )}
+      <HomeTabletButton
+        style={{ position: "absolute", left: "5px", top: "5px" }}
+      />
       <div className={styles.stats}>
         <p className={styles.title}>Пыльца</p>
         <p className={styles.category_pollen}>
@@ -59,6 +53,16 @@ const AllergiesCurrentData = () => {
           <p>А симптомы отмечают {allergics} аллергиков рядом</p>
         </div>
       </div>
+      {currentPollenCategory.imgAllergies && (
+        <img
+          className={styles.category_img}
+          src={currentPollenCategory.imgAllergies.img}
+          style={{
+            bottom: currentPollenCategory.imgAllergies.y,
+            right: currentPollenCategory.imgAllergies.x,
+          }}
+        />
+      )}
     </section>
   );
 };

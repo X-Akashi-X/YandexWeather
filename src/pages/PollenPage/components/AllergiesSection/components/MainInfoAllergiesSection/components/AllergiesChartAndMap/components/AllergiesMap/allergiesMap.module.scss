@@ -38,3 +38,9 @@
     }
   }
 }
+
+@media(max-width: $tablet-screen) {
+  .section_wrapper{
+    width: 100%;
+  }
+}

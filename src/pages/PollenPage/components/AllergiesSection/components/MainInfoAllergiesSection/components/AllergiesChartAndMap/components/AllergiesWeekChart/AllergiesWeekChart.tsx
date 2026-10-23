@@ -52,7 +52,7 @@ const AllergiesWeekChart = ({ active }: AllergiesStateActive) => {
   return (
     <div className={styles.main_wrapper}>
       <ResponsiveContainer width="100%" height={138}>
-        <BarChart data={weekAQData} barGap={0}>
+        <BarChart data={weekAQData} barGap={0} barCategoryGap="30%">
           <YAxis domain={[0, 100]} hide={true} tickCount={4} />
           <XAxis
             dataKey="weekDay"
@@ -83,7 +83,6 @@ const AllergiesWeekChart = ({ active }: AllergiesStateActive) => {
           <Bar
             dataKey={active?.name}
             shape={renderBar}
-            barSize={17}
             minPointSize={3}
             style={{ cursor: "pointer", fontWeight: "var(--week-bold-text)" }}
           />

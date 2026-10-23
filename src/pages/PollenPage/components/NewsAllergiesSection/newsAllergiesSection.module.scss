@@ -36,3 +36,24 @@
     }
   }
 }
+
+@media (max-width: $laptop-screen) {
+  .section_wrapper {
+    .news_wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    .news_wrapper {
+      grid-template-columns: 1fr;
+      .item_wrapper {
+        img {
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

@@ -5,9 +5,11 @@
     margin-bottom: 16px;
   }
   .timeline {
-    position: relative;
-    height: 340px;
-    max-width: 768px;
+    :global(.swiper-slide) {
+      position: relative;
+      height: 340px;
+      width: 672px;
+    }
     .timeline_lanes {
       position: absolute;
       display: grid;
@@ -31,7 +33,7 @@
       .timeline_month {
         text-align: center;
       }
-      .current_month{
+      .current_month {
         font-weight: $week-bold-text;
       }
     }

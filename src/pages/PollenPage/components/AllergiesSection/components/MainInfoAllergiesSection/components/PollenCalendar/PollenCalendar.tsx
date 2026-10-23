@@ -9,6 +9,8 @@ import {
 import { pollenCalendarConfig } from "./config";
 import styles from "./pollenCalendar.module.scss";
 import { POLLEN_SHORT_MONTH } from "@constants/weather";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation } from "swiper/modules";
 
 const PollenCalendar = () => {
   const plants = pollenCalendarConfig.map((plant) => ({
@@ -42,42 +44,51 @@ const PollenCalendar = () => {
   return (
     <section className={styles.section_wrapper}>
       <h3>Календарь цветения</h3>
-      <div className={styles.timeline}>
-        <div className={styles.timeline_lanes}>
-          {POLLEN_SHORT_MONTH.map((month) => (
-            <div className={styles.timeline_lane} key={month} />
-          ))}
-        </div>
-        <div className={styles.timeline_months}>
-          {POLLEN_SHORT_MONTH.map((month) => (
-            <div
-              className={`${styles.timeline_month} ${month.toLowerCase().replace(/\.$/, "") === currentMonth ? styles.current_month : ""}`}
-              key={month}
-            >
-              {month}
-            </div>
-          ))}
-        </div>
-        <div className={styles.timeline_chart}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={plants} layout="vertical" barCategoryGap={2}>
-              <XAxis type="number" domain={[0, 9]} hide />
-              <YAxis type="category" dataKey="name" hide />
-              <Bar
-                dataKey="start"
-                stackId="timeline"
-                fill="transparent"
-                stroke="transparent"
-              />
-              <Bar
-                dataKey="duration"
-                stackId="timeline"
-                shape={(props) => plantBar({ ...props })}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      <Swiper
+        modules={[FreeMode, Navigation]}
+        slidesPerView="auto"
+        freeMode={true}
+        touchRatio={1}
+        navigation
+        className={styles.timeline}
+      >
+        <SwiperSlide>
+          <div className={styles.timeline_lanes}>
+            {POLLEN_SHORT_MONTH.map((month) => (
+              <div className={styles.timeline_lane} key={month} />
+            ))}
+          </div>
+          <div className={styles.timeline_months}>
+            {POLLEN_SHORT_MONTH.map((month) => (
+              <div
+                className={`${styles.timeline_month} ${month.toLowerCase().replace(/\.$/, "") === currentMonth ? styles.current_month : ""}`}
+                key={month}
+              >
+                {month}
+              </div>
+            ))}
+          </div>
+          <div className={styles.timeline_chart}>
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={plants} layout="vertical" barCategoryGap={2}>
+                <XAxis type="number" domain={[0, 9]} hide />
+                <YAxis type="category" dataKey="name" hide />
+                <Bar
+                  dataKey="start"
+                  stackId="timeline"
+                  fill="transparent"
+                  stroke="transparent"
+                />
+                <Bar
+                  dataKey="duration"
+                  stackId="timeline"
+                  shape={(props) => plantBar({ ...props })}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </section>
   );
 };

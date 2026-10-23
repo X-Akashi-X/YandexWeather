@@ -8,7 +8,10 @@ const AllergiesDoctors = () => {
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.title_logo_wrapper}>
-        <h3>Отвечают врачи</h3>
+        <div className={styles.main_title_wrapper}>
+          <h3>Отвечают врачи</h3>
+          <p className={styles.university}>Сеченовского Университета</p>
+        </div>
         <img src={Logo} alt="" />
       </div>
       <Swiper

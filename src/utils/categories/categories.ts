@@ -57,8 +57,8 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
       maxAllergicsCount: 0,
       imgAllergies: {
         img: ClearAllergies,
-        y: "0",
-        x: "0",
+        y: "-60px",
+        x: "-60px",
       },
     };
   if (category <= 20)
@@ -69,7 +69,7 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
       text: "низкая активность",
       minAllergicsCount: ALLERGICS_WEAK_MIN,
       maxAllergicsCount: ALLERGICS_WEAK_MAX,
-      imgAllergies: { img: WeakAllergies, y: "0", x: "-60px" },
+      imgAllergies: { img: WeakAllergies, y: "-53px", x: "-60px" },
     };
   if (category <= 60)
     return {
@@ -79,7 +79,7 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
       text: "умеренная активность",
       minAllergicsCount: ALLERGICS_MODERATE_MIN,
       maxAllergicsCount: ALLERGICS_MODERATE_MAX,
-      imgAllergies: { img: NormalAllergies, y: "0", x: "-32px" },
+      imgAllergies: { img: NormalAllergies, y: "-30px", x: "-32px" },
     };
   return {
     fill: 1,

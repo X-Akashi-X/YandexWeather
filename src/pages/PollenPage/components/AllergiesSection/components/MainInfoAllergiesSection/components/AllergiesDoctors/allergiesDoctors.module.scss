@@ -12,6 +12,15 @@
     align-items: center;
     width: 96px;
     margin-bottom: 8px;
+    .main_title_wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      .university {
+        display: none;
+        font-size: 15px;
+      }
+    }
     img {
       width: 82px;
     }
@@ -27,6 +36,24 @@
       height: 216px;
       border-radius: $default-radius;
       overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    display: block;
+    .title_logo_wrapper {
+      flex-direction: row;
+      width: auto;
+      .main_title_wrapper {
+        .university {
+          display: block;
+        }
+      }
+      img {
+        width: 54px;
+      }
     }
   }
 }

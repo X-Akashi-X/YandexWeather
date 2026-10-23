@@ -19,3 +19,12 @@
     width: calc(50% - 10px);
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    display: block;
+    .chart_wrapper {
+      width: 100%;
+    }
+  }
+}
