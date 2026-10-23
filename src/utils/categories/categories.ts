@@ -98,7 +98,8 @@ export function getPressureCategory(category: number) {
   if (category <= 750) return { fill: 0.17, color: "#ffd400", text: "низкое" };
   if (category <= 765)
     return { fill: 0.42, color: "#33c115", text: "нормальное" };
-  if (category <= 775) return { fill: 0.67, color: "rgba(248, 97, 71, 1)", text: "высокое" };
+  if (category <= 775)
+    return { fill: 0.67, color: "rgba(248, 97, 71, 1)", text: "высокое" };
   return { fill: 1, color: "#57348d", text: "очень высокое" };
 }
 

@@ -1,9 +1,7 @@
-import MagneticSection from "./components/MagneticSection/MagneticSection"
+import MagneticSection from "./components/MagneticSection/MagneticSection";
 
 const MagneticFieldPage = () => {
-  return (
-    <MagneticSection />
-  )
-}
+  return <MagneticSection />;
+};
 
-export default MagneticFieldPage
+export default MagneticFieldPage;
