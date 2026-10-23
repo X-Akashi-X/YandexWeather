@@ -1,5 +1,6 @@
+import MainInfoMagneticSection from "./components/MainInfoMagneticSection/MainInfoMagneticSection";
 import styles from "./magneticSection.module.scss";
-import MainInfoMagneticSection from "./MainInfoMagneticSection/MainInfoMagneticSection";
+
 
 const MagneticSection = () => {
   return (
