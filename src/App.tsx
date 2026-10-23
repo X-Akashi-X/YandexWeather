@@ -6,12 +6,15 @@ import { useSelector } from "react-redux";
 import { type RootState } from "@store/store";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "@components/Header/Header";
-import MainPage from "./pages/MainPage/MainPage";
 import Footer from "@components/Footer/Footer";
-import SourcesPage from "./pages/SourcesPage/SourcesPage";
 import CityLayout from "./layout/CityLayout";
 import { useScrollToTop } from "@hooks/useScrollToTop";
-import AllergiesPage from "./pages/PollenPage/AllergiesPage";
+import {
+  AllergiesPage,
+  MagneticFieldPage,
+  MainPage,
+  SourcesPage,
+} from "./pages";
 
 function App() {
   useScrollToTop();
@@ -27,6 +30,7 @@ function App() {
             <Route index element={<MainPage />} />
             <Route path="sources" element={<SourcesPage />} />
             <Route path="allergies" element={<AllergiesPage />} />
+            <Route path="magnetic-field" element={<MagneticFieldPage />} />
           </Route>
         </Routes>
       </main>

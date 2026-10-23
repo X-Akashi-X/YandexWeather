@@ -25,7 +25,7 @@ export const getFeelingSlide = (
       id: "Пыльца",
     },
     {
-      link: "/",
+      link: "magnetic-field",
       number: todayMagneticField,
       category: todayMagneticFieldCategory,
       title: "Магнитное поле",

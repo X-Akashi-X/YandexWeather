@@ -98,7 +98,7 @@ export function getPressureCategory(category: number) {
   if (category <= 750) return { fill: 0.17, color: "#ffd400", text: "низкое" };
   if (category <= 765)
     return { fill: 0.42, color: "#33c115", text: "нормальное" };
-  if (category <= 775) return { fill: 0.67, color: "#c30101", text: "высокое" };
+  if (category <= 775) return { fill: 0.67, color: "rgba(248, 97, 71, 1)", text: "высокое" };
   return { fill: 1, color: "#57348d", text: "очень высокое" };
 }
 
@@ -112,14 +112,14 @@ export function getUVCategory(category: number) {
 }
 
 export function getMagneticFieldCategory(category: number) {
-  if (category <= 2) return { fill: 0, color: "#33c115", text: "спокойное" };
+  if (category <= 2) return { fill: 0, color: "grey", text: "спокойное" };
   if (category <= 4)
     return { fill: 0.17, color: "#ffd400", text: "слабая буря" };
   if (category <= 6)
     return { fill: 0.42, color: "#ff7e01", text: "умеренная буря" };
   if (category <= 8)
-    return { fill: 0.67, color: "#c30101", text: "сильная буря" };
-  return { fill: 1, color: "#57348d", text: "шторм" };
+    return { fill: 0.67, color: "rgba(248, 97, 71, 1)", text: "сильная буря" };
+  return { fill: 1, color: "#c30101", text: "шторм" };
 }
 
 export const defaultCategoryType = () => {
