@@ -103,7 +103,7 @@ export const DEFAULT_YESTERDAY = {
 export const DEFAULT_TODAY_HOURLY: {
   timeToday: string;
   hourlyMagneticField: number;
-  isPast: boolean
+  isPast: boolean;
 }[] = [];
 
 export const DEFAULT_WEEK = {

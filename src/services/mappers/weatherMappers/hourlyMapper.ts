@@ -89,9 +89,7 @@ export const todayHourlyData = (dataForecast: ApiForecast) => {
     );
 
     const magnetic = Math.abs(todayPressure - yesterdayPressure);
-    const itemDate = new Date(today.t)
-
-    console.log("time:", today.t, "itemDate:", itemDate, "now:", todayAndNow, "isPast:", itemDate < todayAndNow);
+    const itemDate = new Date(today.t);
 
     return {
       timeToday: today.t.split("T")[1],
