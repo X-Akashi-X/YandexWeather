@@ -8,6 +8,7 @@ import { INDEXOF_NOT_FOUND } from "@constants/utils";
 import {
   DEFAULT_CATEGORY,
   DEFAULT_PERIOD_AVERAGES,
+  DEFAULT_TODAY_HOURLY,
   DEFAULT_YESTERDAY,
 } from "@constants/weather";
 import type { ApiForecast } from "@ts/api";
@@ -48,6 +49,56 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
       Math.floor(dataForecast.hourly.temperature_2m[indexCurrentMoment]),
     ),
   };
+};
+
+export const todayHourlyData = (dataForecast: ApiForecast) => {
+  const todayAndNow = new Date();
+  const yesterday = new Date(todayAndNow);
+  yesterday.setDate(todayAndNow.getDate() - 1);
+
+  const todayDate = todayAndNow.toISOString().split("T")[0];
+  const yesterdayDate = yesterday.toISOString().split("T")[0];
+
+  if (!dataForecast.hourly) return DEFAULT_TODAY_HOURLY;
+
+  const dataToday = dataForecast.hourly.time
+    .map((t, i) => ({
+      t,
+      i,
+    }))
+    .filter(({ t }) => t.split("T")[0] === todayDate)
+    .filter((_, i) => i % 3 === 0);
+
+  const dataYesterday = dataForecast.hourly.time
+    .map((t, i) => ({
+      t,
+      i,
+    }))
+    .filter(({ t }) => t.split("T")[0] === yesterdayDate)
+    .filter((_, i) => i % 3 === 0);
+
+  return dataToday.map((today, i) => {
+    const yesterday = dataYesterday[i];
+
+    const todayPressure = Math.floor(
+      dataForecast.hourly.surface_pressure[today.i] * HPA_TO_MMHG,
+    );
+
+    const yesterdayPressure = Math.floor(
+      dataForecast.hourly.surface_pressure[yesterday.i] * HPA_TO_MMHG,
+    );
+
+    const magnetic = Math.abs(todayPressure - yesterdayPressure);
+    const itemDate = new Date(today.t)
+
+    console.log("time:", today.t, "itemDate:", itemDate, "now:", todayAndNow, "isPast:", itemDate < todayAndNow);
+
+    return {
+      timeToday: today.t.split("T")[1],
+      hourlyMagneticField: magnetic,
+      isPast: itemDate < todayAndNow,
+    };
+  });
 };
 
 export const timeLineData = (dataForecast: ApiForecast) => {

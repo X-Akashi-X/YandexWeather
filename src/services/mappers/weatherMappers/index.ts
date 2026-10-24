@@ -7,4 +7,4 @@ export {
   tenDaysData,
   monthlyData,
 } from "./dailyMapper";
-export { timeLineData, advancedDaysData, yesterdayData } from "./hourlyMapper";
+export { timeLineData, advancedDaysData, yesterdayData, todayHourlyData } from "./hourlyMapper";
