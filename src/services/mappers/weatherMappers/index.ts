@@ -11,5 +11,5 @@ export {
   timeLineData,
   advancedDaysData,
   yesterdayData,
-  todayHourlyData,
+  twoWeekHourlyData,
 } from "./hourlyMapper";

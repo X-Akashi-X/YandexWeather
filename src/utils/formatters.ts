@@ -58,7 +58,7 @@ export function shouldShowDash(min: number, max: number) {
   return min === max ? String(min) : `${min}-${max}`;
 }
 
-export function getDetailedItemAttributes(i: number, weekend: number) {
+export function getDayItemAttributes(i: number, weekend: number) {
   return {
     id: `day-${i}`,
     "data-detailed-today": i === TODAY,
@@ -68,7 +68,7 @@ export function getDetailedItemAttributes(i: number, weekend: number) {
   };
 }
 
-export function getDetailedItemDayLabel(i: number, weekday: string) {
+export function getDayItemDayLabel(i: number, weekday: string) {
   if (i === TODAY) return "Сегодня";
   if (i === TOMORROW) return "Завтра";
   return weekday;

@@ -1,4 +1,4 @@
-import type { DefaultCategoryPollen } from "@ts/weather";
+import type { DefaultCategoryPollen, TwoWeekDayData } from "@ts/weather";
 
 export const DEFAULT_CATEGORY = {
   fill: 0,
@@ -100,11 +100,15 @@ export const DEFAULT_YESTERDAY = {
   yesterdayCurrentTemp: "",
 };
 
-export const DEFAULT_TODAY_HOURLY: {
-  timeToday: string;
-  hourlyMagneticField: number;
-  isPast: boolean;
-}[] = [];
+export const DEFAULT_TWO_WEEK_HOURLY: {
+  threeDays: TwoWeekDayData[];
+  sixDays: TwoWeekDayData[];
+  twoWeeks: TwoWeekDayData[];
+} = {
+  threeDays: [],
+  sixDays: [],
+  twoWeeks: [],
+};
 
 export const DEFAULT_WEEK = {
   weekAvgMinTemperature: "",

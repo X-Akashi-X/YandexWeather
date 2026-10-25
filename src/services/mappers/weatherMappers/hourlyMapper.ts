@@ -8,7 +8,7 @@ import { INDEXOF_NOT_FOUND } from "@constants/utils";
 import {
   DEFAULT_CATEGORY,
   DEFAULT_PERIOD_AVERAGES,
-  DEFAULT_TODAY_HOURLY,
+  DEFAULT_TWO_WEEK_HOURLY,
   DEFAULT_YESTERDAY,
 } from "@constants/weather";
 import type { ApiForecast } from "@ts/api";
@@ -51,52 +51,73 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
   };
 };
 
-export const todayHourlyData = (dataForecast: ApiForecast) => {
-  const todayAndNow = new Date();
-  const yesterday = new Date(todayAndNow);
-  yesterday.setDate(todayAndNow.getDate() - 1);
+export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
+  const groupedDays: Record<string, number[]> = {};
 
-  const todayDate = todayAndNow.toISOString().split("T")[0];
-  const yesterdayDate = yesterday.toISOString().split("T")[0];
+  if (!dataForecast.hourly.time) return DEFAULT_TWO_WEEK_HOURLY;
 
-  if (!dataForecast.hourly) return DEFAULT_TODAY_HOURLY;
+  dataForecast.hourly.time.forEach((t, i) => {
+    const dataKey = t.split("T")[0];
 
-  const dataToday = dataForecast.hourly.time
-    .map((t, i) => ({
-      t,
-      i,
-    }))
-    .filter(({ t }) => t.split("T")[0] === todayDate)
-    .filter((_, i) => i % 3 === 0);
+    if (!groupedDays[dataKey]) {
+      groupedDays[dataKey] = [];
+    }
 
-  const dataYesterday = dataForecast.hourly.time
-    .map((t, i) => ({
-      t,
-      i,
-    }))
-    .filter(({ t }) => t.split("T")[0] === yesterdayDate)
-    .filter((_, i) => i % 3 === 0);
-
-  return dataToday.map((today, i) => {
-    const yesterday = dataYesterday[i];
-
-    const todayPressure = Math.floor(
-      dataForecast.hourly.surface_pressure[today.i] * HPA_TO_MMHG,
-    );
-
-    const yesterdayPressure = Math.floor(
-      dataForecast.hourly.surface_pressure[yesterday.i] * HPA_TO_MMHG,
-    );
-
-    const magnetic = Math.abs(todayPressure - yesterdayPressure);
-    const itemDate = new Date(today.t);
-
-    return {
-      timeToday: today.t.split("T")[1],
-      hourlyMagneticField: magnetic,
-      isPast: itemDate < todayAndNow,
-    };
+    groupedDays[dataKey].push(i);
   });
+
+  const thinnedDays = Object.entries(groupedDays).map(([date, hourIndex]) => {
+    const thinnedHours = hourIndex.filter((_, idx) => idx % 3 === 0);
+
+    return { date, hourIndex: thinnedHours };
+  });
+
+  const groupedDaysData = thinnedDays.map((day, dayIndex) => {
+    const groupedHoursData = day.hourIndex.map((hour, hourPosition) => {
+      const currentMagnetic = Math.floor(
+        dataForecast.hourly.surface_pressure[hour],
+      );
+      const currentTime = dataForecast.hourly.time[hour];
+
+      let magnetic = 0;
+
+      if (dayIndex > 0) {
+        const previousDay = thinnedDays[dayIndex - 1];
+        const previousDayHourIndex = previousDay.hourIndex[hourPosition];
+        const previousMagnetic = Math.floor(
+          dataForecast.hourly.surface_pressure[previousDayHourIndex],
+        );
+
+        magnetic = Math.abs(currentMagnetic - previousMagnetic);
+      }
+
+      return {
+        twoWeekHourlyDate: new Date(day.date).toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "long",
+        }),
+        twoWeekHourlyWeekday: new Date(day.date).toLocaleDateString("ru-RU", {
+          weekday: "long",
+        }),
+        twoWeekHourlyTime: currentTime.split("T")[1],
+        twoWeekHourlyMagnetic: magnetic,
+        isPast: new Date(currentTime) < new Date(),
+      };
+    });
+
+    return groupedHoursData;
+  });
+
+  const finalDaysData = groupedDaysData.slice(1).map((hours, i) => ({
+    date: thinnedDays[i + 1].date,
+    hours,
+  }));
+
+  const threeDays = finalDaysData.slice(0, 3);
+  const sixDays = finalDaysData.slice(0, 6);
+  const twoWeeks = finalDaysData.slice(0, 14);
+
+  return { threeDays, sixDays, twoWeeks };
 };
 
 export const timeLineData = (dataForecast: ApiForecast) => {

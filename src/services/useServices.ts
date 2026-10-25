@@ -10,14 +10,14 @@ import {
   advancedDaysData,
   yesterdayData,
   monthlyData,
-  todayHourlyData,
+  twoWeekHourlyData,
 } from "./mappers/weatherMappers";
 import type { AdvancedWeather } from "@ts/weather";
 import {
   DEFAULT_CURRENT_DAY,
   DEFAULT_ONE_DAY,
   DEFAULT_TODAY,
-  DEFAULT_TODAY_HOURLY,
+  DEFAULT_TWO_WEEK_HOURLY,
   DEFAULT_TOMORROW,
   DEFAULT_WEEK,
   DEFAULT_WEEKEND,
@@ -68,9 +68,9 @@ const useServices = () => {
       getTimeLineData: dataForecast ? timeLineData(dataForecast) : [],
       getAdvancedTenDaysData: advancedWeather.tenDays,
       getAdvancedOneDayData: advancedWeather.oneDay,
-      getTodayHourlyData: dataForecast
-        ? todayHourlyData(dataForecast)
-        : DEFAULT_TODAY_HOURLY,
+      getTwoWeekHourlyData: dataForecast
+        ? twoWeekHourlyData(dataForecast)
+        : DEFAULT_TWO_WEEK_HOURLY,
     };
   }, [dataForecast, dataAirQuality, dataArhive, advancedWeather]);
 };
