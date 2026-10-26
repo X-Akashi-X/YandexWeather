@@ -2,7 +2,7 @@ import type {
   defaultCategoryType,
   getMoonPhase,
 } from "@utils/categories/categories";
-import type { PeriodAverages } from "./weather";
+import type { PeriodAverages, TwoWeekDayData } from "./weather";
 import type { Dispatch, SetStateAction } from "react";
 {
   /*DetailedForecast*/
@@ -219,4 +219,11 @@ export type DataItems = {
 export type AllergiesStateActive = {
   active: { name: string; value: number } | null;
   setActive?: Dispatch<SetStateAction<{ name: string; value: number } | null>>;
+};
+{
+  /*MagneticForecastChart*/
+}
+export type MagneticForecastChartProps = {
+  data: TwoWeekDayData;
+  index: number;
 };

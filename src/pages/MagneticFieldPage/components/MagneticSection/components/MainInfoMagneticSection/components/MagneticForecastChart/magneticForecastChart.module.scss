@@ -1,0 +1,51 @@
+.section_wrapper {
+  background-color: $grey-bg-opacity-low;
+  border-radius: $default-radius;
+  padding: 20px 24px 12px;
+  display: flex;
+  .title_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 116px;
+    .title {
+      font-size: 18px;
+      font-weight: $week-bold-text;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+  .chart_wrapper {
+    width: 100%;
+    height: 100%;
+    :global {
+      svg,
+      rect,
+      g,
+      circle,
+      path,
+      text {
+        outline: none;
+      }
+    }
+    .tooltip {
+      background-color: rgba(51, 51, 51, 1);
+      border-radius: $default-radius;
+      color: white;
+      font-size: 13px;
+      padding: 10px;
+      transform: translateX(-55%);
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid rgba(51, 51, 51, 1);
+      }
+    }
+  }
+}

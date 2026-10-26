@@ -8,6 +8,7 @@ import { INDEXOF_NOT_FOUND } from "@constants/utils";
 import {
   DEFAULT_CATEGORY,
   DEFAULT_PERIOD_AVERAGES,
+  DEFAULT_TWO_WEEK_HOURLY,
   DEFAULT_YESTERDAY,
 } from "@constants/weather";
 import type { ApiForecast } from "@ts/api";
@@ -48,6 +49,75 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
       Math.floor(dataForecast.hourly.temperature_2m[indexCurrentMoment]),
     ),
   };
+};
+
+export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
+  const groupedDays: Record<string, number[]> = {};
+
+  if (!dataForecast.hourly.time) return DEFAULT_TWO_WEEK_HOURLY;
+
+  dataForecast.hourly.time.forEach((t, i) => {
+    const dataKey = t.split("T")[0];
+
+    if (!groupedDays[dataKey]) {
+      groupedDays[dataKey] = [];
+    }
+
+    groupedDays[dataKey].push(i);
+  });
+
+  const thinnedDays = Object.entries(groupedDays).map(([date, hourIndex]) => {
+    const thinnedHours = hourIndex.filter((_, idx) => idx % 3 === 0);
+
+    return { date, hourIndex: thinnedHours };
+  });
+
+  const groupedDaysData = thinnedDays.map((day, dayIndex) => {
+    const groupedHoursData = day.hourIndex.map((hour, hourPosition) => {
+      const currentMagnetic = Math.floor(
+        dataForecast.hourly.surface_pressure[hour],
+      );
+      const currentTime = dataForecast.hourly.time[hour];
+
+      let magnetic = 0;
+
+      if (dayIndex > 0) {
+        const previousDay = thinnedDays[dayIndex - 1];
+        const previousDayHourIndex = previousDay.hourIndex[hourPosition];
+        const previousMagnetic = Math.floor(
+          dataForecast.hourly.surface_pressure[previousDayHourIndex],
+        );
+
+        magnetic = Math.abs(currentMagnetic - previousMagnetic);
+      }
+
+      return {
+        twoWeekHourlyDate: new Date(day.date).toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "long",
+        }),
+        twoWeekHourlyWeekday: new Date(day.date).toLocaleDateString("ru-RU", {
+          weekday: "long",
+        }),
+        twoWeekHourlyTime: currentTime.split("T")[1],
+        twoWeekHourlyMagnetic: magnetic,
+        isPast: new Date(currentTime) < new Date(),
+      };
+    });
+
+    return groupedHoursData;
+  });
+
+  const finalDaysData = groupedDaysData.slice(1).map((hours, i) => ({
+    date: thinnedDays[i + 1].date,
+    hours,
+  }));
+
+  const threeDays = finalDaysData.slice(0, 3);
+  const sixDays = finalDaysData.slice(0, 6);
+  const twoWeeks = finalDaysData.slice(0, 14);
+
+  return { threeDays, sixDays, twoWeeks };
 };
 
 export const timeLineData = (dataForecast: ApiForecast) => {

@@ -6,8 +6,8 @@ import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
 import TimeOfDayForecast from "./components/TimeOfDayForecast/TimeOfDayForecast";
 import { getTimeOfDayForecastConfig } from "./config";
 import {
-  getDetailedItemAttributes,
-  getDetailedItemDayLabel,
+  getDayItemAttributes,
+  getDayItemDayLabel,
 } from "@utils/formatters";
 
 const DetailedForecast = () => {
@@ -47,7 +47,7 @@ const DetailedForecast = () => {
             night,
           });
 
-          const itemAttributes = getDetailedItemAttributes(i, advancedWeekend);
+          const itemAttributes = getDayItemAttributes(i, advancedWeekend);
 
           return (
             <Link to="/" className={styles.main_wrapper} key={advancedDateKey}>
@@ -55,7 +55,7 @@ const DetailedForecast = () => {
                 <h3
                   className={`${styles.forecast_date_gr} ${styles.title_date} ${advancedWeekend === SATURDAY || advancedWeekend === SUNDAY ? styles.weekend_day : ""}`}
                 >
-                  {getDetailedItemDayLabel(i, advancedWeekday)},{" "}
+                  {getDayItemDayLabel(i, advancedWeekday)},{" "}
                   <span className={styles.advanced_date}>{advancedDate}</span>
                 </h3>
                 <div className={`${styles.category_title} small_grey_text`}>
