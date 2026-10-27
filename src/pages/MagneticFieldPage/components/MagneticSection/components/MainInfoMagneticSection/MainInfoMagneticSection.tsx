@@ -1,4 +1,5 @@
 import CurrentFeelings from "./components/CurrentFeelingsMagnetic/CurrentFeelingsMagnetic";
+import FAQMagneticSection from "./components/FAQMagneticSection/FAQMagneticSection";
 import ForecastMagneticSection from "./components/ForecastMagneticSection/ForecastMagneticSection";
 import MagneticForecastFooter from "./components/MagneticForecastFooter/MagneticForecastFooter";
 import TenDaysMagnetic from "./components/TenDaysMagnetic/TenDaysMagnetic";
@@ -11,6 +12,7 @@ const MainInfoMagneticSection = () => {
       <ForecastMagneticSection />
       <MagneticForecastFooter />
       <TenDaysMagnetic />
+      <FAQMagneticSection />
     </section>
   );
 };
