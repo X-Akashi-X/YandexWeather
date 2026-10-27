@@ -1,7 +1,7 @@
 import styles from "./defaultNewsSection.module.scss";
 import type { MockNewsDefault } from "@ts/mocks";
 
-const DefaultNewsSection = ({news}: {news: MockNewsDefault[] }) => {
+const DefaultNewsSection = ({ news }: { news: MockNewsDefault[] }) => {
   return (
     <section className={styles.section_wrapper}>
       <h3 className={styles.main_title}>Статьи о погоде</h3>

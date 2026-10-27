@@ -3,8 +3,8 @@ import MagneticSection from "./components/MagneticSection/MagneticSection";
 import useMocks from "@services/useMocks";
 
 const MagneticFieldPage = () => {
-  const {getAllNews} = useMocks()
-  const {newsMagnetic} = getAllNews
+  const { getAllNews } = useMocks();
+  const { newsMagnetic } = getAllNews;
 
   return (
     <>

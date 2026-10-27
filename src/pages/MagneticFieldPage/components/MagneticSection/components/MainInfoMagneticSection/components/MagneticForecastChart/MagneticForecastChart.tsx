@@ -17,12 +17,21 @@ import type {
   NameType,
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
+import useIsMobile from "@hooks/useIsMobile";
+import { TABLET_SCREEN } from "@constants/breakpoints";
 
 const MagneticForecastChart = ({
   data,
   title,
   subTitle,
 }: MagneticForecastChartProps) => {
+  const isMobile = useIsMobile(TABLET_SCREEN);
+  const barCategoryGap = isMobile ? "2" : "6";
+  const xAxispaddings = isMobile
+    ? { left: 0, right: 0 }
+    : { left: 24, right: 24 };
+  const xAxisFontSize = isMobile ? 10 : 14;
+
   const renderBar = (props: BarRectangleItem) => {
     const { x, y, width, height, payload } = props;
     const item = payload as MagneticChartItem;
@@ -78,17 +87,20 @@ const MagneticForecastChart = ({
     <section className={styles.section_wrapper}>
       <div className={styles.title_wrapper}>
         <p className={styles.title}>{title}</p>
-        {subTitle && <p className="small_grey_text">{subTitle}</p>}
+        {subTitle && (
+          <p className={`${styles.sub_title} small_grey_text`}>{subTitle}</p>
+        )}
       </div>
       <div className={styles.chart_wrapper}>
         <ResponsiveContainer width="100%" height={127}>
-          <BarChart data={data} barGap={0} barCategoryGap="6">
+          <BarChart data={data} barGap={0} barCategoryGap={barCategoryGap}>
             <YAxis domain={[0, 9]} hide={true} tickCount={4} />
             <XAxis
               dataKey="label"
               axisLine={{ stroke: "var(--color-light-grey)" }}
               tickLine={false}
-              padding={{ left: 24, right: 24 }}
+              padding={xAxispaddings}
+              interval={0}
               tick={(props) => {
                 const { x, y, payload } = props;
 
@@ -97,7 +109,7 @@ const MagneticForecastChart = ({
                     x={x}
                     y={+y + 18}
                     textAnchor="middle"
-                    fontSize={14}
+                    fontSize={xAxisFontSize}
                     fill="grey"
                   >
                     {payload.value}
