@@ -12,18 +12,21 @@ import {
   type TooltipContentProps,
 } from "recharts";
 import { getMagneticFieldCategory } from "@utils/categories/categories";
-import type { MagneticForecastChartProps } from "@ts/props";
-import { getDayItemDayLabel } from "@utils/formatters";
+import type { MagneticChartItem, MagneticForecastChartProps } from "@ts/props";
 import type {
   NameType,
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-const MagneticForecastChart = ({ data, index }: MagneticForecastChartProps) => {
+const MagneticForecastChart = ({
+  data,
+  title,
+  subTitle,
+}: MagneticForecastChartProps) => {
   const renderBar = (props: BarRectangleItem) => {
     const { x, y, width, height, payload } = props;
-    const category = getMagneticFieldCategory(payload.twoWeekHourlyMagnetic);
-    const isPast = (payload as { isPast?: boolean })?.isPast;
+    const item = payload as MagneticChartItem;
+    const category = getMagneticFieldCategory(item.value);
 
     return (
       <Rectangle
@@ -32,7 +35,9 @@ const MagneticForecastChart = ({ data, index }: MagneticForecastChartProps) => {
         width={width}
         height={height}
         radius={[4, 4, 0, 0]}
-        fill={isPast ? "var(--color-light-grey-opacity-low)" : category.color}
+        fill={
+          item.isPast ? "var(--color-light-grey-opacity-low)" : category.color
+        }
         style={{ cursor: "pointer" }}
       />
     );
@@ -40,7 +45,7 @@ const MagneticForecastChart = ({ data, index }: MagneticForecastChartProps) => {
 
   const renderValueLabel = (props: LabelProps) => {
     const { x, width, value, index } = props;
-    const isPast = index !== undefined ? data.hours[index]?.isPast : false;
+    const isPast = index !== undefined ? data[index]?.isPast : false;
 
     return (
       <text
@@ -72,17 +77,15 @@ const MagneticForecastChart = ({ data, index }: MagneticForecastChartProps) => {
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.title_wrapper}>
-        <p className={styles.title}>
-          {getDayItemDayLabel(index, data.hours[0].twoWeekHourlyWeekday)}
-        </p>
-        <p className="small_grey_text">{data.hours[0].twoWeekHourlyDate}</p>
+        <p className={styles.title}>{title}</p>
+        {subTitle && <p className="small_grey_text">{subTitle}</p>}
       </div>
       <div className={styles.chart_wrapper}>
         <ResponsiveContainer width="100%" height={127}>
-          <BarChart data={data.hours} barGap={0} barCategoryGap="6">
+          <BarChart data={data} barGap={0} barCategoryGap="6">
             <YAxis domain={[0, 9]} hide={true} tickCount={4} />
             <XAxis
-              dataKey="twoWeekHourlyTime"
+              dataKey="label"
               axisLine={{ stroke: "var(--color-light-grey)" }}
               tickLine={false}
               padding={{ left: 24, right: 24 }}
@@ -108,7 +111,7 @@ const MagneticForecastChart = ({ data, index }: MagneticForecastChartProps) => {
               allowEscapeViewBox={{ x: true, y: false }}
             />
             <Bar
-              dataKey={"twoWeekHourlyMagnetic"}
+              dataKey={"value"}
               shape={renderBar}
               label={renderValueLabel}
               minPointSize={3}

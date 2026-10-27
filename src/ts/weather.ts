@@ -72,7 +72,7 @@ export type DayGroups = {
   night: PeriodData[];
 };
 
-type TwoWeekHourlyItem = {
+export type TwoWeekHourlyItem = {
   twoWeekHourlyDate: string;
   twoWeekHourlyWeekday: string;
   twoWeekHourlyTime: string;
@@ -84,3 +84,15 @@ export type TwoWeekDayData = {
   date: string;
   hours: TwoWeekHourlyItem[]
 }
+
+export type TenDaysItem = {
+  tenDaysDateKey: string;
+  tenDaysDate: number;
+  tenDaysWeekday: string;
+  tenDaysWeekend: number;
+  tenDaysMaxTemperature: string;
+  tenDaysMinTemperature: string;
+  tenDaysWeatherEffect: string;
+  tenDaysWeatherInfo: string;
+  tenDaysMagneticField: number;
+};

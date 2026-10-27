@@ -259,6 +259,10 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
       dataForecast.daily.weather_code[i + 1],
     ),
     tenDaysWeatherInfo: getWeatherInfo(dataForecast.daily.weather_code[i + 1]),
+    tenDaysMagneticField: Math.abs(
+      Math.floor(dataForecast.daily.surface_pressure_max[i + 1] * HPA_TO_MMHG) -
+        Math.floor(dataForecast.daily.surface_pressure_max[i] * HPA_TO_MMHG),
+    ),
   }));
 };
 

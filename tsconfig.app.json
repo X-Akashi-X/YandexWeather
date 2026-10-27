@@ -31,6 +31,7 @@
       "@constants/*": ["./src/constants/*"],
       "@store/*": ["./src/store/*"],
       "@configs/*": ["./src/configs/*"],
+      "@adapters/*": ["./src/adapters/*"],
     }
   },
 
