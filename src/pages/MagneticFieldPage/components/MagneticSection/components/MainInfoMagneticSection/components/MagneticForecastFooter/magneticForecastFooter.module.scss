@@ -1,13 +1,15 @@
 .section_wrapper {
   display: flex;
   align-items: center;
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 10px;
   display: flex;
   align-items: center;
   padding: 0 8px;
   font-size: 14px;
   font-weight: $week-bold-text;
   margin-bottom: 24px;
+  flex-wrap: wrap;
   .category_wrapper {
     display: flex;
     align-items: center;

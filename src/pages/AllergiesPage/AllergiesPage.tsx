@@ -1,11 +1,15 @@
+import useMocks from "@services/useMocks";
 import AllergiesSection from "./components/AllergiesSection/AllergiesSection";
-import NewsAllergiesSection from "./components/NewsAllergiesSection/NewsAllergiesSection";
+import DefaultNewsSection from "@components/DefaultNewsSection/DefaultNewsSection";
 
 const AllergiesPage = () => {
+  const { getAllNews } = useMocks();
+  const { newsAllergies } = getAllNews;
+
   return (
     <>
       <AllergiesSection />
-      <NewsAllergiesSection />
+      <DefaultNewsSection news={newsAllergies} />
     </>
   );
 };
