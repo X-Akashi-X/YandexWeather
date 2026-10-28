@@ -1,1 +1,1 @@
-export const TABLET_SCREEN = 768
+export const TABLET_SCREEN = 768;

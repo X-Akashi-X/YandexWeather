@@ -94,13 +94,14 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
 
 export function getPressureCategory(category: number) {
   if (category <= 740)
-    return { fill: 0, color: "#ff7e01", text: "очень низкое" };
-  if (category <= 750) return { fill: 0.17, color: "#ffd400", text: "низкое" };
+    return { fill: 0, color: "#c30101", text: "очень низкое" };
+  if (category <= 750)
+    return { fill: 0.17, color: "rgba(248, 97, 71, 1)", text: "низкое" };
   if (category <= 765)
-    return { fill: 0.42, color: "#33c115", text: "нормальное" };
+    return { fill: 0.42, color: "#33c115", text: "в норме" };
   if (category <= 775)
     return { fill: 0.67, color: "rgba(248, 97, 71, 1)", text: "высокое" };
-  return { fill: 1, color: "#57348d", text: "очень высокое" };
+  return { fill: 1, color: "#c30101", text: "очень высокое" };
 }
 
 export function getUVCategory(category: number) {

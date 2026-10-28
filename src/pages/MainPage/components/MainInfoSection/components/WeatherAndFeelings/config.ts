@@ -33,7 +33,7 @@ export const getFeelingSlide = (
       id: "Магнитное поле",
     },
     {
-      link: "/",
+      link: "pressure",
       number: currentPressure,
       category: currentPressureCategory,
       title: "Давление",
