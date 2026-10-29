@@ -1,0 +1,74 @@
+.temp_wrapper {
+  .tmp_effect_wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 35px) 1fr;
+    align-items: center;
+    gap: 5px;
+
+    .temperature {
+      font-weight: $week-bold-text;
+    }
+
+    img {
+      width: 32px;
+      height: auto;
+    }
+  }
+}
+
+.wind_wrapper {
+  .wind_anvanced_wrapper {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+
+    .m_per_sec {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: $laptop-screen) {
+  .temp_wrapper {
+    .tmp_effect_wrapper {
+      .info {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .time_of_day {
+    grid-column: 1;
+  }
+
+  .apparent_wrapper {
+    display: none;
+  }
+
+  .humidity_wrapper {
+    display: none;
+  }
+
+  .pressure_wrapper {
+    display: none;
+  }
+
+  .temp_wrapper {
+    justify-self: center;
+  }
+
+  .wind_wrapper {
+    justify-self: end;
+
+    .wind_anvanced_wrapper {
+      display: grid;
+      grid-template-columns: auto 25px 15px minmax(auto, 20px);
+
+      .m_per_sec {
+        display: block;
+      }
+    }
+  }
+}

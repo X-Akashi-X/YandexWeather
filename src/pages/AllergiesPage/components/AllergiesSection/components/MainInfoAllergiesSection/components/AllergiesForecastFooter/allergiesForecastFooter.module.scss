@@ -1,0 +1,50 @@
+.allergies_forecast_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: $week-bold-text;
+  margin-bottom: 32px;
+  .categories_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .category_wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .circle {
+        width: 8px;
+        height: 8px;
+        border-radius: $strong-radius;
+        border: 0.1px solid rgba(180, 184, 204, 0.64);
+      }
+    }
+  }
+  .about {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    &:hover {
+      color: $link-red-hovered;
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .allergies_forecast_footer{
+    display: block;
+    margin-bottom: 20px;
+    .categories_wrapper{
+      margin-bottom: 15px;
+    }
+    .about{
+      background-color: $grey-bg-opacity-low;
+      border-radius: $default-radius;
+      padding: 9px 12px;
+      width: fit-content;
+    }
+  }
+}

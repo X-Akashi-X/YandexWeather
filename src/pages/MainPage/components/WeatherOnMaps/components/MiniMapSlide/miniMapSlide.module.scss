@@ -1,0 +1,24 @@
+.maps_item {
+  width: 290px;
+  height: 188px;
+  position: relative;
+  border-radius: $default-radius;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  button {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background-color: $white-bg;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 16px;
+    font-weight: $week-bold-text;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      box-shadow: $button-shadow-hovered;
+    }
+  }
+}

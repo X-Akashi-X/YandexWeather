@@ -1,0 +1,168 @@
+{
+  "forecastNews": [
+    {
+      "id": "biggest-snowfall",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Завалило с головой! Где случился самый сильный снегопад в истории?",
+      "description": "Невероятно, но самый обильный однодневный снегопад в истории наблюдений произошёл в небольшом итальянском городе Капракотта в 140 километрах от Рима. 5 марта 2015 года здесь, в не самых высоких Апеннинских горах, меньше чем за сутки выпало 2,56 метра снега. К примеру, в Москве среднегодовая норма снежных осадков — около 1,5 метров. Рекордную интенсивность снегопада учёные объяснили сочетанием трёх природных факторов: тёплого и насыщенного влагой воздуха с Адриатического моря, вторжения холодных арктических масс и сложного рельефа Апеннин. Влажный морской воздух, наталкиваясь на встречный поток холодного и тяжёлого воздуха, был вынужден стремительно подниматься вверх по горным склонам. При этом он быстро охлаждался, и содержащийся в нём водяной пар конденсировался, образуя плотные снежные облака. Такое столкновение двух контрастных воздушных масс в горной зоне вызвало взрывной рост осадков, а порывы ветра до 45 м/с и сильнейший метелевый перенос стали причиной появления сугробов высотой с двухэтажный дом.",
+      "cover_img": "/image/newsForecast/biggest-snowfall/biggest-snowfall-cover.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "storm-clock",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Самое пунктуальное облако: гроза, которая приходит по часам",
+      "description": "kk",
+      "cover_img": "/image/newsForecast/storm-clock/storm-clock.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "longest-rain",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Сколько шёл самый долгий дождь в истории?",
+      "description": "kk",
+      "cover_img": "/image/newsForecast/longest-rain/longest-rain.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "frozen-city",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Самые холодные зимы в истории России: как мёрзли мегаполисы",
+      "description": "kk",
+      "cover_img": "/image/newsForecast/frozen-city/frozen-city.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    }
+  ],
+  "allergiesNews": [
+    {
+      "id": "travel",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Куда уехать от сезонной аллергии: советы для аллергиков",
+      "description": "kk",
+      "cover_img": "/image/newsAllergies/travel.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "climate",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Аллергия и климат: как изменения в природе влияют на аллергиков?",
+      "description": "kk",
+      "cover_img": "/image/newsAllergies/climate.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "symptoms",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Как изменения погоды и климата влияют на симптомы аллергии. Советы для устранения симптомов аллергии на зиму, лето, осень и весну.",
+      "description": "kk",
+      "cover_img": "/image/newsAllergies/symptoms.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "ambrosia",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Аллергия на амброзию: что это такое и как с ней бороться",
+      "description": "kk",
+      "cover_img": "/image/newsAllergies/ambrosia.png",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "sagebrush",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Аллергия на полынь: как справиться с симптомами",
+      "description": "kk",
+      "cover_img": "/image/newsAllergies/sagebrush.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "allergies",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Всё про аллергию: что и когда начинает цвести в России",
+      "description": "kk",
+      "cover_img": "/image/newsAllergies/allergies.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    }
+  ],
+  "magneticNews": [
+    {
+      "id": "whatIsMagnetic",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Что такое магнитные бури? Как они рождаются и могут ли действительно влиять на нашу жизнь?",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/whatIsMagnetic.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "influence",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Влияние магнитных бурь на самочувствие",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/influence.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "whatIsSolarFlares",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Вспышки на солнце: что это?",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/whatIsSolarFlares.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "stormIsComing",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Ожидается магнитная буря уровня G1",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/stormIsComing.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "magneticSituation",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Геомагнитная обстановка: магнитосфера возбуждена",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/magneticSituation.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "bursts",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Всплески есть, будет буря: геомагнитная обстановка",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/bursts.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    }
+  ]
+}

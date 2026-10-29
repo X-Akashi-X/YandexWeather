@@ -1,0 +1,14 @@
+.section_wrapper {
+  .title_main {
+    margin-bottom: 20px;
+  }
+  .main_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+    @media (max-width: $tablet-screen) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
