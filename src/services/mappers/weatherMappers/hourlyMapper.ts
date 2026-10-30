@@ -69,34 +69,35 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
   const thinnedDays = Object.entries(groupedDays).map(([date, hourIndex]) => {
     const thinnedHours = hourIndex.filter((_, idx) => idx % 3 === 0);
 
-    return { date, hourIndex: thinnedHours };
+    return { date, hourIndex: thinnedHours, fullHourIndex: hourIndex };
   });
 
-  const groupedDaysData = thinnedDays.map((day, dayIndex) => {
-    const groupedHoursData = day.hourIndex.map((hour, hourPosition) => {
+  const getHoursData = (date: string, hours: number[], prevHours: number[]) => {
+    return hours.map((hour, hourPosition) => {
       const currentMagnetic = Math.floor(
         dataForecast.hourly.surface_pressure[hour],
       );
+
       const currentTime = dataForecast.hourly.time[hour];
 
       let magnetic = 0;
 
-      if (dayIndex > 0) {
-        const previousDay = thinnedDays[dayIndex - 1];
-        const previousDayHourIndex = previousDay.hourIndex[hourPosition];
+      const prevHour = prevHours?.[hourPosition];
+
+      if (prevHours !== undefined) {
         const previousMagnetic = Math.floor(
-          dataForecast.hourly.surface_pressure[previousDayHourIndex],
+          dataForecast.hourly.surface_pressure[prevHour],
         );
 
         magnetic = Math.abs(currentMagnetic - previousMagnetic);
       }
 
       return {
-        twoWeekHourlyDate: new Date(day.date).toLocaleDateString("ru-RU", {
+        twoWeekHourlyDate: new Date(date).toLocaleDateString("ru-RU", {
           day: "numeric",
           month: "long",
         }),
-        twoWeekHourlyWeekday: new Date(day.date).toLocaleDateString("ru-RU", {
+        twoWeekHourlyWeekday: new Date(date).toLocaleDateString("ru-RU", {
           weekday: "long",
         }),
         twoWeekHourlyTime: currentTime.split("T")[1],
@@ -104,11 +105,22 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
         isPast: new Date(currentTime) < new Date(),
       };
     });
+  };
 
-    return groupedHoursData;
+  const groupedDaysData = thinnedDays.map((day, dayIndex) => {
+    const previousDay = thinnedDays[dayIndex - 1];
+
+    return {
+      hours: getHoursData(day.date, day.hourIndex, previousDay?.hourIndex),
+      fullHours: getHoursData(
+        day.date,
+        day.fullHourIndex,
+        previousDay?.fullHourIndex,
+      ),
+    };
   });
 
-  const finalDaysData = groupedDaysData.slice(1).map((hours, i) => ({
+  const finalDaysData = groupedDaysData.slice(1).map((day, i) => ({
     formatedDate: new Date(thinnedDays[i + 1].date).toLocaleDateString(
       "ru-RU",
       {
@@ -118,7 +130,8 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
     ),
     dateKey: thinnedDays[i + 1].date,
     date: new Date(thinnedDays[i + 1].date).getDate(),
-    hours,
+    hours: day.hours,
+    fullHours: day.fullHours,
   }));
 
   const threeDays = finalDaysData.slice(0, 3);
