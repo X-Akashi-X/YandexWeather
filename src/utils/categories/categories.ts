@@ -96,11 +96,10 @@ export function getPressureCategory(category: number) {
   if (category <= 740)
     return { fill: 0, color: "#c30101", text: "очень низкое" };
   if (category <= 750)
-    return { fill: 0.17, color: "rgba(248, 97, 71, 1)", text: "низкое" };
-  if (category <= 765)
-    return { fill: 0.42, color: "#33c115", text: "в норме" };
+    return { fill: 0.17, color: "#ff7e01", text: "низкое" };
+  if (category <= 765) return { fill: 0.42, color: "#33c115", text: "в норме" };
   if (category <= 775)
-    return { fill: 0.67, color: "rgba(248, 97, 71, 1)", text: "высокое" };
+    return { fill: 0.67, color: "#ff7e01", text: "высокое" };
   return { fill: 1, color: "#c30101", text: "очень высокое" };
 }
 

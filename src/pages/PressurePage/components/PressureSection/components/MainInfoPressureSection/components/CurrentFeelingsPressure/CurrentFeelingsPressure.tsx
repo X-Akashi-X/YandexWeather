@@ -24,7 +24,7 @@ const CurrentFeelingsPressure = () => {
           >
             {currentPressureCategory.text}
           </p>
-          <p>Норма: 731−751 мм рт. ст.</p>
+          <p>Норма: 751−765 мм рт. ст.</p>
         </div>
       </div>
     </section>

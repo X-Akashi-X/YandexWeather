@@ -11,6 +11,7 @@ import {
   TODAY,
   TOMORROW,
 } from "@constants/daysCodes";
+import type { isFirstOnMonthDay } from "@ts/utils";
 
 export function getWindDirection(deg: number) {
   const index = Math.round(deg / DEGREES_PER_DIRECTION) % TOTAL_WIND_DIRECTIONS;
@@ -72,4 +73,21 @@ export function getDayItemDayLabel(i: number, weekday: string) {
   if (i === TODAY) return "Сегодня";
   if (i === TOMORROW) return "Завтра";
   return weekday;
+}
+
+export function isFirstOnMonthDay({
+  i,
+  date,
+  dateKey,
+  localDateData,
+  fallback,
+  monthOnFirstItem = false,
+}: isFirstOnMonthDay) {
+  const isCurrentDay = i === 0;
+  const isFirstOnMonthDay = date === 1;
+
+  if (isFirstOnMonthDay || (monthOnFirstItem && isCurrentDay)) {
+    return `${new Date(dateKey).toLocaleDateString("ru-RU", localDateData)}`;
+  }
+  return fallback;
 }

@@ -1,5 +1,6 @@
 import type { MagneticChartItem } from "@ts/props";
 import type { TenDaysItem, TwoWeekHourlyItem } from "@ts/weather";
+import { isFirstOnMonthDay } from "@utils/formatters";
 
 export const hourlyToMagneticChartItems = (
   hours: TwoWeekHourlyItem[],
@@ -14,16 +15,17 @@ export const tenDaysToMagneticChartItems = (
   days: TenDaysItem[],
 ): MagneticChartItem[] =>
   days.map((day, i) => {
-    const isCurrentDay = i === 0;
-    const isFirstOfMonthDay = day.tenDaysDate === 1;
-
-    const label =
-      isCurrentDay || isFirstOfMonthDay
-        ? `${new Date(day.tenDaysDateKey).toLocaleDateString("ru-RU", {
-            day: "numeric",
-            month: "short",
-          })}`
-        : day.tenDaysDate;
+    const label = isFirstOnMonthDay({
+      i,
+      date: day.tenDaysDate,
+      dateKey: day.tenDaysDateKey,
+      localDateData: {
+        day: "numeric",
+        month: "short",
+      },
+      fallback: day.tenDaysDate,
+      monthOnFirstItem: true,
+    });
 
     return {
       label: label,

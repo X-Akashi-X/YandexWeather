@@ -81,7 +81,9 @@ export type TwoWeekHourlyItem = {
 };
 
 export type TwoWeekDayData = {
-  date: string;
+  formatedDate: string;
+  date: number;
+  dateKey: string;
   hours: TwoWeekHourlyItem[];
 };
 
