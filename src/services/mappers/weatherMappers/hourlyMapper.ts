@@ -109,10 +109,13 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
   });
 
   const finalDaysData = groupedDaysData.slice(1).map((hours, i) => ({
-    formatedDate: new Date(thinnedDays[i + 1].date).toLocaleDateString("ru-RU", {
-      weekday: "short",
-      day: "numeric",
-    }),
+    formatedDate: new Date(thinnedDays[i + 1].date).toLocaleDateString(
+      "ru-RU",
+      {
+        weekday: "short",
+        day: "numeric",
+      },
+    ),
     dateKey: thinnedDays[i + 1].date,
     date: new Date(thinnedDays[i + 1].date).getDate(),
     hours,
