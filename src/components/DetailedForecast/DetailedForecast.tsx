@@ -5,10 +5,7 @@ import { SATURDAY, SUNDAY } from "@constants/daysCodes";
 import { Humidity, LightArc, Pressure, Sunrise, Sunset, WaterTemp } from ".";
 import TimeOfDayForecast from "./components/TimeOfDayForecast/TimeOfDayForecast";
 import { getTimeOfDayForecastConfig } from "./config";
-import {
-  getDayItemAttributes,
-  getDayItemDayLabel,
-} from "@utils/formatters";
+import { getDayItemAttributes, getDayItemDayLabel } from "@utils/formatters";
 
 const DetailedForecast = () => {
   const { getAdvancedTenDaysData } = useServices();

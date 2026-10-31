@@ -82,5 +82,5 @@ type TwoWeekHourlyItem = {
 
 export type TwoWeekDayData = {
   date: string;
-  hours: TwoWeekHourlyItem[]
-}
+  hours: TwoWeekHourlyItem[];
+};

@@ -9,7 +9,7 @@ const ForecastMagneticSection = () => {
   return (
     <section className={styles.section_wrapper}>
       {threeDays.map((data, i) => (
-        <MagneticForecastChart data={data} key={data.date} index={i}/>
+        <MagneticForecastChart data={data} key={data.date} index={i} />
       ))}
     </section>
   );
