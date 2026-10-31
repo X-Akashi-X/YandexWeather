@@ -13,6 +13,7 @@ import {
   AllergiesPage,
   MagneticFieldPage,
   MainPage,
+  PressurePage,
   SourcesPage,
 } from "./pages";
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="sources" element={<SourcesPage />} />
             <Route path="allergies" element={<AllergiesPage />} />
             <Route path="magnetic-field" element={<MagneticFieldPage />} />
+            <Route path="pressure" element={<PressurePage />} />
           </Route>
         </Routes>
       </main>

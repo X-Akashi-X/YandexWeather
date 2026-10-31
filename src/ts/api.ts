@@ -32,6 +32,7 @@ type ForecastDaily = {
   moon_phase: number[];
   relative_humidity_2m_max: number[];
   relative_humidity_2m_min: number[];
+  surface_pressure_mean: number[];
   surface_pressure_max: number[];
   surface_pressure_min: number[];
   wind_speed_10m_min: number[];

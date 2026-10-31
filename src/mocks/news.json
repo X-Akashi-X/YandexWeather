@@ -102,5 +102,67 @@
         "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
       ]
     }
+  ],
+  "magneticNews": [
+    {
+      "id": "whatIsMagnetic",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Что такое магнитные бури? Как они рождаются и могут ли действительно влиять на нашу жизнь?",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/whatIsMagnetic.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "influence",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Влияние магнитных бурь на самочувствие",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/influence.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "whatIsSolarFlares",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Вспышки на солнце: что это?",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/whatIsSolarFlares.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "stormIsComing",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Ожидается магнитная буря уровня G1",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/stormIsComing.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "magneticSituation",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Геомагнитная обстановка: магнитосфера возбуждена",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/magneticSituation.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "bursts",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Всплески есть, будет буря: геомагнитная обстановка",
+      "description": "kk",
+      "cover_img": "/image/newsMagnetic/bursts.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    }
   ]
 }

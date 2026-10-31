@@ -1,0 +1,44 @@
+.main_wrapper {
+  overflow: hidden;
+  border-radius: $default-radius;
+  height: 42px;
+  :global(.swiper-wrapper) {
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 1px 0;
+    padding-bottom: 16px;
+  }
+  :global(.swiper-button-prev),
+  :global(.swiper-button-next) {
+    padding: 5px;
+    top: 55%;
+    height: 40px;
+    width: 40px;
+  }
+  :global(.swiper-button-prev) {
+    left: 0
+  }
+  :global(.swiper-button-next) {
+    right: 0;
+  }
+  .slide {
+    background-color: $grey-bg-opacity-low;
+    padding: 9px 16px;
+    max-width: fit-content;
+    border-radius: $strong-radius;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: $link-grey-hovered;
+    }
+    .name {
+      font-weight: $week-bold-text;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+}

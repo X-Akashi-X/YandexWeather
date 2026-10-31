@@ -1,0 +1,43 @@
+.section_wrapper {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-bottom: 36px;
+  .arc_wrapper {
+    width: 96px;
+    position: relative;
+    .category_wrapper {
+      position: absolute;
+      top: 30px;
+      left: 24px;
+      .category {
+        font-size: 28px;
+        font-weight: $week-bold-text;
+        text-align: center;
+      }
+    }
+  }
+  .info_wrapper {
+    .main_title {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .info_wrapper {
+      display: flex;
+      gap: 8px;
+      .info {
+        font-weight: $week-bold-text;
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+}

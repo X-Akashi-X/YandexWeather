@@ -17,7 +17,12 @@ const CurrentFeelings = () => {
       </div>
       <div className={styles.info_wrapper}>
         <h2 className={styles.main_title}>Геомагнитное поле в Минске</h2>
-        <p className={styles.info}>{todayMagneticFieldCategory.text}</p>
+        <p
+          className={styles.info}
+          style={{ color: todayMagneticFieldCategory.color }}
+        >
+          {todayMagneticFieldCategory.text}
+        </p>
       </div>
     </section>
   );

@@ -49,3 +49,21 @@
     }
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    flex-direction: column;
+    .title_wrapper {
+      width: auto;
+      flex-direction: row;
+      .sub_title {
+        font-size: 18px;
+        font-weight: $week-bold-text;
+        color: inherit;
+        &::before {
+          content: ", ";
+        }
+      }
+    }
+  }
+}

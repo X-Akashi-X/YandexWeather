@@ -3,3 +3,9 @@
   border-radius: $default-radius;
   padding: 28px 24px;
 }
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper{
+    padding: 28px 0;
+  }
+}
