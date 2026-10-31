@@ -1,0 +1,4 @@
+export const PRESSURE_CHART_STEP = 80
+export const PRESSURE_CHART_SCROLL_BY = 3;
+export const PRESSURE_CHART_NORMAL_MIN = 751;
+export const PRESSURE_CHART_NORMAL_MAX = 765;

@@ -214,7 +214,7 @@ export type DataItems = {
   forecastText: string;
 };
 {
-  /*MainInfoAllergiesSection*/
+  /*AllergiesGroups*/
 }
 export type AllergiesStateActive = {
   active: { name: string; value: number } | null;
@@ -234,4 +234,15 @@ export type MagneticForecastChartProps = {
   data: MagneticChartItem[];
   title: string;
   subTitle?: string;
+};
+{
+  /*PressureGroups*/
+}
+export type PressureStateActive = {
+  active: string | null;
+  setActive?: Dispatch<SetStateAction<string | null>>;
+};
+export type PressureChartItem = {
+  label: string;
+  value: number;
 };

@@ -34,13 +34,13 @@
 }
 
 @media (max-width: $tablet-screen) {
-  .allergies_forecast_footer{
+  .allergies_forecast_footer {
     display: block;
     margin-bottom: 20px;
-    .categories_wrapper{
+    .categories_wrapper {
       margin-bottom: 15px;
     }
-    .about{
+    .about {
       background-color: $grey-bg-opacity-low;
       border-radius: $default-radius;
       padding: 9px 12px;

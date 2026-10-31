@@ -102,6 +102,8 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
         }),
         twoWeekHourlyTime: currentTime.split("T")[1],
         twoWeekHourlyMagnetic: magnetic,
+        twoWeekHourlyPressure:
+          Math.floor(dataForecast.hourly.surface_pressure[hour] * HPA_TO_MMHG),
         isPast: new Date(currentTime) < new Date(),
       };
     });

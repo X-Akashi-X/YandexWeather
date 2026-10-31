@@ -78,6 +78,7 @@ export type TwoWeekHourlyItem = {
   twoWeekHourlyTime: string;
   twoWeekHourlyMagnetic: number;
   isPast: boolean;
+  twoWeekHourlyPressure: number;
 };
 
 export type TwoWeekDayData = {
@@ -85,6 +86,7 @@ export type TwoWeekDayData = {
   date: number;
   dateKey: string;
   hours: TwoWeekHourlyItem[];
+  fullHours: TwoWeekHourlyItem[];
 };
 
 export type TenDaysItem = {
