@@ -48,7 +48,7 @@ const PressureTimeLineChart = ({
     const index = dateKey === todayKey ? now.getHours() : 0;
 
     scrollToIndex(index);
-  }, [swiper, dateKey, items.length]);
+  }, [swiper, dateKey, items.length, scrollToIndex]);
 
   const renderPressureNormalLine = (props: RectangleProps) => {
     const { x, y, width, height } = props;

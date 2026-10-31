@@ -1,43 +1,51 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 
 export const useSwiperStepScroll = (
   stepWidth: number,
-  stepPerClick: number,
+  stepsPerClick: number,
   duration: number = 300,
 ) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
-  const updateEdges = (s: SwiperType) => {
+  const updateEdges = useCallback((s: SwiperType) => {
     setIsStart(s.isBeginning);
     setIsEnd(s.isEnd);
-  };
+  }, []);
 
-  const scroll = (direction: 1 | -1) => {
-    if (!swiper) return;
+  const scroll = useCallback(
+    (direction: 1 | -1) => {
+      if (!swiper) return;
 
-    const target = swiper.getTranslate() - direction * stepPerClick * stepWidth;
-    const clamped = Math.max(
-      swiper.maxTranslate(),
-      Math.min(swiper.minTranslate(), target),
-    );
+      const target =
+        swiper.getTranslate() - direction * stepsPerClick * stepWidth;
+      const clamped = Math.max(
+        swiper.maxTranslate(),
+        Math.min(swiper.minTranslate(), target),
+      );
 
-    swiper.translateTo(clamped, duration);
-  };
+      swiper.translateTo(clamped, duration);
+    },
+    [swiper, stepWidth, stepsPerClick, duration],
+  );
 
-  const scrollToIndex = (index: number, speed = 0) => {
-    if (!swiper) return;
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      if (!swiper) return;
 
-    const target = -(index * stepWidth) + swiper.width / 2 - stepWidth / 2;
-    const clamped = Math.max(
-      swiper.maxTranslate(),
-      Math.min(swiper.minTranslate(), target),
-    );
+      const target = -(index * stepWidth) + swiper.width / 2 - stepWidth / 2;
+      const clamped = Math.max(
+        swiper.maxTranslate(),
+        Math.min(swiper.minTranslate(), target),
+      );
 
-    swiper.translateTo(clamped, speed, true, true);
-  };
+      swiper.setTranslate(clamped);
+      swiper.updateSlidesClasses();
+    },
+    [swiper, stepWidth],
+  );
 
   return {
     swiper,
