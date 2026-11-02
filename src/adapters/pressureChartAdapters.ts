@@ -1,7 +1,7 @@
 import type { PressureChartItem } from "@ts/props";
 import type { TwoWeekHourlyItem } from "@ts/weather";
 
-export const pressureToChartitems = (
+export const pressureHourlyToChartItems = (
   hours: TwoWeekHourlyItem[],
 ): PressureChartItem[] =>
   hours.map((hour) => ({

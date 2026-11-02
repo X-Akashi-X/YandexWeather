@@ -266,6 +266,23 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
   }));
 };
 
+export const twoWeeksData = (dataForecast: ApiForecast) => {
+  if (!dataForecast.daily.time) return [];
+
+  const value = dataForecast.daily.time.slice(1);
+
+  return value.map((t, i) => ({
+    twoWeeksDateKey: t,
+    twoWeeksWeekday: new Date(t).toLocaleString("ru-Ru", { weekday: "short" }),
+    twoWeeksMinPressure: Math.floor(
+      dataForecast.daily.surface_pressure_min[i + 1] * HPA_TO_MMHG,
+    ),
+    twoWeeksMaxPressure: Math.floor(
+      dataForecast.daily.surface_pressure_max[i + 1] * HPA_TO_MMHG,
+    ),
+  }));
+};
+
 export const monthlyData = (dataArchive: ApiArhive) => {
   if (!dataArchive.daily.time) return [];
 

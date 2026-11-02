@@ -11,6 +11,7 @@ import {
   yesterdayData,
   monthlyData,
   twoWeekHourlyData,
+  twoWeeksData,
 } from "./mappers/weatherMappers";
 import type { AdvancedWeather } from "@ts/weather";
 import {
@@ -71,6 +72,7 @@ const useServices = () => {
       getTwoWeekHourlyData: dataForecast
         ? twoWeekHourlyData(dataForecast)
         : DEFAULT_TWO_WEEK_HOURLY,
+      getTwoWeeksData: dataForecast ? twoWeeksData(dataForecast) : [],
     };
   }, [dataForecast, dataAirQuality, dataArhive, advancedWeather]);
 };

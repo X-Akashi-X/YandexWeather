@@ -4,7 +4,8 @@ import PressureGroups from "./components/PressureGroups/PressureGroups";
 import styles from "./mainInfoPressureSection.module.scss";
 import useServices from "@services/useServices";
 import PressureTimeLineChart from "./components/PressureTimeLineChart/PressureTimeLineChart";
-import { pressureToChartitems } from "@adapters/pressureChartAdapters";
+import { pressureHourlyToChartItems } from "@adapters/pressureChartAdapters";
+import TwoWeeksPressureChart from "./components/TwoWeeksPressureChart/TwoWeeksPressureChart";
 
 const MainInfoPressureSection = () => {
   const { getTwoWeekHourlyData } = useServices();
@@ -23,10 +24,11 @@ const MainInfoPressureSection = () => {
       />
       {activeDay && (
         <PressureTimeLineChart
-          items={pressureToChartitems(activeDay.fullHours)}
+          items={pressureHourlyToChartItems(activeDay.fullHours)}
           dateKey={activeDay.dateKey}
         />
       )}
+      <TwoWeeksPressureChart />
     </section>
   );
 };
