@@ -94,6 +94,7 @@ export const DEFAULT_TODAY = {
   todayMagneticField: 0,
   todayMagneticFieldCategory: DEFAULT_CATEGORY,
   todayMoonPhase: DEFAULT_MOON_PHASE,
+  todayPressure: 0,
 };
 
 export const DEFAULT_YESTERDAY = {
@@ -139,6 +140,7 @@ export const DEFAULT_TOMORROW = {
   tomorrowWeatherEffect: "",
   tomorrowWeatherInfo: "",
   tomorrowWindCategory: "",
+  tomorrowPressure: 0,
 };
 
 export const MONTH_NAMES = [

@@ -51,6 +51,9 @@ export const todayData = (dataForecast: ApiForecast) => {
     todayMaxPressure: Math.floor(
       dataForecast.daily.surface_pressure_max[1] * HPA_TO_MMHG,
     ),
+    todayPressure: Math.floor(
+      dataForecast.daily.surface_pressure_mean[1] * HPA_TO_MMHG,
+    ),
     todayPrecipitationProbability: getPrecipitationProbability(
       dataForecast.daily.precipitation_probability_max[1],
     ),
@@ -78,6 +81,9 @@ export const tomorrowData = (dataForecast: ApiForecast) => {
     tomorrowMinMaxWindSpeed: shouldShowDash(
       Math.floor(dataForecast.daily.wind_speed_10m_min[2]),
       Math.floor(dataForecast.daily.wind_speed_10m_max[2]),
+    ),
+    tomorrowPressure: Math.floor(
+      dataForecast.daily.surface_pressure_mean[2] * HPA_TO_MMHG,
     ),
     tomorrowWindGusts: Math.floor(dataForecast.daily.wind_gusts_10m_max[2]),
     tomorrowWeatherEffect: getWeatherEffect(dataForecast.daily.weather_code[2]),

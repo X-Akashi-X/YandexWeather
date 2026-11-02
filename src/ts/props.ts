@@ -184,6 +184,13 @@ export type FAQItemData = {
   id?: string;
 };
 
+export type FAQTodayPressureItems = {
+  todayPressure: number;
+};
+export type FAQTomorrowPressureItems = {
+  tomorrowPressure: number;
+};
+
 export type FAQItemProps = FAQItemData & {
   activeItem: number | null;
   i: number;
