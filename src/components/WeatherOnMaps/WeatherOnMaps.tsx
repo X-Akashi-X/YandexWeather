@@ -4,9 +4,9 @@ import { FreeMode, Navigation } from "swiper/modules";
 import { maps } from "./config";
 import MiniMapSlide from "./components/MiniMapSlide/MiniMapSlide";
 
-const WeatherOnMaps = () => {
+const WeatherOnMaps = ({style}: {style?: React.CSSProperties}) => {
   return (
-    <section className={styles.section_wrapper}>
+    <section className={styles.section_wrapper} style={style}>
       <h3 className={styles.title_main}>Прогноз погоды на картах</h3>
       <Swiper
         className={styles.maps_wrapper}

@@ -6,6 +6,7 @@ import useServices from "@services/useServices";
 import PressureTimeLineChart from "./components/PressureTimeLineChart/PressureTimeLineChart";
 import { pressureHourlyToChartItems } from "@adapters/pressureChartAdapters";
 import TwoWeeksPressureChart from "./components/TwoWeeksPressureChart/TwoWeeksPressureChart";
+import WeatherOnMaps from "@components/WeatherOnMaps/WeatherOnMaps";
 
 const MainInfoPressureSection = () => {
   const { getTwoWeekHourlyData } = useServices();
@@ -29,6 +30,7 @@ const MainInfoPressureSection = () => {
         />
       )}
       <TwoWeeksPressureChart />
+      <WeatherOnMaps />
     </section>
   );
 };

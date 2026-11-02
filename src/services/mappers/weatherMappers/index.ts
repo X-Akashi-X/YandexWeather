@@ -6,7 +6,7 @@ export {
   weekendData,
   tenDaysData,
   monthlyData,
-  twoWeeksData
+  twoWeeksData,
 } from "./dailyMapper";
 export {
   timeLineData,

@@ -134,6 +134,7 @@ const TwoWeeksPressureChart = () => {
               height={372}
               data={data}
               margin={{ top: 70, bottom: 50, left: 0, right: 0 }}
+              style={{cursor:"pointer"}}
             >
               <YAxis hide domain={[735, 770]} />
               <XAxis hide dataKey="twoWeeksWeekday" />
