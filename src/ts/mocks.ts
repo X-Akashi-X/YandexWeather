@@ -11,4 +11,5 @@ export type MockNews = {
   forecastNews: MockNewsDefault[];
   allergiesNews: MockNewsDefault[];
   magneticNews: MockNewsDefault[];
+  pressureNews: MockNewsDefault[];
 };

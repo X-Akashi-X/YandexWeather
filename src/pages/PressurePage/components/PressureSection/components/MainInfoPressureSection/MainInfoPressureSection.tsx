@@ -31,7 +31,7 @@ const MainInfoPressureSection = () => {
         />
       )}
       <TwoWeeksPressureChart />
-      <WeatherOnMaps style={{marginBottom: "36px"}} />
+      <WeatherOnMaps style={{ marginBottom: "36px" }} />
       <FAQPressureSection />
     </section>
   );

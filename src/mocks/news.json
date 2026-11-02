@@ -164,5 +164,57 @@
         "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
       ]
     }
+  ],
+  "pressureNews": [
+    {
+      "id": "whatIsPressure",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Атмосферное давление: что это такое и как влияет на погоду",
+      "description": "kk",
+      "cover_img": "/image/newsPressure/whatIsPressure.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "ballLightning",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Шаровая молния. Что это за природное явление и самые интересные факты о нем",
+      "description": "kk",
+      "cover_img": "/image/newsPressure/ballLightning.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "normOfPressure",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Какая норма атмосферного давления",
+      "description": "kk",
+      "cover_img": "/image/newsPressure/normOfPressure.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "whatIsPressureSecondNew",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Что такое атмосферное давление и как оно влияет на погоду?",
+      "description": "kk",
+      "cover_img": "/image/newsPressure/whatIsPressureSecondNew.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "lenticularClouds",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Что такое линзовидные облака и почему их принимают за НЛО?",
+      "description": "kk",
+      "cover_img": "/image/newsPressure/lenticularClouds.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    }
   ]
 }
