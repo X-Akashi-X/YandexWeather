@@ -33,7 +33,7 @@ export const useSwiperStepScroll = (
 
   const scrollToIndex = useCallback(
     (index: number) => {
-      if (!swiper) return;
+      if (!swiper || !swiper.width) return;
 
       const target = -(index * stepWidth) + swiper.width / 2 - stepWidth / 2;
       const clamped = Math.max(
@@ -41,10 +41,10 @@ export const useSwiperStepScroll = (
         Math.min(swiper.minTranslate(), target),
       );
 
-      swiper.setTranslate(clamped);
-      swiper.updateSlidesClasses();
+      swiper.translateTo(clamped, 0);
+      updateEdges(swiper)
     },
-    [swiper, stepWidth],
+    [swiper, stepWidth, updateEdges],
   );
 
   return {

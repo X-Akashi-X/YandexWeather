@@ -42,9 +42,9 @@ const TwoWeeksPressureChart = () => {
     return (
       <g>
         <rect
-          x={cx - PRESSURE_TW_CHART_STEP / 2}
+          x={cx - PRESSURE_TW_CHART_STEP / 2 + 4}
           y={0}
-          width={PRESSURE_TW_CHART_STEP}
+          width={PRESSURE_TW_CHART_STEP - 4}
           height={372}
           rx={16}
           fill="var(--grey-bg-opacity-low)"
@@ -149,9 +149,9 @@ const TwoWeeksPressureChart = () => {
                   height: number;
                 }) => (
                   <Rectangle
-                    x={p.x}
+                    x={p.x + 4}
                     y={p.y}
-                    width={p.width}
+                    width={p.width - 4}
                     height={p.height}
                     radius={16}
                     fill="#33c115"

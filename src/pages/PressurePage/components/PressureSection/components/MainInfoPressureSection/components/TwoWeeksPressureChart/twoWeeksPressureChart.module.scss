@@ -69,3 +69,14 @@
     }
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    .main_wrapper {
+      .arrow_left,
+      .arrow_right {
+        display: none;
+      }
+    }
+  }
+}

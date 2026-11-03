@@ -15,7 +15,7 @@
       background-color: rgb(51, 193, 21);
       border: 0.1px solid rgba(180, 184, 204, 0.64);
     }
-    p{
+    p {
       font-size: 14px;
     }
   }
@@ -83,6 +83,17 @@
       path,
       text {
         outline: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    .main_wrapper {
+      .arrow_left,
+      .arrow_right {
+        display: none;
       }
     }
   }

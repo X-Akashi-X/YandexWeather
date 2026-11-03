@@ -39,15 +39,22 @@ const PressureTimeLineChart = ({
     scrollToIndex,
   } = useSwiperStepScroll(PRESSURE_CHART_STEP, 4);
 
-  useEffect(() => {
-    if (!swiper) return;
-    swiper.update();
-
+  const getCurrentIndex = () => {
     const now = new Date();
     const todayKey = now.toLocaleDateString("sv-SE");
-    const index = dateKey === todayKey ? now.getHours() : 0;
 
-    scrollToIndex(index);
+    return dateKey === todayKey ? now.getHours() : 0;
+  };
+
+  useEffect(() => {
+    if (!swiper) return;
+
+    const frame = requestAnimationFrame(() => {
+      swiper.update();
+      scrollToIndex(getCurrentIndex());
+    });
+
+    return () => cancelAnimationFrame(frame);
   }, [swiper, dateKey, items.length, scrollToIndex]);
 
   const renderPressureNormalLine = (props: RectangleProps) => {
@@ -65,6 +72,7 @@ const PressureTimeLineChart = ({
       />
     );
   };
+
   return (
     <section className={styles.section_wrapper}>
       <div className={styles.main_wrapper}>
@@ -86,7 +94,14 @@ const PressureTimeLineChart = ({
             updateEdges(s);
           }}
           onProgress={updateEdges}
-          onResize={updateEdges}
+          onResize={(s) => {
+            updateEdges(s);
+
+            requestAnimationFrame(() => {
+              scrollToIndex(getCurrentIndex());
+            });
+          }}
+          key={width}
         >
           <SwiperSlide style={{ width }}>
             <LineChart

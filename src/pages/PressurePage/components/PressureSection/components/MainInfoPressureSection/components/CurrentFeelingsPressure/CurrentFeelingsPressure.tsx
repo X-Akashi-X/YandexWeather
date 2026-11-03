@@ -15,7 +15,7 @@ const CurrentFeelingsPressure = () => {
           <p className="small_grey_text">мм рт.ст.</p>
         </div>
       </div>
-      <div className={styles.info_wrapper}>
+      <div className={styles.info_main_wrapper}>
         <h2 className={styles.main_title}>Атмосферное давление в Минске</h2>
         <div className={styles.info_wrapper}>
           <p
