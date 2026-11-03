@@ -19,7 +19,7 @@ import {
 } from "@constants/components/pressureTimeLineChart";
 import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll ";
 import Arrow from "@assets/icons/arrowMore.svg";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const PressureTimeLineChart = ({
   items,
@@ -39,12 +39,12 @@ const PressureTimeLineChart = ({
     scrollToIndex,
   } = useSwiperStepScroll(PRESSURE_CHART_STEP, 4);
 
-  const getCurrentIndex = () => {
+  const getCurrentIndex = useCallback(() => {
     const now = new Date();
     const todayKey = now.toLocaleDateString("sv-SE");
 
     return dateKey === todayKey ? now.getHours() : 0;
-  };
+  }, [dateKey]);
 
   useEffect(() => {
     if (!swiper) return;
@@ -55,7 +55,7 @@ const PressureTimeLineChart = ({
     });
 
     return () => cancelAnimationFrame(frame);
-  }, [swiper, dateKey, items.length, scrollToIndex]);
+  }, [swiper, dateKey, items.length, scrollToIndex, getCurrentIndex]);
 
   const renderPressureNormalLine = (props: RectangleProps) => {
     const { x, y, width, height } = props;

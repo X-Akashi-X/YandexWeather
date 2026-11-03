@@ -42,7 +42,7 @@ export const useSwiperStepScroll = (
       );
 
       swiper.translateTo(clamped, 0);
-      updateEdges(swiper)
+      updateEdges(swiper);
     },
     [swiper, stepWidth, updateEdges],
   );
