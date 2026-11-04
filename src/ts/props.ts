@@ -253,3 +253,12 @@ export type PressureChartItem = {
   label: string;
   value: number;
 };
+{
+  /*MoonDetails*/
+}
+export type MoonDetailsItems = {
+  todayMoonrise: string;
+  todayMoonset: string;
+  todayMoonVisibility: string;
+  todayMoonAge: string;
+};

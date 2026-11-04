@@ -1,4 +1,4 @@
-import { HPA_TO_MMHG } from "@constants/conversions";
+import { HPA_TO_MMHG, LUNAR_MONTH } from "@constants/conversions";
 import { SATURDAY, SUNDAY, TOTAL_WEEKEND } from "@constants/daysCodes";
 import {
   ALLERGIES,
@@ -31,7 +31,26 @@ export const todayData = (dataForecast: ApiForecast) => {
       Math.floor(dataForecast.daily.surface_pressure_max[2] * HPA_TO_MMHG),
   );
 
+  const moonVisibility = (
+    (1 - Math.abs(1 - dataForecast.daily.moon_phase[1] * 2)) *
+    100
+  ).toLocaleString("ru-RU", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+
+  const moonAge = (
+    dataForecast.daily.moon_phase[1] * LUNAR_MONTH
+  ).toLocaleString("ru-RU", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+
   return {
+    todayDate: new Date().toLocaleDateString("ru-RU", {
+      day: "numeric",
+      month: "long",
+    }),
     todayMinTemperature: shouldShowPlus(
       Math.floor(dataForecast.daily.temperature_2m_min[1]),
     ),
@@ -65,6 +84,10 @@ export const todayData = (dataForecast: ApiForecast) => {
     todayMagneticField: magneticField,
     todayMagneticFieldCategory: getMagneticFieldCategory(magneticField),
     todayMoonPhase: getMoonPhase(dataForecast.daily.moon_phase[1]),
+    todayMoonrise: dataForecast.daily.moonrise[1]?.split("T")[1] || "--:--",
+    todayMoonset: dataForecast.daily.moonset[1]?.split("T")[1] || "--:--",
+    todayMoonVisibility: moonVisibility,
+    todayMoonAge: moonAge,
   };
 };
 

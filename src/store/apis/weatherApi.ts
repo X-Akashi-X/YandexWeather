@@ -24,6 +24,8 @@ const FORECAST_DAILY_FIELDS = [
   "sunset",
   "wind_speed_10m_mean",
   "wind_gusts_10m_mean",
+  "moonset",
+  "moonrise",
 ].join(",");
 
 const FORECAST_HOURLY_FIELDS = [

@@ -49,6 +49,8 @@ type ForecastDaily = {
   sunrise: number[];
   wind_speed_10m_mean: number[];
   wind_gusts_10m_mean: number[];
+  moonset: string[];
+  moonrise: string[];
 };
 
 export type ApiForecast = {

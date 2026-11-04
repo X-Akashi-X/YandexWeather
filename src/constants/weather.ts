@@ -79,6 +79,7 @@ export const DEFAULT_CURRENT_DAY = {
 };
 
 export const DEFAULT_TODAY = {
+  todayDate: "",
   todayMinTemperature: "",
   todayMaxTemperature: "",
   todayMinMaxWindSpeed: "",
@@ -95,6 +96,10 @@ export const DEFAULT_TODAY = {
   todayMagneticFieldCategory: DEFAULT_CATEGORY,
   todayMoonPhase: DEFAULT_MOON_PHASE,
   todayPressure: 0,
+  todayMoonrise: "",
+  todayMoonset: "",
+  todayMoonVisibility: "",
+  todayMoonAge: "",
 };
 
 export const DEFAULT_YESTERDAY = {

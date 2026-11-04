@@ -4,3 +4,4 @@ export const SECONDS_IN_HOUR = 3600;
 export const SECONDS_IN_MINUTE = 60;
 export const DEGREES_PER_DIRECTION = 45;
 export const TOTAL_WIND_DIRECTIONS = 8;
+export const LUNAR_MONTH = 29.53059;

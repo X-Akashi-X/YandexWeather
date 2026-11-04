@@ -41,7 +41,7 @@ export const getFeelingSlide = (
       id: "Давление",
     },
     {
-      link: "/",
+      link: "moon",
       img: todayMoonPhase.icon,
       title: "Луна",
       text: todayMoonPhase.text,
@@ -49,7 +49,7 @@ export const getFeelingSlide = (
       id: "Луна",
     },
     {
-      link: "/",
+      link: "uv-index",
       number: currentUVIndex,
       category: currentUVCategory,
       title: "УФ-индекс",
