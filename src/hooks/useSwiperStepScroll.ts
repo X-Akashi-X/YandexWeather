@@ -47,6 +47,14 @@ export const useSwiperStepScroll = (
     [swiper, stepWidth, updateEdges],
   );
 
+  const scrollToSlide = useCallback(
+    (index: number) => {
+      if (!swiper) return;
+      swiper.slideTo(index, 0);
+    },
+    [swiper],
+  );
+
   return {
     swiper,
     setSwiper,
@@ -55,5 +63,6 @@ export const useSwiperStepScroll = (
     isStart,
     updateEdges,
     scrollToIndex,
+    scrollToSlide
   };
 };

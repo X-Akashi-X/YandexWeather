@@ -352,11 +352,14 @@ export const monthlyData = (dataArchive: ApiArhive) => {
       const avgWeatherCode = getAvgWeatherCode(
         groupedData[key].totalWeatherCode,
       );
+      const now = new Date().getMonth();
+
       return {
         monthly,
         montlyAvgTemperature: shouldShowPlus(Math.floor(avgTemp)),
         montlyWeatherEffect: getWeatherEffect(avgWeatherCode),
         montlyWeatherInfo: getWeatherInfo(avgWeatherCode),
+        isCurrentMonth: monthIndex === now,
       };
     });
 };

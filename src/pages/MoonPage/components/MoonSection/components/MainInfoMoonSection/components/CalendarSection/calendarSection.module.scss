@@ -1,0 +1,27 @@
+.section_wrapper {
+  margin-bottom: 36px;
+  .header_calendar_wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    .calendar_switch_wrapper {
+      display: flex;
+      padding: 4px;
+      border-radius: $strong-radius;
+      background-color: $grey-bg-opacity-low;
+      gap: 3px;
+      button {
+        background-color: initial;
+        padding: 9px 16px;
+        border-radius: $strong-radius;
+        width: 73px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &.active {
+          background-color: $white-bg;
+        }
+      }
+    }
+  }
+}

@@ -17,10 +17,10 @@
     .weather_wrapper_item {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       background-color: $blue-light-bg;
       text-align: center;
-      padding: 19px 20px;
+      padding: 12px 12px;
       border-radius: $default-radius;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -46,8 +46,14 @@
       grid-template-rows: repeat(4, 1fr);
 
       .weather_wrapper_item {
-        gap: 3px;
-        padding: 10px 20px;
+        gap: 4.5px;
+        padding: 6px 12px;
+        .tmp_and_effect_wrapper{
+          img{
+            width: 24px;
+            height: auto;
+          }
+        }
       }
     }
   }

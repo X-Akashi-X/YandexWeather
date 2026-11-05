@@ -11,5 +11,5 @@ export {
   SourcesPage,
   MagneticFieldPage,
   PressurePage,
-  MoonPage
+  MoonPage,
 };

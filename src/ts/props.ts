@@ -243,7 +243,7 @@ export type MagneticForecastChartProps = {
   subTitle?: string;
 };
 {
-  /*PressureGroups*/
+  /*PressureDays*/
 }
 export type PressureStateActive = {
   active: string | null;
@@ -261,4 +261,9 @@ export type MoonDetailsItems = {
   todayMoonset: string;
   todayMoonVisibility: string;
   todayMoonAge: string;
+};
+{/*MoonMonth*/}
+export type MoonStateActive = {
+  active: string | null;
+  setActive?: Dispatch<SetStateAction<string | null>>;
 };

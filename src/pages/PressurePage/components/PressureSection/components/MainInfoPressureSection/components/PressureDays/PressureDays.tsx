@@ -1,11 +1,11 @@
-import styles from "./pressureGroups.module.scss";
+import styles from "./pressureDays.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import useServices from "@services/useServices";
 import { getDayItemDayLabel, isFirstOnMonthDay } from "@utils/formatters";
 import type { PressureStateActive } from "@ts/props";
 
-const PressureGroups = ({ active, setActive }: PressureStateActive) => {
+const PressureDays = ({ active, setActive }: PressureStateActive) => {
   const { getTwoWeekHourlyData } = useServices();
   const { twoWeeks } = getTwoWeekHourlyData;
 
@@ -52,4 +52,4 @@ const PressureGroups = ({ active, setActive }: PressureStateActive) => {
   );
 };
 
-export default PressureGroups;
+export default PressureDays;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CurrentFeelingsPressure from "./components/CurrentFeelingsPressure/CurrentFeelingsPressure";
-import PressureGroups from "./components/PressureGroups/PressureGroups";
+import PressureDays from "./components/PressureDays/PressureDays";
 import styles from "./mainInfoPressureSection.module.scss";
 import useServices from "@services/useServices";
 import PressureTimeLineChart from "./components/PressureTimeLineChart/PressureTimeLineChart";
@@ -20,7 +20,7 @@ const MainInfoPressureSection = () => {
   return (
     <section className={styles.section_wrapper}>
       <CurrentFeelingsPressure />
-      <PressureGroups
+      <PressureDays
         active={activeDay?.dateKey ?? null}
         setActive={setActive}
       />

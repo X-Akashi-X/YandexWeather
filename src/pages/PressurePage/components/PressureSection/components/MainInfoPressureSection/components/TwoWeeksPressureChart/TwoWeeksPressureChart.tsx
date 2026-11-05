@@ -16,7 +16,7 @@ import {
   PRESSURE_TW_CHART_SCROLL_BY,
   PRESSURE_TW_CHART_STEP,
 } from "@constants/components/twoWeeksPressureChart";
-import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll ";
+import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll";
 import { getPressureCategory } from "@utils/categories/categories";
 import useServices from "@services/useServices";
 import Arrow from "@assets/icons/arrowMore.svg";

@@ -17,7 +17,7 @@ import {
   PRESSURE_CHART_NORMAL_MIN,
   PRESSURE_CHART_STEP,
 } from "@constants/components/pressureTimeLineChart";
-import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll ";
+import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll";
 import Arrow from "@assets/icons/arrowMore.svg";
 import { useCallback, useEffect } from "react";
 
