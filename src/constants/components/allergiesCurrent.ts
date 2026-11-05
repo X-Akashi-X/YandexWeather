@@ -1,0 +1,6 @@
+export const ALLERGICS_WEAK_MIN = 300;
+export const ALLERGICS_WEAK_MAX = 1000;
+export const ALLERGICS_MODERATE_MIN = 1000;
+export const ALLERGICS_MODERATE_MAX = 2000;
+export const ALLERGICS_STRONG_MIN = 2000;
+export const ALLERGICS_STRONG_MAX = 4000;

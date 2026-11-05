@@ -1,0 +1,16 @@
+.moon_details {
+  display: flex;
+  gap: 6px;
+  .moon_details_item {
+    background-color: $grey-bg-opacity-low;
+    border-radius: $default-radius;
+    width: 25%;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    .title_details {
+      color: $color-light-grey;
+    }
+  }
+}
