@@ -402,5 +402,3 @@ export const monthlyDailyData2 = () => {
     return { month, monthIndex, days };
   });
 };
-
-console.log(monthlyDailyData2());
