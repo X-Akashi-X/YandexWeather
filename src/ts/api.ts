@@ -94,6 +94,9 @@ type ArchiveDaily = {
   time: string[];
   temperature_2m_mean: number[];
   weather_code: number[];
+  moon_phase: number[];
+  moonset: string[];
+  moonrise: string[];
 };
 
 export type ApiArhive = {

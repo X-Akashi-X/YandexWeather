@@ -100,3 +100,9 @@ export type TenDaysItem = {
   tenDaysWeatherInfo: string;
   tenDaysMagneticField: number;
 };
+
+export type MonthlyDailyData = {
+  monthlyDailyDayKey: string;
+  monthlyDailyDay: string;
+  monthlyDailyMoonPhase: ReturnType<typeof getMoonPhase>;
+};

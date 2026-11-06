@@ -71,7 +71,13 @@ const AIR_QUALITY_HOURLY_FIELDS = [
   "ragweed_pollen",
 ].join(",");
 
-const ARCHIVE_DAILY_FIELDS = ["temperature_2m_mean", "weather_code"].join(",");
+const ARCHIVE_DAILY_FIELDS = [
+  "temperature_2m_mean",
+  "weather_code",
+  "moon_phase",
+  "moonset",
+  "moonrise",
+].join(",");
 
 export const weatherApi = createApi({
   reducerPath: "weatherApi",
@@ -110,7 +116,7 @@ export const weatherApi = createApi({
         params: {
           latitude: lat,
           longitude: lon,
-          start_date: "2023-01-01",
+          start_date: "2025-01-01",
           end_date: "2025-12-31",
           daily: ARCHIVE_DAILY_FIELDS,
         },

@@ -20,10 +20,7 @@ const MainInfoPressureSection = () => {
   return (
     <section className={styles.section_wrapper}>
       <CurrentFeelingsPressure />
-      <PressureDays
-        active={activeDay?.dateKey ?? null}
-        setActive={setActive}
-      />
+      <PressureDays active={activeDay?.dateKey ?? null} setActive={setActive} />
       {activeDay && (
         <PressureTimeLineChart
           items={pressureHourlyToChartItems(activeDay.fullHours)}

@@ -9,6 +9,7 @@ import {
   MONTH_NAMES,
 } from "@constants/weather";
 import type { ApiAirQuality, ApiArhive, ApiForecast } from "@ts/api";
+import type { MonthlyDailyData } from "@ts/weather";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -315,6 +316,8 @@ export const twoWeeksData = (dataForecast: ApiForecast) => {
 export const monthlyData = (dataArchive: ApiArhive) => {
   if (!dataArchive.daily.time) return [];
 
+  const currentMonth = new Date().getMonth();
+
   const dates = dataArchive.daily.time;
   const temps = dataArchive.daily.temperature_2m_mean;
   const weatherCodes = dataArchive.daily.weather_code;
@@ -352,14 +355,52 @@ export const monthlyData = (dataArchive: ApiArhive) => {
       const avgWeatherCode = getAvgWeatherCode(
         groupedData[key].totalWeatherCode,
       );
-      const now = new Date().getMonth();
 
       return {
         monthly,
         montlyAvgTemperature: shouldShowPlus(Math.floor(avgTemp)),
         montlyWeatherEffect: getWeatherEffect(avgWeatherCode),
         montlyWeatherInfo: getWeatherInfo(avgWeatherCode),
-        isCurrentMonth: monthIndex === now,
+        isCurrentMonth: monthIndex === currentMonth,
       };
     });
 };
+
+export const monthlyDailyData = (dataArhive: ApiArhive) => {
+  if (!dataArhive.daily.time) return [];
+
+  const groupedDaysIndex: Record<string, MonthlyDailyData[]> = {};
+
+  dataArhive.daily.time.forEach((d, i) => {
+    const monthKey = +d.split("-")[1];
+
+    if (!groupedDaysIndex[monthKey]) {
+      groupedDaysIndex[monthKey] = [];
+    }
+
+    groupedDaysIndex[monthKey].push({
+      monthlyDailyDayKey: d,
+      monthlyDailyDay: new Date(d).toLocaleDateString("ru-RU", {
+        day: "numeric",
+      }),
+      monthlyDailyMoonPhase: getMoonPhase(dataArhive.daily.moon_phase[i]),
+    });
+  });
+};
+
+export const monthlyDailyData2 = () => {
+  const currentYear = new Date().getFullYear();
+
+  return MONTH_NAMES.map((month, monthIndex) => {
+    const daysInMonth = new Date(currentYear, monthIndex + 1, 0).getDate();
+
+    const days = [];
+    for (let day = 1; day < daysInMonth; day++) {
+      days.push({ day });
+    }
+
+    return { month, monthIndex, days };
+  });
+};
+
+console.log(monthlyDailyData2());

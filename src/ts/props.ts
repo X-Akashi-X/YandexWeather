@@ -262,7 +262,9 @@ export type MoonDetailsItems = {
   todayMoonVisibility: string;
   todayMoonAge: string;
 };
-{/*MoonMonth*/}
+{
+  /*MoonMonth*/
+}
 export type MoonStateActive = {
   active: string | null;
   setActive?: Dispatch<SetStateAction<string | null>>;

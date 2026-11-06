@@ -63,6 +63,6 @@ export const useSwiperStepScroll = (
     isStart,
     updateEdges,
     scrollToIndex,
-    scrollToSlide
+    scrollToSlide,
   };
 };
