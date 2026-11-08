@@ -89,6 +89,7 @@ export const weatherApi = createApi({
         params: {
           latitude: lat,
           longitude: lon,
+          timezone: "auto",
           past_days: 1,
           forecast_days: 14,
           wind_speed_unit: "ms",
@@ -104,6 +105,7 @@ export const weatherApi = createApi({
         params: {
           latitude: lat,
           longitude: lon,
+          timezone: "auto",
           current: AIR_QUALITY_CURRENT_FIELDS,
           hourly: AIR_QUALITY_HOURLY_FIELDS,
           forecast_days: 7,
@@ -116,6 +118,7 @@ export const weatherApi = createApi({
         params: {
           latitude: lat,
           longitude: lon,
+          timezone: "auto",
           start_date: "2025-01-01",
           end_date: "2025-12-31",
           daily: ARCHIVE_DAILY_FIELDS,

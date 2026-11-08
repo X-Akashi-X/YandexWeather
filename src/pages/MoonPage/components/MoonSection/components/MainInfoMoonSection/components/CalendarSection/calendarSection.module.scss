@@ -17,6 +17,7 @@
         width: 73px;
         text-align: center;
         cursor: pointer;
+        font-weight: $week-bold-text;
         transition: all 0.3s ease-in-out;
         &.active {
           background-color: $white-bg;

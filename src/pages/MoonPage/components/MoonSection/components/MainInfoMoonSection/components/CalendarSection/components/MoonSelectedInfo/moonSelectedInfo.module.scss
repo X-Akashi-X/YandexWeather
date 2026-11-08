@@ -1,0 +1,51 @@
+.selected_info_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background-color: $grey-bg-opacity-low;
+  border-radius: $default-radius;
+  padding: 20px 32px 20px 16px;
+  flex-grow: 1;
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    img {
+      width: 32px;
+      height: auto;
+    }
+    .date_wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      .date {
+        color: $color-light-grey;
+      }
+      .moon_phase {
+        font-size: 18px;
+        font-weight: $week-bold-text;
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  .details_info_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    .details_item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      .details_title {
+        color: $color-light-grey;
+      }
+      .details_info {
+        font-weight: $week-bold-text;
+        font-size: 18px;
+      }
+    }
+  }
+}

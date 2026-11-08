@@ -1,4 +1,8 @@
-import { HPA_TO_MMHG, LUNAR_MONTH } from "@constants/conversions";
+import {
+  HPA_TO_MMHG,
+  LUNAR_MONTH,
+  SYNODIC_MONTH,
+} from "@constants/conversions";
 import { SATURDAY, SUNDAY, TOTAL_WEEKEND } from "@constants/daysCodes";
 import {
   ALLERGIES,
@@ -9,7 +13,6 @@ import {
   MONTH_NAMES,
 } from "@constants/weather";
 import type { ApiAirQuality, ApiArhive, ApiForecast } from "@ts/api";
-import type { MonthlyDailyData } from "@ts/weather";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -19,10 +22,12 @@ import {
   getWindCategory,
 } from "@utils/categories/categories";
 import {
+  calcMoonPhase,
   getAvgWeatherCode,
   shouldShowDash,
   shouldShowPlus,
 } from "@utils/formatters";
+import { getMoonIllumination, getMoonTimes } from "suncalc";
 
 export const todayData = (dataForecast: ApiForecast) => {
   if (!dataForecast.daily) return DEFAULT_TODAY;
@@ -366,39 +371,71 @@ export const monthlyData = (dataArchive: ApiArhive) => {
     });
 };
 
-export const monthlyDailyData = (dataArhive: ApiArhive) => {
-  if (!dataArhive.daily.time) return [];
+export const monthlyDailyData = (lat: number, lon: number) => {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+  const currentDay = now.getDate();
 
-  const groupedDaysIndex: Record<string, MonthlyDailyData[]> = {};
+  const getMoonRiseAndSet = (date: Date, lat: number, lon: number) => {
+    const illumination = getMoonIllumination(date);
+    const times = getMoonTimes(date, lat, lon);
 
-  dataArhive.daily.time.forEach((d, i) => {
-    const monthKey = +d.split("-")[1];
+    const fmt = (d?: Date) =>
+      d
+        ? d.toLocaleTimeString("ru-RU", {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: "Europe/Minsk",
+          })
+        : "-";
 
-    if (!groupedDaysIndex[monthKey]) {
-      groupedDaysIndex[monthKey] = [];
-    }
-
-    groupedDaysIndex[monthKey].push({
-      monthlyDailyDayKey: d,
-      monthlyDailyDay: new Date(d).toLocaleDateString("ru-RU", {
-        day: "numeric",
+    return {
+      visibility: (illumination.fraction * 100).toLocaleString("ru-RU", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
       }),
-      monthlyDailyMoonPhase: getMoonPhase(dataArhive.daily.moon_phase[i]),
-    });
-  });
-};
+      age: (illumination.phase * SYNODIC_MONTH).toLocaleString("ru-RU", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+      moonrise: fmt(times.rise),
+      moonset: fmt(times.set),
+    };
+  };
 
-export const monthlyDailyData2 = () => {
-  const currentYear = new Date().getFullYear();
-
-  return MONTH_NAMES.map((month, monthIndex) => {
-    const daysInMonth = new Date(currentYear, monthIndex + 1, 0).getDate();
+  return MONTH_NAMES.map((monthly, monthlyIndex) => {
+    const daysInMonth = new Date(currentYear, monthlyIndex + 1, 0).getDate();
+    const offset = (new Date(currentYear, monthlyIndex, 1).getDay() + 6) % 7;
 
     const days = [];
-    for (let day = 1; day < daysInMonth; day++) {
-      days.push({ day });
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(currentYear, monthlyIndex, day, 12);
+      const dayMonth = date.toLocaleDateString("ru-RU", {
+        day: "numeric",
+        month: "long",
+      });
+      const weekday = date.toLocaleDateString("ru-RU", {
+        weekday: "long",
+      });
+
+      days.push({
+        day,
+        moonPhase: getMoonPhase(calcMoonPhase(currentYear, monthlyIndex, day)),
+        formattedDate: dayMonth,
+        formattedWeekend: weekday,
+        details: getMoonRiseAndSet(date, lat, lon),
+        isToday: monthlyIndex === currentMonth && day === currentDay,
+        isWeekend: (offset + day - 1) % 7 >= 5,
+      });
     }
 
-    return { month, monthIndex, days };
+    return {
+      monthly,
+      monthlyIndex,
+      days,
+      moonOffsetDay: offset,
+      isCurrentMonth: monthlyIndex === currentMonth,
+    };
   });
 };

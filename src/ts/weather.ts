@@ -101,8 +101,26 @@ export type TenDaysItem = {
   tenDaysMagneticField: number;
 };
 
+type MonthlyDailyDataDetails = {
+  visibility: string;
+  age: string;
+  moonrise: string;
+  moonset: string;
+};
+
+export type MonthlyDailyDataDays = {
+  day: number;
+  moonPhase: ReturnType<typeof getMoonPhase>;
+  formattedDate: string;
+  details: MonthlyDailyDataDetails;
+  isToday: boolean;
+  isWeekend: boolean;
+};
+
 export type MonthlyDailyData = {
-  monthlyDailyDayKey: string;
-  monthlyDailyDay: string;
-  monthlyDailyMoonPhase: ReturnType<typeof getMoonPhase>;
+  monthly: string;
+  monthlyIndex: number;
+  days: MonthlyDailyDataDays[];
+  moonOffsetDay: number;
+  isCurrentMonth: boolean;
 };

@@ -1,15 +1,15 @@
-import type { MoonDetailsItems } from "@ts/props";
+import type { DefaultMoonDetailsItems } from "@ts/props";
 
 export const moonDetailsConfig = ({
-  todayMoonrise,
-  todayMoonset,
-  todayMoonVisibility,
-  todayMoonAge,
-}: MoonDetailsItems) => {
+  visibility,
+  age,
+  moonrise,
+  moonset,
+}: DefaultMoonDetailsItems) => {
   return [
-    { title: "Видимость", info: `${todayMoonVisibility} %`, id: "visibility" },
-    { title: "Возраст", info: `${todayMoonAge} дня`, id: "age" },
-    { title: "Восход", info: todayMoonrise, id: "moonrise" },
-    { title: "Заход", info: todayMoonset, id: "moonset" },
+    { title: "Видимость", info: `${visibility} %`, id: "visibility" },
+    { title: "Возраст", info: `${age} дня`, id: "age" },
+    { title: "Восход", info: moonrise, id: "moonrise" },
+    { title: "Заход", info: moonset, id: "moonset" },
   ];
 };

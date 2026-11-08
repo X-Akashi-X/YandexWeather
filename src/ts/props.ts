@@ -2,7 +2,7 @@ import type {
   defaultCategoryType,
   getMoonPhase,
 } from "@utils/categories/categories";
-import type { PeriodAverages } from "./weather";
+import type { MonthlyDailyData, PeriodAverages } from "./weather";
 import type { Dispatch, SetStateAction } from "react";
 {
   /*DetailedForecast*/
@@ -256,11 +256,11 @@ export type PressureChartItem = {
 {
   /*MoonDetails*/
 }
-export type MoonDetailsItems = {
-  todayMoonrise: string;
-  todayMoonset: string;
-  todayMoonVisibility: string;
-  todayMoonAge: string;
+export type DefaultMoonDetailsItems = {
+  moonrise: string;
+  moonset: string;
+  visibility: string;
+  age: string;
 };
 {
   /*MoonMonth*/
@@ -268,4 +268,21 @@ export type MoonDetailsItems = {
 export type MoonStateActive = {
   active: string | null;
   setActive?: Dispatch<SetStateAction<string | null>>;
+};
+{
+  /*MoonCalendar*/
+}
+export type MoonCalendarStateActive = {
+  month: MonthlyDailyData;
+  activeDay: number;
+  setSelectedDay: (day: number) => void;
+};
+{
+  /*MoonSelectedInfo*/
+}
+export type MoonSelectedInfoItems = {
+  moonPhase: ReturnType<typeof getMoonPhase>;
+  formattedDate: string;
+  formattedWeekend: string;
+  details: DefaultMoonDetailsItems;
 };

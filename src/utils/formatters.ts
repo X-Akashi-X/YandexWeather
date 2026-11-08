@@ -1,5 +1,8 @@
 import {
   DEGREES_PER_DIRECTION,
+  KNOWN_NEW_MOON,
+  MS_IN_DAY,
+  SYNODIC_MONTH,
   TOTAL_WIND_DIRECTIONS,
 } from "@constants/conversions";
 import { weatherMap } from "./weatherMapper/weatherMapper";
@@ -91,3 +94,15 @@ export function isFirstOnMonthDay({
   }
   return fallback;
 }
+
+export const calcMoonPhase = (
+  year: number,
+  monthIndex: number,
+  day: number,
+) => {
+  const target = Date.UTC(year, monthIndex, day, 12);
+  const daysSince = (target - KNOWN_NEW_MOON) / MS_IN_DAY;
+  const cycles = daysSince / SYNODIC_MONTH;
+
+  return ((cycles % 1) + 1) % 1;
+};

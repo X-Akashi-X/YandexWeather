@@ -2,22 +2,34 @@ import { useState } from "react";
 import styles from "./calendarSection.module.scss";
 import MoonMonth from "./components/MoonMonth/MoonMonth";
 import useServices from "@services/useServices";
+import MoonCalendar from "./components/MoonCalendar/MoonCalendar";
+import MoonSelectedInfo from "./components/MoonSelectedInfo/MoonSelectedInfo";
 
 const CalendarSection = () => {
-  const { getMontlyData } = useServices();
+  const { getMonthlyDailyData } = useServices();
 
   const [activeTab, setActiveTab] = useState<string>("days");
   const [activeMonth, setActiveMonth] = useState<string | null>(null);
-
-  const hanleActiveTab = (id: string) => {
-    setActiveTab(id);
-  };
-
-  const currentMonth = getMontlyData.find((month) => month.isCurrentMonth);
+  const [selectedDay, setSelectedDay] = useState<{
+    monthlyIndex: number;
+    day: number;
+  } | null>(null);
 
   const activeMonthData =
-    getMontlyData.find((month) => month.monthly === activeMonth) ??
-    currentMonth;
+    getMonthlyDailyData.find((m) => m.monthly === activeMonth) ??
+    getMonthlyDailyData.find((m) => m.isCurrentMonth) ??
+    getMonthlyDailyData[0];
+
+  const defaultDay = activeMonthData.isCurrentMonth
+    ? (activeMonthData.days.find((d) => d.isToday)?.day ?? 1)
+    : 1;
+
+  const activeDay =
+    selectedDay?.monthlyIndex === activeMonthData?.monthlyIndex
+      ? selectedDay.day
+      : defaultDay;
+
+  const activeDayData = activeMonthData?.days.find((d) => d.day === activeDay);
 
   return (
     <section className={styles.section_wrapper}>
@@ -26,13 +38,13 @@ const CalendarSection = () => {
         <div className={styles.calendar_switch_wrapper}>
           <button
             className={activeTab === "days" ? styles.active : ""}
-            onClick={() => hanleActiveTab("days")}
+            onClick={() => setActiveTab("days")}
           >
             Дни
           </button>
           <button
             className={activeTab === "phases" ? styles.active : ""}
-            onClick={() => hanleActiveTab("phases")}
+            onClick={() => setActiveTab("phases")}
           >
             Фазы
           </button>
@@ -42,6 +54,16 @@ const CalendarSection = () => {
         active={activeMonthData?.monthly ?? null}
         setActive={setActiveMonth}
       />
+      {activeMonthData && (
+        <MoonCalendar
+          month={activeMonthData}
+          activeDay={activeDay}
+          setSelectedDay={(day) =>
+            setSelectedDay({ monthlyIndex: activeMonthData.monthlyIndex, day })
+          }
+        />
+      )}
+      {activeDayData && <MoonSelectedInfo data={activeDayData} />}
     </section>
   );
 };

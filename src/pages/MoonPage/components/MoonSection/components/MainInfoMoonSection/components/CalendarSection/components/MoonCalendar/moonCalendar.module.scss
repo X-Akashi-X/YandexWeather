@@ -1,0 +1,38 @@
+.main_wrapper {
+  margin-bottom: 12px;
+  .weekdays {
+    margin-bottom: 10px;
+    p {
+      padding-left: 16px;
+      color: $color-light-grey;
+    }
+  }
+  .weekdays,
+  .calendar_wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    .calendar_item {
+      padding: 10px 14px;
+      background-color: $grey-bg-opacity-low;
+      border-radius: $default-radius;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      img {
+        align-self: end;
+        width: 32px;
+        height: auto;
+      }
+      &.active {
+        border-color: black;
+        font-weight: $week-bold-text;
+      }
+      .weekday {
+        color: $link-red-hovered;
+      }
+    }
+  }
+}

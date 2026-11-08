@@ -185,3 +185,5 @@ export const ALLERGIES: Record<string, string> = {
   olive: "олива",
   ragweed: "амброзия",
 };
+
+export const SHORT_WEEKDAYS = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
