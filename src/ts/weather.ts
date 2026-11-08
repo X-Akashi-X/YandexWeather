@@ -112,6 +112,7 @@ export type MonthlyDailyDataDays = {
   day: number;
   moonPhase: ReturnType<typeof getMoonPhase>;
   formattedDate: string;
+  formattedWeekend: string;
   details: MonthlyDailyDataDetails;
   isToday: boolean;
   isWeekend: boolean;

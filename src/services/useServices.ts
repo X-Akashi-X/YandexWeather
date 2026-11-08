@@ -14,7 +14,7 @@ import {
   twoWeeksData,
   monthlyDailyData,
 } from "./mappers/weatherMappers";
-import type { AdvancedWeather } from "@ts/weather";
+import type { AdvancedWeather, MonthlyDailyData } from "@ts/weather";
 import {
   DEFAULT_CURRENT_DAY,
   DEFAULT_ONE_DAY,
@@ -45,6 +45,11 @@ const useServices = () => {
     return advancedDaysData(dataForecast);
   }, [dataForecast]);
 
+  const monthlyDaily = useMemo<MonthlyDailyData[]>(
+    () => monthlyDailyData(lat, lon),
+    [lat, lon],
+  );
+
   return useMemo(() => {
     const isForecastAndAir = dataForecast && dataAirQuality;
 
@@ -74,9 +79,15 @@ const useServices = () => {
         ? twoWeekHourlyData(dataForecast)
         : DEFAULT_TWO_WEEK_HOURLY,
       getTwoWeeksData: dataForecast ? twoWeeksData(dataForecast) : [],
-      getMonthlyDailyData: monthlyDailyData(lat, lon),
+      getMonthlyDailyData: monthlyDaily,
     };
-  }, [dataForecast, dataAirQuality, dataArhive, advancedWeather]);
+  }, [
+    dataForecast,
+    dataAirQuality,
+    dataArhive,
+    advancedWeather,
+    monthlyDailyData,
+  ]);
 };
 
 export default useServices;
