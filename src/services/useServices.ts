@@ -81,13 +81,7 @@ const useServices = () => {
       getTwoWeeksData: dataForecast ? twoWeeksData(dataForecast) : [],
       getMonthlyDailyData: monthlyDaily,
     };
-  }, [
-    dataForecast,
-    dataAirQuality,
-    dataArhive,
-    advancedWeather,
-    monthlyDailyData,
-  ]);
+  }, [dataForecast, dataAirQuality, dataArhive, advancedWeather, monthlyDaily]);
 };
 
 export default useServices;
