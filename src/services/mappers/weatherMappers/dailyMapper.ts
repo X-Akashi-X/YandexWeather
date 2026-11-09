@@ -13,6 +13,7 @@ import {
   MONTH_NAMES,
 } from "@constants/weather";
 import type { ApiAirQuality, ApiArhive, ApiForecast } from "@ts/api";
+import type { MonthlyDailyDataDays, monthlyMoonPhaseGroup } from "@ts/weather";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -408,7 +409,9 @@ export const monthlyDailyData = (lat: number, lon: number) => {
     const daysInMonth = new Date(currentYear, monthlyIndex + 1, 0).getDate();
     const offset = (new Date(currentYear, monthlyIndex, 1).getDay() + 6) % 7;
 
-    const days = [];
+    const days: MonthlyDailyDataDays[] = [];
+    const monthlyPhases: monthlyMoonPhaseGroup[] = [];
+
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(currentYear, monthlyIndex, day, 12);
       const dayMonth = date.toLocaleDateString("ru-RU", {
@@ -418,9 +421,13 @@ export const monthlyDailyData = (lat: number, lon: number) => {
       const weekday = date.toLocaleDateString("ru-RU", {
         weekday: "long",
       });
+      const month = date.toLocaleDateString("ru-RU", {
+        month: "short",
+      });
 
       days.push({
         day,
+        month,
         moonPhase: getMoonPhase(calcMoonPhase(currentYear, monthlyIndex, day)),
         formattedDate: dayMonth,
         formattedWeekend: weekday,
@@ -430,10 +437,27 @@ export const monthlyDailyData = (lat: number, lon: number) => {
       });
     }
 
+    for (const day of days) {
+      const lastGroup = monthlyPhases[monthlyPhases.length - 1];
+      if (lastGroup && lastGroup.moonPhase.text === day.moonPhase.text) {
+        lastGroup.lastDay = day.day;
+        lastGroup.isToday = lastGroup.isToday || day.isToday;
+      } else {
+        monthlyPhases.push({
+          firstDay: day.day,
+          lastDay: day.day,
+          month: day.month,
+          moonPhase: day.moonPhase,
+          isToday: day.isToday,
+        });
+      }
+    }
+
     return {
       monthly,
       monthlyIndex,
       days,
+      monthlyPhases,
       moonOffsetDay: offset,
       isCurrentMonth: monthlyIndex === currentMonth,
     };

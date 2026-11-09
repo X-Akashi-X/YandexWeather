@@ -4,6 +4,7 @@ import MoonMonth from "./components/MoonMonth/MoonMonth";
 import useServices from "@services/useServices";
 import MoonCalendar from "./components/MoonCalendar/MoonCalendar";
 import MoonSelectedInfo from "./components/MoonSelectedInfo/MoonSelectedInfo";
+import MoonPhases from "./components/MoonPhases/MoonPhases";
 
 const CalendarSection = () => {
   const { getMonthlyDailyData } = useServices();
@@ -54,7 +55,7 @@ const CalendarSection = () => {
         active={activeMonthData?.monthly ?? null}
         setActive={setActiveMonth}
       />
-      {activeMonthData && (
+      {activeTab === "days" && activeMonthData && (
         <MoonCalendar
           month={activeMonthData}
           activeDay={activeDay}
@@ -63,7 +64,12 @@ const CalendarSection = () => {
           }
         />
       )}
-      {activeDayData && <MoonSelectedInfo data={activeDayData} />}
+      {activeTab === "days" && activeDayData && (
+        <MoonSelectedInfo data={activeDayData} />
+      )}
+      {activeTab === "phases" && activeMonthData && (
+        <MoonPhases month={activeMonthData} />
+      )}
     </section>
   );
 };

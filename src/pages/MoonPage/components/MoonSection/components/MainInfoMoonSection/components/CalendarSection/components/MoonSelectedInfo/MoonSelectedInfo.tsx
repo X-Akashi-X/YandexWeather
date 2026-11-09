@@ -17,7 +17,7 @@ const MoonSelectedInfo = ({
           <p className={styles.date}>
             {formattedDate}, {formattedWeekend}
           </p>
-          <p className={styles.moon_phase}>{moonPhase.text} Луна</p>
+          <p className={styles.moon_phase}>{moonPhase.text}</p>
         </div>
       </div>
       <div className={styles.details_info_wrapper}>

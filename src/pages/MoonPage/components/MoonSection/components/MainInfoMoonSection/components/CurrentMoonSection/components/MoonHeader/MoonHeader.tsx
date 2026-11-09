@@ -9,7 +9,7 @@ const MoonHeader = ({ data }: { data: MonthlyDailyDataDays }) => {
       <img src={moonPhase.icon} alt="" />
       <div className={styles.info_header}>
         <p className={styles.info_date}>Сегодня, {formattedDate}</p>
-        <p className={styles.info_phase}>{moonPhase.text} Луна</p>
+        <p className={styles.info_phase}>{moonPhase.text}</p>
       </div>
     </div>
   );

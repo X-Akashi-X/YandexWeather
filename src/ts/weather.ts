@@ -110,6 +110,7 @@ type MonthlyDailyDataDetails = {
 
 export type MonthlyDailyDataDays = {
   day: number;
+  month: string;
   moonPhase: ReturnType<typeof getMoonPhase>;
   formattedDate: string;
   formattedWeekend: string;
@@ -118,10 +119,19 @@ export type MonthlyDailyDataDays = {
   isWeekend: boolean;
 };
 
+export type monthlyMoonPhaseGroup = {
+  firstDay: number;
+  lastDay: number;
+  month: string;
+  moonPhase: ReturnType<typeof getMoonPhase>;
+  isToday: boolean;
+};
+
 export type MonthlyDailyData = {
   monthly: string;
   monthlyIndex: number;
   days: MonthlyDailyDataDays[];
   moonOffsetDay: number;
   isCurrentMonth: boolean;
+  monthlyPhases: monthlyMoonPhaseGroup[];
 };
