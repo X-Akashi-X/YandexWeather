@@ -6,7 +6,7 @@
   border-radius: $default-radius;
   padding: 20px 32px 20px 16px;
   flex-grow: 1;
-  .info {
+  .info_wrapper {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -46,6 +46,15 @@
         font-weight: $week-bold-text;
         font-size: 18px;
       }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .selected_info_wrapper {
+    display: block;
+    .info_wrapper {
+      margin-bottom: 16px;
     }
   }
 }

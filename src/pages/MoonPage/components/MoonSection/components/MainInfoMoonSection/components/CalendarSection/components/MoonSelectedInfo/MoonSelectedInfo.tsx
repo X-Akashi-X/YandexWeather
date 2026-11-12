@@ -11,7 +11,7 @@ const MoonSelectedInfo = ({
 
   return (
     <div className={styles.selected_info_wrapper}>
-      <div className={styles.info}>
+      <div className={styles.info_wrapper}>
         <img src={moonPhase.icon} alt="" />
         <div className={styles.date_wrapper}>
           <p className={styles.date}>

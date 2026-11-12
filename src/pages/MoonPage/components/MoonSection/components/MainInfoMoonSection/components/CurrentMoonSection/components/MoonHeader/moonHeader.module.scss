@@ -22,3 +22,10 @@
     }
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .moon_header {
+    display: block;
+    text-align: center;
+  }
+}

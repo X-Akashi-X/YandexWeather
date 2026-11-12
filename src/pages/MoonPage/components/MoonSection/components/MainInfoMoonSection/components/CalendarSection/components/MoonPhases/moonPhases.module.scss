@@ -29,3 +29,15 @@
     }
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .main_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    .phase_item {
+      img {
+        width: 42px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

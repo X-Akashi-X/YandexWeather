@@ -3,10 +3,6 @@
   border-radius: $default-radius;
   height: 42px;
   margin-bottom: 24px;
-  :global(.swiper-wrapper) {
-    padding: 1px 0;
-    padding-bottom: 16px;
-  }
   :global(.swiper-button-prev),
   :global(.swiper-button-next) {
     padding: 5px;
@@ -22,17 +18,22 @@
   }
   .slide {
     width: auto;
-    flex-shrink: 0;
+    margin-inline: 3px;
     background-color: $grey-bg-opacity-low;
     padding: 9px 16px;
     border-radius: $strong-radius;
     display: flex;
     align-items: center;
-    gap: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: $link-grey-hovered;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
     }
     .name {
       font-weight: $week-bold-text;

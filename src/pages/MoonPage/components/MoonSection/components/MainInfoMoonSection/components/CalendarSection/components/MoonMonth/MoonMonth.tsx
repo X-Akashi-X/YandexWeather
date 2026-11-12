@@ -20,9 +20,6 @@ const MoonMonth = ({ active }: { active: number }) => {
   useLayoutEffect(() => {
     if (!swiper || activeMonthIndex === INDEXOF_NOT_FOUND) return;
 
-    swiper.update();
-    scrollToSlide(activeMonthIndex);
-
     let cancelled = false;
     document.fonts.ready.then(() => {
       if (cancelled) return;
@@ -40,7 +37,6 @@ const MoonMonth = ({ active }: { active: number }) => {
       className={styles.main_wrapper}
       modules={[Navigation, FreeMode]}
       slidesPerView="auto"
-      spaceBetween={6}
       freeMode={true}
       touchRatio={1}
       navigation

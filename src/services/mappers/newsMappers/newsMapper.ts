@@ -6,6 +6,7 @@ export const allNews = (newsData: MockNews) => {
     newsAllergies: newsData.allergiesNews,
     newsMagnetic: newsData.magneticNews,
     newsPressure: newsData.pressureNews,
+    newsAstronomy: newsData.astronomyNews,
   };
 };
 export const randomNews = (newsData: MockNewsDefault[]) => {

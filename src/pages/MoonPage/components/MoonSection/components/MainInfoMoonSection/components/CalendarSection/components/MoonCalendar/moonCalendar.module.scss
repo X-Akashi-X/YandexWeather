@@ -36,3 +36,15 @@
     }
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .main_wrapper {
+    .calendar_wrapper {
+      .calendar_item {
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+}

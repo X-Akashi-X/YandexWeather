@@ -216,5 +216,67 @@
         "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
       ]
     }
+  ],
+  "astronomyNews": [
+    {
+      "id": "cygnus",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Созвездие Лебедь: где находится и как найти на небе",
+      "description": "kk",
+      "cover_img": "/image/newsAstronomy/cygnus.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "pegasus",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Созвездие Пегас: где находится и как найти на небе",
+      "description": "kk",
+      "cover_img": "/image/newsAstronomy/pegasus.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "draco",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Созвездие Дракон: где находится и как найти на небе",
+      "description": "kk",
+      "cover_img": "/image/newsAstronomy/draco.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "cassiopeia",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Созвездие Кассиопея: где находится и как найти на небе",
+      "description": "kk",
+      "cover_img": "/image/newsAstronomy/cassiopeia.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "ursaMajor",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Созвездие Большая Медведица: где находится и как найти на небе",
+      "description": "kk",
+      "cover_img": "/image/newsAstronomy/ursaMajor.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    },
+    {
+      "id": "orion",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Созвездие Орион: где находится и как найти на небе",
+      "description": "kk",
+      "cover_img": "/image/newsAstronomy/orion.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
+    }
   ]
 }
