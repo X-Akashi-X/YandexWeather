@@ -2,25 +2,37 @@ import styles from "./moonMonth.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import useServices from "@services/useServices";
-import type { MoonStateActive } from "@ts/props";
 import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect } from "react";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@store/store";
+import { setActiveMonthIndex } from "@store/slices/moonCalendarSlice";
 import { INDEXOF_NOT_FOUND } from "@constants/utils";
 
-const MoonMonth = ({ active, setActive }: MoonStateActive) => {
-  const { getMontlyData } = useServices();
-  const activeMonthIndex = getMontlyData.findIndex((m) => m.monthly === active);
+const MoonMonth = ({ active }: { active: number }) => {
+  const { getMonthlyDailyData } = useServices();
+  const dispatch: AppDispatch = useDispatch();
+  const activeMonthIndex = getMonthlyDailyData.findIndex(
+    (m) => m.monthlyIndex === active,
+  );
   const { swiper, setSwiper, scrollToSlide } = useSwiperStepScroll(0, 1);
 
-  const didInitialScroll = useRef(false);
-
   useLayoutEffect(() => {
-    if (!swiper || didInitialScroll.current) return;
-    if (activeMonthIndex === INDEXOF_NOT_FOUND) return;
+    if (!swiper || activeMonthIndex === INDEXOF_NOT_FOUND) return;
 
     swiper.update();
     scrollToSlide(activeMonthIndex);
-    didInitialScroll.current = true;
+
+    let cancelled = false;
+    document.fonts.ready.then(() => {
+      if (cancelled) return;
+      swiper.update();
+      scrollToSlide(activeMonthIndex);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [swiper, scrollToSlide, activeMonthIndex]);
 
   return (
@@ -36,14 +48,14 @@ const MoonMonth = ({ active, setActive }: MoonStateActive) => {
         setSwiper(s);
       }}
     >
-      {getMontlyData.map(({ monthly }) => {
-        const isActive = active === monthly;
+      {getMonthlyDailyData.map(({ monthlyIndex, monthly }) => {
+        const isActive = active === monthlyIndex;
 
         return (
           <SwiperSlide
             className={styles.slide}
-            key={monthly}
-            onClick={() => setActive?.(monthly)}
+            key={monthlyIndex}
+            onClick={() => dispatch(setActiveMonthIndex(monthlyIndex))}
             style={isActive ? { backgroundColor: "rgba(38, 38, 51, 1)" } : {}}
           >
             <p

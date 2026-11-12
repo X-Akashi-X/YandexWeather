@@ -5,7 +5,7 @@ const MoonPhases = ({ month }: { month: MonthlyDailyData }) => {
   return (
     <div className={styles.main_wrapper}>
       {month.monthlyPhases.map(
-        ({ firstDay, lastDay, moonPhase, isToday, month }) => (
+        ({ firstDay, lastDay, moonPhase, isToday, monthShort }) => (
           <div
             className={`${styles.phase_item} ${isToday ? styles.active : ""}`}
             key={firstDay}
@@ -14,8 +14,8 @@ const MoonPhases = ({ month }: { month: MonthlyDailyData }) => {
             <p className={styles.phase}>{moonPhase.text}</p>
             <p className={styles.dates}>
               {firstDay === lastDay
-                ? `${firstDay} ${month}`
-                : `${firstDay}–${lastDay} ${month}`}
+                ? `${firstDay} ${monthShort}`
+                : `${firstDay}–${lastDay} ${monthShort}`}
             </p>
           </div>
         ),

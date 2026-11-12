@@ -2,9 +2,12 @@ import type {
   FAQMainAdvancedItems,
   FAQMainCurrentItems,
   FAQMainTodayItems,
+  FAQMoonPhasesItem,
   FAQTodayPressureItems,
   FAQTomorrowPressureItems,
 } from "@ts/props";
+import type { MonthlyDailyDataDetails } from "@ts/weather";
+import type { getMoonPhase } from "@utils/categories/categories";
 
 export const getFAQMainItems = (
   {
@@ -164,6 +167,92 @@ export const getFAQPressureItems = (
       title: "Чем измеряют атмосферное давление?",
       text: "Для измерения атмосферного давления используют специальный прибор барометр, которые могут быть: ртутными, жидкостными, механическими и электронными. Как единицу измерения атмосферного давления принято брать миллиметры ртутного столба (мм.рт.ст.). Иногда давление измеряют в гектопаскалях (гПа).",
       id: "whichIsMeasure",
+    },
+  ];
+};
+
+export const getFAQMoonDayItems = ({
+  details,
+  moonPhase,
+}: {
+  details: MonthlyDailyDataDetails;
+  moonPhase: ReturnType<typeof getMoonPhase>;
+}) => {
+  return [
+    {
+      title: "Что такое фазы Луны?",
+      text: "Фазы Луны — это визуальные перемены освещённой части Луны. Визуальные — потому что Луна не меняется в действительности, это мы видим её определённым образом. Освещённость Луны меняется потому, что сама Луна вращается вокруг Земли, и Солнце освещает разные стороны нашего спутника по очереди. Из-за этого для нас облик Луны постоянно меняется.",
+      id: "whatIsMoonPhase",
+    },
+    {
+      title: "Что такое полнолуние?",
+      text: "Через 14,8 дня после новолуния Луна находится чётко напротив Солнца. Это полнолуние. Солнце освещает Луну полностью, с Земли виден целиком освещённый лунный диск. Эта фаза противоположна новолунию, она самая яркая.",
+      id: "whatIsFullMoon",
+    },
+    {
+      title: "Почему меняются фазы Луны?",
+      text: "Фазы Луны связаны с положением, которое занимает Луна на земной орбите. Взаимное расположение Луны, Земли и Солнца постоянно изменяется, солнечный свет попадает на разные части Луны, смещается лунный терминатор — граница между освещённой и неосвещёнными частями её диска. По этой причине очертания Луны кажутся другими.",
+      id: "whyDoMoonsPhasesChange",
+    },
+    {
+      title: "Какая Луна сегодня в Минске?",
+      text: `Сегодня в Минске Луна находится в фазе ${moonPhase.text.charAt(0).toUpperCase() + moonPhase.text.slice(1)}. Освещенность Луны составляет ${details.visibility}%. Сегодня Луна взойдет в ${details.moonrise}. Луна зайдет за горизонт в ${details.moonset}.`,
+      id: "whichIsPhaseToday",
+    },
+  ];
+};
+
+export const getFAQMoonPhasesItems = ({
+  newMoon,
+  waxingMoon,
+  fullMoon,
+  waningMoon,
+  currentMonth,
+}: FAQMoonPhasesItem) => {
+  const currentFormattedMonth = currentMonth.monthly
+    .replace(/[ьй]$/, "е")
+    .replace(/([гтсп]$)/, "$1е")
+    .toLowerCase();
+
+  const monthLongFormatted = (monthOfPhase: string) => {
+    return monthOfPhase
+      .replace(/[ьй]$/, "я")
+      .replace(/([гтсп]$)/, "$1а")
+      .toLowerCase();
+  };
+
+  const handleChangeDates = (
+    month: string,
+    firstDay: number,
+    lastDay: number,
+  ) => {
+    if (firstDay === lastDay) {
+      return `${firstDay} ${monthLongFormatted(month)}`;
+    }
+
+    return `с ${firstDay} по ${lastDay} ${monthLongFormatted(month)}`;
+  };
+
+  return [
+    {
+      title: `Когда Новолуние в ${currentFormattedMonth}?`,
+      text: `Новолуние наступает ${handleChangeDates(newMoon.monthLong, newMoon.firstDay, newMoon.lastDay)}`,
+      id: "whenNewMoon",
+    },
+    {
+      title: `Когда будет Растущая Луна в ${currentFormattedMonth}?`,
+      text: `Растущая Луна будет ${handleChangeDates(waxingMoon.monthLong, waxingMoon.firstDay, waxingMoon.lastDay)}`,
+      id: "whenWaxingMoon",
+    },
+    {
+      title: `Когда Полнолуние в ${currentFormattedMonth}?`,
+      text: `Полнолуние наступает ${handleChangeDates(fullMoon.monthLong, fullMoon.firstDay, fullMoon.lastDay)}`,
+      id: "whenFullMoon",
+    },
+    {
+      title: `Когда будет Убывающая Луна в ${currentFormattedMonth}?`,
+      text: `Убывающая Луна будет ${handleChangeDates(waningMoon.monthLong, waningMoon.firstDay, waningMoon.lastDay)}`,
+      id: "whenWaningMoon",
     },
   ];
 };

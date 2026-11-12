@@ -4,8 +4,6 @@
   height: 42px;
   margin-bottom: 24px;
   :global(.swiper-wrapper) {
-    max-width: fit-content;
-    margin: 0 auto;
     padding: 1px 0;
     padding-bottom: 16px;
   }
@@ -17,15 +15,16 @@
     width: 40px;
   }
   :global(.swiper-button-prev) {
-    left: 0
+    left: 0;
   }
   :global(.swiper-button-next) {
     right: 0;
   }
   .slide {
+    width: auto;
+    flex-shrink: 0;
     background-color: $grey-bg-opacity-low;
     padding: 9px 16px;
-    max-width: fit-content;
     border-radius: $strong-radius;
     display: flex;
     align-items: center;

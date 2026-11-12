@@ -13,7 +13,7 @@ import {
   MONTH_NAMES,
 } from "@constants/weather";
 import type { ApiAirQuality, ApiArhive, ApiForecast } from "@ts/api";
-import type { MonthlyDailyDataDays, monthlyMoonPhaseGroup } from "@ts/weather";
+import type { MonthlyDailyDataDays, MonthlyMoonPhaseGroup } from "@ts/weather";
 import {
   getMagneticFieldCategory,
   getMoonPhase,
@@ -410,7 +410,7 @@ export const monthlyDailyData = (lat: number, lon: number) => {
     const offset = (new Date(currentYear, monthlyIndex, 1).getDay() + 6) % 7;
 
     const days: MonthlyDailyDataDays[] = [];
-    const monthlyPhases: monthlyMoonPhaseGroup[] = [];
+    const monthlyPhases: MonthlyMoonPhaseGroup[] = [];
 
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(currentYear, monthlyIndex, day, 12);
@@ -421,13 +421,17 @@ export const monthlyDailyData = (lat: number, lon: number) => {
       const weekday = date.toLocaleDateString("ru-RU", {
         weekday: "long",
       });
-      const month = date.toLocaleDateString("ru-RU", {
+      const monthShort = date.toLocaleDateString("ru-RU", {
         month: "short",
+      });
+      const monthLong = date.toLocaleDateString("ru-RU", {
+        month: "long",
       });
 
       days.push({
         day,
-        month,
+        monthShort,
+        monthLong,
         moonPhase: getMoonPhase(calcMoonPhase(currentYear, monthlyIndex, day)),
         formattedDate: dayMonth,
         formattedWeekend: weekday,
@@ -446,7 +450,9 @@ export const monthlyDailyData = (lat: number, lon: number) => {
         monthlyPhases.push({
           firstDay: day.day,
           lastDay: day.day,
-          month: day.month,
+          monthShort: day.monthShort,
+          monthLong: day.monthLong,
+          formattedDate: day.formattedDate,
           moonPhase: day.moonPhase,
           isToday: day.isToday,
         });

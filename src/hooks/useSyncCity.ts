@@ -1,6 +1,6 @@
 import { cities } from "@configs/cities";
 import { setCityFromUrl, setGeoData } from "@store/slices/geoSlice";
-import type { RootState } from "@store/store";
+import type { AppDispatch, RootState } from "@store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 export const useSyncCity = () => {
   const { cityName } = useParams();
   const { cityUrl } = useSelector((state: RootState) => state.geo);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     if (cityName !== cityUrl) {

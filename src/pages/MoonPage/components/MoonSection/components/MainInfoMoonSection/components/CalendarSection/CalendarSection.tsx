@@ -1,36 +1,33 @@
-import { useState } from "react";
 import styles from "./calendarSection.module.scss";
 import MoonMonth from "./components/MoonMonth/MoonMonth";
-import useServices from "@services/useServices";
 import MoonCalendar from "./components/MoonCalendar/MoonCalendar";
 import MoonSelectedInfo from "./components/MoonSelectedInfo/MoonSelectedInfo";
 import MoonPhases from "./components/MoonPhases/MoonPhases";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@store/store";
+import {
+  selectActiveDay,
+  selectActiveDayData,
+  selectActiveMonthData,
+} from "@store/selectors/moonCalendarSelectors";
+import useServices from "@services/useServices";
+import { setActiveTab, setSelectedDay } from "@store/slices/moonCalendarSlice";
 
-const CalendarSection = () => {
+const CalendarSection = ({ activeTab }: { activeTab: string }) => {
   const { getMonthlyDailyData } = useServices();
+  const dispatch: AppDispatch = useDispatch();
 
-  const [activeTab, setActiveTab] = useState<string>("days");
-  const [activeMonth, setActiveMonth] = useState<string | null>(null);
-  const [selectedDay, setSelectedDay] = useState<{
-    monthlyIndex: number;
-    day: number;
-  } | null>(null);
+  const currentMonth = useSelector((state: RootState) =>
+    selectActiveMonthData(state, getMonthlyDailyData),
+  );
 
-  const activeMonthData =
-    getMonthlyDailyData.find((m) => m.monthly === activeMonth) ??
-    getMonthlyDailyData.find((m) => m.isCurrentMonth) ??
-    getMonthlyDailyData[0];
+  const activeDay = useSelector((state: RootState) =>
+    selectActiveDay(state, getMonthlyDailyData),
+  );
 
-  const defaultDay = activeMonthData.isCurrentMonth
-    ? (activeMonthData.days.find((d) => d.isToday)?.day ?? 1)
-    : 1;
-
-  const activeDay =
-    selectedDay?.monthlyIndex === activeMonthData?.monthlyIndex
-      ? selectedDay.day
-      : defaultDay;
-
-  const activeDayData = activeMonthData?.days.find((d) => d.day === activeDay);
+  const activeDayData = useSelector((state: RootState) =>
+    selectActiveDayData(state, getMonthlyDailyData),
+  );
 
   return (
     <section className={styles.section_wrapper}>
@@ -39,37 +36,34 @@ const CalendarSection = () => {
         <div className={styles.calendar_switch_wrapper}>
           <button
             className={activeTab === "days" ? styles.active : ""}
-            onClick={() => setActiveTab("days")}
+            onClick={() => dispatch(setActiveTab("days"))}
           >
             Дни
           </button>
           <button
             className={activeTab === "phases" ? styles.active : ""}
-            onClick={() => setActiveTab("phases")}
+            onClick={() => dispatch(setActiveTab("phases"))}
           >
             Фазы
           </button>
         </div>
       </div>
-      <MoonMonth
-        active={activeMonthData?.monthly ?? null}
-        setActive={setActiveMonth}
-      />
-      {activeTab === "days" && activeMonthData && (
+      <MoonMonth active={currentMonth.monthlyIndex} />
+      {activeTab === "days" && (
         <MoonCalendar
-          month={activeMonthData}
+          month={currentMonth}
           activeDay={activeDay}
           setSelectedDay={(day) =>
-            setSelectedDay({ monthlyIndex: activeMonthData.monthlyIndex, day })
+            dispatch(
+              setSelectedDay({ monthlyIndex: currentMonth.monthlyIndex, day }),
+            )
           }
         />
       )}
       {activeTab === "days" && activeDayData && (
         <MoonSelectedInfo data={activeDayData} />
       )}
-      {activeTab === "phases" && activeMonthData && (
-        <MoonPhases month={activeMonthData} />
-      )}
+      {activeTab === "phases" && <MoonPhases month={currentMonth} />}
     </section>
   );
 };

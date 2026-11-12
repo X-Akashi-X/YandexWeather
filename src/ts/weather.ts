@@ -101,7 +101,7 @@ export type TenDaysItem = {
   tenDaysMagneticField: number;
 };
 
-type MonthlyDailyDataDetails = {
+export type MonthlyDailyDataDetails = {
   visibility: string;
   age: string;
   moonrise: string;
@@ -110,7 +110,8 @@ type MonthlyDailyDataDetails = {
 
 export type MonthlyDailyDataDays = {
   day: number;
-  month: string;
+  monthShort: string;
+  monthLong: string;
   moonPhase: ReturnType<typeof getMoonPhase>;
   formattedDate: string;
   formattedWeekend: string;
@@ -119,10 +120,12 @@ export type MonthlyDailyDataDays = {
   isWeekend: boolean;
 };
 
-export type monthlyMoonPhaseGroup = {
+export type MonthlyMoonPhaseGroup = {
   firstDay: number;
   lastDay: number;
-  month: string;
+  monthShort: string;
+  monthLong: string;
+  formattedDate: string;
   moonPhase: ReturnType<typeof getMoonPhase>;
   isToday: boolean;
 };
@@ -133,5 +136,5 @@ export type MonthlyDailyData = {
   days: MonthlyDailyDataDays[];
   moonOffsetDay: number;
   isCurrentMonth: boolean;
-  monthlyPhases: monthlyMoonPhaseGroup[];
+  monthlyPhases: MonthlyMoonPhaseGroup[];
 };

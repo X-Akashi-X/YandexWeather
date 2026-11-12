@@ -2,7 +2,11 @@ import type {
   defaultCategoryType,
   getMoonPhase,
 } from "@utils/categories/categories";
-import type { MonthlyDailyData, PeriodAverages } from "./weather";
+import type {
+  MonthlyDailyData,
+  MonthlyMoonPhaseGroup,
+  PeriodAverages,
+} from "./weather";
 import type { Dispatch, SetStateAction } from "react";
 {
   /*DetailedForecast*/
@@ -196,6 +200,13 @@ export type FAQItemProps = FAQItemData & {
   i: number;
   toggle: (i: number) => void;
 };
+export type FAQMoonPhasesItem = {
+  newMoon: MonthlyMoonPhaseGroup;
+  waxingMoon: MonthlyMoonPhaseGroup;
+  fullMoon: MonthlyMoonPhaseGroup;
+  waningMoon: MonthlyMoonPhaseGroup;
+  currentMonth: MonthlyDailyData;
+};
 {
   /*SettingsDropdown*/
 }
@@ -261,13 +272,6 @@ export type DefaultMoonDetailsItems = {
   moonset: string;
   visibility: string;
   age: string;
-};
-{
-  /*MoonMonth*/
-}
-export type MoonStateActive = {
-  active: string | null;
-  setActive?: Dispatch<SetStateAction<string | null>>;
 };
 {
   /*MoonCalendar*/
