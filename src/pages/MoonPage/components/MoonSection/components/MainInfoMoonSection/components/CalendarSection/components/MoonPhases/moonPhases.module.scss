@@ -1,0 +1,43 @@
+.main_wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  .phase_item {
+    background-color: $grey-bg-opacity-low;
+    border-radius: $default-radius;
+    padding: 26px 8px 22px;
+    text-align: center;
+    img {
+      width: 56px;
+      height: auto;
+      margin-bottom: 16px;
+    }
+    .phase {
+      margin-bottom: 4px;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+    .dates {
+      color: $color-light-grey;
+    }
+    &.active {
+      background-color: $color-light-grey-opacity-low;
+      .phase {
+        font-weight: $week-bold-text;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .main_wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    .phase_item {
+      img {
+        width: 42px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

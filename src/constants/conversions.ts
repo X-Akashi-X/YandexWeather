@@ -1,0 +1,10 @@
+export const HPA_TO_MMHG = 0.75006;
+export const WATER_TEMP_OFFSET = 3;
+export const SECONDS_IN_HOUR = 3600;
+export const SECONDS_IN_MINUTE = 60;
+export const DEGREES_PER_DIRECTION = 45;
+export const TOTAL_WIND_DIRECTIONS = 8;
+export const LUNAR_MONTH = 29.53059;
+export const SYNODIC_MONTH = 29.530588853;
+export const KNOWN_NEW_MOON = Date.UTC(2000, 0, 6, 18, 14);
+export const MS_IN_DAY = 24 * 60 * 60 * 1000;

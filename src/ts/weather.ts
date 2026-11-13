@@ -1,0 +1,140 @@
+import type {
+  defaultCategoryType,
+  getMoonPhase,
+} from "@utils/categories/categories";
+
+type DefaultCategory = {
+  fill: number;
+  color: string;
+  text: string;
+};
+
+export type DefaultCategoryPollen = DefaultCategory & {
+  minAllergicsCount: number;
+  maxAllergicsCount: number;
+  colorAllergies: string;
+  imgAllergies: { img: string; y: string; x: string };
+};
+
+export type PeriodData = {
+  temp: number;
+  feels: number;
+  windSpeed: number;
+  windDir: number;
+  humidity: number;
+  pressure: number;
+  weatherCode: number;
+};
+
+export type PeriodAverages = {
+  advancedTemperature: string;
+  advancedApparentTemperature: string;
+  advancedWindSpeed: number;
+  advancedWindDirection: number;
+  advancedWindDirectionText: string;
+  advancedHumidity: number;
+  advancedPressure: number;
+  advancedWeatherEffect: string;
+  advancedWeatherInfo: string;
+};
+
+export type AdvancedDayItem = {
+  advancedDateKey: string;
+  advancedDate: string;
+  advancedWeekday: string;
+  advancedWeekend: number;
+  morning: PeriodAverages;
+  day: PeriodAverages;
+  evening: PeriodAverages;
+  night: PeriodAverages;
+  advancedAvgWaterTemp: string;
+  advancedAvgUV: number;
+  advancedUVCategory: ReturnType<typeof defaultCategoryType>;
+  advancedAvgHumidity: number | string;
+  advancedAvgPressure: number | string;
+  advancedMagnteticField: number;
+  advancedMagnteticFieldCategory: ReturnType<typeof defaultCategoryType>;
+  advancedSunrise: string;
+  advancedSunset: string;
+  advancedSunDay: string;
+  advancedMoonPhase: ReturnType<typeof getMoonPhase>;
+};
+
+export type AdvancedWeather = {
+  tenDays: AdvancedDayItem[];
+  oneDay: AdvancedDayItem;
+};
+
+export type DayGroups = {
+  morning: PeriodData[];
+  day: PeriodData[];
+  evening: PeriodData[];
+  night: PeriodData[];
+};
+
+export type TwoWeekHourlyItem = {
+  twoWeekHourlyDate: string;
+  twoWeekHourlyWeekday: string;
+  twoWeekHourlyTime: string;
+  twoWeekHourlyMagnetic: number;
+  isPast: boolean;
+  twoWeekHourlyPressure: number;
+};
+
+export type TwoWeekDayData = {
+  formatedDate: string;
+  date: number;
+  dateKey: string;
+  hours: TwoWeekHourlyItem[];
+  fullHours: TwoWeekHourlyItem[];
+};
+
+export type TenDaysItem = {
+  tenDaysDateKey: string;
+  tenDaysDate: number;
+  tenDaysWeekday: string;
+  tenDaysWeekend: number;
+  tenDaysMaxTemperature: string;
+  tenDaysMinTemperature: string;
+  tenDaysWeatherEffect: string;
+  tenDaysWeatherInfo: string;
+  tenDaysMagneticField: number;
+};
+
+export type MonthlyDailyDataDetails = {
+  visibility: string;
+  age: string;
+  moonrise: string;
+  moonset: string;
+};
+
+export type MonthlyDailyDataDays = {
+  day: number;
+  monthShort: string;
+  monthLong: string;
+  moonPhase: ReturnType<typeof getMoonPhase>;
+  formattedDate: string;
+  formattedWeekend: string;
+  details: MonthlyDailyDataDetails;
+  isToday: boolean;
+  isWeekend: boolean;
+};
+
+export type MonthlyMoonPhaseGroup = {
+  firstDay: number;
+  lastDay: number;
+  monthShort: string;
+  monthLong: string;
+  formattedDate: string;
+  moonPhase: ReturnType<typeof getMoonPhase>;
+  isToday: boolean;
+};
+
+export type MonthlyDailyData = {
+  monthly: string;
+  monthlyIndex: number;
+  days: MonthlyDailyDataDays[];
+  moonOffsetDay: number;
+  isCurrentMonth: boolean;
+  monthlyPhases: MonthlyMoonPhaseGroup[];
+};

@@ -1,0 +1,38 @@
+.section_wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+  .arc_wrapper {
+    width: 96px;
+    position: relative;
+    .category_wrapper {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      .category {
+        font-size: 28px;
+        font-weight: $week-bold-text;
+      }
+    }
+  }
+  .info_wrapper {
+    .main_title {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .info {
+      font-weight: $week-bold-text;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper{
+    flex-direction: column;
+    text-align: center;
+  }
+}
