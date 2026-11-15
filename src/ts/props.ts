@@ -6,6 +6,7 @@ import type {
   MonthlyDailyData,
   MonthlyMoonPhaseGroup,
   PeriodAverages,
+  TwoWeekDayData,
 } from "./weather";
 import type { Dispatch, SetStateAction } from "react";
 {
@@ -289,4 +290,12 @@ export type MoonSelectedInfoItems = {
   formattedDate: string;
   formattedWeekend: string;
   details: DefaultMoonDetailsItems;
+};
+{
+  /*UVIndexSection*/
+}
+export type UVIndexStateActive = {
+  active?: TwoWeekDayData | null;
+  setActive?: Dispatch<SetStateAction<string | null>>;
+  activeDateKey?: string | null;
 };

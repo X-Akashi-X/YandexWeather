@@ -1,0 +1,8 @@
+.section_wrapper {
+  border-radius: $default-radius;
+  padding-top: 16px;
+  .main_wrapper {
+    max-width: 672px;
+    margin: 0 auto;
+  }
+}

@@ -37,6 +37,7 @@ const FORECAST_HOURLY_FIELDS = [
   "wind_direction_10m",
   "relative_humidity_2m",
   "surface_pressure",
+  "uv_index",
 ].join(",");
 
 const FORECAST_CURRENT_FIELDS = [

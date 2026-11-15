@@ -16,6 +16,7 @@ import {
   MoonPage,
   PressurePage,
   SourcesPage,
+  UVIndexPage,
 } from "./pages";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route path="magnetic-field" element={<MagneticFieldPage />} />
             <Route path="pressure" element={<PressurePage />} />
             <Route path="moon" element={<MoonPage />} />
+            <Route path="uv-index" element={<UVIndexPage />} />
           </Route>
         </Routes>
       </main>

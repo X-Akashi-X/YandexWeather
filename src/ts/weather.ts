@@ -1,6 +1,7 @@
 import type {
   defaultCategoryType,
   getMoonPhase,
+  getUVCategory,
 } from "@utils/categories/categories";
 
 type DefaultCategory = {
@@ -14,6 +15,13 @@ export type DefaultCategoryPollen = DefaultCategory & {
   maxAllergicsCount: number;
   colorAllergies: string;
   imgAllergies: { img: string; y: string; x: string };
+};
+
+export type DefaultCategoryUV = DefaultCategory & {
+  advancedText: string;
+  imgUV: string;
+  bgGradient: string;
+  attributeImgs: string[];
 };
 
 export type PeriodData = {
@@ -84,9 +92,13 @@ export type TwoWeekHourlyItem = {
 export type TwoWeekDayData = {
   formatedDate: string;
   date: number;
+  twoWeekUV: number;
+  twoWeekUVCategory: ReturnType<typeof getUVCategory>;
   dateKey: string;
   hours: TwoWeekHourlyItem[];
   fullHours: TwoWeekHourlyItem[];
+  dayHours: TwoWeekHourlyItem[];
+  isToday: boolean;
 };
 
 export type TenDaysItem = {

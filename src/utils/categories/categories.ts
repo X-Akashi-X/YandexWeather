@@ -10,9 +10,19 @@ import { moonMap } from "../moonMapper/moonMapper";
 import { weatherMap } from "../weatherMapper/weatherMapper";
 import type { DefaultCategoryPollen } from "@ts/weather";
 import {
+  cap,
   ClearAllergies,
+  extremeUV,
+  glasses,
+  highUV,
+  home,
+  lowUV,
+  mediumUV,
   NormalAllergies,
+  shirt,
+  spf,
   StrongAllergies,
+  veryHighUV,
   WeakAllergies,
 } from ".";
 
@@ -102,12 +112,61 @@ export function getPressureCategory(category: number) {
 }
 
 export function getUVCategory(category: number) {
-  if (category <= 2) return { fill: 0, color: "#33c115", text: "низкий" };
-  if (category <= 5) return { fill: 0.17, color: "#ffd400", text: "умеренный" };
-  if (category <= 7) return { fill: 0.42, color: "#ff7e01", text: "высокий" };
+  if (category <= 2)
+    return {
+      fill: 0,
+      color: "#33c115",
+      text: "низкий",
+      advancedText: "Солнце доброе, защита не нужна",
+      imgUV: lowUV,
+      bgGradient:
+        "linear-gradient(180deg, rgba(238, 255, 240, 1) 18.27%, rgba(171, 255, 182, 1) 100%)",
+      attributeImgs: [],
+    };
+  if (category <= 5)
+    return {
+      fill: 0.17,
+      color: "#ffd400",
+      text: "умеренный",
+      advancedText: "Солнце спокойное. Но крем с панамой не помешают",
+      imgUV: mediumUV,
+      bgGradient:
+        "linear-gradient(180deg, rgba(255, 252, 239, 1) 18.27%, rgba(255, 231, 155, 1) 100%)",
+      attributeImgs: [spf, cap],
+    };
+  if (category <= 7)
+    return {
+      fill: 0.42,
+      color: "#ff7e01",
+      text: "высокий",
+      advancedText:
+        "Припекает. Наносите защиту, надевайте панаму и крутые очки",
+      imgUV: highUV,
+      bgGradient:
+        "linear-gradient(180deg, rgba(255, 243, 241, 1) 18.27%, rgba(252, 208, 158, 1) 100%)",
+      attributeImgs: [spf, cap, glasses],
+    };
   if (category <= 10)
-    return { fill: 0.67, color: "#c30101", text: "очень высокий" };
-  return { fill: 1, color: "#57348d", text: "экстремальный" };
+    return {
+      fill: 0.67,
+      color: "#c30101",
+      text: "очень высокий",
+      advancedText: "Закрывайте кожу и глаза, обновляйте крем — солнце жарит",
+      imgUV: veryHighUV,
+      bgGradient:
+        "linear-gradient(180deg, rgba(255, 243, 241, 1) 18.27%, rgba(249, 176, 163, 1) 100%)",
+      attributeImgs: [spf, cap, glasses, shirt],
+    };
+  return {
+    fill: 1,
+    color: "#57348d",
+    text: "экстремальный",
+    advancedText: "От солнца лучше спрятаться",
+    imgUV: extremeUV,
+    bgGradient:
+      "linear-gradient(180deg, rgba(249, 235, 255, 1) 18.27%, rgba(178, 136, 234, 1) 100%)",
+    attributeImgs: [spf, cap, glasses, shirt, home],
+  };
 }
 
 export function getMagneticFieldCategory(category: number) {

@@ -24,6 +24,7 @@ type ForecastHourly = {
   wind_direction_10m: number[];
   surface_pressure: number[];
   relative_humidity_2m: number[];
+  uv_index: number[];
 };
 
 type ForecastDaily = {

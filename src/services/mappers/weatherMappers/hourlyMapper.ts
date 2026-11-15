@@ -53,6 +53,7 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
 
 export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
   const groupedDays: Record<string, number[]> = {};
+  const now = new Date().toLocaleDateString("sv-SE");
 
   if (!dataForecast.hourly.time) return DEFAULT_TWO_WEEK_HOURLY;
 
@@ -68,8 +69,14 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
 
   const thinnedDays = Object.entries(groupedDays).map(([date, hourIndex]) => {
     const thinnedHours = hourIndex.filter((_, idx) => idx % 3 === 0);
+    const dayHours = hourIndex.slice(9, 20);
 
-    return { date, hourIndex: thinnedHours, fullHourIndex: hourIndex };
+    return {
+      date,
+      hourIndex: thinnedHours,
+      fullHourIndex: hourIndex,
+      dayHoursIndex: dayHours,
+    };
   });
 
   const getHoursData = (date: string, hours: number[], prevHours: number[]) => {
@@ -105,6 +112,10 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
         twoWeekHourlyPressure: Math.floor(
           dataForecast.hourly.surface_pressure[hour] * HPA_TO_MMHG,
         ),
+        twoWeekHourlyUV: Math.floor(dataForecast.hourly.uv_index[hour]),
+        twoWeekHourlyUVCategory: getUVCategory(
+          Math.floor(dataForecast.hourly.uv_index[hour]),
+        ),
         isPast: new Date(currentTime) < new Date(),
       };
     });
@@ -120,6 +131,11 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
         day.fullHourIndex,
         previousDay?.fullHourIndex,
       ),
+      dayHours: getHoursData(
+        day.date,
+        day.dayHoursIndex,
+        previousDay?.dayHoursIndex,
+      ),
     };
   });
 
@@ -133,15 +149,22 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
     ),
     dateKey: thinnedDays[i + 1].date,
     date: new Date(thinnedDays[i + 1].date).getDate(),
+    twoWeekUV: Math.floor(dataForecast.hourly.uv_index[i + 1]),
+    twoWeekUVCategory: getUVCategory(
+      Math.floor(dataForecast.hourly.uv_index[i + 1]),
+    ),
     hours: day.hours,
     fullHours: day.fullHours,
+    dayHours: day.dayHours,
+    isToday: thinnedDays[i + 1].date === now,
   }));
 
   const threeDays = finalDaysData.slice(0, 3);
   const sixDays = finalDaysData.slice(0, 6);
+  const tenDays = finalDaysData.slice(0, 10);
   const twoWeeks = finalDaysData.slice(0, 14);
 
-  return { threeDays, sixDays, twoWeeks };
+  return { threeDays, sixDays, tenDays, twoWeeks };
 };
 
 export const timeLineData = (dataForecast: ApiForecast) => {

@@ -1,4 +1,8 @@
-import type { DefaultCategoryPollen, TwoWeekDayData } from "@ts/weather";
+import type {
+  DefaultCategoryPollen,
+  DefaultCategoryUV,
+  TwoWeekDayData,
+} from "@ts/weather";
 
 export const DEFAULT_CATEGORY = {
   fill: 0,
@@ -16,6 +20,14 @@ export const DEFAULT_CATEGORY_POLLEN: DefaultCategoryPollen = {
     x: "",
     y: "",
   },
+};
+
+export const DEFAULT_CATEGORY_UV: DefaultCategoryUV = {
+  ...DEFAULT_CATEGORY,
+  advancedText: "",
+  imgUV: "",
+  bgGradient: "",
+  attributeImgs: [],
 };
 
 export const DEFAULT_MOON_PHASE = { text: "данные отсутствуют", icon: "-" };
@@ -48,7 +60,7 @@ export const DEFAULT_ONE_DAY = {
   night: DEFAULT_PERIOD_AVERAGES,
   advancedAvgWaterTemp: "",
   advancedAvgUV: 0,
-  advancedUVCategory: DEFAULT_CATEGORY,
+  advancedUVCategory: DEFAULT_CATEGORY_UV,
   advancedAvgHumidity: "-",
   advancedAvgPressure: "-",
   advancedMagnteticField: 0,
@@ -75,7 +87,7 @@ export const DEFAULT_CURRENT_DAY = {
   currentPollenCategory: DEFAULT_CATEGORY_POLLEN,
   currentAllergies: DEFAULT_ALLERGIES,
   currentPressureCategory: DEFAULT_CATEGORY,
-  currentUVCategory: DEFAULT_CATEGORY,
+  currentUVCategory: DEFAULT_CATEGORY_UV,
 };
 
 export const DEFAULT_TODAY = {
@@ -109,10 +121,12 @@ export const DEFAULT_YESTERDAY = {
 export const DEFAULT_TWO_WEEK_HOURLY: {
   threeDays: TwoWeekDayData[];
   sixDays: TwoWeekDayData[];
+  tenDays: TwoWeekDayData[];
   twoWeeks: TwoWeekDayData[];
 } = {
   threeDays: [],
   sixDays: [],
+  tenDays: [],
   twoWeeks: [],
 };
 
