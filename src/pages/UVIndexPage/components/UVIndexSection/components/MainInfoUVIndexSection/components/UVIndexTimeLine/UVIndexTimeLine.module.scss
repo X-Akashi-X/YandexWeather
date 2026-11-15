@@ -17,3 +17,12 @@
     }
   }
 }
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    margin-top: -15px;
+    .chart_wrapper {
+      height: 215px;
+    }
+  }
+}

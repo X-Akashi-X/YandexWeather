@@ -6,7 +6,9 @@
   }
   .categories_wrapper {
     display: flex;
-    gap: 6px;
+    :global(.swiper-slide) {
+      width: 128px;
+    }
     .categories_item {
       position: relative;
       display: flex;

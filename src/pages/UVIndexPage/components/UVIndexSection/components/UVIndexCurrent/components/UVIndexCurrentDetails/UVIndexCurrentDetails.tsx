@@ -4,7 +4,7 @@ import styles from "./UVIndexCurrentDetails.module.scss";
 const UVIndexCurrentDetails = ({ active }: { active: TwoWeekDayData }) => {
   return (
     <div className={styles.main_wrapper}>
-      <div>
+      <div className={styles.info_wrapper}>
         <p className={styles.title}>УФ-индекс</p>
         <div className={styles.category_wrapper}>
           <p className={styles.category_text}>
@@ -27,7 +27,11 @@ const UVIndexCurrentDetails = ({ active }: { active: TwoWeekDayData }) => {
           ))}
         </div>
       </div>
-      <img src={active?.twoWeekUVCategory.imgUV} alt="" />
+      <img
+        className={styles.category_img}
+        src={active?.twoWeekUVCategory.imgUV}
+        alt=""
+      />
     </div>
   );
 };

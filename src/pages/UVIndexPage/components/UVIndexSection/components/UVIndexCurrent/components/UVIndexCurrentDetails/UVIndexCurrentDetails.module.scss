@@ -2,41 +2,68 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .title {
-    font-weight: $week-bold-text;
-    margin-bottom: 6px;
-  }
-  .category_wrapper {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 16px;
-    .category_text {
-      font-size: 28px;
+  .info_wrapper {
+    .title {
       font-weight: $week-bold-text;
+      margin-bottom: 6px;
     }
-    .category_index {
-      margin-top: 4px;
-      font-size: 1.2em;
-      width: 26px;
-      height: 26px;
-      text-align: center;
-      border-radius: $half-radius;
-      color: white;
-      line-height: 27px;
+    .category_wrapper {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 16px;
+      .category_text {
+        font-size: 28px;
+        font-weight: $week-bold-text;
+      }
+      .category_index {
+        margin-top: 4px;
+        font-size: 1.2em;
+        width: 26px;
+        height: 26px;
+        text-align: center;
+        border-radius: $half-radius;
+        color: white;
+        line-height: 27px;
+      }
+    }
+    .category_recommendation {
+      margin-bottom: 16px;
+    }
+    .attributes {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      img {
+        width: auto;
+        height: 26px;
+        filter: brightness(0.15);
+      }
     }
   }
-  .category_recommendation {
-    margin-bottom: 16px;
-  }
-  .attributes {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    img {
-      width: auto;
-      height: 26px;
-      filter: brightness(0.15);
+}
+
+@media (max-width: $tablet-screen) {
+  .main_wrapper {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 24px;
+    .info_wrapper {
+      order: 2;
+      .title {
+        display: none;
+      }
+      .category_wrapper {
+        justify-content: center;
+        margin: 10px;
+      }
+      .category_recommendation {
+        margin: 0;
+      }
+    }
+    .category_img {
+      order: 1;
     }
   }
 }
