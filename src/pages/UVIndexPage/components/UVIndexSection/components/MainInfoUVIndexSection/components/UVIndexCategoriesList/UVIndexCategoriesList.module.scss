@@ -1,0 +1,38 @@
+.section_wrapeer {
+  padding-top: 32px;
+  padding-bottom: 36px;
+  .main_title {
+    margin-bottom: 16px;
+  }
+  .categories_wrapper {
+    display: flex;
+    gap: 6px;
+    .categories_item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      .category_img {
+        margin-bottom: 15px;
+      }
+      .category_range {
+        position: absolute;
+        bottom: 50px;
+        width: fit-content;
+        color: white;
+        font-weight: $week-bold-text;
+        padding: 4px 10px;
+        background-color: rgba(38, 38, 51, 1);
+        border-radius: $strong-radius;
+      }
+      .attributes_wrapper {
+        display: flex;
+        gap: 5px;
+        img {
+          filter: brightness(0.15);
+        }
+      }
+    }
+  }
+}
