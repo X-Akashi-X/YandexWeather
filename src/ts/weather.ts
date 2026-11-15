@@ -86,6 +86,8 @@ export type TwoWeekHourlyItem = {
   twoWeekHourlyTime: string;
   twoWeekHourlyMagnetic: number;
   isPast: boolean;
+  twoWeekHourlyUV: number;
+  twoWeekHourlyUVCategory: ReturnType<typeof getUVCategory>;
   twoWeekHourlyPressure: number;
 };
 

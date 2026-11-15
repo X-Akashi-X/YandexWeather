@@ -2,6 +2,7 @@ import { useState } from "react";
 import UVIndexCurrent from "./components/UVIndexCurrent/UVIndexCurrent";
 import styles from "./UVIndexSection.module.scss";
 import useServices from "@services/useServices";
+import MainInfoUVIndexSection from "./components/MainInfoUVIndexSection/MainInfoUVIndexSection";
 
 const UVIndexSection = () => {
   const { getTwoWeekHourlyData } = useServices();
@@ -13,10 +14,11 @@ const UVIndexSection = () => {
   return (
     <section className={styles.section_wrapper}>
       <UVIndexCurrent
-        active={activeDay ?? null}
+        active={activeDay}
         setActive={setActive}
         activeDateKey={activeDay?.dateKey ?? null}
       />
+      <MainInfoUVIndexSection active={activeDay} />
     </section>
   );
 };

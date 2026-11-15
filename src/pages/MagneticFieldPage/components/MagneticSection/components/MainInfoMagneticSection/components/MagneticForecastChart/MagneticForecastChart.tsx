@@ -44,9 +44,8 @@ const MagneticForecastChart = ({
         width={width}
         height={height}
         radius={[4, 4, 0, 0]}
-        fill={
-          item.isPast ? "var(--color-light-grey-opacity-low)" : category.color
-        }
+        fill={category.color}
+        opacity={item.isPast ? "0.5" : ""}
         style={{ cursor: "pointer" }}
       />
     );
@@ -63,7 +62,7 @@ const MagneticForecastChart = ({
         textAnchor="middle"
         fontSize={16}
         fontWeight={500}
-        fill={isPast ? "var(--color-light-grey-opacity-low)" : ""}
+        opacity={isPast ? "0.5" : ""}
         style={{ cursor: "pointer" }}
       >
         {value}

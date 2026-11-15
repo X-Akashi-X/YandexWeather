@@ -60,7 +60,7 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
   if (category < 1)
     return {
       fill: 0,
-      color: "grey",
+      color: "#33c115",
       colorAllergies: "rgba(180, 184, 204, 0.52)",
       text: "нет активности",
       minAllergicsCount: 0,
@@ -170,7 +170,7 @@ export function getUVCategory(category: number) {
 }
 
 export function getMagneticFieldCategory(category: number) {
-  if (category <= 2) return { fill: 0, color: "grey", text: "спокойное" };
+  if (category <= 2) return { fill: 0, color: "#33c115", text: "спокойное" };
   if (category <= 4)
     return { fill: 0.17, color: "#ffd400", text: "слабая буря" };
   if (category <= 6)

@@ -149,9 +149,9 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
     ),
     dateKey: thinnedDays[i + 1].date,
     date: new Date(thinnedDays[i + 1].date).getDate(),
-    twoWeekUV: Math.floor(dataForecast.hourly.uv_index[i + 1]),
+    twoWeekUV: Math.floor(dataForecast.daily.uv_index_max[i + 1]),
     twoWeekUVCategory: getUVCategory(
-      Math.floor(dataForecast.hourly.uv_index[i + 1]),
+      Math.floor(dataForecast.daily.uv_index_max[i + 1]),
     ),
     hours: day.hours,
     fullHours: day.fullHours,

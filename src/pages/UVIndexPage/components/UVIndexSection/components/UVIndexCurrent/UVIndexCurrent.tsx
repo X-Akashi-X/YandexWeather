@@ -15,7 +15,7 @@ const UVIndexCurrent = ({
     >
       <div className={styles.main_wrapper}>
         <UVIndexDays activeDateKey={activeDateKey} setActive={setActive} />
-        <UVIndexCurrentDetails active={active} />
+        {active && <UVIndexCurrentDetails active={active} />}
       </div>
     </section>
   );

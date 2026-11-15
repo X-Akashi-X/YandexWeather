@@ -1,7 +1,7 @@
+import type { TwoWeekDayData } from "@ts/weather";
 import styles from "./UVIndexCurrentDetails.module.scss";
-import type { UVIndexStateActive } from "@ts/props";
 
-const UVIndexCurrentDetails = ({ active }: UVIndexStateActive) => {
+const UVIndexCurrentDetails = ({ active }: { active: TwoWeekDayData }) => {
   return (
     <div className={styles.main_wrapper}>
       <div>
