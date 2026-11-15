@@ -39,6 +39,16 @@
       "content_images": [
         "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
       ]
+    },
+    {
+      "id": "mostBigDesert",
+      "date": "2026-10-03T00:00:00Z",
+      "title": "Самая большая пустыня в мире: где находится, площадь и интересные факты",
+      "description": "kk",
+      "cover_img": "/image/newsForecast/most-big-desert/most-big-desert.jpg",
+      "content_images": [
+        "/image/newsForecast/biggest-snowfall/biggest-snowfall-content.jpg"
+      ]
     }
   ],
   "allergiesNews": [
