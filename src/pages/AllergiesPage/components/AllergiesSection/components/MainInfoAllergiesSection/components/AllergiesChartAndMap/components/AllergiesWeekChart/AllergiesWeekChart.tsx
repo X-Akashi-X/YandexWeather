@@ -18,10 +18,24 @@ import type {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
+/**
+ * Renders a 7-day bar chart displaying daily pollen activity levels for the currently selected allergen.
+ * Dynamically colors each bar based on pollen severity thresholds and provides a custom hover tooltip.
+ *
+ * @param props - Component properties.
+ * @param props.active - The currently selected allergen object (`{ name, value }`) or `null`.
+ * @returns The rendered `<div>` wrapper containing the responsive Recharts bar chart.
+ */
 const AllergiesWeekChart = ({ active }: AllergiesStateActive) => {
   const { getWeekData } = useServices();
   const { weekAQData } = getWeekData;
 
+  /**
+   * Custom shape renderer for chart bars that applies dynamic fill colors based on pollen activity levels.
+   *
+   * @param props - Recharts bar item geometry and data payload properties.
+   * @returns A styled `<Rectangle>` SVG element.
+   */
   const renderBar = (props: BarRectangleItem) => {
     const { payload } = props;
     const dayValue = active ? payload[active.name] : 0;
@@ -32,6 +46,12 @@ const AllergiesWeekChart = ({ active }: AllergiesStateActive) => {
     );
   };
 
+  /**
+   * Custom tooltip renderer displaying the formatted date and localized pollen activity category on hover.
+   *
+   * @param props - Recharts tooltip state and payload properties.
+   * @returns A `<p>` element with the tooltip text, or `null` when inactive.
+   */
   const renderTooltip = ({
     active,
     payload,

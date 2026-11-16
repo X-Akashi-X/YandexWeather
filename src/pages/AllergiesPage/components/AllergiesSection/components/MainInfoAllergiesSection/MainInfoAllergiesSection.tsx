@@ -8,6 +8,12 @@ import AllergiesDoctors from "./components/AllergiesDoctors/AllergiesDoctors";
 import PollenCalendar from "./components/PollenCalendar/PollenCalendar";
 import FAQAllergiesSection from "./components/FAQAllergiesSection/FAQAllergiesSection";
 
+/**
+ * Main container section for the allergies page, managing the currently selected allergen state
+ * and rendering allergen groups, forecast charts/maps, doctor recommendations, pollen calendar, and FAQ.
+ *
+ * @returns The rendered `<section>` element containing all detailed allergy modules.
+ */
 const MainInfoAllergiesSection = () => {
   const { getCurrentData } = useServices();
   const { currentAllergies } = getCurrentData;

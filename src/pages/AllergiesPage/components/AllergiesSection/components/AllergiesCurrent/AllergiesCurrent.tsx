@@ -6,6 +6,12 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@store/store";
 import HomeTabletButton from "@components/HomeTabletButton/HomeTabletButton";
 
+/**
+ * Displays the current pollen activity level, top active allergens, and a simulated count
+ * of nearby users experiencing allergy symptoms based on the selected city's pollen thresholds.
+ *
+ * @returns The rendered `<section>` element containing current pollen and allergy details.
+ */
 const AllergiesCurrentData = () => {
   const { getCurrentData } = useServices();
   const { currentPollenCategory, currentAllergies } = getCurrentData;

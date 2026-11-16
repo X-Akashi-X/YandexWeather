@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * Renders a semi-circular SVG progress arc with a dynamic indicator marker positioned along the path.
+ *
+ * @param props - Component properties.
+ * @param props.category - Configuration object containing a normalized `fill` ratio (0 to 1) and a CSS `color` string.
+ * @returns The rendered SVG arc gauge element.
+ */
 const StatusArc = ({
   category = { fill: 0, color: "#9ca3af" },
 }: {

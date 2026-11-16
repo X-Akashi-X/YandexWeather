@@ -3,10 +3,21 @@ import styles from "./footer.scss.module.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cities } from "@configs/cities";
 
+/**
+ * Application footer component displaying city quick-selection buttons,
+ * navigation links (services, forecasts, partners, app stores), data attribution, and copyright info.
+ *
+ * @returns The rendered `<footer>` JSX element.
+ */
 const Footer = () => {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
 
+  /**
+   * Navigates to the selected city route while preserving the remaining URL path segments and query parameters.
+   *
+   * @param cityUrl - The URL slug identifier of the target city.
+   */
   const handleSelectCity = (cityUrl: string) => {
     const [, ...restPath] = pathname.split("/").filter(Boolean);
     navigate(`/${[cityUrl, ...restPath].join("/")}${search}`);

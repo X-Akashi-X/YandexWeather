@@ -8,6 +8,12 @@ import SettingsDropdown from "./components/SettingsDropdown/SettingsDropdown";
 import { navLinks } from "./config";
 import MenuDropdown from "./components/MenuDropdown/MenuDropdown";
 
+/**
+ * Main application header component featuring brand logos, primary navigation links,
+ * an expandable "More/Menu" dropdown, a city search bar, and toolbar action buttons with a settings dropdown.
+ *
+ * @returns The rendered `<header>` JSX element.
+ */
 const Header = () => {
   const [activeMoreDropdown, setActiveMoreDropdown] = useState(false);
   const [activeSettingDropdown, setActiveSettingDropdown] = useState(false);
@@ -15,10 +21,23 @@ const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * Toggles the boolean visibility state of a dropdown menu.
+   *
+   * @param setActive - React state setter function controlling the dropdown's open state.
+   */
   function toggleDropdown(setActive: Dispatch<SetStateAction<boolean>>) {
     setActive((prev) => !prev);
   }
 
+  /**
+   * Closes an active dropdown when a mousedown event occurs outside its referenced container element.
+   *
+   * @param e - The native DOM `MouseEvent`.
+   * @param ref - React ref pointing to the dropdown wrapper element.
+   * @param active - Current open state of the dropdown.
+   * @param setActive - React state setter function used to close the dropdown.
+   */
   function handleClickOutside(
     e: MouseEvent,
     ref: RefObject<HTMLDivElement | null>,

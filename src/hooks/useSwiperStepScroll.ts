@@ -1,6 +1,15 @@
 import { useCallback, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 
+/**
+ * Custom React hook for controlling a Swiper instance with fixed pixel-step scrolling,
+ * boundary detection (`isStart`, `isEnd`), and programmatic centering on specific items or slides.
+ *
+ * @param stepWidth - The width of a single step/item in pixels.
+ * @param stepsPerClick - The number of steps to scroll per navigation action.
+ * @param duration - The transition animation duration in milliseconds (defaults to `300`).
+ * @returns An object containing the Swiper instance, state setter, edge flags, and scroll control callbacks.
+ */
 export const useSwiperStepScroll = (
   stepWidth: number,
   stepsPerClick: number,

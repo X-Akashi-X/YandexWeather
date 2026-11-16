@@ -16,11 +16,23 @@ import {
 } from "@constants/daysCodes";
 import type { isFirstOnMonthDay } from "@ts/utils";
 
+/**
+ * Converts a wind direction angle in degrees into a localized cardinal or intercardinal compass label.
+ *
+ * @param deg - Wind direction in degrees (0 to 360).
+ * @returns The localized wind direction string from `WIND_DIRECTIONS`.
+ */
 export function getWindDirection(deg: number) {
   const index = Math.round(deg / DEGREES_PER_DIRECTION) % TOTAL_WIND_DIRECTIONS;
   return WIND_DIRECTIONS[index];
 }
 
+/**
+ * Determines the dominant WMO weather code from an array of codes using weighted category scoring.
+ *
+ * @param arg - Array of numeric WMO weather codes.
+ * @returns The representative primary WMO weather code of the highest-weighted weather group, or `0` if empty.
+ */
 export function getAvgWeatherCode(arg: number[]) {
   if (!arg?.length) return 0;
 
@@ -54,14 +66,34 @@ export function getAvgWeatherCode(arg: number[]) {
   return weatherMap[currentGroup as keyof typeof weatherMap].codes[0];
 }
 
+/**
+ * Formats a numeric temperature value by prepending a `"+"` sign if it is strictly positive.
+ *
+ * @param value - The numeric value to format.
+ * @returns A string with a leading `"+"` for positive numbers, or the plain string representation otherwise.
+ */
 export function shouldShowPlus(value: number) {
   return value > 0 ? `+${value}` : String(value);
 }
 
+/**
+ * Formats a numeric range into a `"min-max"` string, or returns a single number string if both bounds are equal.
+ *
+ * @param min - The minimum value of the range.
+ * @param max - The maximum value of the range.
+ * @returns A formatted range string (e.g., `"5-10"` or `"5"`).
+ */
 export function shouldShowDash(min: number, max: number) {
   return min === max ? String(min) : `${min}-${max}`;
 }
 
+/**
+ * Generates HTML id and data-attributes for a forecast day card based on its list index and day of the week.
+ *
+ * @param i - The zero-based index of the day in the forecast list.
+ * @param weekend - The day of the week index (0 for Sunday through 6 for Saturday).
+ * @returns An object containing `id` and boolean `data-detailed-*` attributes for styling hooks.
+ */
 export function getDayItemAttributes(i: number, weekend: number) {
   return {
     id: `day-${i}`,
@@ -72,12 +104,25 @@ export function getDayItemAttributes(i: number, weekend: number) {
   };
 }
 
+/**
+ * Returns a localized day label (`"Сегодня"`, `"Завтра"`, or the weekday name) based on the item's forecast index.
+ *
+ * @param i - The zero-based index of the day in the forecast list.
+ * @param weekday - The fallback localized weekday string.
+ * @returns `"Сегодня"` for today, `"Завтра"` for tomorrow, or the provided `weekday` string.
+ */
 export function getDayItemDayLabel(i: number, weekday: string) {
   if (i === TODAY) return "Сегодня";
   if (i === TOMORROW) return "Завтра";
   return weekday;
 }
 
+/**
+ * Formats a localized date label when a day marks the 1st of a month (or the first item if flagged), otherwise returns a fallback.
+ *
+ * @param params - Configuration object containing item index, day of month, ISO date string, date format options, fallback string, and first-item flag.
+ * @returns The formatted Russian locale date string, or the `fallback` string.
+ */
 export function isFirstOnMonthDay({
   i,
   date,
@@ -95,6 +140,14 @@ export function isFirstOnMonthDay({
   return fallback;
 }
 
+/**
+ * Calculates the astronomical lunar phase fraction (from 0.0 to 1.0) for a given calendar date at 12:00 UTC.
+ *
+ * @param year - The full year (e.g., 2026).
+ * @param monthIndex - The zero-based month index (0 for January to 11 for December).
+ * @param day - The day of the month (1 to 31).
+ * @returns A normalized phase value between `0` and `1` representing progress through the synodic month.
+ */
 export const calcMoonPhase = (
   year: number,
   monthIndex: number,

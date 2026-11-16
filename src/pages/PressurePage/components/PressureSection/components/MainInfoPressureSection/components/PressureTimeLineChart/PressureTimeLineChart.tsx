@@ -21,6 +21,15 @@ import { useSwiperStepScroll } from "@hooks/useSwiperStepScroll";
 import Arrow from "@assets/icons/arrowMore.svg";
 import { useCallback, useEffect } from "react";
 
+/**
+ * Renders a horizontally scrollable hourly atmospheric pressure line chart with color-coded gradient segments,
+ * a highlighted normal pressure zone, step navigation arrows, and automatic scrolling to the current hour.
+ *
+ * @param props - Component properties.
+ * @param props.items - Array of `PressureChartItem` points containing hourly time labels and pressure values in mmHg.
+ * @param props.dateKey - ISO date string (`YYYY-MM-DD`) used to determine if the chart displays today's forecast.
+ * @returns The rendered `<section>` element containing the interactive pressure timeline chart and legend.
+ */
 const PressureTimeLineChart = ({
   items,
   dateKey,
@@ -39,6 +48,11 @@ const PressureTimeLineChart = ({
     scrollToIndex,
   } = useSwiperStepScroll(PRESSURE_CHART_STEP, 4);
 
+  /**
+   * Determines the initial scroll target index: the current hour if `dateKey` matches today, or `0` otherwise.
+   *
+   * @returns The zero-based hour index to center in the viewport.
+   */
   const getCurrentIndex = useCallback(() => {
     const now = new Date();
     const todayKey = now.toLocaleDateString("sv-SE");
@@ -57,6 +71,12 @@ const PressureTimeLineChart = ({
     return () => cancelAnimationFrame(frame);
   }, [swiper, dateKey, items.length, scrollToIndex, getCurrentIndex]);
 
+  /**
+   * Custom shape renderer for the normal atmospheric pressure reference zone (`751–765 mmHg`).
+   *
+   * @param props - Recharts reference area rectangle geometry properties.
+   * @returns A semi-transparent green `<Rectangle>` SVG element.
+   */
   const renderPressureNormalLine = (props: RectangleProps) => {
     const { x, y, width, height } = props;
 

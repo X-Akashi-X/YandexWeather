@@ -12,12 +12,24 @@ import { POLLEN_SHORT_MONTH } from "@constants/weather";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 
+/**
+ * Renders a horizontal scrollable Gantt-style pollen blooming calendar.
+ * Highlights the current month column and displays blooming duration bars for various allergenic plants.
+ *
+ * @returns The rendered `<section>` element containing the Swiper timeline and Recharts horizontal bar chart.
+ */
 const PollenCalendar = () => {
   const plants = pollenCalendarConfig.map((plant) => ({
     ...plant,
     duration: plant.end - plant.start,
   }));
 
+  /**
+   * Custom SVG shape renderer for a plant's blooming period bar with an inline plant name label.
+   *
+   * @param props - Recharts bar geometry and plant data payload properties.
+   * @returns An SVG `<g>` group containing the rounded bar rectangle and centered text label.
+   */
   function plantBar({ x, y, width, height, payload }: BarShapeProps) {
     return (
       <g>

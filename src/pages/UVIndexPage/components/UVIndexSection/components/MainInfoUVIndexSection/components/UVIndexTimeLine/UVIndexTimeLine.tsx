@@ -14,6 +14,14 @@ import { TABLET_SCREEN } from "@constants/breakpoints";
 import type { TwoWeekHourlyItem } from "@ts/weather";
 import { getUVCategory } from "@utils/categories/categories";
 
+/**
+ * Renders a responsive hourly UV index bar chart with color-coded UV severity levels,
+ * dimmed past intervals, and numeric value labels centered over each bar.
+ *
+ * @param props - Component properties.
+ * @param props.data - Array of hourly forecast items (`TwoWeekHourlyItem`) containing UV values and timestamps.
+ * @returns The rendered `<section>` element containing the UV index bar chart.
+ */
 const UVIndexTimeLine = ({ data }: { data: TwoWeekHourlyItem[] }) => {
   const isMobile = useIsMobile(TABLET_SCREEN);
   const barCategoryGap = isMobile ? "1" : "6";
@@ -22,6 +30,12 @@ const UVIndexTimeLine = ({ data }: { data: TwoWeekHourlyItem[] }) => {
     : { left: 24, right: 24 };
   const xAxisFontSize = isMobile ? 10 : 14;
 
+  /**
+   * Custom shape renderer for chart bars that applies UV category colors and reduces opacity for past hours.
+   *
+   * @param props - Recharts bar item geometry and payload properties.
+   * @returns A styled `<Rectangle>` SVG element.
+   */
   const renderBar = (props: BarRectangleItem) => {
     const { x, y, width, height, payload } = props;
     const item = payload as TwoWeekHourlyItem;
@@ -40,6 +54,12 @@ const UVIndexTimeLine = ({ data }: { data: TwoWeekHourlyItem[] }) => {
     );
   };
 
+  /**
+   * Custom label renderer displaying the numeric UV index value centered within each column.
+   *
+   * @param props - Recharts label geometry, value, and item index properties.
+   * @returns A centered SVG `<text>` element.
+   */
   const renderValueLabel = (props: LabelProps) => {
     const { x, width, value, index } = props;
     const isPast = index !== undefined ? data[index].isPast : false;

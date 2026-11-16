@@ -26,6 +26,13 @@ import {
   shouldShowPlus,
 } from "@utils/formatters";
 
+/**
+ * Retrieves the temperature from exactly 24 hours ago (yesterday at the current hour).
+ * Falls back to `DEFAULT_YESTERDAY` if hourly forecast data or the target timestamp is missing.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing the formatted temperature string for yesterday's current hour.
+ */
 export const yesterdayData = (dataForecast: ApiForecast) => {
   if (!dataForecast.hourly) return DEFAULT_YESTERDAY;
 
@@ -51,6 +58,14 @@ export const yesterdayData = (dataForecast: ApiForecast) => {
   };
 };
 
+/**
+ * Processes hourly forecast data into structured 3-day, 6-day, 10-day, and 14-day intervals.
+ * Calculates pressure variations (magnetic field), UV categories, and groups hours into thinned, full, and daytime slices.
+ * Falls back to `DEFAULT_TWO_WEEK_HOURLY` if hourly timestamps are missing.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing sliced forecast arrays for 3, 6, 10, and 14 days.
+ */
 export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
   const groupedDays: Record<string, number[]> = {};
   const now = new Date().toLocaleDateString("sv-SE");
@@ -79,6 +94,14 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
     };
   });
 
+  /**
+   * Formats hourly metrics for a specific day and computes pressure deltas compared to the previous day.
+   *
+   * @param date - The ISO date string (YYYY-MM-DD) for the target day.
+   * @param hours - Array of hourly indices to extract from the forecast response.
+   * @param prevHours - Array of hourly indices from the previous day used to compute pressure changes.
+   * @returns An array of formatted hourly weather objects with UV, pressure, and past-time status.
+   */
   const getHoursData = (date: string, hours: number[], prevHours: number[]) => {
     return hours.map((hour, hourPosition) => {
       const currentMagnetic = Math.floor(
@@ -167,6 +190,12 @@ export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
   return { threeDays, sixDays, tenDays, twoWeeks };
 };
 
+/**
+ * Extracts hourly forecast entries starting from the current hour through the end of tomorrow.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An array of formatted timeline items containing time, temperature, and weather condition info.
+ */
 export const timeLineData = (dataForecast: ApiForecast) => {
   const now = new Date();
   const current = new Date(now);
@@ -198,6 +227,13 @@ export const timeLineData = (dataForecast: ApiForecast) => {
     }));
 };
 
+/**
+ * Groups hourly forecast data into daily time-of-day periods (morning, day, evening, night)
+ * and enriches each day with daily astronomical, geomagnetic, and average weather metrics.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing formatted daily forecasts for 10 days (`tenDays`) and the current/first day (`oneDay`).
+ */
 export const advancedDaysData = (dataForecast: ApiForecast) => {
   const groupedDays: Record<string, DayGroups> = {};
 
@@ -243,6 +279,13 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
 
   const datesKeys = Object.keys(groupedDays);
 
+  /**
+   * Computes averaged weather metrics (temperature, wind, humidity, pressure, and dominant condition)
+   * for a specific time-of-day slice. Falls back to `DEFAULT_PERIOD_AVERAGES` if the slice is empty.
+   *
+   * @param periodArr - Array of hourly weather records belonging to a single day period.
+   * @returns An object with formatted average metrics and weather descriptions for the period.
+   */
   const averageData = (periodArr: PeriodData[]) => {
     if (!periodArr.length) return DEFAULT_PERIOD_AVERAGES;
 
@@ -288,6 +331,14 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
     };
   };
 
+  /**
+   * Safely looks up a daily metric value by matching the target ISO date string.
+   *
+   * @param dailySource - The daily forecast object containing time and metric arrays.
+   * @param arrKey - The property key of the target metric array.
+   * @param targetDate - The ISO date string (YYYY-MM-DD) to search for.
+   * @returns The matched daily value, or `"-"` if the date or metric array is unavailable.
+   */
   const getDailyData = (
     dailySource: {
       time: string[];
@@ -301,6 +352,12 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
     return index === INDEXOF_NOT_FOUND ? "-" : dailySource[arrKey][index];
   };
 
+  /**
+   * Formats total daylight duration for a target date into a localized hours and minutes string.
+   *
+   * @param targetDate - The ISO date string (YYYY-MM-DD) to look up.
+   * @returns Formatted daylight duration (e.g., `"10 ч 25 мин"`), or `"-"` if not found.
+   */
   const getSunDay = (targetDate: string) => {
     if (!dataForecast.daily) return "-";
 
@@ -319,6 +376,13 @@ export const advancedDaysData = (dataForecast: ApiForecast) => {
     return "-";
   };
 
+  /**
+   * Calculates the geomagnetic fluctuation indicator based on max atmospheric pressure difference
+   * between the target date and the following day.
+   *
+   * @param targetDate - The ISO date string (YYYY-MM-DD) to evaluate.
+   * @returns The absolute pressure delta in mmHg, or `0` if daily data is missing.
+   */
   const getAvgMagnetic = (targetDate: string) => {
     if (!dataForecast.daily) return 0;
 

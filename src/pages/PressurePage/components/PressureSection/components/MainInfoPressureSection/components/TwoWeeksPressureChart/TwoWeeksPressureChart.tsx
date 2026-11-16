@@ -21,6 +21,13 @@ import { getPressureCategory } from "@utils/categories/categories";
 import useServices from "@services/useServices";
 import Arrow from "@assets/icons/arrowMore.svg";
 
+/**
+ * Renders a horizontally scrollable 14-day atmospheric pressure range chart.
+ * Displays daily min-to-max pressure vertical gradient bars, weekday headers, value labels,
+ * and a highlighted normal pressure zone (`751–765 mmHg`).
+ *
+ * @returns The rendered `<section>` element containing the 14-day pressure chart and step scroll controls.
+ */
 const TwoWeeksPressureChart = () => {
   const { getTwoWeeksData } = useServices();
   const data = getTwoWeeksData;
@@ -28,6 +35,13 @@ const TwoWeeksPressureChart = () => {
     useSwiperStepScroll(PRESSURE_TW_CHART_STEP, PRESSURE_TW_CHART_SCROLL_BY);
   const width = data.length * PRESSURE_TW_CHART_STEP;
 
+  /**
+   * Custom shape renderer for each daily pressure range column, including background card slot,
+   * vertical min/max color gradient bar, weekday header, and top/bottom pressure value labels.
+   *
+   * @param props - Recharts bar shape geometry and item index properties.
+   * @returns An SVG `<g>` group representing a single day's pressure range column.
+   */
   const renderRange = ({
     x,
     y,

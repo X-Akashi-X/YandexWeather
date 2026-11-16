@@ -13,6 +13,15 @@ import { useGetRadarQuery } from "@store/apis/rainViewerApi";
 import { useSelector } from "react-redux";
 import type { RootState } from "@store/store";
 
+/**
+ * Custom React hook that initializes a MapLibre GL map centered on the user's coordinates,
+ * places a custom marker, overlays a RainViewer precipitation radar raster layer,
+ * and smoothly flies to updated coordinates when location changes.
+ *
+ * @param interactive - Enables or disables user map interactions (zoom, pan, rotate).
+ * @param classNamePointer - CSS class name applied to the custom DOM marker element.
+ * @returns An object containing the `mapContainer` ref to attach to the target HTML div element.
+ */
 function useMap(interactive: boolean, classNamePointer: string) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);

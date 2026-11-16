@@ -13,6 +13,14 @@ import {
 import useServices from "@services/useServices";
 import { setActiveTab, setSelectedDay } from "@store/slices/moonCalendarSlice";
 
+/**
+ * Interactive lunar calendar section allowing users to switch between daily grid view (`"days"`)
+ * and grouped moon phases view (`"phases"`), select months, and inspect detailed astronomical metrics for a chosen day.
+ *
+ * @param props - Component properties.
+ * @param props.activeTab - Currently active view mode (`"days"` or `"phases"`).
+ * @returns The rendered `<section>` element containing the lunar calendar controls and views.
+ */
 const CalendarSection = ({ activeTab }: { activeTab: string }) => {
   const { getMonthlyDailyData } = useServices();
   const dispatch: AppDispatch = useDispatch();

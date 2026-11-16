@@ -20,6 +20,16 @@ import type {
 import useIsMobile from "@hooks/useIsMobile";
 import { TABLET_SCREEN } from "@constants/breakpoints";
 
+/**
+ * Renders a responsive geomagnetic activity bar chart with color-coded storm severity levels,
+ * dimmed past intervals, value labels, and localized hover tooltips.
+ *
+ * @param props - Component properties.
+ * @param props.data - Array of `MagneticChartItem` data points to plot.
+ * @param props.title - Primary heading text displayed above the chart.
+ * @param props.subTitle - Optional secondary subtitle displayed next to the title.
+ * @returns The rendered `<section>` element containing the magnetic forecast chart.
+ */
 const MagneticForecastChart = ({
   data,
   title,
@@ -32,6 +42,12 @@ const MagneticForecastChart = ({
     : { left: 24, right: 24 };
   const xAxisFontSize = isMobile ? 10 : 14;
 
+  /**
+   * Custom shape renderer for chart bars that applies storm category colors and reduces opacity for past intervals.
+   *
+   * @param props - Recharts bar item geometry and payload properties.
+   * @returns A styled `<Rectangle>` SVG element.
+   */
   const renderBar = (props: BarRectangleItem) => {
     const { x, y, width, height, payload } = props;
     const item = payload as MagneticChartItem;
@@ -51,6 +67,12 @@ const MagneticForecastChart = ({
     );
   };
 
+  /**
+   * Custom label renderer displaying the numeric geomagnetic index centered above each bar.
+   *
+   * @param props - Recharts label geometry, value, and item index properties.
+   * @returns A centered SVG `<text>` element.
+   */
   const renderValueLabel = (props: LabelProps) => {
     const { x, width, value, index } = props;
     const isPast = index !== undefined ? data[index]?.isPast : false;
@@ -70,6 +92,12 @@ const MagneticForecastChart = ({
     );
   };
 
+  /**
+   * Custom tooltip renderer displaying the localized geomagnetic storm status text on hover.
+   *
+   * @param props - Recharts tooltip active state and payload properties.
+   * @returns A `<p>` element with the storm status label, or `null` when inactive.
+   */
   const renderTooltip = ({
     active,
     payload,

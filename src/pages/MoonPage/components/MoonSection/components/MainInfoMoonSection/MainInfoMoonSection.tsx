@@ -11,6 +11,12 @@ import {
   selectTodayData,
 } from "@store/selectors/moonCalendarSelectors";
 
+/**
+ * Main container section for the lunar calendar page, rendering current moon details,
+ * the interactive calendar section, and tab-specific FAQ blocks for daily metrics or monthly moon phases.
+ *
+ * @returns The rendered `<section>` element containing the lunar calendar modules and FAQ.
+ */
 const MainInfoMoonSection = () => {
   const { getMonthlyDailyData } = useServices();
 

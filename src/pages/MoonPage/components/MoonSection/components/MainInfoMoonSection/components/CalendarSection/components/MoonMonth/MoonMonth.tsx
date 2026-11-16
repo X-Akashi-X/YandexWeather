@@ -9,6 +9,14 @@ import type { AppDispatch } from "@store/store";
 import { setActiveMonthIndex } from "@store/slices/moonCalendarSlice";
 import { INDEXOF_NOT_FOUND } from "@constants/utils";
 
+/**
+ * Horizontal scrollable month selector built with Swiper for the lunar calendar.
+ * Automatically scrolls to the active month slide after web fonts finish loading and updates the active month in Redux on click.
+ *
+ * @param props - Component properties.
+ * @param props.active - The zero-based index (`0` to `11`) of the currently selected month.
+ * @returns The rendered Swiper component containing clickable month slides.
+ */
 const MoonMonth = ({ active }: { active: number }) => {
   const { getMonthlyDailyData } = useServices();
   const dispatch: AppDispatch = useDispatch();

@@ -5,6 +5,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 
+/**
+ * Custom React hook that synchronizes the active city from the URL route parameter (`cityName`)
+ * with the Redux `geo` slice, updating geographic coordinates, station distance, and city metadata.
+ */
 export const useSyncCity = () => {
   const { cityName } = useParams();
   const { cityUrl } = useSelector((state: RootState) => state.geo);

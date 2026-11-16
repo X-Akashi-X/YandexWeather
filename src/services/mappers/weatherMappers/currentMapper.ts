@@ -11,6 +11,14 @@ import {
 } from "@utils/categories/categories";
 import { getWindDirection, shouldShowPlus } from "@utils/formatters";
 
+/**
+ * Maps raw weather forecast and air quality API responses into a formatted current weather object.
+ * Falls back to `DEFAULT_CURRENT_DAY` if required current data is missing.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @param dataAirQuality - The raw air quality and pollen data returned from the air quality API.
+ * @returns An object containing formatted current weather metrics, categories, and pollen allergy details.
+ */
 export const currentData = (
   dataForecast: ApiForecast,
   dataAirQuality: ApiAirQuality,
@@ -27,6 +35,11 @@ export const currentData = (
     ragweed: dataAirQuality.current.ragweed_pollen,
   };
 
+  /**
+   * Processes raw pollen levels, sorts them by concentration, and identifies the top active allergens.
+   *
+   * @returns An object with the sorted list of all allergies and a summary string of the top active ones.
+   */
   function pollenAllergies() {
     const allAllergies = Object.entries(groupPollen)
       .map(([key, value]) => ({ name: ALLERGIES[key], value }))

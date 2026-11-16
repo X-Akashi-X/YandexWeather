@@ -30,6 +30,13 @@ import {
 } from "@utils/formatters";
 import { getMoonIllumination, getMoonTimes } from "suncalc";
 
+/**
+ * Extracts and formats weather, geomagnetic, and lunar metrics for the current day (index 1).
+ * Falls back to `DEFAULT_TODAY` if daily forecast data is unavailable.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing formatted weather details, pressure fluctuations, and moon metrics for today.
+ */
 export const todayData = (dataForecast: ApiForecast) => {
   if (!dataForecast.daily) return DEFAULT_TODAY;
 
@@ -98,6 +105,13 @@ export const todayData = (dataForecast: ApiForecast) => {
   };
 };
 
+/**
+ * Extracts and formats weather forecast metrics for tomorrow (index 2).
+ * Falls back to `DEFAULT_TOMORROW` if daily forecast data is unavailable.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing formatted temperature, wind, pressure, and weather condition details for tomorrow.
+ */
 export const tomorrowData = (dataForecast: ApiForecast) => {
   if (!dataForecast.daily) return DEFAULT_TOMORROW;
 
@@ -124,12 +138,26 @@ export const tomorrowData = (dataForecast: ApiForecast) => {
   };
 };
 
+/**
+ * Aggregates and formats 7-day average weather metrics and daily peak pollen levels.
+ * Falls back to `DEFAULT_WEEK` if daily forecast or hourly air quality data is missing.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @param dataAirQuality - The raw hourly air quality and pollen data returned from the air quality API.
+ * @returns An object containing weekly weather averages and an array of daily grouped pollen concentrations.
+ */
 export const weekData = (
   dataForecast: ApiForecast,
   dataAirQuality: ApiAirQuality,
 ) => {
   if (!dataForecast.daily || !dataAirQuality.hourly) return DEFAULT_WEEK;
 
+  /**
+   * Calculates the floored average of a 7-day numeric slice (indices 1 to 7).
+   *
+   * @param arg - An array of daily numeric weather values.
+   * @returns The floored weekly average value.
+   */
   const avgDetails = (arg: number[]) => {
     const week = arg.slice(1, 8);
 
@@ -142,6 +170,11 @@ export const weekData = (
     dataForecast.daily.weather_code.slice(1, 8),
   );
 
+  /**
+   * Groups hourly pollen measurements by date and extracts the daily maximum for each allergen.
+   *
+   * @returns An array of daily objects with formatted dates, weekday names, and localized allergen peak levels.
+   */
   const hourlyToDailyAQ = () => {
     const groupedDays: Record<string, number[]> = {};
     const dailyGroupedData: Record<string, Record<string, number>> = {};
@@ -186,7 +219,7 @@ export const weekData = (
       const weekDay = dateObj.toLocaleDateString("ru-RU", {
         weekday: "short",
       });
-      const formattedDate = dateObj.toLocaleDateString("ru-Ru", {
+      const formattedDate = dateObj.toLocaleDateString("ru-RU", {
         day: "2-digit",
         month: "2-digit",
       });
@@ -223,6 +256,13 @@ export const weekData = (
   };
 };
 
+/**
+ * Extracts and calculates average weather metrics for the upcoming weekend (Saturday and Sunday).
+ * Falls back to `DEFAULT_WEEKEND` if daily forecast dates are unavailable.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing formatted weekend temperatures, wind details, and weather conditions.
+ */
 export const weekendData = (dataForecast: ApiForecast) => {
   if (!dataForecast.daily.time) return DEFAULT_WEEKEND;
 
@@ -275,6 +315,12 @@ export const weekendData = (dataForecast: ApiForecast) => {
   };
 };
 
+/**
+ * Formats a 10-day weather forecast starting from the current day (indices 1 to 10).
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An array of daily objects with formatted temperatures, weather info, and pressure delta (magnetic field).
+ */
 export const tenDaysData = (dataForecast: ApiForecast) => {
   if (!dataForecast.daily.time) return [];
 
@@ -302,6 +348,12 @@ export const tenDaysData = (dataForecast: ApiForecast) => {
   }));
 };
 
+/**
+ * Extracts and formats daily min/max atmospheric pressure metrics for a 14-day period.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An array of daily objects containing date keys, localized weekdays, and pressure ranges in mmHg.
+ */
 export const twoWeeksData = (dataForecast: ApiForecast) => {
   if (!dataForecast.daily.time) return [];
 
@@ -319,6 +371,12 @@ export const twoWeeksData = (dataForecast: ApiForecast) => {
   }));
 };
 
+/**
+ * Aggregates historical archive weather data by month to compute monthly average temperatures and dominant conditions.
+ *
+ * @param dataArchive - The raw historical weather archive data.
+ * @returns A sorted array of 12 monthly summary objects indicating average weather and current month status.
+ */
 export const monthlyData = (dataArchive: ApiArhive) => {
   if (!dataArchive.daily.time) return [];
 
@@ -372,12 +430,27 @@ export const monthlyData = (dataArchive: ApiArhive) => {
     });
 };
 
+/**
+ * Generates a full-year lunar calendar with daily astronomical details and grouped moon phase intervals.
+ *
+ * @param lat - The geographic latitude for moonrise and moonset calculations.
+ * @param lon - The geographic longitude for moonrise and moonset calculations.
+ * @returns An array of 12 month objects containing daily lunar metrics, grouped phases, and grid weekday offsets.
+ */
 export const monthlyDailyData = (lat: number, lon: number) => {
   const now = new Date();
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth();
   const currentDay = now.getDate();
 
+  /**
+   * Computes lunar illumination fraction, age in days, and formatted moonrise/moonset times for a given date.
+   *
+   * @param date - The target date object.
+   * @param lat - The geographic latitude.
+   * @param lon - The geographic longitude.
+   * @returns An object with localized strings for visibility percentage, lunar age, moonrise, and moonset.
+   */
   const getMoonRiseAndSet = (date: Date, lat: number, lon: number) => {
     const illumination = getMoonIllumination(date);
     const times = getMoonTimes(date, lat, lon);

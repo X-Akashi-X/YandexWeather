@@ -26,18 +26,42 @@ import {
   WeakAllergies,
 } from ".";
 
+/**
+ * Searches the weather dictionary for a configuration entry matching the given WMO weather code.
+ *
+ * @param code - The numeric WMO weather interpretation code.
+ * @returns The matching weather configuration object, or `undefined` if not found.
+ */
 export function findWeather(code: number) {
   return Object.values(weatherMap).find((item) => item.codes.includes(code));
 }
 
+/**
+ * Retrieves the weather icon identifier corresponding to a given WMO weather code.
+ *
+ * @param code - The numeric WMO weather interpretation code.
+ * @returns The icon identifier string, or `"-"` if the code is unrecognized.
+ */
 export function getWeatherEffect(code: number) {
   return findWeather(code)?.icon ?? "-";
 }
 
+/**
+ * Retrieves the localized weather condition description for a given WMO weather code.
+ *
+ * @param code - The numeric WMO weather interpretation code.
+ * @returns The human-readable weather description string, or `"-"` if unrecognized.
+ */
 export function getWeatherInfo(code: number) {
   return findWeather(code)?.text ?? "-";
 }
 
+/**
+ * Converts a numeric precipitation probability percentage into a localized descriptive phrase.
+ *
+ * @param chance - The precipitation probability percentage (0 to 100).
+ * @returns A Russian descriptive string indicating the likelihood of precipitation.
+ */
 export function getPrecipitationProbability(chance: number) {
   if (chance <= 0) return "осадков не ожидается";
   if (chance <= 20) return "небольшая вероятность осадков";
@@ -46,6 +70,12 @@ export function getPrecipitationProbability(chance: number) {
   return "ожидается выпадение осадков";
 }
 
+/**
+ * Classifies wind speed in meters per second into a localized Beaufort-style wind category.
+ *
+ * @param speed - Wind speed in m/s.
+ * @returns A Russian descriptive label for the wind intensity (e.g., `"штиль"`, `"шторм"`).
+ */
 export function getWindCategory(speed: number) {
   if (speed <= 0.2) return "штиль";
   if (speed <= 5.4) return "слабый ветер";
@@ -56,6 +86,12 @@ export function getWindCategory(speed: number) {
   return "ураган";
 }
 
+/**
+ * Maps a pollen concentration index to UI styling, activity descriptions, min/max thresholds, and sprite offsets.
+ *
+ * @param category - The numeric pollen concentration level.
+ * @returns A structured `DefaultCategoryPollen` configuration object for rendering pollen indicators.
+ */
 export function getPollenCategory(category: number): DefaultCategoryPollen {
   if (category < 1)
     return {
@@ -102,6 +138,12 @@ export function getPollenCategory(category: number): DefaultCategoryPollen {
   };
 }
 
+/**
+ * Evaluates atmospheric pressure in mmHg and returns gauge fill ratio, indicator color, and status text.
+ *
+ * @param category - Atmospheric pressure value in millimeters of mercury (mmHg).
+ * @returns An object containing `fill` ratio (0 to 1), hex `color`, and localized status `text`.
+ */
 export function getPressureCategory(category: number) {
   if (category <= 740)
     return { fill: 0, color: "#c30101", text: "очень низкое" };
@@ -111,6 +153,12 @@ export function getPressureCategory(category: number) {
   return { fill: 1, color: "#c30101", text: "очень высокое" };
 }
 
+/**
+ * Evaluates the UV index and returns gauge styling, localized advice, background gradients, and protection icons.
+ *
+ * @param category - The numeric UV index value.
+ * @returns An object with gauge `fill`, `color`, status `text`, advice `advancedText`, icon `imgUV`, `bgGradient`, and `attributeImgs`.
+ */
 export function getUVCategory(category: number) {
   if (category <= 2)
     return {
@@ -169,6 +217,12 @@ export function getUVCategory(category: number) {
   };
 }
 
+/**
+ * Classifies geomagnetic fluctuation intensity into gauge fill ratio, indicator color, and storm status text.
+ *
+ * @param category - The numeric geomagnetic fluctuation index (pressure delta in mmHg).
+ * @returns An object containing `fill` ratio, indicator `color`, and localized storm status `text`.
+ */
 export function getMagneticFieldCategory(category: number) {
   if (category <= 2) return { fill: 0, color: "#33c115", text: "спокойное" };
   if (category <= 4)
@@ -180,10 +234,21 @@ export function getMagneticFieldCategory(category: number) {
   return { fill: 1, color: "#c30101", text: "шторм" };
 }
 
+/**
+ * Returns a default empty category object used as a fallback placeholder.
+ *
+ * @returns An object with zeroed `fill` and empty `color` and `text` strings.
+ */
 export const defaultCategoryType = () => {
   return { fill: 0, color: "", text: "" };
 };
 
+/**
+ * Delegates lunar phase value mapping to `moonMap` to retrieve phase name and icon details.
+ *
+ * @param category - The numeric moon phase value (0.0 to 1.0).
+ * @returns The mapped moon phase object containing localized text and icon identifier.
+ */
 export function getMoonPhase(category: number) {
   return moonMap(category);
 }
