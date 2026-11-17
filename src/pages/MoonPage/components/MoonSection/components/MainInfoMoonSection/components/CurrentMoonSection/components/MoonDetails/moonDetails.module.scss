@@ -1,0 +1,26 @@
+.moon_details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  .moon_details_item {
+    background-color: $grey-bg-opacity-low;
+    border-radius: $default-radius;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    .title_details {
+      color: $color-light-grey;
+    }
+    .info {
+      font-weight: $week-bold-text;
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .moon_details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

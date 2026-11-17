@@ -1,0 +1,477 @@
+import {
+  HPA_TO_MMHG,
+  SECONDS_IN_HOUR,
+  SECONDS_IN_MINUTE,
+  WATER_TEMP_OFFSET,
+} from "@constants/conversions";
+import { INDEXOF_NOT_FOUND } from "@constants/utils";
+import {
+  DEFAULT_CATEGORY,
+  DEFAULT_PERIOD_AVERAGES,
+  DEFAULT_TWO_WEEK_HOURLY,
+  DEFAULT_YESTERDAY,
+} from "@constants/weather";
+import type { ApiForecast } from "@ts/api";
+import type { DayGroups, PeriodData } from "@ts/weather";
+import {
+  getMagneticFieldCategory,
+  getMoonPhase,
+  getUVCategory,
+  getWeatherEffect,
+  getWeatherInfo,
+} from "@utils/categories/categories";
+import {
+  getAvgWeatherCode,
+  getWindDirection,
+  shouldShowPlus,
+} from "@utils/formatters";
+
+/**
+ * Retrieves the temperature from exactly 24 hours ago (yesterday at the current hour).
+ * Falls back to `DEFAULT_YESTERDAY` if hourly forecast data or the target timestamp is missing.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing the formatted temperature string for yesterday's current hour.
+ */
+export const yesterdayData = (dataForecast: ApiForecast) => {
+  if (!dataForecast.hourly) return DEFAULT_YESTERDAY;
+
+  const yesterdayDate = new Date();
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  yesterdayDate.setMinutes(0, 0, 0);
+  const yesterdayCurrentMoment = Intl.DateTimeFormat("sv-SE", {
+    dateStyle: "short",
+    timeStyle: "short",
+  })
+    .format(yesterdayDate)
+    .replace(" ", "T");
+  const indexCurrentMoment = dataForecast.hourly.time.indexOf(
+    yesterdayCurrentMoment,
+  );
+
+  if (indexCurrentMoment === INDEXOF_NOT_FOUND) return DEFAULT_YESTERDAY;
+
+  return {
+    yesterdayCurrentTemp: shouldShowPlus(
+      Math.floor(dataForecast.hourly.temperature_2m[indexCurrentMoment]),
+    ),
+  };
+};
+
+/**
+ * Processes hourly forecast data into structured 3-day, 6-day, 10-day, and 14-day intervals.
+ * Calculates pressure variations (magnetic field), UV categories, and groups hours into thinned, full, and daytime slices.
+ * Falls back to `DEFAULT_TWO_WEEK_HOURLY` if hourly timestamps are missing.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing sliced forecast arrays for 3, 6, 10, and 14 days.
+ */
+export const twoWeekHourlyData = (dataForecast: ApiForecast) => {
+  const groupedDays: Record<string, number[]> = {};
+  const now = new Date().toLocaleDateString("sv-SE");
+
+  if (!dataForecast.hourly.time) return DEFAULT_TWO_WEEK_HOURLY;
+
+  dataForecast.hourly.time.forEach((t, i) => {
+    const dataKey = t.split("T")[0];
+
+    if (!groupedDays[dataKey]) {
+      groupedDays[dataKey] = [];
+    }
+
+    groupedDays[dataKey].push(i);
+  });
+
+  const thinnedDays = Object.entries(groupedDays).map(([date, hourIndex]) => {
+    const thinnedHours = hourIndex.filter((_, idx) => idx % 3 === 0);
+    const dayHours = hourIndex.slice(9, 20);
+
+    return {
+      date,
+      hourIndex: thinnedHours,
+      fullHourIndex: hourIndex,
+      dayHoursIndex: dayHours,
+    };
+  });
+
+  /**
+   * Formats hourly metrics for a specific day and computes pressure deltas compared to the previous day.
+   *
+   * @param date - The ISO date string (YYYY-MM-DD) for the target day.
+   * @param hours - Array of hourly indices to extract from the forecast response.
+   * @param prevHours - Array of hourly indices from the previous day used to compute pressure changes.
+   * @returns An array of formatted hourly weather objects with UV, pressure, and past-time status.
+   */
+  const getHoursData = (date: string, hours: number[], prevHours: number[]) => {
+    return hours.map((hour, hourPosition) => {
+      const currentMagnetic = Math.floor(
+        dataForecast.hourly.surface_pressure[hour],
+      );
+
+      const currentTime = dataForecast.hourly.time[hour];
+
+      let magnetic = 0;
+
+      const prevHour = prevHours?.[hourPosition];
+
+      if (prevHours !== undefined) {
+        const previousMagnetic = Math.floor(
+          dataForecast.hourly.surface_pressure[prevHour],
+        );
+
+        magnetic = Math.abs(currentMagnetic - previousMagnetic);
+      }
+
+      return {
+        twoWeekHourlyDate: new Date(date).toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "long",
+        }),
+        twoWeekHourlyWeekday: new Date(date).toLocaleDateString("ru-RU", {
+          weekday: "long",
+        }),
+        twoWeekHourlyTime: currentTime.split("T")[1],
+        twoWeekHourlyMagnetic: magnetic,
+        twoWeekHourlyPressure: Math.floor(
+          dataForecast.hourly.surface_pressure[hour] * HPA_TO_MMHG,
+        ),
+        twoWeekHourlyUV: Math.floor(dataForecast.hourly.uv_index[hour]),
+        twoWeekHourlyUVCategory: getUVCategory(
+          Math.floor(dataForecast.hourly.uv_index[hour]),
+        ),
+        isPast: new Date(currentTime) < new Date(),
+      };
+    });
+  };
+
+  const groupedDaysData = thinnedDays.map((day, dayIndex) => {
+    const previousDay = thinnedDays[dayIndex - 1];
+
+    return {
+      hours: getHoursData(day.date, day.hourIndex, previousDay?.hourIndex),
+      fullHours: getHoursData(
+        day.date,
+        day.fullHourIndex,
+        previousDay?.fullHourIndex,
+      ),
+      dayHours: getHoursData(
+        day.date,
+        day.dayHoursIndex,
+        previousDay?.dayHoursIndex,
+      ),
+    };
+  });
+
+  const finalDaysData = groupedDaysData.slice(1).map((day, i) => ({
+    formatedDate: new Date(thinnedDays[i + 1].date).toLocaleDateString(
+      "ru-RU",
+      {
+        weekday: "short",
+        day: "numeric",
+      },
+    ),
+    dateKey: thinnedDays[i + 1].date,
+    date: new Date(thinnedDays[i + 1].date).getDate(),
+    twoWeekUV: Math.floor(dataForecast.daily.uv_index_max[i + 1]),
+    twoWeekUVCategory: getUVCategory(
+      Math.floor(dataForecast.daily.uv_index_max[i + 1]),
+    ),
+    hours: day.hours,
+    fullHours: day.fullHours,
+    dayHours: day.dayHours,
+    isToday: thinnedDays[i + 1].date === now,
+  }));
+
+  const threeDays = finalDaysData.slice(0, 3);
+  const sixDays = finalDaysData.slice(0, 6);
+  const tenDays = finalDaysData.slice(0, 10);
+  const twoWeeks = finalDaysData.slice(0, 14);
+
+  return { threeDays, sixDays, tenDays, twoWeeks };
+};
+
+/**
+ * Extracts hourly forecast entries starting from the current hour through the end of tomorrow.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An array of formatted timeline items containing time, temperature, and weather condition info.
+ */
+export const timeLineData = (dataForecast: ApiForecast) => {
+  const now = new Date();
+  const current = new Date(now);
+  current.setMinutes(0, 0, 0);
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  tomorrow.setHours(23, 59, 59, 999);
+
+  if (!dataForecast.hourly.time) return [];
+
+  return dataForecast.hourly.time
+    .map((t, i) => ({ t, i }))
+    .filter(({ t }) => {
+      const itemDate = new Date(t);
+
+      return itemDate >= current && itemDate <= tomorrow;
+    })
+    .map(({ t, i }) => ({
+      timeLineKey: t,
+      timeLineDate: t.split("T")[0],
+      timeLineTime: t.split("T")[1].slice(0, 5),
+      timeLineTemperature: shouldShowPlus(
+        Math.floor(dataForecast.hourly.temperature_2m[i]),
+      ),
+      timeLineWeatherEffect: getWeatherEffect(
+        dataForecast.hourly.weather_code[i],
+      ),
+      timeLineWeatherInfo: getWeatherInfo(dataForecast.hourly.weather_code[i]),
+    }));
+};
+
+/**
+ * Groups hourly forecast data into daily time-of-day periods (morning, day, evening, night)
+ * and enriches each day with daily astronomical, geomagnetic, and average weather metrics.
+ *
+ * @param dataForecast - The raw forecast data returned from the weather API.
+ * @returns An object containing formatted daily forecasts for 10 days (`tenDays`) and the current/first day (`oneDay`).
+ */
+export const advancedDaysData = (dataForecast: ApiForecast) => {
+  const groupedDays: Record<string, DayGroups> = {};
+
+  dataForecast.hourly.time.forEach((timeStr, i) => {
+    const dateKey = timeStr.split("T")[0];
+    const hour = new Date(timeStr).getHours();
+
+    if (!groupedDays[dateKey]) {
+      groupedDays[dateKey] = {
+        morning: [],
+        day: [],
+        evening: [],
+        night: [],
+      };
+    }
+
+    const hourData = {
+      temp: Math.floor(dataForecast.hourly.temperature_2m[i]),
+      feels: Math.floor(dataForecast.hourly.apparent_temperature[i]),
+      windSpeed: Math.floor(dataForecast.hourly.wind_speed_10m[i]),
+      windDir: dataForecast.hourly.wind_direction_10m[i],
+      humidity: dataForecast.hourly.relative_humidity_2m[i],
+      pressure: Math.floor(
+        dataForecast.hourly.surface_pressure[i] * HPA_TO_MMHG,
+      ),
+      weatherCode: dataForecast.hourly.weather_code[i],
+    };
+
+    if (hour >= 6 && hour < 12) groupedDays[dateKey].morning.push(hourData);
+    if (hour >= 12 && hour < 18) groupedDays[dateKey].day.push(hourData);
+    if (hour >= 18 && hour < 24) groupedDays[dateKey].evening.push(hourData);
+    if (hour >= 0 && hour < 6) {
+      const prevDate = new Date(timeStr);
+      prevDate.setDate(prevDate.getDate() - 1);
+
+      const prevDateKey = prevDate.toLocaleDateString("sv-SE");
+
+      if (groupedDays[prevDateKey]) {
+        groupedDays[prevDateKey].night.push(hourData);
+      }
+    }
+  });
+
+  const datesKeys = Object.keys(groupedDays);
+
+  /**
+   * Computes averaged weather metrics (temperature, wind, humidity, pressure, and dominant condition)
+   * for a specific time-of-day slice. Falls back to `DEFAULT_PERIOD_AVERAGES` if the slice is empty.
+   *
+   * @param periodArr - Array of hourly weather records belonging to a single day period.
+   * @returns An object with formatted average metrics and weather descriptions for the period.
+   */
+  const averageData = (periodArr: PeriodData[]) => {
+    if (!periodArr.length) return DEFAULT_PERIOD_AVERAGES;
+
+    const count = periodArr.length;
+
+    const arrWeatherCodes = periodArr.map((item) => item.weatherCode);
+
+    const sum = periodArr.reduce(
+      (acc, curr) => ({
+        temp: acc.temp + curr.temp,
+        feels: acc.feels + curr.feels,
+        windSpeed: acc.windSpeed + curr.windSpeed,
+        windDir: acc.windDir + curr.windDir,
+        humidity: acc.humidity + curr.humidity,
+        pressure: acc.pressure + curr.pressure,
+      }),
+      {
+        temp: 0,
+        feels: 0,
+        windSpeed: 0,
+        windDir: 0,
+        humidity: 0,
+        pressure: 0,
+      },
+    );
+
+    return {
+      advancedTemperature: shouldShowPlus(Math.floor(sum.temp / count)),
+      advancedApparentTemperature: shouldShowPlus(
+        Math.floor(sum.feels / count),
+      ),
+      advancedWindSpeed: Math.floor(sum.windSpeed / count),
+      advancedWindDirection: Math.floor(sum.windDir / count),
+      advancedWindDirectionText: getWindDirection(
+        Math.floor(sum.windDir / count),
+      ),
+      advancedHumidity: Math.floor(sum.humidity / count),
+      advancedPressure: Math.floor(sum.pressure / count),
+      advancedWeatherEffect: getWeatherEffect(
+        getAvgWeatherCode(arrWeatherCodes),
+      ),
+      advancedWeatherInfo: getWeatherInfo(getAvgWeatherCode(arrWeatherCodes)),
+    };
+  };
+
+  /**
+   * Safely looks up a daily metric value by matching the target ISO date string.
+   *
+   * @param dailySource - The daily forecast object containing time and metric arrays.
+   * @param arrKey - The property key of the target metric array.
+   * @param targetDate - The ISO date string (YYYY-MM-DD) to search for.
+   * @returns The matched daily value, or `"-"` if the date or metric array is unavailable.
+   */
+  const getDailyData = (
+    dailySource: {
+      time: string[];
+      [key: string]: string[] | number[] | [];
+    },
+    arrKey: string,
+    targetDate: string,
+  ) => {
+    if (!dailySource.time || !dailySource[arrKey]) return "-";
+    const index = dailySource.time.indexOf(targetDate);
+    return index === INDEXOF_NOT_FOUND ? "-" : dailySource[arrKey][index];
+  };
+
+  /**
+   * Formats total daylight duration for a target date into a localized hours and minutes string.
+   *
+   * @param targetDate - The ISO date string (YYYY-MM-DD) to look up.
+   * @returns Formatted daylight duration (e.g., `"10 ч 25 мин"`), or `"-"` if not found.
+   */
+  const getSunDay = (targetDate: string) => {
+    if (!dataForecast.daily) return "-";
+
+    const { time, daylight_duration } = dataForecast.daily;
+
+    const index = time.indexOf(targetDate);
+
+    if (index !== INDEXOF_NOT_FOUND) {
+      const hours = Math.floor(daylight_duration[index] / SECONDS_IN_HOUR);
+      const minutes = Math.floor(
+        (daylight_duration[index] % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,
+      );
+
+      return `${hours} ч ${minutes} мин`;
+    }
+    return "-";
+  };
+
+  /**
+   * Calculates the geomagnetic fluctuation indicator based on max atmospheric pressure difference
+   * between the target date and the following day.
+   *
+   * @param targetDate - The ISO date string (YYYY-MM-DD) to evaluate.
+   * @returns The absolute pressure delta in mmHg, or `0` if daily data is missing.
+   */
+  const getAvgMagnetic = (targetDate: string) => {
+    if (!dataForecast.daily) return 0;
+
+    const { time, surface_pressure_max } = dataForecast.daily;
+
+    const index = time.indexOf(targetDate);
+
+    if (index !== INDEXOF_NOT_FOUND) {
+      const todayMaXPressure = Math.floor(
+        surface_pressure_max[index] * HPA_TO_MMHG,
+      );
+
+      const tomorrowMaxPressure = surface_pressure_max[index + 1]
+        ? Math.floor(surface_pressure_max[index + 1] * HPA_TO_MMHG)
+        : todayMaXPressure;
+
+      return Math.abs(todayMaXPressure - tomorrowMaxPressure);
+    }
+
+    return 0;
+  };
+
+  const forecast = datesKeys.map((date) => {
+    const dayData = groupedDays[date];
+
+    const avgTemp = getDailyData(
+      dataForecast.daily,
+      "temperature_2m_mean",
+      date,
+    );
+    const avgUV = getDailyData(dataForecast.daily, "uv_index_max", date);
+    const avgMagnetic = getAvgMagnetic(date);
+    const avgHumidity = getDailyData(
+      dataForecast.daily,
+      "relative_humidity_2m_mean",
+      date,
+    );
+    const avgPressure = getDailyData(
+      dataForecast.daily,
+      "surface_pressure_mean",
+      date,
+    );
+    const avgMoon = getDailyData(dataForecast.daily, "moon_phase", date);
+    const sunrise = getDailyData(dataForecast.daily, "sunrise", date);
+    const sunset = getDailyData(dataForecast.daily, "sunset", date);
+    const sunDay = getSunDay(date);
+
+    return {
+      advancedDateKey: date,
+      advancedDate: new Date(date).toLocaleString("ru-Ru", {
+        day: "numeric",
+        month: "long",
+      }),
+      advancedWeekday: new Date(date).toLocaleDateString("ru-RU", {
+        weekday: "long",
+      }),
+      advancedWeekend: new Date(date).getDay(),
+      morning: averageData(dayData.morning),
+      day: averageData(dayData.day),
+      evening: averageData(dayData.evening),
+      night: averageData(dayData.night),
+      advancedAvgWaterTemp:
+        typeof avgTemp === "number"
+          ? shouldShowPlus(Math.floor(avgTemp - WATER_TEMP_OFFSET))
+          : "",
+      advancedAvgUV: typeof avgUV === "number" ? Math.floor(avgUV) : 0,
+      advancedUVCategory:
+        typeof avgUV === "number"
+          ? getUVCategory(Math.floor(avgUV))
+          : DEFAULT_CATEGORY,
+      advancedAvgHumidity: avgHumidity,
+      advancedAvgPressure: avgPressure,
+      advancedMagnteticField: avgMagnetic,
+      advancedMagnteticFieldCategory:
+        typeof avgMagnetic === "number"
+          ? getMagneticFieldCategory(avgMagnetic)
+          : DEFAULT_CATEGORY,
+      advancedSunrise: typeof sunrise === "string" ? sunrise.split("T")[1] : "",
+      advancedSunset: typeof sunset === "string" ? sunset.split("T")[1] : "",
+      advancedSunDay: sunDay,
+      advancedMoonPhase:
+        typeof avgMoon === "number"
+          ? getMoonPhase(avgMoon)
+          : { text: "данные отсутствуют", icon: "-" },
+    };
+  });
+
+  const tenDays = forecast.slice(1, 11);
+  const oneDay = forecast[0];
+
+  return { tenDays, oneDay };
+};

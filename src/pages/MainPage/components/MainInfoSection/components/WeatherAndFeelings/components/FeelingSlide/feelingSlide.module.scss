@@ -1,0 +1,53 @@
+.feelings_item {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: $default-radius;
+  box-shadow: $default-shadow;
+  background-color: $white-bg;
+  width: 100%;
+  gap: 14px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: $button-shadow-hovered;
+  }
+  @media (max-width: $tablet-screen) {
+    flex-direction: column;
+    align-items: start;
+  }
+  transition: all 0.2s ease-in-out;
+  .category_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .status_wrapper {
+      width: 45px;
+      height: auto;
+    }
+    .img_pollen {
+      width: 26px;
+      height: auto;
+      position: absolute;
+      top: 10px;
+    }
+    .img_moon {
+      width: 35px;
+      height: auto;
+    }
+    p {
+      position: absolute;
+      font-weight: $week-bold-text;
+      top: 13px;
+    }
+  }
+  .title_wrapper {
+    h4 {
+      font-weight: $week-bold-text;
+    }
+    p {
+      font-size: 14px;
+      color: $color-light-grey;
+    }
+  }
+}

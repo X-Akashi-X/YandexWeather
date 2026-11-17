@@ -1,0 +1,23 @@
+.section_wrapper {
+  border-radius: $default-radius;
+  padding-top: 16px;
+  position: relative;
+  .main_title {
+    display: none;
+    font-weight: $week-bold-text;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .main_wrapper {
+    max-width: 672px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .section_wrapper {
+    .main_title {
+      display: block;
+    }
+  }
+}

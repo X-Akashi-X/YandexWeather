@@ -1,0 +1,152 @@
+.main_wrapper {
+  width: 100%;
+  .main_chart_wrapper {
+    :global(.swiper-slide) {
+      display: block;
+      width: 100%;
+      height: 303px;
+    }
+  }
+  .title_main {
+    margin-bottom: 20px;
+  }
+
+  .dropdown_button {
+    display: none;
+    background-color: inherit;
+    gap: 5px;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    cursor: pointer;
+
+    img {
+      width: 12px;
+      height: auto;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  .days_wrapper {
+    display: flex;
+    gap: 10px;
+
+    .day_wrapper {
+      width: 100%;
+      text-align: center;
+      padding: 10px 6px;
+      background-color: $white-bg;
+      border-radius: $default-radius;
+      box-shadow: $default-shadow;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        box-shadow: $button-shadow-hovered;
+        color: $link-red-hovered;
+      }
+
+      .day_week {
+        font-size: 20px;
+        font-weight: $week-bold-text;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+      }
+
+      img {
+        width: 32px;
+        height: auto;
+        margin-bottom: 7px;
+      }
+
+      .weekend_day {
+        color: $link-red-hovered;
+      }
+    }
+  }
+
+  .chart_wrapper {
+    width: 100%;
+    padding-left: calc(5% - 32px);
+    padding-right: calc(5% - 27px);
+    margin: 0 auto;
+    height: 200px;
+
+    .frame {
+      border-radius: $default-radius;
+      width: 100%;
+      height: 100%;
+      font-size: 12px;
+      text-align: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .frame_day {
+      background-color: #5388d7;
+    }
+
+    .frame_night {
+      background-color: #c5ccd4;
+    }
+  }
+
+  .main_chart_wrapper.active {
+    display: block;
+  }
+}
+
+.chart_wrapper :global {
+  svg,
+  rect,
+  g,
+  circle,
+  path,
+  text {
+    outline: none;
+  }
+}
+
+@media (max-width: $tablet-screen) {
+  .main_wrapper {
+    .main_chart_wrapper {
+      display: none;
+      padding: 0px 10px;
+      :global(.swiper-slide) {
+        min-width: 700px;
+      }
+    }
+
+    .title_main {
+      margin-bottom: 10px;
+    }
+
+    .dropdown_button {
+      display: flex;
+    }
+
+    .days_wrapper {
+      .day_wrapper {
+        min-width: 62px;
+      }
+    }
+
+    .chart_wrapper {
+      padding-left: 5px;
+      padding-right: 0;
+      min-width: 705px;
+      :global {
+        .recharts-surface,
+        .recharts-layer,
+        .recharts-background-rect {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
